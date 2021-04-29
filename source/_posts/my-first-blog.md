@@ -3,7 +3,10 @@ title: my first blog
 date: 2021-04-29 09:36:00
 summary: 成功配置好个人博客啦！
 categories: Hybrid
-tags: python numpy HelloWorld
+tags: 
+  - python
+  - numpy
+  - Hello World
 ---
 
 Hello I'm Coming.
