@@ -8,13 +8,15 @@ tags:
   - github
 ---
 
+基础版的 Github Pages + Hexo + travis ci 实现个人博客配置
+
 即使是在众多大佬博客的帮助下，整体配置过程也有些艰辛，让我最头疼的就是网络问题，感觉给 git 配了代理，改了 hosts 也没有什么用
 
 # Reference
 
-**Tips**：注意主线路教程中使用的是 travis-ci.org, 这个网站马上就要关闭了，其功能迁移到了 [travis-ci.com](https://travis-ci.com/)
+**Tips**：注意主路线教程中使用的是 travis-ci.org, 这个网站马上就要关闭了，其功能迁移到了 [travis-ci.com](https://travis-ci.com/)
 
-**主线路**
+## 主路线
 
 【Hexo】使用Hexo+github pages+travis ci 实现自动化部署 - [HERE](https://www.cnblogs.com/mfrank/p/12829882.html)
 
@@ -22,7 +24,21 @@ tags:
 
 【Hexo】Hexo 主题 Matery 配置 - [HERE](https://www.cnblogs.com/mfrank/p/12830097.html)
 
+## 辅助路线
 
+主路线使用的主题为 `matery` 其 官方配置地址 (Github Address) - [HERE](https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md)
+
+比较好看的一个最终话风格 - [HERE](https://matjenin.gitee.io/index.html)
+
+在一些配置文件等遇到的特殊字符转义问题  - [HERE](https://wxnacy.com/2018/01/12/hexo-specific-symbol/)
+
+HEXO 官方主题库 - [HERE](https://hexo.io/themes/)
+
+HEXO 官方ICON库 - [HERE](https://fontawesome.com/icons?d=gallery&p=2)
+
+YAML语言简版教程，便于理解和自定义 `*.yml` [HERE](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
+
+LiveRe 留言评论功能配置 - [HERE](https://starslove.me/2020/07/08/Hexo-comment/)
 
 # Hexo 项目目录
 
@@ -88,5 +104,31 @@ hexo server # 使用静态文件，在本地4000端口进行预览
 hexo c & hexo g & hexo s # Magic - 达到上述三条命令的效果
 ~~~
 
+# git push 相关问题
 
+OpenSSL SSL_read: Connection was reset, errno 10054
 
+~~~shell
+git config --global http.sslVerify "false"
+~~~
+
+Failed to connect to github.com port 443:connection timed out
+
+~~~shell
+git config --global http.proxy http://127.0.0.1:1080
+git config --global https.proxy http://127.0.0.1:1080
+~~~
+
+上述设置后应该就ok了，如果再次出现问题，取消上述代理设置应该就 ok 了
+
+什么原理(⊙o⊙)…
+
+~~~shell
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+~~~
+
+# 很小的问题
+
+1. 在 `_config.yml` 中配置标题，如果想使用 `’` 可以使用双引号括起来，在 `yaml` 语言中 双引号不会对特殊字符转义。
+2.
