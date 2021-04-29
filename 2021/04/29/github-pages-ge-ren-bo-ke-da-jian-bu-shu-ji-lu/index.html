@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="my first blog, 生活,编程,动漫,游戏,棋">
+    <meta name="keywords" content="github pages 个人博客搭建部署记录, 生活,编程,动漫,游戏,棋">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>my first blog | Hello, I m Coming.</title>
+    <title>github pages 个人博客搭建部署记录 | Hello, I m Coming.</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">my first blog</h1>
+                    <h1 class="description center-align post-title">github pages 个人博客搭建部署记录</h1>
                 </div>
             </div>
         </div>
@@ -432,16 +432,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Coming-blog/tags/python/">
-                                <span class="chip bg-color">python</span>
+                            <a href="/Coming-blog/tags/git/">
+                                <span class="chip bg-color">git</span>
                             </a>
                         
-                            <a href="/Coming-blog/tags/numpy/">
-                                <span class="chip bg-color">numpy</span>
-                            </a>
-                        
-                            <a href="/Coming-blog/tags/Hello-World/">
-                                <span class="chip bg-color">Hello World</span>
+                            <a href="/Coming-blog/tags/github/">
+                                <span class="chip bg-color">github</span>
                             </a>
                         
                     </div>
@@ -452,8 +448,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/Coming-blog/categories/Hybrid/" class="post-category">
-                                Hybrid
+                            <a href="/Coming-blog/categories/Github/" class="post-category">
+                                Github
                             </a>
                         
                     </div>
@@ -479,7 +475,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    16
+                    463
                 </div>
                 
 
@@ -506,12 +502,45 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Hello I’m Coming.</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+                <p>基础版的 Github Pages + Hexo + travis ci 实现个人博客配置</p>
+<p>即使是在众多大佬博客的帮助下，整体配置过程也有些艰辛，让我最头疼的就是网络问题，感觉给 git 配了代理，改了 hosts 也没有什么用</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><strong>Tips</strong>：注意主线路教程中使用的是 travis-ci.org, 这个网站马上就要关闭了，其功能迁移到了 <a target="_blank" rel="noopener" href="https://travis-ci.com/">travis-ci.com</a></p>
+<p><strong>主线路</strong></p>
+<p>【Hexo】使用Hexo+github pages+travis ci 实现自动化部署 - <a target="_blank" rel="noopener" href="https://www.cnblogs.com/mfrank/p/12829882.html">HERE</a></p>
+<p>【Hexo】自定义 Hexo 配置文件 - <a target="_blank" rel="noopener" href="https://www.cnblogs.com/mfrank/p/12830094.html">HERE</a></p>
+<p>【Hexo】Hexo 主题 Matery 配置 - <a target="_blank" rel="noopener" href="https://www.cnblogs.com/mfrank/p/12830097.html">HERE</a></p>
+<h1 id="Hexo-项目目录"><a href="#Hexo-项目目录" class="headerlink" title="Hexo 项目目录"></a>Hexo 项目目录</h1><h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><p>实现对目标目录的初始化</p>
+<pre class=" language-shell"><code class="language-shell"># blogname - 为博客项目准备的目录名
+hexo init blogname
+cd blogname
+nup install
+</code></pre>
+<h2 id="Catalog"><a href="#Catalog" class="headerlink" title="Catalog"></a>Catalog</h2><p><code>_config.yml</code> -</p>
+<p><code>package.json</code> - 是应用程序信息，通常不需要关心</p>
+<p><code>node_moudles</code> - 用来存放 node 相关的模块，通常不需要关心</p>
+<p><code>scaffolds/</code> - 新建文章时的模板文件</p>
+<p><code>source/</code> - 资源文件夹，存放用户资源</p>
+<p><code>theme/</code> - 主题文件夹，<code>_config.yml</code> 将会在此定位使用的主题</p>
+<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><p>记录日常配置中常用的命令信息</p>
+<h2 id="首次初始化"><a href="#首次初始化" class="headerlink" title="首次初始化"></a>首次初始化</h2><pre class=" language-shell"><code class="language-shell">git init # 初始化本地库
+git remote add origin github仓库地址 # 创建别名
+git push -u origin master # 初次提交到目标库
+</code></pre>
+<h2 id="修改提交"><a href="#修改提交" class="headerlink" title="修改提交"></a>修改提交</h2><pre class=" language-shell"><code class="language-shell"># 修改提交到 `github`
 
-arr <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+cd blogname
+git checkout master # 使用master分支
+hexo new "new blogname" # 新建一遍博文
+git add .
+git commit -am "message"
+git push origin master
+</code></pre>
+<h2 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h2><p>注意：配置了 <code>travis ci</code> 会自动检测到博客项目的变更，帮助我们重新部署，因此 <code>修改提交</code> 中不需要重新生成静态文件</p>
+<pre class=" language-shell"><code class="language-shell">hexo clean # 清除缓存和已生成的静态文件
+hexo generate # 生成静态文件
+hexo server # 使用静态文件，在本地4000端口进行预览
 
-<span class="token keyword">return</span> arr
+hexo c & hexo g & hexo s # Magic - 达到上述三条命令的效果
 </code></pre>
 
                 
@@ -539,7 +568,7 @@ arr <span class="token operator">=</span> np<span class="token punctuation">.</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/04/29/my-first-blog/">https://Coming98.github.io/Coming-blog/2021/04/29/my-first-blog/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/">https://Coming98.github.io/Coming-blog/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -577,16 +606,12 @@ arr <span class="token operator">=</span> np<span class="token punctuation">.</s
                     
                         <div class="article-tag">
                             
-                                <a href="/Coming-blog/tags/python/">
-                                    <span class="chip bg-color">python</span>
+                                <a href="/Coming-blog/tags/git/">
+                                    <span class="chip bg-color">git</span>
                                 </a>
                             
-                                <a href="/Coming-blog/tags/numpy/">
-                                    <span class="chip bg-color">numpy</span>
-                                </a>
-                            
-                                <a href="/Coming-blog/tags/Hello-World/">
-                                    <span class="chip bg-color">Hello World</span>
+                                <a href="/Coming-blog/tags/github/">
+                                    <span class="chip bg-color">github</span>
                                 </a>
                             
                         </div>
@@ -758,9 +783,10 @@ arr <span class="token operator">=</span> np<span class="token punctuation">.</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/Coming-blog/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/">
                     <div class="card-image">
@@ -778,9 +804,9 @@ arr <span class="token operator">=</span> np<span class="token punctuation">.</s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -793,6 +819,7 @@ arr <span class="token operator">=</span> np<span class="token punctuation">.</s
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -815,19 +842,19 @@ arr <span class="token operator">=</span> np<span class="token punctuation">.</s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/04/29/hello-world/">
+                <a href="/Coming-blog/2021/04/29/my-first-blog/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/Coming-blog/medias/featureimages/18.jpg" class="responsive-img" alt="my first blog">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">my first blog</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            成功配置好个人博客啦！
                         
                     </div>
                     <div class="publish-info">
@@ -836,11 +863,31 @@ arr <span class="token operator">=</span> np<span class="token punctuation">.</s
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Coming
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/Coming-blog/categories/Hybrid/" class="post-category">
+                                    Hybrid
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Coming-blog/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/Coming-blog/tags/numpy/">
+                        <span class="chip bg-color">numpy</span>
+                    </a>
+                    
+                    <a href="/Coming-blog/tags/Hello-World/">
+                        <span class="chip bg-color">Hello World</span>
+                    </a>
+                    
                 </div>
                 
             </div>

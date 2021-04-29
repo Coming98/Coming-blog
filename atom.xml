@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2021-04-29T06:06:46.919Z</updated>
+  <updated>2021-04-29T06:51:36.988Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>github pages 个人博客搭建部署记录</title>
+    <link href="https://coming98.github.io/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/"/>
+    <id>https://coming98.github.io/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/</id>
+    <published>2021-04-29T14:48:12.000Z</published>
+    <updated>2021-04-29T06:51:36.988Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;基础版的 Github Pages + Hexo + travis ci 实现个人博客配置&lt;/p&gt;
+&lt;p&gt;即使是在众多大佬博客的帮助下，整体配置过程也有些艰辛，让我最头疼的就是网络问题，感觉给 git 配了代理，改了 hosts 也没有什么用&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="Github" scheme="https://coming98.github.io/categories/Github/"/>
+    
+    
+    <category term="git" scheme="https://coming98.github.io/tags/git/"/>
+    
+    <category term="github" scheme="https://coming98.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
     <title>my first blog</title>
     <link href="https://coming98.github.io/2021/04/29/my-first-blog/"/>
     <id>https://coming98.github.io/2021/04/29/my-first-blog/</id>
     <published>2021-04-29T09:36:00.000Z</published>
-    <updated>2021-04-29T06:06:46.919Z</updated>
+    <updated>2021-04-29T06:51:36.988Z</updated>
     
     
       
@@ -50,8 +79,8 @@
     <title>Hello World</title>
     <link href="https://coming98.github.io/2021/04/29/hello-world/"/>
     <id>https://coming98.github.io/2021/04/29/hello-world/</id>
-    <published>2021-04-29T06:06:46.919Z</published>
-    <updated>2021-04-29T06:06:46.919Z</updated>
+    <published>2021-04-29T06:51:36.988Z</published>
+    <updated>2021-04-29T06:51:36.988Z</updated>
     
     
       
