@@ -7,7 +7,6 @@ tags:
   - git
   - github
 ---
-基础版的 Github Pages + Hexo + travis ci 实现个人博客配置
 
 即使是在众多大佬博客的帮助下，整体配置过程也有些艰辛，让我最头疼的就是网络问题，感觉给 git 配了代理，改了 hosts 也没有什么用
 
@@ -88,5 +87,6 @@ hexo server # 使用静态文件，在本地4000端口进行预览
 
 hexo c & hexo g & hexo s # Magic - 达到上述三条命令的效果
 ~~~
+
 
 
