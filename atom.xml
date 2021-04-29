@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2021-04-29T06:51:36.988Z</updated>
+  <updated>2021-04-29T07:04:20.000Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://coming98.github.io/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/"/>
     <id>https://coming98.github.io/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/</id>
     <published>2021-04-29T14:48:12.000Z</published>
-    <updated>2021-04-29T06:51:36.988Z</updated>
+    <updated>2021-04-29T07:04:20.000Z</updated>
     
     
       
@@ -50,7 +50,7 @@
     <link href="https://coming98.github.io/2021/04/29/my-first-blog/"/>
     <id>https://coming98.github.io/2021/04/29/my-first-blog/</id>
     <published>2021-04-29T09:36:00.000Z</published>
-    <updated>2021-04-29T06:51:36.988Z</updated>
+    <updated>2021-04-29T07:04:20.000Z</updated>
     
     
       
@@ -72,27 +72,6 @@
     <category term="numpy" scheme="https://coming98.github.io/tags/numpy/"/>
     
     <category term="Hello World" scheme="https://coming98.github.io/tags/Hello-World/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://coming98.github.io/2021/04/29/hello-world/"/>
-    <id>https://coming98.github.io/2021/04/29/hello-world/</id>
-    <published>2021-04-29T06:51:36.988Z</published>
-    <updated>2021-04-29T06:51:36.988Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
