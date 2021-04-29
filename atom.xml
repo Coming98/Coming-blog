@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2021-04-29T05:16:30.825Z</updated>
+  <updated>2021-04-29T06:01:05.504Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://coming98.github.io/2021/04/29/my-first-blog/"/>
     <id>https://coming98.github.io/2021/04/29/my-first-blog/</id>
     <published>2021-04-29T09:36:00.000Z</published>
-    <updated>2021-04-29T05:16:30.825Z</updated>
+    <updated>2021-04-29T06:01:05.504Z</updated>
     
     
       
@@ -35,6 +35,10 @@
     
     
     
+    <category term="Hybrid" scheme="https://coming98.github.io/categories/Hybrid/"/>
+    
+    
+    <category term="python numpy HelloWorld" scheme="https://coming98.github.io/tags/python-numpy-HelloWorld/"/>
     
   </entry>
   
@@ -42,8 +46,8 @@
     <title>Hello World</title>
     <link href="https://coming98.github.io/2021/04/29/hello-world/"/>
     <id>https://coming98.github.io/2021/04/29/hello-world/</id>
-    <published>2021-04-29T05:16:30.825Z</published>
-    <updated>2021-04-29T05:16:30.825Z</updated>
+    <published>2021-04-29T06:01:05.504Z</published>
+    <updated>2021-04-29T06:01:05.504Z</updated>
     
     
       

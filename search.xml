@@ -11,6 +11,18 @@
         <content type="html"><![CDATA[<p>Hello I’m Coming.</p><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> nparr <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token keyword">return</span> arr</code></pre>]]></content>
       
       
+      <categories>
+          
+          <category> Hybrid </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python numpy HelloWorld </tag>
+            
+        </tags>
       
     </entry>
     
