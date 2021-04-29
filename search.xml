@@ -20,7 +20,11 @@
       
         <tags>
             
-            <tag> python numpy HelloWorld </tag>
+            <tag> python </tag>
+            
+            <tag> numpy </tag>
+            
+            <tag> Hello World </tag>
             
         </tags>
       
