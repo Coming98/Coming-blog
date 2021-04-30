@@ -76,7 +76,7 @@ nup install
 ~~~shell
 git init # 初始化本地库
 git remote add origin github仓库地址 # 创建别名
-git push -u origin master # 初次提交到目标库
+git push -u origin master # 初次提交到目标库 - 记录本分支提交的默认参数
 ~~~
 
 ## 修改提交
