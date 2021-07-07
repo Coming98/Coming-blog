@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/2021/07/07/hexo-bo-ke-zhong-shi-yong-latex-pei-zhi-fang-fa/</loc>
+    
+    <lastmod>2021-07-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/</loc>
     
     <lastmod>2021-07-07</lastmod>
@@ -81,6 +88,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/tags/method/</loc>
+    <lastmod>2021-07-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/tags/git/</loc>
     <lastmod>2021-07-07</lastmod>
     <changefreq>daily</changefreq>
@@ -140,6 +154,13 @@
   
   <url>
     <loc>https://coming98.github.io/categories/StatisticalLearning/</loc>
+    <lastmod>2021-07-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/categories/Hexo/</loc>
     <lastmod>2021-07-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
