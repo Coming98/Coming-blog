@@ -1052,8 +1052,8 @@ to_json <span class="token comment" spellcheck="true"># json，返回 tokenizer 
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            collapseDepth: Number('2'),
+            headingSelector: 'h1, h2, h3'
         });
 
         // modify the toc link href to support Chinese.
@@ -1065,7 +1065,7 @@ to_json <span class="token comment" spellcheck="true"># json，返回 tokenizer 
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1, h2, h3').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
