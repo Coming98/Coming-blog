@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>[统计学习方法]概论篇</title>
+      <link href="/Coming-blog/2021/07/07/91-tong-ji-xue-xi-fang-fa-93-gai-lun-pian/"/>
+      <url>/Coming-blog/2021/07/07/91-tong-ji-xue-xi-fang-fa-93-gai-lun-pian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="概论-学前须知"><a href="#概论-学前须知" class="headerlink" title="概论-学前须知"></a>概论-学前须知</h1><p>统计学习方法学习过程中记录的基础知识，保持更新~</p><h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol><li>数据：得到一个有限的训练数据集合；</li><li>模型：包含所有可能的模型的假设空间，即学习模型的集合；</li><li>损失函数：确定模型选择的准则，即学习的策略；</li><li>优化算法：实现求解最优模型的算法，即学习的算法：</li><li>最优模型：通过学习方法选择最优模型：</li><li>预测：利用学习的最优模型对新数据进行预测或分析。 </li></ol><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210707214412171.png" alt="image-20210707214412171"></p><p>如上图所示：</p><ol><li>从给定的、有限的、用于学习的<strong>训练数据集</strong>（training data）合出发</li><li>从<strong>假设空间</strong>（hypothesis space）取出一个模型</li><li>将数据输入模型，并应用到某个评价标准上（<strong>损失函数</strong>）</li><li>利用选定的优化算法，不断的优化模型</li><li>最终得到最终（最优）模型</li></ol><h1 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h1><p><strong>期望风险</strong></p><p>又名风险函数，度量平均意义下模型预测的好坏，是模型关于联合分布的期望损失。<br>$$<br>R_{exp}(f) = E_p[L(Y, f(X))] = \int_{x \times y} L(y, f(x)) P(x, y) dxdy<br>$$<br><strong>经验风险</strong></p><p>给定模型关于训练数据集的平均损失，当样本容量N趋于无穷时，经验风险趋近于期望风险（大数定律）<br>$$<br>R_{emp}(f) = \frac{1}{N} \sum_{i=1}^{N} L(y_i, f(x_i))<br>$$<br>期望风险与经验风险的联系：由于实际分布P(x,y)不知道实际中常用经验风险代替期望风险</p><p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210707215504624.png" alt="image-20210707215504624"></p><h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><ul><li>L1范数：向量元素绝对值之和</li></ul><p>$$<br>||x_1|| = \sum_{i=1}^{n}|x_i|<br>$$</p><ul><li></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 统计学习方法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分词器Tokenizer使用方法与实践</title>
       <link href="/Coming-blog/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/"/>
       <url>/Coming-blog/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/</url>
