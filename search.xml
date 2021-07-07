@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>test</title>
+      <link href="/Coming-blog/2021/07/07/test/"/>
+      <url>/Coming-blog/2021/07/07/test/</url>
+      
+        <content type="html"><![CDATA[<p>Hello</p><h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>a </p><p>a</p><h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>b</p><p>b</p><h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><p>c</p><p>c</p><h2 id="d"><a href="#d" class="headerlink" title="d"></a>d</h2><p>dd</p><h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h2 id="e"><a href="#e" class="headerlink" title="e"></a>e</h2><h3 id="f"><a href="#f" class="headerlink" title="f"></a>f</h3><p>End</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> HyBrid </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hello World </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分词器Tokenizer使用方法与实践</title>
       <link href="/Coming-blog/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/"/>
       <url>/Coming-blog/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/</url>
