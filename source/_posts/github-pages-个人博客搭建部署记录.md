@@ -42,6 +42,8 @@ YAML语言简版教程，便于理解和自定义 `*.yml` [HERE](http://www.ruan
 
 LiveRe 留言评论功能配置 - [HERE](https://starslove.me/2020/07/08/Hexo-comment/)
 
+高水平插件 - [HERE](https://blog.csdn.net/q2158798/article/details/82354154)
+
 # Hexo 项目目录
 
 ## Init
@@ -105,6 +107,12 @@ hexo server # 使用静态文件，在本地4000端口进行预览
 
 hexo c & hexo g & hexo s # Magic - 达到上述三条命令的效果
 ~~~
+
+## 删除博文
+
+也没有查阅到相关命令，直接在本地删除后就可行了
+
+最好执行一次 `hexo c & hexo g & hexo s` 本地先看看，然后在提交仓库确认删除操作
 
 # git push 相关问题
 
