@@ -133,3 +133,17 @@ sitemap:
   path: sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
+
+markdown_it_plus:
+  highlight: true
+  html: true
+  xhtmlOut: true
+  breaks: false
+  langPrefix:
+  linkify: true
+  typographer: false
+  quotes:
+  plugins:
+    - plugin:
+        name: markdown-it-mark
+        enable: false
