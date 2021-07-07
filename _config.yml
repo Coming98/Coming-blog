@@ -6,7 +6,7 @@
 title: "Hello I'm Coming"
 subtitle: 'The sky is the limit!'
 description: 'Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux'
-keywords: '生活,编程,动漫,游戏,棋'
+keywords: '编程,博客,魔方,棋牌,生活'
 author: Coming
 language: zh-CN
 timezone: ''
@@ -42,7 +42,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: true
 highlight:
