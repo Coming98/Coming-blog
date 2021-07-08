@@ -47,15 +47,19 @@ relative_link: false
 future: true
 highlight:
   enable: false
-prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'tomorrow'
-  line_number: false    # default false
-  custom_css: 
+  auto_detect: false
+  line_number: true
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: true
+  tab_replace: ''
 search:
   path: search.xml
   field: post
-
 permalink_pinyin:
   enable: true
   separator: '-' # default: '-'
@@ -147,3 +151,4 @@ markdown_it_plus:
     - plugin:
         name: markdown-it-mark
         enable: false
+        

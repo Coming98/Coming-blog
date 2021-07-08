@@ -16,7 +16,7 @@ GitHub: https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus
 
 在博客根目录下，右键单击，选择 `Git Bash Here` 后依次输入命令
 
-```shell
+``` shell
 npm uninstall hexo-renderer-marked
 npm install hexo-renderer-kramed --save
 ```
@@ -25,7 +25,7 @@ npm install hexo-renderer-kramed --save
 
 在博客根目录下，右键单击，选择 `Git Bash Here` 后输入命令
 
-```shell
+``` shell
 npm i -S hexo-renderer-markdown-it-plus
 ```
 
@@ -33,7 +33,7 @@ npm i -S hexo-renderer-markdown-it-plus
 
 1. 在博客根目录下，编辑 `_config.yml` 在底部添加如下配置信息
 
-```yaml
+``` yaml
 markdown_it_plus:
   highlight: true
   html: true
@@ -51,11 +51,16 @@ markdown_it_plus:
 
 2. 在使用的主题文件根目录下，编辑 `_config.yml` 在 `<head>` 标签底部添加如下引入信息
 
-```html
-<% if (page.mathjax) { %>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<% } %>
+``` ejs
+<head>
+    ...
+    ...
+
+    <% if (page.mathjax) { %>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <% } %>
+</head>
 ```
 
 # 4 指定渲染博文
@@ -64,8 +69,7 @@ markdown_it_plus:
 
 在后续书写博文时，在开头博文属性栏添加如下属性，已决定本文是否加载渲染文件
 
-```yaml
+``` yaml
 mathjax: false # 不引入
 mathjax: true # 引入
 ```
-
