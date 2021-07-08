@@ -26,11 +26,13 @@
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/Coming-blog/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/Coming-blog/css/my.css">
-	
+
     <script src="/Coming-blog/libs/jquery/jquery.min.js"></script>
+	
+	
 
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/Coming-blog/atom.xml" title="Coming is here" type="application/atom+xml">
-<link rel="stylesheet" href="/Coming-blog/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -472,14 +474,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-07
+                    2021-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    860
+                    859
                 </div>
                 
 
@@ -501,6 +503,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/Coming-blog/libs/prism/prism.css">
+        
 
         
 
@@ -514,20 +519,19 @@
 </ol>
 <p>Tips：词索引分配从 1 开始</p>
 <p>Tips：基于词频保留 <code>num_words - 1</code> 个词，其余词将会像过滤字符过滤掉</p>
-<pre class="highlight"><code class="python">keras.preprocessing.text.Tokenizer(
-    num_words=<span class="hljs-literal">None</span>, <span class="hljs-comment"># 处理最大单词数目(num_words-1)，基于词频筛选</span>
-    filters=<span class="hljs-string">"!"</span><span class="hljs-comment">#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`&#123;|&#125;~ ", # 过滤的元素，字符级匹配过滤</span>
-    lower=<span class="hljs-literal">True</span>, <span class="hljs-comment"># 是否将文本转为小写</span>
-    split=<span class="hljs-string">" "</span>, <span class="hljs-comment"># 词分隔符</span>
-    char_level=<span class="hljs-literal">False</span> <span class="hljs-comment"># 如果为 True，则每个字符都将被视为标记。</span>
-)
-</code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>text<span class="token punctuation">.</span>Tokenizer<span class="token punctuation">(</span>
+    num_words<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token comment"># 处理最大单词数目(num_words-1)，基于词频筛选</span>
+    filters<span class="token operator">=</span><span class="token string">"!"</span><span class="token comment">#$%&amp;()*+,-./:;&lt;=>?@[\]^_`&#123;|&#125;~ ", # 过滤的元素，字符级匹配过滤</span>
+    lower<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token comment"># 是否将文本转为小写</span>
+    split<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">,</span> <span class="token comment"># 词分隔符</span>
+    char_level<span class="token operator">=</span><span class="token boolean">False</span> <span class="token comment"># 如果为 True，则每个字符都将被视为标记。</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="attributes"><a class="markdownIt-Anchor" href="#attributes"></a> Attributes</h1>
 <p>数据格式如：语料库 - <code>texts</code> = <code>[ document1:&quot;AAAA.BBBB.CCCC.&quot;, document2, ...]</code></p>
-<pre class="highlight"><code class="python">document_count
-word_counts <span class="hljs-comment"># 词在语料库中的频数</span>
-word_docs <span class="hljs-comment"># 词在 documents 中出现的频数，用于 TF-IDF 算法</span>
-<span class="hljs-string">"""
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">document_count
+word_counts <span class="token comment"># 词在语料库中的频数</span>
+word_docs <span class="token comment"># 词在 documents 中出现的频数，用于 TF-IDF 算法</span>
+<span class="token triple-quoted-string string">"""
 for w in seq:
 	if w in self.word_counts:
 		self.word_counts[w] += 1
@@ -537,44 +541,41 @@ for w in set(seq):
 	# In how many documents each word occurs
 	self.word_docs[w] += 1
 """</span>
-index_docs <span class="hljs-comment"># 同 word_docs 只不过将词映射为了索引值</span>
-index_word <span class="hljs-comment"># 索引 To 词的映射词典</span>
-word_index <span class="hljs-comment"># 词 To 索引的映射词典</span>
-</code></pre>
+index_docs <span class="token comment"># 同 word_docs 只不过将词映射为了索引值</span>
+index_word <span class="token comment"># 索引 To 词的映射词典</span>
+word_index <span class="token comment"># 词 To 索引的映射词典</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="methods"><a class="markdownIt-Anchor" href="#methods"></a> Methods</h1>
 <p>总体来说就是完成了语料库中 Token 与 index 的映射支持，映射以词频为基础</p>
-<pre class="highlight"><code class="python">fit_on_sequences(sequences) <span class="hljs-comment"># 列表，内部元素为单词索引</span>
-fit_on_texts(texts) <span class="hljs-comment"># 列表，内部元素为分词后的单个 token</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">fit_on_sequences<span class="token punctuation">(</span>sequences<span class="token punctuation">)</span> <span class="token comment"># 列表，内部元素为单词索引</span>
+fit_on_texts<span class="token punctuation">(</span>texts<span class="token punctuation">)</span> <span class="token comment"># 列表，内部元素为分词后的单个 token</span>
 
-sequences_to_matrix(sequences, mode=<span class="hljs-string">'binary'</span>) <span class="hljs-comment"># 将各个语料的元素索引信息转为 numpy 矩阵 - 通常用于构建数据集</span>
-sequences_to_texts(sequences) <span class="hljs-comment"># list of word indices(int) TO list of tokens(string)</span>
-texts_to_sequences(texts)
+sequences_to_matrix<span class="token punctuation">(</span>sequences<span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">'binary'</span><span class="token punctuation">)</span> <span class="token comment"># 将各个语料的元素索引信息转为 numpy 矩阵 - 通常用于构建数据集</span>
+sequences_to_texts<span class="token punctuation">(</span>sequences<span class="token punctuation">)</span> <span class="token comment"># list of word indices(int) TO list of tokens(string)</span>
+texts_to_sequences<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
 
-get_config() <span class="hljs-comment"># 字典，返回 tokenizer 实例的配置信息</span>
+get_config<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># 字典，返回 tokenizer 实例的配置信息</span>
 
-to_json <span class="hljs-comment"># json，返回 tokenizer 实例的配置信息</span>
-</code></pre>
+to_json <span class="token comment"># json，返回 tokenizer 实例的配置信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol>
 <li>通过 <code>fit_on_texts</code> 完成 Tokenizer 的拟合，更新 Attributes <code>document_count, word_counts, word_docs, index_docs, index_word, word_index</code></li>
 <li>通过内置方法或属性名获取相关信息</li>
 </ol>
 <h1 id="demo"><a class="markdownIt-Anchor" href="#demo"></a> Demo</h1>
 <p>语料库数据如下：</p>
-<pre class="highlight"><code class="python">texts = [<span class="hljs-string">'United were league champions last season.'</span>,
-        <span class="hljs-string">"They're in a different league from us."</span>,
-        <span class="hljs-string">"the League of Nations"</span>,
-        <span class="hljs-string">"a meeting of the Women's League for Peace"</span>,
-        <span class="hljs-string">"Her success has taken her out of my league"</span>]
-</code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">texts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'United were league champions last season.'</span><span class="token punctuation">,</span>
+        <span class="token string">"They're in a different league from us."</span><span class="token punctuation">,</span>
+        <span class="token string">"the League of Nations"</span><span class="token punctuation">,</span>
+        <span class="token string">"a meeting of the Women's League for Peace"</span><span class="token punctuation">,</span>
+        <span class="token string">"Her success has taken her out of my league"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>测试如下</p>
-<pre class="highlight"><code class="python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_default</span><span class="hljs-params">(title, tokenizer)</span>:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_default</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> tokenizer<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    fit_req = tokenizer.fit_on_texts(texts) <span class="hljs-comment"># return None</span>
+    fit_req <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>fit_on_texts<span class="token punctuation">(</span>texts<span class="token punctuation">)</span> <span class="token comment"># return None</span>
 
-    <span class="hljs-comment"># 文本未分词先进行分词，然后将词转为索引值</span>
-    seq = tokenizer.texts_to_sequences(texts)
-    seq_arr = tokenizer.sequences_to_matrix(seq)
-    <span class="hljs-string">"""
+    <span class="token comment"># 文本未分词先进行分词，然后将词转为索引值</span>
+    seq <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
+    seq_arr <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>sequences_to_matrix<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+    <span class="token triple-quoted-string string">"""
     seq : 可以看出 1 的位置是词频最高的 league
     [[6, 7, 1, 8, 9, 10],
     [11, 12, 3, 13, 1, 14, 15],
@@ -584,14 +585,14 @@ to_json <span class="hljs-comment"># json，返回 tokenizer 实例的配置信�
     seq_arr: 过长，请看下方示例
 	"""</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_limit_numWords</span><span class="hljs-params">(title, tokenizer)</span>:</span>
+<span class="token keyword">def</span> <span class="token function">test_limit_numWords</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> tokenizer<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    tokenizer.fit_on_texts(texts)
-    seq = tokenizer.texts_to_sequences(texts)
-	seq_arr = tokenizer.sequences_to_matrix(seq)
-    texts_from_seq = tokenizer.sequences_to_texts(seq)
+    tokenizer<span class="token punctuation">.</span>fit_on_texts<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
+    seq <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
+	seq_arr <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>sequences_to_matrix<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+    texts_from_seq <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>sequences_to_texts<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
 
-    <span class="hljs-string">"""
+    <span class="token triple-quoted-string string">"""
     seq : 词频低的词直接舍去，知保留词频较高的前 num_words - 1 个词
 	[[6, 7, 1, 8, 9], 
 	[3, 1], 
@@ -612,7 +613,7 @@ to_json <span class="hljs-comment"># json，返回 tokenizer 实例的配置信�
  	'her her of league']
     """</span>
 
-<span class="hljs-string">"""Attributes
+<span class="token triple-quoted-string string">"""Attributes
 'document_count': 5
 
 'word_counts': '&#123;"united": 1, "were": 1, ... "her": 2, "my": 1&#125;'
@@ -626,17 +627,16 @@ to_json <span class="hljs-comment"># json，返回 tokenizer 实例的配置信�
 'word_index': '&#123;"league": 1, "of": 2, "a": 3, ... "out": 24, "my": 25&#125;'
 """</span>
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>:</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    tokenizer_default = Tokenizer()
-    tokenizer_limit_numWords = Tokenizer(num_words=<span class="hljs-number">10</span>) <span class="hljs-comment"># 只考虑词频前9的词</span>
+    tokenizer_default <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    tokenizer_limit_numWords <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>num_words<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment"># 只考虑词频前9的词</span>
 
-    test_default(<span class="hljs-string">"default test"</span>, tokenizer_default)
-    test_limit_numWords(<span class="hljs-string">"limit num_words test"</span>, tokenizer_limit_numWords)
+    test_default<span class="token punctuation">(</span><span class="token string">"default test"</span><span class="token punctuation">,</span> tokenizer_default<span class="token punctuation">)</span>
+    test_limit_numWords<span class="token punctuation">(</span><span class="token string">"limit num_words test"</span><span class="token punctuation">,</span> tokenizer_limit_numWords<span class="token punctuation">)</span>
 
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
-    main()
-</code></pre>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr />
 <p>如果存在错误，欢迎留言指出哦~</p>
 

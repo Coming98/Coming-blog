@@ -26,11 +26,13 @@
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/Coming-blog/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/Coming-blog/css/my.css">
-	
+
     <script src="/Coming-blog/libs/jquery/jquery.min.js"></script>
+	
+	
 
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/Coming-blog/atom.xml" title="Coming is here" type="application/atom+xml">
-<link rel="stylesheet" href="/Coming-blog/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -468,14 +470,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-07
+                    2021-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    794
+                    806
                 </div>
                 
 
@@ -496,6 +498,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/Coming-blog/libs/prism/prism.css">
         
 
         
@@ -523,11 +528,10 @@
 <h1 id="hexo-项目目录"><a class="markdownIt-Anchor" href="#hexo-项目目录"></a> Hexo 项目目录</h1>
 <h2 id="init"><a class="markdownIt-Anchor" href="#init"></a> Init</h2>
 <p>实现对目标目录的初始化</p>
-<pre class="highlight"><code class="shell"><span class="hljs-meta">#</span><span class="bash"> blogname - 为博客项目准备的目录名</span>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># blogname - 为博客项目准备的目录名
 hexo init blogname
 cd blogname
-nup install
-</code></pre>
+nup install<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="catalog"><a class="markdownIt-Anchor" href="#catalog"></a> Catalog</h2>
 <p><code>_config.yml</code> -</p>
 <p><code>package.json</code> - 是应用程序信息，通常不需要关心</p>
@@ -538,44 +542,38 @@ nup install
 <h1 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h1>
 <p>记录日常配置中常用的命令信息</p>
 <h2 id="首次初始化"><a class="markdownIt-Anchor" href="#首次初始化"></a> 首次初始化</h2>
-<pre class="highlight"><code class="shell">git init # 初始化本地库
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git init # 初始化本地库
 git remote add origin github仓库地址 # 创建别名
-git push -u origin master # 初次提交到目标库 - 记录本分支提交的默认参数
-</code></pre>
+git push -u origin master # 初次提交到目标库 - 记录本分支提交的默认参数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="修改提交"><a class="markdownIt-Anchor" href="#修改提交"></a> 修改提交</h2>
-<pre class="highlight"><code class="shell"><span class="hljs-meta">#</span><span class="bash"> 修改提交到 `github`</span>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 修改提交到 &#96;github&#96;
 
 cd blogname
 git checkout master # 使用master分支
-hexo new "new blogname" # 新建一遍博文
+hexo new &quot;new blogname&quot; # 新建一遍博文
 git add .
-git commit -am "message"
-git push origin master
-</code></pre>
+git commit -am &quot;message&quot;
+git push origin master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="本地预览"><a class="markdownIt-Anchor" href="#本地预览"></a> 本地预览</h2>
 <p>注意：配置了 <code>travis ci</code> 会自动检测到博客项目的变更，帮助我们重新部署，因此 <code>修改提交</code> 中不需要重新生成静态文件</p>
-<pre class="highlight"><code class="shell">hexo clean # 清除缓存和已生成的静态文件
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo clean # 清除缓存和已生成的静态文件
 hexo generate # 生成静态文件
 hexo server # 使用静态文件，在本地4000端口进行预览
 
-hexo c &amp; hexo g &amp; hexo s # Magic - 达到上述三条命令的效果
-</code></pre>
+hexo c &amp; hexo g &amp; hexo s # Magic - 达到上述三条命令的效果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="删除博文"><a class="markdownIt-Anchor" href="#删除博文"></a> 删除博文</h2>
 <p>也没有查阅到相关命令，直接在本地删除后就可行了</p>
 <p>最好执行一次 <code>hexo c &amp; hexo g &amp; hexo s</code> 本地先看看，然后在提交仓库确认删除操作</p>
 <h1 id="git-push-相关问题"><a class="markdownIt-Anchor" href="#git-push-相关问题"></a> git push 相关问题</h1>
 <p>OpenSSL SSL_read: Connection was reset, errno 10054</p>
-<pre class="highlight"><code class="shell">git config --global http.sslVerify "false"
-</code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global http.sslVerify &quot;false&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>Failed to connect to <a target="_blank" rel="noopener" href="http://github.com">github.com</a> port 443:connection timed out</p>
-<pre class="highlight"><code class="shell">git config --global http.proxy http://127.0.0.1:1080
-git config --global https.proxy http://127.0.0.1:1080
-</code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global http.proxy http:&#x2F;&#x2F;127.0.0.1:1080
+git config --global https.proxy http:&#x2F;&#x2F;127.0.0.1:1080<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>上述设置后应该就ok了，如果再次出现问题，取消上述代理设置应该就 ok 了</p>
 <p>什么原理(⊙o⊙)…</p>
-<pre class="highlight"><code class="shell">git config --global --unset http.proxy
-git config --global --unset https.proxy
-</code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global --unset http.proxy
+git config --global --unset https.proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h1 id="很小的问题"><a class="markdownIt-Anchor" href="#很小的问题"></a> 很小的问题</h1>
 <ol>
 <li>在 <code>_config.yml</code> 中配置标题，如果想使用 <code>’</code> 可以使用双引号括起来，在 <code>yaml</code> 语言中 双引号不会对特殊字符转义。</li>
