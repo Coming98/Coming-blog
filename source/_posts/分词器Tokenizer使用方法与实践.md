@@ -1,7 +1,7 @@
 ---
 title: 分词器Tokenizer使用方法与实践
 date: 2021-07-07 16:26:56
-summary: 学习了 Tokenizer 提供的工具类方法，并进行了小实验
+summary: Tokenizer 工具类方法介绍以及小Demo
 categories: NLP
 tags:
   - nlp
