@@ -1,4 +1,9 @@
 $(function () {
+	
+	$("#indexCard .fa-lightbulb").on("click", function(){
+		alert("恭喜你发现了藏宝地，可是我还没想好埋什么宝藏，以后再来吧~");
+	});
+	
     /**
      * 添加文章卡片hover效果.
      */

@@ -2,3 +2,12 @@
 div.caption {
     display: none;
 }
+
+/*  */
+div#indexCard .fa-lightbulb {
+	cursor: pointer;
+}
+
+div#indexCard .fa-lightbulb:hover {
+	color: orange;
+}
