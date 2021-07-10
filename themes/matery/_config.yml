@@ -384,9 +384,12 @@ verifyPassword:
 # busuanzi(http://busuanzi.ibruce.info/) website statistics
 # 不蒜子(http://busuanzi.ibruce.info/) 网站统计
 busuanziStatistics:
-  enable: true
+  enable: false
   totalTraffic: true # 总访问量
   totalNumberOfvisitors: true # 总人次
+# Show Views / Visitors of the website / page with busuanzi.#展示访问数
+# Get more information on http://ibruce.info/2015/04/04/busuanzi
+
 
 # Add google analytics configuration
 # 添加 Google Analytics 配置
