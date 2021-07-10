@@ -204,6 +204,11 @@ post_wordcount: 		# 字数统计
   min2read: true		# 显示阅读时间
   totalcount: true		# 显示总数
   separated_meta: true	# 是否分开
+wordCount:
+  enable: true # 将这个值设置为 true 即可.
+  postWordCount: true
+  min2read: true
+  totalCount: true
 
 
 # Whether to activate the 'love' effect of clicking on the page.
