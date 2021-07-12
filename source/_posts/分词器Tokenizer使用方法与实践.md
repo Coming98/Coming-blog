@@ -4,7 +4,6 @@ date: 2021-07-07 16:26:56
 summary: Tokenizer 工具类方法介绍以及小Demo
 categories: NLP
 tags:
-  - nlp
   - keras
   - tensorflow
 ---
