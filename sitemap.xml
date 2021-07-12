@@ -44,6 +44,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/2021/07/12/word2vec-li-lun-jie-shao-yu-tui-dao/</loc>
+    
+    <lastmod>2021-07-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/about/index.html</loc>
     
     <lastmod>2021-07-12</lastmod>
@@ -137,13 +144,6 @@
   </url>
   
   <url>
-    <loc>https://coming98.github.io/tags/nlp/</loc>
-    <lastmod>2021-07-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://coming98.github.io/tags/keras/</loc>
     <lastmod>2021-07-12</lastmod>
     <changefreq>daily</changefreq>
@@ -152,6 +152,20 @@
   
   <url>
     <loc>https://coming98.github.io/tags/tensorflow/</loc>
+    <lastmod>2021-07-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/tags/DL/</loc>
+    <lastmod>2021-07-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/tags/Article/</loc>
     <lastmod>2021-07-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
