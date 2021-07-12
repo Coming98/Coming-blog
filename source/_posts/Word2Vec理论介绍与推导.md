@@ -22,7 +22,7 @@ tags:
 
 ![image-20210711175018396](https://gitee.com/Butterflier/pictures/raw/master/image-20210711175018396.png)
 
-如图为人工神经元（articial neuron unit） $\{x_1,...,x_k\}$ 为输入向量，$\{w_1,...,w_k\}$ 为对应的权重，$f$ 为激活（非线性）函数，$y$ 是输出结果
+如图为人工神经元（artificial  neuron unit） $\{x_1,...,x_k\}$ 为输入向量，$\{w_1,...,w_k\}$ 为对应的权重，$f$ 为激活（非线性）函数，$y$ 是输出结果
 
 1. 输入向量与权重向量进行内积操作，其结果我们赋值给$u$：
 
@@ -44,7 +44,7 @@ $$
 
 这里我们没有考虑到激活函数和损失函数，只简单的让误分类样本作反向传播。如果激活函数连续可导或有具体的损失函数，还是需要考虑进来的。
 
-例如我们引入激活函数 Sigmoid 激活函数：$\sigma (u) = \dfrac{1}{1+e^{-u}}$ ，其函数图像为：
+例如我们引入激活函数 Sigmoid 激活函数：$\sigma (u) = \dfrac{1}{1+e^{-u} }$ ，其函数图像为：
 
 <img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210711181646466.png" alt="image-20210711181646466" style="zoom:50%;" />
 
@@ -57,11 +57,11 @@ $$
 3. 求导更新权重，其中 $t$ 为真实标签，$y$ 表示预测的标签值，$y$ 对 $\mathbf{w}$ 求偏导为 $\mathbf{x}$
 
 $$
-\dfrac{\partial{E}}{\partial{w_i}} = \dfrac{\partial{E}}{\partial{y}} \cdot \dfrac{\partial{y}}{\partial{u}} \cdot \dfrac{\partial{u}}{\partial{w_i}} = (y-t) \cdot y(1-y) \cdot x_i
+\dfrac{\partial{E} }{\partial{w_i} } = \dfrac{\partial{E} }{\partial{y} } \cdot \dfrac{\partial{y} }{\partial{u} } \cdot \dfrac{\partial{u} }{\partial{w_i} } = (y-t) \cdot y(1-y) \cdot x_i
 $$
 
 > $$
-> \dfrac{\partial{y}}{\partial{u}}= [(1+e^{-u})^{-1}]' = -(1+e^{-u})^{-2} \times (-e^{-u}) \\= \dfrac{1}{1+e^{-u}} \times \dfrac{(1 + e^{-u}) - 1}{1+e^{-u}} = y \cdot (1-y)
+> \dfrac{\partial{y} }{\partial{u} }= [(1+e^{-u})^{-1}]' = -(1+e^{-u})^{-2} \times (-e^{-u}) \\= \dfrac{1}{1+e^{-u} } \times \dfrac{(1 + e^{-u}) - 1}{1+e^{-u} } = y \cdot (1-y)
 > $$
 
 也就得到了权重的更新策略：
@@ -101,21 +101,21 @@ $$
 
 4. 反向传播，输出层到隐藏层：
 
-   4.1 首先是损失函数对输出层的反向传播求导：
+4.1首先是损失函数对输出层的反向传播求导：
 
-   > 注意这里对 $y_j$ 求偏导，相当于 $j$ 已知，因此可以消除求和符号
+> 注意这里对 $y_j$ 求偏导，相当于 $j$ 已知，因此可以消除求和符号
 
 $$
-\dfrac{\partial{E}}{\partial{y_j}} = y_j - t_j
+\dfrac{\partial{E} }{\partial{y_j} } = y_j - t_j
 $$
 
-	4.2 继续向下，反向传播到激活函数层（和上述单一神经元一致嗷），结果记为$EI^{'}_{j}$：
+4.2 继续向下，反向传播到激活函数层（和上述单一神经元一致嗷），结果记为$EI^{'}_{j}$：
 $$
-\dfrac{\partial{E}}{\partial{u_j^{'}}} = \dfrac{\partial{E}}{\partial{y_j}} \cdot \dfrac{\partial{y_j}}{\partial{u_j^{'}}} = (y_j - t_j) \cdot y_j(1-y_j) := EI^{'}_j
+\dfrac{\partial{E} }{\partial{u_j^{'} } } = \dfrac{\partial{E} }{\partial{y_j} } \cdot \dfrac{\partial{y_j} }{\partial{u_j^{'} } } = (y_j - t_j) \cdot y_j(1-y_j) := EI^{'}_j
 $$
-	4.3 继续向下，到达了隐藏层和输出层之间的权值矩阵（和上述单一神经元一致嗷）：
+4.3 继续向下，到达了隐藏层和输出层之间的权值矩阵（和上述单一神经元一致嗷）：
 $$
-\dfrac{\partial{E}}{\partial{w_{ij}^{'}}} = \dfrac{\partial{E}}{\partial{u_j^{'}}} \cdot \dfrac{\partial{u_j^{'}}}{\partial{w_{ij}^{'}}} = EI^{'}_j \cdot h_i
+\dfrac{\partial{E} }{\partial{w_{ij}^{'} } } = \dfrac{\partial{E} }{\partial{u_j^{'} } } \cdot \dfrac{\partial{u_j^{'} } }{\partial{w_{ij}^{'} } } = EI^{'}_j \cdot h_i
 $$
 
 5. 到这里即可完成对 $W^{'}$ 的更新
@@ -126,22 +126,22 @@ $$
 
 6. 继续向下，我们以 $h_i$ 为连接点，尝试反向传播到输入层
 
-   6.1 首先完成对 $h_i$ 的反向传播
+6.1 首先完成对 $h_i$ 的反向传播
 
-   > 注意这里对 $h_i$ 求偏导，相当于 $i$ 已知，但是 $j$ 未知，因此其偏导数来源于所有链接的输出层
+> 注意这里对 $h_i$ 求偏导，相当于 $i$ 已知，但是 $j$ 未知，因此其偏导数来源于所有链接的输出层
 
-   $$
-   \dfrac{\partial{E}}{\partial{h_{i}}} = \sum_{j=1}^{M}\dfrac{\partial{E}}{\partial{u_j^{'}}} \cdot \dfrac{\partial{u_j^{'}}}{\partial{h_{i}}} = \sum_{j=1}^{M}EI^{'}_j \cdot w_{ij}^{'}
-   $$
+$$
+\dfrac{\partial{E} }{\partial{h_{i} } } = \sum_{j=1}^{M}\dfrac{\partial{E} }{\partial{u_j^{'} } } \cdot \dfrac{\partial{u_j^{'} } }{\partial{h_{i} } } = \sum_{j=1}^{M}EI^{'}_j \cdot w_{ij}^{'}
+$$
 
-   6.2 打通了 $h_i$ ，然后走到输入层与隐层之间的激活函数，结果记为$EI^{'}_{i}$：
-   $$
-   \dfrac{\partial{E}}{\partial{u_{i}}} = \dfrac{\partial{E}}{\partial{h_i}} \cdot \dfrac{\partial{h_i}}{\partial{u_{i}}} = \sum_{j=1}^{M}EI^{'}_j \cdot h_i(1-h_i) := EI_i
-   $$
-   6.3 然后就触碰到了输入层与隐层之间的权值矩阵 $w_{ki}$ ：
-   $$
-   \dfrac{\partial{E}}{\partial{w_{ki}}} = \dfrac{\partial{E}}{\partial{u_i}} \cdot \dfrac{\partial{u_i}}{\partial{w_{ki}}} = EI_i \cdot x_k
-   $$
+6.2 打通了 $h_i$ ，然后走到输入层与隐层之间的激活函数，结果记为$EI^{'}_{i}$：
+$$
+\dfrac{\partial{E} }{\partial{u_{i} } } = \dfrac{\partial{E} }{\partial{h_i} } \cdot \dfrac{\partial{h_i} }{\partial{u_{i} } } = \sum_{j=1}^{M}EI^{'}_j \cdot h_i(1-h_i) := EI_i
+$$
+6.3 然后就触碰到了输入层与隐层之间的权值矩阵 $w_{ki}$ ：
+$$
+\dfrac{\partial{E} }{\partial{w_{ki} } } = \dfrac{\partial{E} }{\partial{u_i} } \cdot \dfrac{\partial{u_i} }{\partial{w_{ki} } } = EI_i \cdot x_k
+$$
 
 7. 至此即可完成输入层与隐层之间权值矩阵的更新：
 
@@ -199,7 +199,7 @@ $$
 4. 形式：
 
 $$
-p(w_j|w_I) = \dfrac{exp({v'}_{w_j}^T v_{w_I})}{\sum_{j'=1}^{V}exp({v'}_{w_{j'}}^T v_{w_I}^T)}
+p(w_j|w_I) = \dfrac{exp({v'}_{w_j}^T v_{w_I})}{\sum_{j'=1}^{V}exp({v'}_{w_{j'} }^T v_{w_I}^T)}
 $$
 
 4. 选择最优化目标，得到损失函数：
@@ -219,24 +219,24 @@ $$
 
 5. 执行反向传播，输出层到激活函数，将其结果记为 $e_j$
    $$
-   \dfrac{\partial{E}}{\partial{u_j}} = y_j - t_j := e_j
+   \dfrac{\partial{E} }{\partial{u_j} } = y_j - t_j := e_j
    $$
    这里 $t_j = 1$ 当且仅当 $j = j*$ 否则 $t_j = 0$
 
    > 这里对 $u_j$ 求偏导，对于 $j’ \neq j$ 的 $u_{j’}$ 都看做常数
    > $$
-   > \dfrac{\partial{(\mathop{log} \sum_{j'=1}^{V}exp(u_{j'}))}}{\partial{u_j}} = \dfrac{1}{\sum_{j'=1}^{V}exp(u_{j'})} \times (C + exp(u_j))' \\ =  \dfrac{exp(u_j)}{\sum_{j'=1}^{V}exp(u_{j'})} = y_j
+   > \dfrac{\partial{(\mathop{log} \sum_{j'=1}^{V}exp(u_{j'}))} }{\partial{u_j} } = \dfrac{1}{\sum_{j'=1}^{V}exp(u_{j'})} \times (C + exp(u_j))' \\ =  \dfrac{exp(u_j)}{\sum_{j'=1}^{V}exp(u_{j'})} = y_j
    > $$
 
 6. 执行反向传播，激活函数到权值矩阵 $W'$
-   $$
-   \dfrac{\partial{E}}{\partial{{v'}_{w_j}}} = \dfrac{\partial{E}}{\partial{u_j}} \cdot \dfrac{\partial{u_j}}{\partial{{v'}_{w_j}}}= e_j \cdot \mathbf{h}
-   $$
+$$
+\dfrac{\partial{E} }{\partial{ {v'}_{w_j} } } = \dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{ {v'}_{w_j} } }= e_j \cdot \mathbf{h}
+$$
 
 7. 至此我们就可以完成对权值矩阵 $W'$ 的更新了
-   $$
-   {v'}_{w_j}^{(new)} = {v'}_{w_j}^{(old)} - \eta \cdot e_j \cdot \mathbf{h} \ \ (\mathop{for}\ j\ \mathop{in}\ \{1, 2, \dots, V\})
-   $$
+$$
+{v'}_{w_j}^{(new)} = {v'}_{w_j}^{(old)} - \eta \cdot e_j \cdot \mathbf{h} \ \ (\mathop{for}\ j\ \mathop{in}\ \{1, 2, \dots, V\})
+$$
 
    > 从这里我们也能看出，第 $j$ 列的权值跟新主要来源于其输入向量 $h$ ,而其系数 $y_j - t_j$ 则判断其更新方向（$y_j \in [0, 1]$）
    >
@@ -246,12 +246,12 @@ $$
 
 8. 执行反向传播，激活函数到隐层 $\mathbf{h}$ , 结果记为 $EH$ 
    $$
-   \dfrac{\partial{E}}{\partial{\mathbf{h}}} = \sum_{j=1}^{V}\dfrac{\partial{E}}{\partial{u_j}} \cdot \dfrac{\partial{u_j}}{\partial{\mathbf{h}}}= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
+   \dfrac{\partial{E} }{\partial{\mathbf{h} } } = \sum_{j=1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
    $$
 
 9. 隐层到权值矩阵 $\mathbf{W}$
    $$
-   \dfrac{\partial{E}}{\partial{v_{w_I}^T}} = \dfrac{\partial{E}}{\partial{\mathbf{h}}} \cdot \dfrac{\partial{\mathbf{h}}}{\partial{v_{w_I}^T}}= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
+   \dfrac{\partial{E} }{\partial{v_{w_I}^T} } = \dfrac{\partial{E} }{\partial{\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I}^T} }= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
    $$
 
 10. 至此我们就可以完成对权值矩阵 $\mathbf{W}$ 的更新了：
@@ -273,34 +273,34 @@ $$
 1. 前向传播，输入层到隐层，将输入的多个词向量统一加权求和求平均后得到隐层结果：
 
 $$
-\mathbf{h} = \frac{1}{C} \mathbf{W}(\mathbf{x_1+x_2+\dots x_C}) \\ = \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C}})
+\mathbf{h} = \frac{1}{C} \mathbf{W}(\mathbf{x_1+x_2+\dots x_C}) \\ = \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C} })
 $$
 
-		其中 $C$ 表示与目标词相关的上下文单词个数
+​	其中 $C$ 表示与目标词相关的上下文单词个数
 
 2. 然后完成隐层到激活层的传播：$u_j = {v'}_{w_j}^T\mathbf{h}$
 3. 然后进行激活：$p(w_O|w_{I,1},\dots,w_{I,C}) = y_j = \dfrac{exp(u_j)}{\sum_{j'=1}^{V}exp(u_{j'})}$
 4. 展开，看下最终的前向传播结果：
 
 $$
-$p(w_O|w_{I,1},\dots,w_{I,C}) = \dfrac{exp({v'}_{w_j}^T \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C}}))}{\sum_{j'=1}^{V}exp({v'}_{w_{j'}}^T \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C}})^T)}
+p(w_O|w_{I,1},\dots,w_{I,C}) = \dfrac{exp({v'}_{w_j}^T \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C} }))}{\sum_{j'=1}^{V}exp({v'}_{w_{j'} }^T \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C} })^T)}
 $$
 
 5. 得到我们的损失函数：
 
 $$
-E = \mathop{log} \sum_{j'=1}^{V}exp(u_{j'}) - u_{j*} = \mathop{log} \sum_{j'=1}^{V}exp({v'}_{w_{j'}}^T\mathbf{h}) - {v'}_{w_{O}}^T\mathbf{h}
+E = \mathop{log} \sum_{j'=1}^{V}exp(u_{j'}) - u_{j*} = \mathop{log} \sum_{j'=1}^{V}exp({v'}_{w_{j'} }^T\mathbf{h}) - {v'}_{w_{O} }^T\mathbf{h}
 $$
 
 6. 执行反向传播，输出层到激活函数，将其结果记为 $e_j$
    $$
-   \dfrac{\partial{E}}{\partial{u_j}} = y_j - t_j := e_j
+   \dfrac{\partial{E} }{\partial{u_j} } = y_j - t_j := e_j
    $$
 
 7. 执行反向传播，激活函数到权值矩阵 $W'$
 
 $$
-\dfrac{\partial{E}}{\partial{{v'}_{w_j}}} = \dfrac{\partial{E}}{\partial{u_j}} \cdot \dfrac{\partial{u_j}}{\partial{{v'}_{w_j}}}= e_j \cdot \mathbf{h}
+\dfrac{\partial{E} }{\partial{ {v'}_{w_j} } } = \dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{ {v'}_{w_j} } }= e_j \cdot \mathbf{h}
 $$
 
 8. 至此我们就可以完成对权值矩阵 $W'$ 的更新了
@@ -312,21 +312,21 @@ $$
 9. 执行反向传播，激活函数到隐层 $\mathbf{h}$ , 结果记为 $EH$ 
 
 $$
-\dfrac{\partial{E}}{\partial{\mathbf{h}}} = \sum_{j=1}^{V}\dfrac{\partial{E}}{\partial{u_j}} \cdot \dfrac{\partial{u_j}}{\partial{\mathbf{h}}}= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
+\dfrac{\partial{E} }{\partial{\mathbf{h} } } = \sum_{j=1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
 $$
 
 10. 隐层到权值矩阵 $\mathbf{W}$
 
-    注意这里对权值矩阵 $W$ 针对单词 $w_I$ 所作用的列求偏导，那么以它列相当于常数，因此 $\dfrac{\partial{\mathbf{h}}}{\partial{v_{w_I}^T}} = \frac{1}{C}$
+    注意这里对权值矩阵 $W$ 针对单词 $w_I$ 所作用的列求偏导，那么以它列相当于常数，因此 $\dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I}^T} } = \frac{1}{C}$
 
 $$
-\dfrac{\partial{E}}{\partial{v_{w_I}^T}} = \dfrac{\partial{E}}{\partial{\mathbf{h}}} \cdot \dfrac{\partial{\mathbf{h}}}{\partial{v_{w_I}^T}}= EH \cdot \dfrac{1}{C}
+\dfrac{\partial{E} }{\partial{v_{w_I}^T} } = \dfrac{\partial{E} }{\partial{\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I}^T} }= EH \cdot \dfrac{1}{C}
 $$
 
 11. 至此我们就可以完成对权值矩阵 $\mathbf{W}$ 的更新了：
 
 $$
-{v}_{w_{I,c}}^{(new)} = {v}_{w_{I,c}}^{(old)} - \eta \cdot \frac{1}{C} EH^T = {v}_{w_{I,c}}^{(old)} - \eta \cdot \frac{1}{C} (\sum_{j=1}^{V}e_j \cdot {v'}_{w_j})^T
+{v}_{w_{I,c} }^{(new)} = {v}_{w_{I,c} }^{(old)} - \eta \cdot \frac{1}{C} EH^T = {v}_{w_{I,c} }^{(old)} - \eta \cdot \frac{1}{C} (\sum_{j=1}^{V}e_j \cdot {v'}_{w_j})^T
 $$
 
 可以看出来多个单词的输入对最终词向量的影响不仅仅在于 $\frac{1}{C}$ 而且还有 ${v'}_{w_j}$ , 即权值矩阵 $W’$, 其反向传播中也将以众多输入向量的隐藏表达为指导，配以 $e_j = y_j - t_j$ 这一 “程度稀疏” 来更新权重，进而影响到权值矩阵 $W$。这一现象也符合我对 word2vec 模型的假象逻辑。推理至此应该是成功的。
@@ -374,17 +374,17 @@ $$
 
 4. 执行反向传播，输出层到激活函数，将其结果记为 $e_{c,j}$
    $$
-   \dfrac{\partial{E}}{\partial{u_{c,j}}} = y_{c,j} - t_{c,j} := e_{c,j}
+   \dfrac{\partial{E} }{\partial{u_{c,j} } } = y_{c,j} - t_{c,j} := e_{c,j}
    $$
 
 5. 合并各个输出层 $c$ 的反向传播结果：
    $$
-   EI_j = \sum_{c=1}^{C}e_{c,j} = \dfrac{\partial{E}}{\partial{u_j}}
+   EI_j = \sum_{c=1}^{C}e_{c,j} = \dfrac{\partial{E} }{\partial{u_j} }
    $$
 
 6. 执行反向传播，激活函数到权值矩阵 $W'$
    $$
-   \dfrac{\partial{E}}{\partial{{v'}_{w_j}}} = \dfrac{\partial{E}}{\partial{u_j}} \cdot \dfrac{\partial{u_j}}{\partial{{v'}_{w_j}}}= EI_j \cdot \mathbf{h}
+   \dfrac{\partial{E} }{\partial{ {v'}_{w_j} } } = \dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{ {v'}_{w_j} } }= EI_j \cdot \mathbf{h}
    $$
 
 7. 至此我们就可以完成对权值矩阵 $W'$ 的更新了
@@ -396,13 +396,13 @@ $$
 8. 执行反向传播，激活函数到隐层 $\mathbf{h}$ , 结果记为 $EH$ 
 
 $$
-\dfrac{\partial{E}}{\partial{\mathbf{h}}} = \sum_{j=1}^{V}\dfrac{\partial{E}}{\partial{u_j}} \cdot \dfrac{\partial{u_j}}{\partial{\mathbf{h}}}= \sum_{j=1}^{V}EI_j \cdot {v'}_{w_j} := EH
+\dfrac{\partial{E} }{\partial{\mathbf{h} } } = \sum_{j=1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }= \sum_{j=1}^{V}EI_j \cdot {v'}_{w_j} := EH
 $$
 
 9. 隐层到权值矩阵 $\mathbf{W}$
 
 $$
-\dfrac{\partial{E}}{\partial{v_{w_I}}} = \dfrac{\partial{E}}{\partial{\mathbf{h}}} \cdot \dfrac{\partial{\mathbf{h}}}{\partial{v_{w_I}}}= EH
+\dfrac{\partial{E} }{\partial{v_{w_I} } } = \dfrac{\partial{E} }{\partial{\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I} } }= EH
 $$
 
 10. 至此我们就可以完成对权值矩阵 $\mathbf{W}$ 的更新了：
@@ -447,7 +447,7 @@ p(n, left) = \sigma({v'}_n^T \cdot \mathbf{h}) \\
 p(n, right) = 1 - p(n, left) = \sigma(-{v'}_n^T \cdot \mathbf{h})
 $$
 
-	在这里如果是 CBOW 模型，$\mathbf{h} = \frac{1}{C} \sum_{c=1}^{C} v_{w_c}$ ; 如果是 skip-gram 模型，$\mathbf{h} = \mathbf{v}_{w_I}$, $\sigma$ 表示 sigmoid 激活函数，进行二分类选择
+​	在这里如果是 CBOW 模型，$\mathbf{h} = \frac{1}{C} \sum_{c=1}^{C} v_{w_c}$ ; 如果是 skip-gram 模型，$\mathbf{h} = \mathbf{v}_{w_I}$, $\sigma$ 表示 sigmoid 激活函数，进行二分类选择
 
 2. 因此我们用乘法连接路径，定义公式处理下符号问题即可得到：
 
@@ -472,25 +472,25 @@ $$
    $E$ 中的求和不可怕，非 $j$ 的都看作常数：先来对 $\mathbf{v}'_j\mathbf{h}$ 求偏导，然后再对 $\mathbf{v}'_j$ 求偏导
 
 $$
-\dfrac{\partial{E}}{\partial{\mathbf{v}'_j\mathbf{h}}} = - [\mathop{log} \sigma([\![·]\!]\mathbf{v}'_j\mathbf{h})]' = - \frac{1}{A} \cdot A' = - \frac{1}{A} \cdot A(1-A) \cdot ([\![·]\!]\mathbf{v}'_j\mathbf{h})' \\= (A-1) \cdot [\![·]\!] = \left(\sigma([\![·]\!]\mathbf{v}'_j\mathbf{h}) - 1\right) [\![·]\!]
+\dfrac{\partial{E} }{\partial{\mathbf{v}'_j\mathbf{h} } } = - [\mathop{log} \sigma([\![·]\!]\mathbf{v}'_j\mathbf{h})]' = - \frac{1}{A} \cdot A' = - \frac{1}{A} \cdot A(1-A) \cdot ([\![·]\!]\mathbf{v}'_j\mathbf{h})' \\= (A-1) \cdot [\![·]\!] = \left(\sigma([\![·]\!]\mathbf{v}'_j\mathbf{h}) - 1\right) [\![·]\!]
 $$
 
-	化简 $[\![·]\!]$
+化简 $[\![·]\!]$
 	
-	当 $[\![·]\!] = 1$ 时 $\dfrac{\partial{E}}{\partial{\mathbf{v}'_j\mathbf{h}}} = \sigma(\mathbf{v}'_j\mathbf{h}) - 1$ ；	
+当 $[\![·]\!] = 1$ 时 $\dfrac{\partial{E} }{\partial{\mathbf{v}'_j\mathbf{h} } } = \sigma(\mathbf{v}'_j\mathbf{h}) - 1$ ；	
 	
-	当 $[\![·]\!] = -1$ 时 $\dfrac{\partial{E}}{\partial{\mathbf{v}'_j\mathbf{h}}} = 1 - \sigma(-\mathbf{v}'_j\mathbf{h}) = \sigma(\mathbf{v}'_j\mathbf{h})$；
+当 $[\![·]\!] = -1$ 时 $\dfrac{\partial{E} }{\partial{\mathbf{v}'_j\mathbf{h} } } = 1 - \sigma(-\mathbf{v}'_j\mathbf{h}) = \sigma(\mathbf{v}'_j\mathbf{h})$；
 	
-	这时候就和 $ y_j - t_j$ 碰上了，我们定义此时的 $t_j = 1$ 当且仅当 $[\![·]\!] = 1$ 时，否则$t_j = 0$
+这时候就和 $ y_j - t_j$ 碰上了，我们定义此时的 $t_j = 1$ 当且仅当 $[\![·]\!] = 1$ 时，否则$t_j = 0$
 	
-	因此对 $\mathbf{v}'_j\mathbf{h}$ 求偏导的结果如下：
+因此对 $\mathbf{v}'_j\mathbf{h}$ 求偏导的结果如下：
 $$
-\dfrac{\partial{E}}{\partial{\mathbf{v}'_j\mathbf{h}}} = \sigma(\mathbf{v}'_j\mathbf{h}) - t_j
+\dfrac{\partial{E} }{\partial{\mathbf{v}'_j\mathbf{h} } } = \sigma(\mathbf{v}'_j\mathbf{h}) - t_j
 $$
 
-	然后对 $\mathbf{v}'_j$ 求偏导，这个就比较简单啦：
+然后对 $\mathbf{v}'_j$ 求偏导，这个就比较简单啦：
 $$
-\dfrac{\partial{E}}{\partial{\mathbf{v}'_j}} = \dfrac{\partial{E}}{\partial{\mathbf{v}'_j\mathbf{h}}} \cdot \dfrac{\partial{\mathbf{v}'_j\mathbf{h}}}{\partial{\mathbf{v}'_j}} = \left(\sigma(\mathbf{v}'_j\mathbf{h}) - t_j\right) \cdot \mathbf{h}
+\dfrac{\partial{E} }{\partial{\mathbf{v}'_j} } = \dfrac{\partial{E} }{\partial{\mathbf{v}'_j\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{v}'_j\mathbf{h} } }{\partial{\mathbf{v}'_j} } = \left(\sigma(\mathbf{v}'_j\mathbf{h}) - t_j\right) \cdot \mathbf{h}
 $$
 
 
@@ -513,12 +513,12 @@ $$
 4. 继续向后传递，计算对 $\mathbf{h}$ 的偏导数：
 
 $$
-\dfrac{\partial{E}}{\partial{\mathbf{h}}} = \sum_{j-1}^{L(w)-1}\dfrac{\partial{E}}{\partial{\mathbf{v}'_j\mathbf{h}}} \cdot \dfrac{\partial{\mathbf{v}'_j\mathbf{h}}}{\partial{\mathbf{h}}} = \sum_{j-1}^{L(w)-1}\left(\sigma(\mathbf{v}'_j\mathbf{h}) - t_j\right) \cdot \mathbf{v}'_j := EH
+\dfrac{\partial{E} }{\partial{\mathbf{h} } } = \sum_{j-1}^{L(w)-1}\dfrac{\partial{E} }{\partial{\mathbf{v}'_j\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{v}'_j\mathbf{h} } }{\partial{\mathbf{h} } } = \sum_{j-1}^{L(w)-1}\left(\sigma(\mathbf{v}'_j\mathbf{h}) - t_j\right) \cdot \mathbf{v}'_j := EH
 $$
 
-	对比一下优化前的，可以看出来大体的一致性：
+对比一下优化前的，可以看出来大体的一致性：
 $$
-\dfrac{\partial{E}}{\partial{\mathbf{h}}} = \sum_{j=1}^{V}\dfrac{\partial{E}}{\partial{u_j}} \cdot \dfrac{\partial{u_j}}{\partial{\mathbf{h}}}= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
+\dfrac{\partial{E} }{\partial{\mathbf{h} } } = \sum_{j=1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }= \sum_{j=1}^{V}e_j \cdot {v'}_{w_j} := EH
 $$
 
 5. 后续的应当一致了，有时间补充完整（等下次回顾的时候吧….)
@@ -529,7 +529,7 @@ $$
 
 我觉得负采样这里需要钻研的是如何采样，采样完成后，后续的更新就与前面基本一致了~
 $$
-E = - \mathop{log} \sigma(\mathbf{v'}_{w_O}^T \mathbf{h}) - \sum_{w_j\in W_{neg}} \mathop{log} \sigma(-\mathbf{v'}_{w_j}^T \mathbf{h})
+E = - \mathop{log} \sigma(\mathbf{v'}_{w_O}^T \mathbf{h}) - \sum_{w_j\in W_{neg} } \mathop{log} \sigma(-\mathbf{v'}_{w_j}^T \mathbf{h})
 $$
  可以看出后续权值矩阵的更新将只会涉及到 $w_j$ 前向传播所经的权值向量。
 
