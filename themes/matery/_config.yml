@@ -67,9 +67,7 @@ dream:
   enable: true
   showTitle: true
   title: MySelf
-  text: |+
-   Why am I doing this?
-   Who am I doing this for?
+  text: "Why am I doing this? Who am I doing this for?"
   # 一个普普通通的人，读到了研究生，内心有许多想法，但是目前却没有能力实现，自己想到唯一的办法就是勤勤恳恳的学习，努力，希望有朝一日自己有支撑自己梦想的力量。 另外近日受到摩尔庄园手游的启发，开始大肆发现生活中的技能乐趣点，比如旅游，国际象棋，魔方，游泳，滑冰，等等，不求精通，但求探索。
 
 # Whether to display the musics.
