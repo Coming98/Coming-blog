@@ -194,9 +194,8 @@ $$
       p(w_j|w_I) = y_j = \dfrac{exp(u_j)}{\sum_{j'=1}^{V}exp(u_{j'})}
       $$
 
-3. 将中间变量 $u_j, u_j’$ 作一下替换得到详细
+3. 将中间变量 $u_j, u_j’$ 作一下替换得到详细形式：
 
-4. 形式：
 
 $$
 p(w_j|w_I) = \dfrac{exp({v'}_{w_j}^T v_{w_I})}{\sum_{j'=1}^{V}exp({v'}_{w_{j'} }^T v_{w_I}^T)}
@@ -461,16 +460,14 @@ $$
 v_j' := {v'}_{n(w,j)}
 $$
 
-1. 得到我们的损失函数：
-
+2.1 得到我们的损失函数：
 $$
 E = -\mathop{log} p(w=w_O | w_I) = -\sum_{j=1}^{L(w)-1} \mathop{log} \sigma ([\![\cdot]\!] \cdot {v'}_{j}^T\cdot\mathbf{h})
 $$
 
-2. 然后对隐层与输出层之间的权值矩阵进行更新：
+2.2 然后对隐层与输出层之间的权值矩阵进行更新：
 
-   $E$ 中的求和不可怕，非 $j$ 的都看作常数：先来对 $\mathbf{v}'_j\mathbf{h}$ 求偏导，然后再对 $\mathbf{v}'_j$ 求偏导
-
+$E$ 中的求和不可怕，非 $j$ 的都看作常数：先来对 $\mathbf{v}'_j\mathbf{h}$ 求偏导，然后再对 $\mathbf{v}'_j$ 求偏导
 $$
 \dfrac{\partial{E} }{\partial{\mathbf{v}'_j\mathbf{h} } } = - [\mathop{log} \sigma([\![·]\!]\mathbf{v}'_j\mathbf{h})]' = - \frac{1}{A} \cdot A' = - \frac{1}{A} \cdot A(1-A) \cdot ([\![·]\!]\mathbf{v}'_j\mathbf{h})' \\= (A-1) \cdot [\![·]\!] = \left(\sigma([\![·]\!]\mathbf{v}'_j\mathbf{h}) - 1\right) [\![·]\!]
 $$
