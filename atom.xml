@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2021-07-24T02:22:38.545Z</updated>
+  <updated>2021-07-24T07:13:32.397Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>KNN与kdTree</title>
+    <link href="https://coming98.github.io/2021/07/24/knn-yu-kdtree/"/>
+    <id>https://coming98.github.io/2021/07/24/knn-yu-kdtree/</id>
+    <published>2021-07-24T15:10:21.000Z</published>
+    <updated>2021-07-24T07:13:32.397Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;k-近邻法&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#k-近邻法&quot;&gt;&lt;/a&gt; K 近邻法&lt;/h1&gt;
+&lt;p&gt;K 近邻 - K Nearest Neighbor -</summary>
+        
+      
+    
+    
+    
+    <category term="统计学习方法" scheme="https://coming98.github.io/categories/StatisticalLearning/"/>
+    
+    
+    <category term="ML" scheme="https://coming98.github.io/tags/ML/"/>
+    
+  </entry>
+  
+  <entry>
     <title>熵权法</title>
     <link href="https://coming98.github.io/2021/07/24/shang-quan-fa/"/>
     <id>https://coming98.github.io/2021/07/24/shang-quan-fa/</id>
     <published>2021-07-24T10:20:21.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -46,7 +72,7 @@
     <link href="https://coming98.github.io/2021/07/24/xin-wen-zhu-ti-fen-lei-ren-wu/"/>
     <id>https://coming98.github.io/2021/07/24/xin-wen-zhu-ti-fen-lei-ren-wu/</id>
     <published>2021-07-24T10:13:30.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -74,7 +100,7 @@
     <link href="https://coming98.github.io/2021/07/12/word2vec-li-lun-jie-shao-yu-tui-dao/"/>
     <id>https://coming98.github.io/2021/07/12/word2vec-li-lun-jie-shao-yu-tui-dao/</id>
     <published>2021-07-12T22:24:58.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -104,7 +130,7 @@
     <link href="https://coming98.github.io/2021/07/09/gan-zhi-ji-mo-xing/"/>
     <id>https://coming98.github.io/2021/07/09/gan-zhi-ji-mo-xing/</id>
     <published>2021-07-09T22:45:14.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -129,7 +155,7 @@
     <link href="https://coming98.github.io/2021/07/07/hexo-bo-ke-zhong-shi-yong-latex-pei-zhi-fang-fa/"/>
     <id>https://coming98.github.io/2021/07/07/hexo-bo-ke-zhong-shi-yong-latex-pei-zhi-fang-fa/</id>
     <published>2021-07-07T23:28:28.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -155,7 +181,7 @@
     <link href="https://coming98.github.io/2021/07/07/91-tong-ji-xue-xi-fang-fa-93-gai-lun-pian/"/>
     <id>https://coming98.github.io/2021/07/07/91-tong-ji-xue-xi-fang-fa-93-gai-lun-pian/</id>
     <published>2021-07-07T21:39:33.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -180,7 +206,7 @@
     <link href="https://coming98.github.io/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/"/>
     <id>https://coming98.github.io/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/</id>
     <published>2021-07-07T16:26:56.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -207,7 +233,7 @@
     <link href="https://coming98.github.io/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/"/>
     <id>https://coming98.github.io/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/</id>
     <published>2021-04-29T14:48:12.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
@@ -236,7 +262,7 @@
     <link href="https://coming98.github.io/2021/04/29/my-first-blog/"/>
     <id>https://coming98.github.io/2021/04/29/my-first-blog/</id>
     <published>2021-04-29T09:36:00.000Z</published>
-    <updated>2021-07-24T02:22:38.545Z</updated>
+    <updated>2021-07-24T07:13:32.397Z</updated>
     
     
       
