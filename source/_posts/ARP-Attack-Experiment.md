@@ -8,17 +8,27 @@ tags:
   - Experiment
   - Security
 ---
+# Tools
+
+## Cain & WinPcap
+
+Cain 工具依赖于 WinPcap，使用 Cain 时需要给与管理员权限
+
+Cain Version：4.9
+
+Whole Download Url：http://www.pc0359.cn/downinfo/79463.html
+
 ![image-20210924193818343](https://gitee.com/Butterflier/pictures/raw/master/image-20210924193818343.png)
 
 ![image-20210924193834801](https://gitee.com/Butterflier/pictures/raw/master/image-20210924193834801.png)
 
 ## Wireshark
 
-官网下载即可
+官网下载即可 [http://www.wireshark.org](http://www.wireshark.org/)
 
 # Prepare
 
-Perpetrator A: Windows_7_sp1_x64
+Perpetrator A: Windows_7_sp1_x64 / Kali Linux 2021.2
 
 User B: Windows_xp_professional_x86
 
@@ -233,6 +243,4 @@ ettercap -Tq -i eth0
 
 ![image-20210925204100160](https://gitee.com/Butterflier/pictures/raw/master/image-20210925204100160.png)
 
-Amazing！Amazing！Amazing！Cool！
-
-
+Well Done!
