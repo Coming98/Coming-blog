@@ -1223,7 +1223,7 @@ article .article-tags .chip {
 
 #articleContent table {
     width: 100%;
-    display: block;
+    /*display: block;*/
     border-collapse: collapse;
     border-spacing: 0;
     overflow: auto;

@@ -204,7 +204,7 @@ A 先使用 nmap 扫描一下本局域网，可以扫出网关 192.168.1.1，用
 nmap -sP 192.168.1.0/24
 ```
 
-![image-20210925195305365](C:\Users\Butterflier\AppData\Roaming\Typora\typora-user-images\image-20210925195305365.png)
+![image-20210925195305365](https://gitee.com/Butterflier/pictures/raw/master/image-20210925195305365.png)
 
 
 
@@ -247,7 +247,7 @@ arpspoof -i eth0 -t 192.168.1.1 192.168.1.109
 echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 ```
 
-<img src="C:\Users\Butterflier\AppData\Roaming\Typora\typora-user-images\image-20210925203541401.png" alt="image-20210925203541401" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210925203541401.png" alt="image-20210925203541401" style="zoom:50%;" />
 
 <img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210925203527816.png" alt="image-20210925203527816" style="zoom:50%;" />
 
