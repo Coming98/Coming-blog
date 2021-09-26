@@ -11,3 +11,7 @@ div#indexCard .fa-lightbulb {
 div#indexCard .fa-lightbulb:hover {
 	color: orange;
 }
+
+#articleContent img {
+	width: 520px;
+}
