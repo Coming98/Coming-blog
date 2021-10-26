@@ -3,7 +3,7 @@ title: Hexo博客中使用Latex配置方法
 date: 2021-07-07 23:28:28
 mathjax: false
 summary: 在 Hexo 博文中使用 Latex 数学公式
-categories: Hexo
+categories: Ungrouped
 tags:
   - method
 ---
