@@ -5,8 +5,8 @@ date: 2021-10-28 20:12:19
 summary: 对 torch.scatter 函数的理解
 categories: Pytorch
 tags:
-  DL
-  pytorch
+  - DL
+  - pytorch
 ---
 
 # scatter
