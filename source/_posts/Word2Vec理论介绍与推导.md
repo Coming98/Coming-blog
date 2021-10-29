@@ -7,7 +7,6 @@ categories: NLP
 tags: 
   - DL
   - python
-  - Article
 ---
 
 本文主要根据论文《word2vec Parameter Learning Explained》进行介绍，部分内容添加了自己的理解与思考，还望大家批评指正。
