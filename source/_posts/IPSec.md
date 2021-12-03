@@ -3,9 +3,9 @@ title: IPSec
 mathjax: false
 date: 2021-12-02 17:31:49
 summary: IPSec 摘抄汇总学习
-categories: Security
+categories: Protocol Security
 tags:
-  - network protocol
+  - security
 ---
 
 # IPSEC
@@ -403,7 +403,7 @@ A：一个 IKE 下可以承载多个 IPSec（quick 模式），使得 IKE 可以
 
 ![Demo 分析](https://gitee.com/Butterflier/pictures/raw/master/20211202172856.png)
 
-![image-20211014134933959](https://gitee.com/Butterflier/pictures/raw/master/image-20211014134933959.png)
+![Demo 分析2](https://gitee.com/Butterflier/pictures/raw/master/20211203091232.png)
 
 1、数据传输
 

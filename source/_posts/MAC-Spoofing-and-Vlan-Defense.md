@@ -3,10 +3,9 @@ title: MAC Spoofing and Vlan Defense
 mathjax: false
 date: 2021-10-10 19:50:36
 summary: 局域网下MAC欺骗与VLAN防御实践
-categories: Security
+categories: Protocol Security
 tags:
-  - experiment
-  - network security
+  - security
 ---
 
 # Prepare

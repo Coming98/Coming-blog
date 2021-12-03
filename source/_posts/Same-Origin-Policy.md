@@ -3,10 +3,9 @@ title: Same Origin Policy
 mathjax: false
 date: 2021-10-29 16:36:44
 summary: 对同源策略的学习与理解
-categories: Security
+categories: Web Security
 tags:
-  - web security
-  - course
+  - security
 ---
 
 # Same-Origin Policy
