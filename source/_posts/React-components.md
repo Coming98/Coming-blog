@@ -325,7 +325,7 @@ componentDidUpdate(prevProps, prevState, snapshotValue) {
 ```jsx
 render() {
     return (
-        <NavLink class="list-group-item" {...this.props} />
+        <NavLink className="list-group-item" {...this.props} />
     )
 }
 ```
