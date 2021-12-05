@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MAC Spoofing and Vlan Defense, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="React Router, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MAC Spoofing and Vlan Defense | Coming is here</title>
+    <title>React Router | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MAC Spoofing and Vlan Defense</h1>
+                    <h1 class="description center-align post-title">React Router</h1>
                 </div>
             </div>
         </div>
@@ -433,23 +433,18 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Coming-blog/tags/security/">
-                                <span class="chip bg-color">security</span>
+                            <a href="/Coming-blog/tags/react/">
+                                <span class="chip bg-color">react</span>
+                            </a>
+                        
+                            <a href="/Coming-blog/tags/react-components/">
+                                <span class="chip bg-color">react components</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
-                                Protocol Security
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -458,7 +453,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-10
+                    2021-12-04
                 </div>
                 
 
@@ -467,14 +462,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    845
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
 
@@ -497,114 +492,112 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="prepare"><a class="markdownIt-Anchor" href="#prepare"></a> Prepare</h1>
-<p><strong>Packet Tracer</strong>：<a target="_blank" rel="noopener" href="https://www.netacad.com/courses/packet-tracer/introduction-packet-tracer">官网</a>完成注册后下载即可</p>
-<h1 id="mac-欺骗"><a class="markdownIt-Anchor" href="#mac-欺骗"></a> MAC 欺骗</h1>
-<h2 id="1-搭建网络结构"><a class="markdownIt-Anchor" href="#1-搭建网络结构"></a> 1、搭建网络结构</h2>
-<p>需要注意 PC 与交换机之间采用<strong>直通线</strong>互连，交换机与交换机之间采用<strong>交叉线</strong>互连</p>
+                <h1 id="react-路由"><a class="markdownIt-Anchor" href="#react-路由"></a> React 路由</h1>
+<h2 id="spa"><a class="markdownIt-Anchor" href="#spa"></a> SPA</h2>
+<p>SPA，single page web application，单个页面 Web 应用，整个应用只有一个完整的页面（单页面多组件），点击页面中的连接不会刷新页面，只会做页面的局部更新</p>
 <blockquote>
-<p>直通线：一般连接不同的设备</p>
-<p>交叉线：一般用于相同设备的连接</p>
+<p>数据都需要通过 ajax 请求获取，并在前端异步展现</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009160503527.png" alt="image-20211009160503527" /></p>
-<h2 id="2-配置-ip"><a class="markdownIt-Anchor" href="#2-配置-ip"></a> 2、配置 IP</h2>
-<p>点击目标 PC ，在 Config - FastEthernet0 中配置静态 IP 地址</p>
-<table>
-<thead>
-<tr>
-<th>Host</th>
-<th>IP</th>
-<th>MAC</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PC0</td>
-<td>192.168.1.10</td>
-<td>0090.0CB0.55B6</td>
-</tr>
-<tr>
-<td>PC1</td>
-<td>192.168.1.11</td>
-<td>0002.1625.5207</td>
-</tr>
-<tr>
-<td>PC2</td>
-<td>192.168.1.12</td>
-<td>0006.2A16.0A3C</td>
-</tr>
-</tbody>
-</table>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009160855791.png" alt="image-20211009160855791" /></p>
-<h2 id="3-测试"><a class="markdownIt-Anchor" href="#3-测试"></a> 3、测试</h2>
-<p>使用 ICMP 报文（ping）完成 PC0,1,2 之间的通信测试</p>
-<p>点击 PC0 在 Desktop - Command Prompt 中输入 ping 命令即可</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009161413510.png" alt="image-20211009161413510" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009161841196.png" alt="image-20211009161841196" /></p>
-<h2 id="4-查看正确的转发表"><a class="markdownIt-Anchor" href="#4-查看正确的转发表"></a> 4、查看正确的转发表</h2>
-<p>Tips：每台 PC 都要对其它 PC 进行一次成功的 ping 操作才能得到完整的转发表；</p>
-<p>交换机转发表查看方式：</p>
-<p>a、点击目标交换机进入 CLI 窗口</p>
-<p>b、窗口中一直输入 <code>exit</code> 命令（小白做法）直到到达用户模式（<code>Swtich&gt;</code>）</p>
-<p>c、输入 <code>enable</code> 进入特权模式</p>
-<p>d、输入 <code>show mac-address-table</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009162900224.png" alt="image-20211009162900224" /></p>
-<h2 id="5-模拟操作模式查看正常通信过程"><a class="markdownIt-Anchor" href="#5-模拟操作模式查看正常通信过程"></a> 5、模拟操作模式查看正常通信过程</h2>
-<p>a、点击右下角的 simulation 进入模拟操作模式</p>
-<p>b、点击 Edit Filters 配置好过滤器，使得能够检测到 ICMP 报文的转发过程</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009164036277.png" alt="image-20211009164036277" /></p>
-<p>c、使用 PC1 ping PC0 查看过程动画</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009164047994.png" alt="image-20211009164047994" /></p>
-<h2 id="6-mac-欺骗"><a class="markdownIt-Anchor" href="#6-mac-欺骗"></a> 6、MAC 欺骗</h2>
-<p>切换回实时操作模式，将 PC2 的 MAC 地址更改为 PC0 的 MAC 地址</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009165759568.png" alt="image-20211009165759568" /></p>
-<h2 id="7-通信欺骗"><a class="markdownIt-Anchor" href="#7-通信欺骗"></a> 7、通信欺骗</h2>
-<p>使用 PC2 对 PC1通信后查看转发表信息：可以看到 PC2 成功伪造了 PC0 的身份，欺骗了各个交换机：Switch0 认为 0090…. 应该走端口 3 去找 Switch 1，Switch 1 认为 0090 应该走端口 2 去找 Switch 2，Switch 2 认为 0090…. 应该走端口 1 ，即找 PC2</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009170222140.png" alt="image-20211009170222140" /></p>
-<h2 id="8-模拟-pc1-与-pc0-的通信"><a class="markdownIt-Anchor" href="#8-模拟-pc1-与-pc0-的通信"></a> 8、模拟 PC1 与 PC0 的通信</h2>
-<p>切换到模拟操作模式：</p>
-<p>a、PC1 ping PC0 的 IP 地址</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009170655929.png" alt="image-20211009170655929" /></p>
-<p>b、查看动画，发现 PC2 欺骗成功</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009170826102.png" alt="image-20211009170826102" /></p>
-<h1 id="vlan-防-mac-欺骗"><a class="markdownIt-Anchor" href="#vlan-防-mac-欺骗"></a> VLAN 防 MAC 欺骗</h1>
-<p>Target：通过 VLAN 的划分，隔离攻击者 PC2 与 PC1，使得 PC2 无法冒充”友军“</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009171601483.png" alt="image-20211009171601483" /></p>
-<h2 id="1-添加-vlan"><a class="markdownIt-Anchor" href="#1-添加-vlan"></a> 1、添加 VLAN</h2>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Switch&gt;enable					# 进入特权模式
-Switch\# configure terminal 	# 进入全局配置模式
-Enter configuration commands, one per line.  End with CNTL&#x2F;Z.
-Switch(config)\#vlan 2			# 创建vlan（id&#x3D;2）并进入其配置模式
-Switch(config-vlan)\#name vlan2 # 对该 vlan 定义一个名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="2-分配接入端口"><a class="markdownIt-Anchor" href="#2-分配接入端口"></a> 2、分配接入端口</h2>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Switch\#configure terminal 
-Enter configuration commands, one per line.  End with CNTL&#x2F;Z.
-
-# 进入 1 号端口的配置模式
-Switch(config)\#interface FastEthernet 0&#x2F;1
-# 将该端口指定为接入端口
-Switch(config-if)\#switchport mode access 
-# 将该接入端口分配给 vlan 2
-Switch(config-if)\#switchport access vlan 2
-Switch(config-if)\#exit			# 回到全局配置模式
-# 同理配置 2 号端口，并分给给 vlan 2
-Switch(config)\#interface FastEthernet 0&#x2F;2
-Switch(config-if)\#switchport mode access 
-Switch(config-if)\#switchport access vlan 2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="3-查看配置结果"><a class="markdownIt-Anchor" href="#3-查看配置结果"></a> 3、查看配置结果</h2>
-<p>在特权模式下输入命令 <code>show running-config</code></p>
-<p>可以查看到 1 号端口和 2 号端口均分配给了 VLAN 2</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009172655898.png" alt="image-20211009172655898" /></p>
-<h2 id="4-检验结果"><a class="markdownIt-Anchor" href="#4-检验结果"></a> 4、检验结果</h2>
-<p>a、当前状态 Switch 转发表 遗忘了之前的信息，攻击者 PC2 有机可乘</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009172940185.png" alt="image-20211009172940185" /></p>
+<h2 id="路由"><a class="markdownIt-Anchor" href="#路由"></a> 路由</h2>
+<p>路由就是一种映射关系，实现 url 中路径与组件/处理函数的映射：</p>
+<p>1、点击链接，变换url；</p>
+<p>2、检测到 url 变化提取 path；</p>
+<p>3、根据 path 更新页面；</p>
+<h3 id="前端路由"><a class="markdownIt-Anchor" href="#前端路由"></a> 前端路由</h3>
+<p>实现 path 与 组件的映射，直接加载目标组件更新页面</p>
+<p>工作过程：当 path 变化为 <code>/demo</code> 时，点前路由组件就会变为 <code>&lt;Demo/&gt;</code> 组件</p>
+<h3 id="后端路由"><a class="markdownIt-Anchor" href="#后端路由"></a> 后端路由</h3>
+<p>实现的是 path 与 函数的映射，用于处理客户端提交的请求</p>
+<p>注册路由方式：<code>router.get(path, function(req, res))</code></p>
+<p>工作过程：当 node 接收到一个请求时，根据请求路径找到匹配的路由，调用路由中的处理函数返回响应数据</p>
+<h2 id="浏览器地址操作"><a class="markdownIt-Anchor" href="#浏览器地址操作"></a> 浏览器地址操作</h2>
+<p>浏览器的历史记录是一种栈结构，BOM 中的 histroy 对象对其维护，使用 history.js 可以更加方便的操作 BOM 中的 histroy</p>
+<p>1、push：<code>history.push('/test')</code>，向栈中推入一个路径并更改 url</p>
+<p>2、replace：<code>history.repalce('/test')</code>，替换栈顶的路径并更改 url</p>
 <blockquote>
-<p>该 mac-address 是 Switch 0 与 Switch 1 之间的</p>
+<p>注意替换操作将不能回退比如我从 demo1 推入了 demo2 随后执行替换 到了 demo3，那么执行回退路径时会直接到 demo1，demo2 的记录丢失了</p>
 </blockquote>
-<p>b、PC2 使用 PC0 的 MAC 地址，ping PC1，可以看出到达 Switch 0 后，因为不属于一个 VLAN 包就被丢弃了。欺骗失败！</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009173426989.png" alt="image-20211009173426989" /></p>
-<p>c、在检测下 PC0 能否与 PC1 正常通信：通信成功</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211009173638696.png" alt="image-20211009173638696" /></p>
+<p>3、监听路径变化：</p>
+<pre class="line-numbers language-javescript" data-language="javescript"><code class="language-javescript">history.listen((location) &#x3D;&gt; &#123;
+    console.log(&#39;请求路由路径变化了&#39;, location)
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>另一种方法是锚点跳转的思想：以 <code>index.html</code> 为首，进行锚点跳转会形成：<code>index.html#demo</code></p>
+<h1 id="react-router-dom"><a class="markdownIt-Anchor" href="#react-router-dom"></a> react-router-dom</h1>
+<p>用于实现一个 SPA 项目，基于 React 的项目基本都会用到此库</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yarn add react-router-dom<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>1、明确页面中的导航区与展示区</p>
+<p>2、导航区的 a 标签改为 Link 标签，to 属性指路由变化</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token punctuation">&#123;</span><span class="token comment">/* &lt;a className="list-group-item" href="./about.html">About&lt;/a> */</span><span class="token punctuation">&#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">className</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token string">'list-group-item '</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>activeName <span class="token operator">===</span> <span class="token string">'About'</span> <span class="token operator">?</span> <span class="token string">'active'</span> <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setActive</span><span class="token punctuation">(</span><span class="token string">'About'</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text">About</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>3、展示区与路由匹配</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token punctuation">&#123;</span><span class="token comment">/* 注册路由 */</span><span class="token punctuation">&#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Routes</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">About</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/home<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Home</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/welcome<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Routes</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>4、<App> 最外侧包裹 <BrowserRouter> - 基于浏览器路由 或 <HashRouter> - 基于锚点路由</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">BrowserRouter</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">BrowserRouter</span></span><span class="token punctuation">></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="常用组件"><a class="markdownIt-Anchor" href="#常用组件"></a> 常用组件</h2>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>Routes<span class="token punctuation">,</span> Route<span class="token punctuation">,</span> Redirect<span class="token punctuation">,</span> Link<span class="token punctuation">,</span> NavLink<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="link"><a class="markdownIt-Anchor" href="#link"></a> Link</h3>
+<p>Link 组件用于导航区，实现路由的发起</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>Link<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">className</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token string">'list-group-item '</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>activeName <span class="token operator">===</span> <span class="token string">'About'</span> <span class="token operator">?</span> <span class="token string">'active'</span> <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setActive</span><span class="token punctuation">(</span><span class="token string">'About'</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text">About</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>通常用到的就是当前导航项的高亮，可以通过 state 与 onClick 进行控制动态添加 active 这个 class 属性</p>
+<p>但是更加方便的是直接使用 NavLink 这个组件，默认情况下它自动给当前点击的 Link 添加 active 属性，也可以通过 <code>activeClassName</code> 参数的传递指定自动添加的属性名称</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">NavLink</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list-group-item<span class="token punctuation">"</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token plain-text">About</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">NavLink</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">NavLink</span></span> <span class="token attr-name">activeClassName</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>redActive<span class="token punctuation">"</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list-group-item<span class="token punctuation">"</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token plain-text">About</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">NavLink</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>更进一步的可以利用组件二次封装中所学，将 NavLink 中的固定字段进行二次封装处理</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// this.props 中使用 children 接收 标签体内容，因此可以直接传递给 NavLink 的child属性，完成二次封装的优秀对接</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">NavLink</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list-group-item<span class="token punctuation">"</span></span> <span class="token spread"><span class="token punctuation">&#123;</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">&#125;</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="routes"><a class="markdownIt-Anchor" href="#routes"></a> Routes</h3>
+<p>用于包裹众多路由组件 <code>&lt;Route&gt;</code> 实现多 Route 的快速查找映射</p>
+<p><strong>caseSensitive 属性实现路由大小写区分</strong>：默认不区分大小写
+Tips: 但是我测试时并没有成功，母鸡</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">caseSensitive</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token boolean">true</span><span class="token punctuation">&#125;</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">About</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>index 属性实现默认路由：</strong></p>
+<p>在 <code>&lt;Routes&gt;</code> 中匹配路由时，如果前面的 <code>&lt;Route&gt;</code> 都没有匹配上，最后就会走 带有 index 属性的路由` （如果配置了的话）</p>
+<p>这个在我之前自己设置时考虑到了，我想默认让他路由到 <Welcome/> 组件也就是对 <code>/</code> 进行路由</p>
+<blockquote>
+<p>添加 <code>/welcome</code> 路由的原因是，<Welcome/> 也是个页面，用户可定能通过某个交互去 Welcome，因此用户主动去的时候总不能让他的 url 还是 <code>/</code> 吧</p>
+</blockquote>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Routes</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">About</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/home<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Home</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/welcome<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Routes</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>引入 index 属性后一切都简单了</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Routes</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">caseSensitive</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">About</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/home<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Home</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">index</span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Routes</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>然后从安全角度想想：可以通过判断页面是否为 <Welcome/> 来用字典扫描资源奥，其实也无伤大雅，因为这仅仅是对不存在的资源的一个默认处理，还需要从流量角度解决这个爆破问题</p>
+</blockquote>
+<h2 id="常见问题"><a class="markdownIt-Anchor" href="#常见问题"></a> 常见问题</h2>
+<h3 id="静态样式丢失问题"><a class="markdownIt-Anchor" href="#静态样式丢失问题"></a> 静态样式丢失问题</h3>
+<p>样式引入时不能以当前相对路径来引入，路由机制会导致资源找不到</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./css/bootstrap.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>解决方法有三：</p>
+<p>1、<code>href=&quot;%PUBLIC_URL%/css/bootstrap.css&quot;</code> 使用 <code>%PUBLIC_URL%</code> 构造绝对路径引入 public 下资源文件</p>
+<p>2、<code>href=&quot;/css/bootstrap.css&quot;</code> 使用 <code>/</code> 以根路径形式访问</p>
+<p>3、使用 <code>&lt;HashRouter&gt;</code> 锚路由被 <code>#</code> 隔离了正常的 url 不会对相对路径产生影响了（不推荐）</p>
+<h2 id="路由的匹配机制"><a class="markdownIt-Anchor" href="#路由的匹配机制"></a> 路由的匹配机制</h2>
+<p>V6 中没有这个概念了，下面就简单记录下历史吧...</p>
+<h3 id="模糊匹配"><a class="markdownIt-Anchor" href="#模糊匹配"></a> 模糊匹配</h3>
+<p>默认情况为模糊匹配，只需要匹配到前缀即可</p>
+<h3 id="严格匹配"><a class="markdownIt-Anchor" href="#严格匹配"></a> 严格匹配</h3>
+<p>就是完全一致，在 Routes 中从上到小找，匹配到就渲染，匹配不到就空</p>
+<h2 id="二级路由"><a class="markdownIt-Anchor" href="#二级路由"></a> 二级路由</h2>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204213135.png" alt="二级路由" /></p>
 
                 
             </div>
@@ -631,7 +624,7 @@ Switch(config-if)\#switchport access vlan 2<span aria-hidden="true" class="line-
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/10/10/mac-spoofing-and-vlan-defense/">https://Coming98.github.io/Coming-blog/2021/10/10/mac-spoofing-and-vlan-defense/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2021/12/04/react-router/">https://Coming98.github.io/Coming-blog/2021/12/04/react-router/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -669,8 +662,12 @@ Switch(config-if)\#switchport access vlan 2<span aria-hidden="true" class="line-
                     
                         <div class="article-tag">
                             
-                                <a href="/Coming-blog/tags/security/">
-                                    <span class="chip bg-color">security</span>
+                                <a href="/Coming-blog/tags/react/">
+                                    <span class="chip bg-color">react</span>
+                                </a>
+                            
+                                <a href="/Coming-blog/tags/react-components/">
+                                    <span class="chip bg-color">react components</span>
                                 </a>
                             
                         </div>
@@ -868,24 +865,24 @@ Switch(config-if)\#switchport access vlan 2<span aria-hidden="true" class="line-
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/Coming-blog/2021/10/26/sui-dao-yu-ipsec-vpn/">
+                <a href="/Coming-blog/2021/12/05/802-3-protocol-and-security/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/12.jpg" class="responsive-img" alt="隧道与IPsec VPN">
+                        <img src="/Coming-blog/medias/featureimages/8.jpg" class="responsive-img" alt="802.3 Protocol and Security">
                         
-                        <span class="card-title">隧道与IPsec VPN</span>
+                        <span class="card-title">802.3 Protocol and Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Packet Tracer 实现隧道与IPSecVPN
+                            有线网络（802.3）协议安全分析
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
                         </span>
                         <span class="publish-author">
                             
@@ -906,10 +903,6 @@ Switch(config-if)\#switchport access vlan 2<span aria-hidden="true" class="line-
                         <span class="chip bg-color">security</span>
                     </a>
                     
-                    <a href="/Coming-blog/tags/experiment/">
-                        <span class="chip bg-color">experiment</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -921,24 +914,24 @@ Switch(config-if)\#switchport access vlan 2<span aria-hidden="true" class="line-
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/09/25/arp-attack-experiment/">
+                <a href="/Coming-blog/2021/12/04/ssl-tls-protocol-and-security/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/12.jpg" class="responsive-img" alt="ARP Attack Experiment">
+                        <img src="/Coming-blog/medias/featureimages/15.jpg" class="responsive-img" alt="SSL/TLS Protocol and Security">
                         
-                        <span class="card-title">ARP Attack Experiment</span>
+                        <span class="card-title">SSL/TLS Protocol and Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            虚拟机中实践 ARP 欺骗
+                            SSL/TLS协议与协议安全分析
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-04
                             </span>
                         <span class="publish-author">
                             
