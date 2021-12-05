@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="隧道与IPsec VPN, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="VLAN and VLAN Security, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>隧道与IPsec VPN | Coming is here</title>
+    <title>VLAN and VLAN Security | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">隧道与IPsec VPN</h1>
+                    <h1 class="description center-align post-title">VLAN and VLAN Security</h1>
                 </div>
             </div>
         </div>
@@ -437,10 +437,6 @@
                                 <span class="chip bg-color">security</span>
                             </a>
                         
-                            <a href="/Coming-blog/tags/experiment/">
-                                <span class="chip bg-color">experiment</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -462,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-26
+                    2021-12-05
                 </div>
                 
 
@@ -471,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.9k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    10 分
                 </div>
                 
 
@@ -501,273 +497,172 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="prepare"><a class="markdownIt-Anchor" href="#prepare"></a> Prepare</h1>
-<p>虚拟专用网络，Virtual Private Network，VPN</p>
-<p>1、在内部网络各个子网之间建立点对点 IP 隧道，解决由互联网互联的内部网络各个子网之间的通信问题</p>
-<p>2、通过在点对点 IP 隧道两端之间建立安全关联，解决内部网络各个子网之间的安全通信问题</p>
-<p>3、通过 VPN 接入技术解决远程终端访问内部网络资源的问题</p>
-<h1 id="点对点-ip-隧道实验"><a class="markdownIt-Anchor" href="#点对点-ip-隧道实验"></a> 点对点 IP 隧道实验</h1>
-<h2 id="1-路由器添加接口卡"><a class="markdownIt-Anchor" href="#1-路由器添加接口卡"></a> 1、路由器添加接口卡</h2>
-<p><strong>需要对公网路由器 R4，R5，R6 添加额外的接口卡</strong></p>
-<p>a、点开路由器的配置界面，先关闭路由器</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017173557977.png" alt="image-20211017173557977" /></p>
-<p>b、左侧选择 NM - 2FE2W 将其拖动进指定的插槽</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017173647869.png" alt="image-20211017173647869" /></p>
-<p>c、再次启动路由器</p>
-<h2 id="2-配置外网路由器"><a class="markdownIt-Anchor" href="#2-配置外网路由器"></a> 2、配置外网路由器</h2>
-<p>主要配置 R4，R5，R6 路由器全球 IP 地址与子网掩码</p>
-<p>Tips：配置时推荐打开接口：<code>no shut</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017184925520.png" alt="image-20211017184925520" /></p>
-<p>最终配置结果如图所示：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017194622660.png" alt="image-20211017194622660" /></p>
-<h2 id="3-配置内网路由器"><a class="markdownIt-Anchor" href="#3-配置内网路由器"></a> 3、配置内网路由器</h2>
-<p>主要配置 R1，R2，R3 路由器连接公共网络接口与内网接口的 IP 与 子网掩码</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017190327310.png" alt="image-20211017190327310" /></p>
-<h2 id="4-ospf-配置"><a class="markdownIt-Anchor" href="#4-ospf-配置"></a> 4、OSPF 配置</h2>
+                <h1 id="vlan"><a class="markdownIt-Anchor" href="#vlan"></a> VLAN</h1>
+<p>VLAN 即虚拟局域网，通过端口与 VLAN 的绑定（或其他方式），在逻辑上划分局域网</p>
 <blockquote>
-<p>OSPF，开放最短路径优先，其路由过程如下：</p>
-<p>1、寻找邻居</p>
-<p>2、建立邻接关系</p>
-<p>3、链路状态信息传递</p>
-<p>4、计算路由</p>
-<p>因此对 R1-6 路由器配置 OSPF 后，能够自动寻找邻居（路由器），交换路由信息，保证路由器之间的连通性</p>
+<p>划分后ARP 等请求广播包将在同一 VLAN 下进行传播</p>
 </blockquote>
-<p>以 R2 为例，配置过程如下：将 192.1.2.0 / 24 配置为一个 OSPF 区域（或者是自治系统 AS）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017192234046.png" alt="image-20211017192234046" /></p>
-<p>最终整体的初始架构如下：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017194711614.png" alt="image-20211017194711614" /></p>
-<p>以 R4 的路由表为例，我们查看一下是否配置正确：其中 O 表示 OSPF</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017194746959.png" alt="image-20211017194746959" /></p>
-<h2 id="5-隧道配置"><a class="markdownIt-Anchor" href="#5-隧道配置"></a> 5、隧道配置</h2>
-<p>对 R1，R2 与 R3 配置隧道</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">interface tunnel 1 # 创建编号为 1 的 IP 隧道接口并进入配置模式
-# 为隧道接口配置私有 IP 地址 192.168.4.1 和子网掩码 255.255.255.0
-# 因为我们发送的
-ip address 192.168.4.1 255.255.255.0 
-
-# 指定隧道源端的公网 IP （与路由器接口绑定）
-tunnel source FastEthernet 0&#x2F;1
-
-# 指定隧道目的端的公网 IP
-tunnel destination 192.1.2.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017202015250.png" alt="image-20211017202015250" /></p>
-<h2 id="6-rip-配置"><a class="markdownIt-Anchor" href="#6-rip-配置"></a> 6、RIP 配置</h2>
-<p>为什么要进行 RIP 配置，为了能使得 R1-3 发现（直连）隧道的私有 IP 地址</p>
+<h2 id="vlan-的产生原因"><a class="markdownIt-Anchor" href="#vlan-的产生原因"></a> VLAN 的产生原因</h2>
+<p>Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求包需要遍历整个广播域，这一现象被称为<strong>广播风暴</strong></p>
 <blockquote>
-<p>RIP，Routing Information Protocol，是一种距离向量协议</p>
+<p>因此需要分割广播域</p>
 </blockquote>
-<p>以 R1 为例</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">router rip
-# 下方表示该路由器直连的网段
-network 192.168.1.0 # 自身内网私有地址
-network 192.168.4.0 # Tunnel 1 的私有地址
-network 192.168.5.0 # Tunnel 2 的私有地址<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="7-路由表分析"><a class="markdownIt-Anchor" href="#7-路由表分析"></a> 7、路由表分析</h2>
-<p>以 R1 为例</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017202946682.png" alt="image-20211017202946682" /></p>
-<p>C 类路由表项，表示直接连接的网络路邮项目，有 外部网段 <code>192.1.1.0</code> 走接口 <code>0/1</code>，有内部网段 <code>192.168.1.0</code> 走接口 <code>0/0</code> ，还有隧道 1 的 <code>192.168.4.0</code> 隧道源端，隧道 2 的 <code>192.168.5.0</code> 隧道源端；</p>
-<p>O 类路由表项，表示通往公共子网的传输路径（非直连），对于 R1 除了 <code>192.1.1.0</code> 网段直连外 <code>2.0, 3.0, 4.0, 5.0, 6.0</code> 均是通过OSPF 配置得到的动态路由项</p>
-<p>R 类路由表项，表示通往内部子网的传输路径（非直连），有 RIP 动态路由习得，对于 R1 除了 <code>192.1.1.0</code> 这一内部子网直连外，还能习得 <code>192.168.2.0, 192.168.2.0</code> 这两个，这是通过 RIP 配置的 <code>192.168.4.0, 192.168.5.0</code>  隧道直连得到；看到底部还有一个 <code>192.168.6.0</code> 这是 R3 那边配置隧道和 RIP 后，R1 习得的结果。</p>
-<h2 id="8-配置-pc-与-server"><a class="markdownIt-Anchor" href="#8-配置-pc-与-server"></a> 8、配置 PC 与 Server</h2>
-<table>
-<thead>
-<tr>
-<th>HOST</th>
-<th>IP</th>
-<th>Gateway</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PC0</td>
-<td>192.168.1.1</td>
-<td>192.168.1.254</td>
-</tr>
-<tr>
-<td>PC1</td>
-<td>192.168.1.2</td>
-<td>192.168.1.254</td>
-</tr>
-<tr>
-<td>PC2</td>
-<td>192.168.2.1</td>
-<td>192.168.2.254</td>
-</tr>
-<tr>
-<td>PC3</td>
-<td>192.168.2.2</td>
-<td>192.168.2.254</td>
-</tr>
-<tr>
-<td>PC4</td>
-<td>192.168.3.1</td>
-<td>192.168.3.254</td>
-</tr>
-<tr>
-<td>PC5</td>
-<td>192.168.3.2</td>
-<td>192.168.3.254</td>
-</tr>
-<tr>
-<td>Server0</td>
-<td>192.168.1.3</td>
-<td>192.168.1.254</td>
-</tr>
-<tr>
-<td>Server1</td>
-<td>192.168.2.3</td>
-<td>192.168.2.254</td>
-</tr>
-<tr>
-<td>Server2</td>
-<td>192.168.3.3</td>
-<td>192.168.3.254</td>
-</tr>
-</tbody>
-</table>
-<h2 id="9-隧道测试"><a class="markdownIt-Anchor" href="#9-隧道测试"></a> 9、隧道测试</h2>
-<p>使用 PC0 ping PC4 <code>192.168.3.1</code></p>
-<p>在内网中 先给交换机，交换机给网关，没有问题</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017205508453.png" alt="image-20211017205508453" /></p>
-<p>进入公网，需要隧道 2 配合换上公网 IP <code>192.1.1.1</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017223314685.png" alt="image-20211017223314685" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018085748762.png" alt="image-20211018085748762" /></p>
-<p>真实的行动轨迹</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017223418362.png" alt="image-20211017223418362" /></p>
-<p>到了 Router 3 后：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017223512176.png" alt="image-20211017223512176" /></p>
-<p>Tips：如果没有这条 Tunnel2 私有地址（<code>192.168.1.1 - 192.168.3.1</code>）是无法在公网上路由的，但是他应该能找寻到 Tunnel1 -&gt; Tunnel3 -&gt; PC3 这样一条路径，我们来尝试下：</p>
-<h2 id="10-智能路由测试"><a class="markdownIt-Anchor" href="#10-智能路由测试"></a> 10、智能路由测试</h2>
-<p>关闭 Tunnel2 很简单：在 R1 与 R3 中输入如下命令，重启 Packet Tracer 后，R1 和 R3 就无法发现Tunnel 2 了。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">router rip
-no network 192.168.5.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>随后我们尝试 PC0 Ping PC3，第一个关键节点是 R1 输出的 IP 包：可以看出他的确没有识别到 Tunnel 2，但是通过路由器之间互学习（路由表交换），R1 能够学习到通往 192.168.3.0/24 的路由项。</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018091036921.png" alt="image-20211018091036921" /></p>
-<p>R1 的部分路由表，192.168.3.0 /24 走 Tunnel1 即可</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018091244762.png" alt="image-20211018091244762" /></p>
-<p>随后能在公网上顺利到达 192.1.2.1 （R2），R2 能够通过 Tunnel 3，传给 R3，进而到达 PC3</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018091415881.png" alt="image-20211018091415881" /></p>
-<h1 id="ipsec"><a class="markdownIt-Anchor" href="#ipsec"></a> IPSec</h1>
-<p>Target：通过 IPSec 实现经过点对点 IP 隧道传输内容的保密性以及完整性，分两个阶段完成，第一个阶段建立点对点 IP 隧道两端之间的安全传输通道；第二阶段是建立点对点 IP 隧道两端之间的双向安全关联。</p>
-<p>具体包括：</p>
-<p>a、建立安全传输通道：完成身份鉴别协议、密钥交换算法和加密/解密算法等协商过程</p>
-<p>b、建立安全关联：确认安全协议、加密算法、HMAC 算法等</p>
+<p>解决方法：使用路由器将网络分段；VLAN 技术</p>
 <blockquote>
-<p>选择 AH 为安全协议时不需要选择加密算法</p>
+<p>广播遇到三层设备就会截止</p>
 </blockquote>
-<p>c、配置分组过滤器：筛选出需要经过 IPSec 安全关联传输的一组 IP 分组，只有与实现内部子网之间通信相关的 IP 分组才需要经过 IPSec 安全关联进行传输</p>
-<h2 id="相关命令解释"><a class="markdownIt-Anchor" href="#相关命令解释"></a> 相关命令解释</h2>
-<h3 id="安全策略"><a class="markdownIt-Anchor" href="#安全策略"></a> 安全策略</h3>
-<p>协商安全传输通道所需的安全策略，然后协商安全策略中的身份鉴别机制，加密算法，hash 算法</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 两端可定义多个安全策略编号越小表示的优先级越高
-crypto isakmp policy 1  # 定义编号和优先级为 1 的安全策略并进入其配置模式
-
-# 可选的鉴别机制有很多：基于 RSA 的数值签名等
-authentication pre-share # 指定身份鉴别机制 pre-share 表示共享密钥鉴别机制
-
-# 支持的加密算法有很多：3DES、AES、DES
-encryption 3des # 指定加密算法
-
-# 可选 MD5 SHA 等
-hash md5 # 指定报文摘要算法 MD5
-
-# 预定义了 1 2 5 号组标识符
-group 2 # 指定 Diffie-Hellman 组表示符，在 DH 算法同步密钥时，使用组标识符 2 对应的参数
-
-# 超时后需要重新建立安全传输通道（安全关联）
-lifetime 3600 # 指定该安全策略的失效时间 3600s
-
-# 为需要建立安全传输通道 且 采用共享秘钥鉴别机制的隧道两端配置共享秘钥 1234
-# 0.0.0.0&#x2F;0.0.0.0 表示另一端 IP 任意
-crypto isakmap key 1234 address 0.0.0.0 0.0.0.0 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="ipsec-变换集"><a class="markdownIt-Anchor" href="#ipsec-变换集"></a> IPSec 变换集</h3>
-<p>指定安全协议，以及使用的加密算法和 HMAC 算法</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">crypto ipsec transform-set tunnel esp-3des esp-md5-hmac
-# transform-set 表示变换集
-# tunnel 为变换集的名称
-# 选择 ESP 作为安全协议，可选的加密算法有：esp-3des, esp-des, esp-aes 可选的 HMAC 算法有：esp-md5-hmac, esp-sha-hmac
-# 选择 AH 作为安全协议，可选的 HMAC 算法有：esp-md5-hmac, esp-sha-hmac<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="分组过滤器"><a class="markdownIt-Anchor" href="#分组过滤器"></a> 分组过滤器</h3>
-<p>指定需要经过安全关联传输的 IP 分组集，只有与实现内部子网之间通信相关的 IP 分组才需要经过 IPSec 安全关联进行传输</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">access-list 101 permit gre host 192.1.1.1 host 192.1.2.1
-access-list 101 deny ip any any
-# 101 组过滤，指定源 IP 为 192.1.1.1 目的 IP 为 192.1.2.1
-# gre 表示 以 GRE 格式封装内层 IP分组<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="加密映射"><a class="markdownIt-Anchor" href="#加密映射"></a> 加密映射</h3>
-<p>指定安全关联所 使用的安全协议和相关算法的 IPSec 变换集与过滤后 IP 分组的绑定</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 创建名为 tunnel 序号为 10 的 ipsec-isakmp 环境下的加密映射并进入其配置模式
-crypto map tunnel 10 ipsec-isakmp
-
-set peer 192.1.2.1 # 指定安全关联的另一端 为 192.1.2.1
-
-set pfs group2 # 指定 DH 算法和组标识符 2 对应的参数, 重新建立安全关联时使用 DH 算法交换同步密钥，并使用组标识符 2 对应的参数重新建立安全关联
-
-# 指定安全关联的失效时间
-set security-association lifetime seconds 900
-
-# 指定安全关联使用的安全协议及加密，HMAC算法的变换集为 tunnel
-set transform-set tunnel
-
-# 指定经过安全关联传输的 IP 分组集为 101 分组过滤器
-match address 101<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="1-安全策略配置"><a class="markdownIt-Anchor" href="#1-安全策略配置"></a> 1、安全策略配置</h2>
-<p>隧道两端都需要完成相应的 ISAKMP 安全策略配置过程，包括安全通道传输所使用的加密算法，报文摘要算法，共享秘钥鉴别机制和 DH 组号。</p>
-<p>隧道每一端可以配置多个安全 策略，但两端必须存在匹配的安全策略</p>
-<p><strong>Router 1</strong>：R1 上定义编号为 1 优先级最高的安全策略，身份鉴别机制采用共享秘钥鉴别机制，加密算法采用 3des，hash 采用 md5，DH 秘钥交换算法</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020083237656.png" alt="image-20211020083237656" /></p>
-<p><strong>Route 2</strong>：匹配 Tunnel 1 的 R1 端，采用相同的安全策略即可</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020084427570.png" alt="image-20211020084427570" /></p>
-<p><strong>Route 3</strong>：匹配 Tunnel 2 的 R1 端，与 Tunnel 3 的 R2 端，采用相同的安全策略即可</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020084337530.png" alt="image-20211020084337530" /></p>
-<h2 id="2-变换集配置"><a class="markdownIt-Anchor" href="#2-变换集配置"></a> 2、变换集配置</h2>
-<p>IPSec 参数配置：这属于阶段二中安全关联相关配置过程</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">crypto ipsec transform-set tunnel esp-3des esp-md5-hmac<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="3-分组过滤器配置"><a class="markdownIt-Anchor" href="#3-分组过滤器配置"></a> 3、分组过滤器配置</h2>
-<p>指定两端需要进行安全传输的 IP 分组范围</p>
-<p>R1：配置 Tunnel 1 与 Tunnel 2 的源端 IP 与 目的端 IP</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># tunnel 1
-access-list 101 permit gre host 192.1.1.1 host 192.1.2.1
-access-list 101 deny ip any any
-# tunnel 2
-access-list 102 permit gre host 192.1.1.1 host 192.1.3.1
-access-list 102 deny ip any any<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>R2：配置 Tunnel 1 与 Tunnel 3 的源端 IP 与 目的端 IP</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># tunnel 1
-access-list 101 permit gre host 192.1.2.1 host 192.1.1.1
-access-list 101 deny ip any any
-# tunnel 3
-access-list 102 permit gre host 192.1.2.1 host 192.1.3.1
-access-list 102 deny ip any any<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>R3：配置 Tunnel 2 与 Tunnel 3 的源端 IP 与 目的端 IP</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># tunnel 2
-access-list 101 permit gre host 192.1.3.1 host 192.1.1.1
-access-list 101 deny ip any any
-# tunnel 3
-access-list 102 permit gre host 192.1.3.1 host 192.1.2.1
-access-list 102 deny ip any any<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="4-加密映射配置"><a class="markdownIt-Anchor" href="#4-加密映射配置"></a> 4、加密映射配置</h2>
-<p>将分组过滤器与变换集配置选项绑定至加密映射中</p>
-<p>R1：需要配置 Tunnel 1 与 Tunnel 2 的加密映射</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020091651843.png" alt="image-20211020091651843" /></p>
-<p>R2：需要配置 Tunnel 1 与 Tunnel 3 的加密映射</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020091911504.png" alt="image-20211020091911504" /></p>
-<p>R3：需要配置 Tunnel 2 与 Tunnel 3 的加密映射</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020092049086.png" alt="image-20211020092049086" /></p>
-<h2 id="5-绑定接口"><a class="markdownIt-Anchor" href="#5-绑定接口"></a> 5、绑定接口</h2>
-<p>将配置好的加密映射作用到路由器目标接口上</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">interface FastEthernet 0&#x2F;1
-crypto map tunnel <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="6-测试"><a class="markdownIt-Anchor" href="#6-测试"></a> 6、测试</h2>
-<p>使用 PC0 ping PC4 <code>192.168.3.1</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093157410.png" alt="image-20211020093157410" /></p>
-<p>首先能够看到初始的内层 IP 分组：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020092955818.png" alt="image-20211020092955818" /></p>
-<p>随后能够看到 R1 将原始 IP 分组封装后的报文：内部的信息（私有地址）已然看不到了</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093116200.png" alt="image-20211020093116200" /></p>
-<p>然后该报文在公网上安全加密传输：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093245915.png" alt="image-20211020093245915" /></p>
-<p>直到 R3 开始解开外部 IP 报文，解密获取了内部 IP 分组，故而继续在私网上传输</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093419574.png" alt="image-20211020093419574" /></p>
+<h2 id="vlan-的优势"><a class="markdownIt-Anchor" href="#vlan-的优势"></a> VLAN 的优势</h2>
+<p>与传统 LAN（局域网）相比</p>
+<p>1、隔离广播域，抑制广播报文</p>
+<p>2、减少移动和改变的代价</p>
+<p>3、创建虚拟工作组，超越传统网络的工作方式</p>
+<p>4、增强通讯的安全性</p>
+<p>5、增强网络的健壮性（缩小了广播域，缩小了攻击范围）</p>
+<h2 id="vlan-实现方式"><a class="markdownIt-Anchor" href="#vlan-实现方式"></a> VLAN 实现方式</h2>
+<p>基于端口的 VLAN；基于 MAC 的 VLAN；基于协议的 VLAN；基于子网的 VLAN</p>
+<h3 id="基于端口的-vlan"><a class="markdownIt-Anchor" href="#基于端口的-vlan"></a> 基于端口的 VLAN</h3>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150331.png" alt="基于端口的 VLAN" /></p>
+<p>需要配置 VLAN 表：端口与所属 VLAN 映射表</p>
+<p>优势：操作简单</p>
+<p>劣势：与端口绑定，并未与主机绑定，主机迁移后容易发生错误</p>
+<h3 id="基于-mac-的-vlan"><a class="markdownIt-Anchor" href="#基于-mac-的-vlan"></a> 基于 MAC 的 VLAN</h3>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150415.png" alt="基于 MAC 的 VLAN" /></p>
+<p>需要配置 VLAN 表：MAC 与所属 VLAN 映射表</p>
+<p>优势：当用户物理位置移动时，即从一个交换机换到其他的交换机时，VLAN不用重新配置，故认为这种根据 MAC 地址的划分方法是基于用户的 VLAN</p>
+<p>劣势：初始化时，所有的用户都必须进行配置，如果用户很多，配置的工作量是很大的；并且同一端口下可能存在属于不同 VLAN 的多个主机，则该端口不能隔离广播包了</p>
+<h3 id="基于协议的-vlan"><a class="markdownIt-Anchor" href="#基于协议的-vlan"></a> 基于协议的 VLAN</h3>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150603.png" alt="基于协议的 VLAN" /></p>
+<p>需要配置 VLAN 表：协议类型与 VLAN 的映射表（不常见）</p>
+<p>根据二层数据帧中的协议字段进行 VLAN 的划分</p>
+<h3 id="基于子网的-vlan"><a class="markdownIt-Anchor" href="#基于子网的-vlan"></a> 基于子网的 VLAN</h3>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150634.png" alt="基于子网的 VLAN" /></p>
+<p>需要配置 VLAN 表：IP 网络与 VLAN 的映射表</p>
+<p>优势：用户可以在网络内部自由移动而不用重新配置自己的工作站</p>
+<p>劣势：效率低，检查每一个数据包的网络层地址是很费时的，并且同一个端口下可能存在多个VLAN 的成员，无法隔离广播包</p>
+<h2 id="vlan-的可跨越性"><a class="markdownIt-Anchor" href="#vlan-的可跨越性"></a> VLAN 的可跨越性</h2>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210923160359426.png" alt="image-20210923160359426" /></p>
+<p>1、VLAN 数据可以跨越多台交换机被转递</p>
+<p>2、不同 VLAN 的信息必须通过三层路由处理才能转发到这个端口上</p>
+<p>3、二层的广播只能在一个 VLAN 下进行</p>
+<h2 id="二层交换机与三层交换机"><a class="markdownIt-Anchor" href="#二层交换机与三层交换机"></a> 二层交换机与三层交换机</h2>
+<p>二层交换技术对于网络层或者高层协议来说是透明的</p>
+<p>优势：数据交换是靠硬件来实现的，其速度相当快</p>
+<blockquote>
+<p>它不处理网络层的IP地址，不处理高层协议的诸如TCP、UDP的端口地址，它只需要数据包的物理地址即MAC地址</p>
+</blockquote>
+<p>劣势：它不能处理不同 IP 子网（包括VLAN）之间的数据交换</p>
+<blockquote>
+<p>识别不了 IP 协议等</p>
+</blockquote>
+<h3 id="路由器的优缺点"><a class="markdownIt-Anchor" href="#路由器的优缺点"></a> 路由器的优缺点</h3>
+<p>优势：选择最佳路由、负荷分担、链路备份及和其他网络进行路由信息的交换等</p>
+<p>劣势：转发效率较低（处理大量的跨越 IP 子网的数据包）</p>
+<p><strong>因此要想利用二层交换率高这一优点，又要处理三层IP数据包的转发，三层交换技术就诞生了</strong></p>
+<h3 id="三层交换机的优点"><a class="markdownIt-Anchor" href="#三层交换机的优点"></a> 三层交换机的优点</h3>
+<p>在网络模型中的第三层实现了数据包的高速转发，可以理解为：二层交换技术 + 三层转发技术的结合 = 三层交换机</p>
+<blockquote>
+<p>本质是二层交换机的升级扩充</p>
+</blockquote>
+<p>优势：一次路由，多次转发；对于数据包转发等规律性的过程由硬件高速实现，而像路由信息更新、路由表维护、路由计算、路由确定等功能，由软件实现</p>
+<blockquote>
+<p>三层交换技术的出现，解决了局域网中网段划分之后，网段中子网必须依赖路由器进行管理的局面，解决了传统路由器低速、复杂所造成的网络瓶颈问题。</p>
+</blockquote>
+<h3 id="工作原理"><a class="markdownIt-Anchor" href="#工作原理"></a> 工作原理</h3>
+<p>1、收到一个数据包，查看包的目的 MAC 是自己，但是 IP 不是自己</p>
+<p>2、查找硬件转发表</p>
+<p>3、如果没查到表项，交由路由进程处理（一旦交由cpu处理，必然会消耗cpu资源）</p>
+<p>4、路由进程将按照 IP 层那一套，查看路由表，查找下一跳的 IP 地址，在通过 ARP 找出此地址对应的 MAC 地址</p>
+<p>5、转发前三层交换机修改 IP 包头的 ttl 值 + 修改原 mac 地址改为自己出口 mac 地址 + 建立交换机硬件转发表，包括目的IP地址，目的IP地址（下一跳）对应的mac地址，mac地址对应的vlan，以及对应的端口</p>
+<blockquote>
+<p>这样当一下包过来的时候，交换机就会 查看硬件转发表直接转发而不会再经过路由表的查询了，也即是交换机的<strong>一次路由，多次交换</strong>的原理</p>
+</blockquote>
+<h2 id="vlan-的链路类型与端口类型"><a class="markdownIt-Anchor" href="#vlan-的链路类型与端口类型"></a> VLAN 的链路类型与端口类型</h2>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930133649605.png" alt="image-20210930133649605" /></p>
+<p>默认情况下，交换机所有端口都是Access-Link端口，并属于VLAN-1</p>
+<h3 id="接入链路"><a class="markdownIt-Anchor" href="#接入链路"></a> 接入链路</h3>
+<p>Access link，交换机与主机之间，通常只涉及一个 VLAN</p>
+<blockquote>
+<p>这个端口不能直接接收其它 VLAN 的信息，也不能直接向其它 VLAN 发送信息。不同VLAN 的信息必须通过三层路由处理才能转发到这个端口上。</p>
+<p>默认情况下，交换机所有端口都是Access-Link端口，并属于VLAN-1</p>
+</blockquote>
+<h3 id="干道链路"><a class="markdownIt-Anchor" href="#干道链路"></a> 干道链路</h3>
+<p>Trunk link，交换机之间 / 交换机路由器之间，可以承载多个 VLAN，因此数据帧在干道链路上传输时，交换机必须要识别数据帧是属于哪个 VLAN 的以转入正确的 Access Link</p>
+<blockquote>
+<p>负责传输多个VLAN的数据，Trunk-Link端口默认为1</p>
+</blockquote>
+<h3 id="端口类型"><a class="markdownIt-Anchor" href="#端口类型"></a> 端口类型</h3>
+<p>Access 端口：用于接用户计算机的端口，只能属于一个 VLAN</p>
+<p>Trunk 端口：用于交换机之间连接的端口，可以属于多个 VLAN</p>
+<p>Hybrid 端口：交换机之间或用于交换机与用户的计算机，可以属于多个 VLAN，</p>
+<blockquote>
+<p>hybrid 端口可以允许多个 VLAN 的报文不打标签，而 trunk 端口只允许缺省 VLAN 的报文不打标签</p>
+<p>同一个交换机上 hybrid 端口和 trunk 端口不能并存</p>
+</blockquote>
+<h3 id="端口的缺省-id"><a class="markdownIt-Anchor" href="#端口的缺省-id"></a> 端口的缺省 ID</h3>
+<p>Access 端口只属于一个 VLAN，因此其缺省 ID 就是它所在的 VLAN</p>
+<p>Trunk 端口属于多个 VLAN，所以需要设置缺省 VLAN ID，默认为 VLAN 1</p>
+<blockquote>
+<p>如果报文的 VLAN ID 与 端口的缺省 ID 相同，则系统将去掉报文的 VLAN Tag，再发送报文；所以来自 Native VLAN 的数据帧通过 Trunk 链路时不重新封装，以原有的帧传输
+华为交换机缺省VLAN被称为 “PvidVlan”，对于思科交换机缺省VLAN被称为 “Native Vlan”</p>
+</blockquote>
+<h2 id="vlan-帧格式"><a class="markdownIt-Anchor" href="#vlan-帧格式"></a> VLAN 帧格式</h2>
+<p>Swith 配置 VLAN 后，会将收到的数据报加入 VLAN 头：<strong>交换机</strong>负责打标签和去标签，对于主机来说是透明的</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930135517564.png" alt="image-20210930135517564" /></p>
+<h2 id="vlan-转发原则"><a class="markdownIt-Anchor" href="#vlan-转发原则"></a> VLAN 转发原则</h2>
+<h3 id="access-端口"><a class="markdownIt-Anchor" href="#access-端口"></a> Access 端口</h3>
+<p><strong>Access 端口收到帧时</strong>：计算机 → 交换机</p>
+<p>该帧不包含 VLAN 信息（按理说不包含），将打上端口的 PVID （基于端口的Vlan ID）；</p>
+<p>该帧包含 VLAN 信息，检测 VLAN 信息与端口标签是否相同，如果相同直接转发；不相同则丢弃。</p>
+<p><strong>Access 端口发送帧时</strong>：交换机 → 计算机</p>
+<p>只绑定一个 VLAN，因此剥离 VLAN 信息，发出的帧为普通以太网帧</p>
+<h3 id="trunk-端口"><a class="markdownIt-Anchor" href="#trunk-端口"></a> Trunk 端口</h3>
+<p><strong>Trunk 端口收到帧时</strong>：交换机 → 交换机</p>
+<p>该帧不包含 VLAN 信息（特殊情况），则将报文转发（打标签）到属于缺省 VLAN 的端口</p>
+<p>该帧包含 VLAN 信息（大多数情况），则不改变，直接转发</p>
+<p><strong>Trunk 端口发送帧时</strong>：交换机 → 交换机</p>
+<p>当该帧的 VLAN 信息与端口的 PVID（缺省 Port-base VLAN ID） 不同时，直接转发；</p>
+<p>当该帧的 VLAN 信息与端口的 PVID 相同时，则剥离VLAN信息，再发送</p>
+<blockquote>
+<p>双标签跳跃攻击的关键点</p>
+</blockquote>
+<h1 id="vlan安全威胁"><a class="markdownIt-Anchor" href="#vlan安全威胁"></a> VLAN安全威胁</h1>
+<p>主要介绍 跳跃攻击 与 VTP 攻击</p>
+<h2 id="双标签跳跃攻击"><a class="markdownIt-Anchor" href="#双标签跳跃攻击"></a> 双标签跳跃攻击</h2>
+<p>Target：实现跨 VLAN 通信</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930140913396.png" alt="image-20210930140913396" /></p>
+<h3 id="攻击过程"><a class="markdownIt-Anchor" href="#攻击过程"></a> 攻击过程</h3>
+<p>1、攻击者使用双层标签，其外层标记为 Trunk 链路的 Native VLAN 号（也是攻击者所处的 VLAN），内层标记为目的 Vlan ID</p>
+<p>2、Access 端口收到主机发来的带有 VLAN ID 的包，匹配一致后，转到 Trunk 端口准备发送</p>
+<p>3、Trunk 端口收到包后，发现 VLAN ID 与 缺省 ID 一致，去除外侧 VLAN 后发送</p>
+<p>4、Trunk 端口收到包后，该帧包含 VLAN 信息（大多数情况），则不改变，直接转发</p>
+<p>5、Trunk 端口发送包，该帧的 VLAN 信息与端口的 PVID 不同时，直接转发到 Access 端口</p>
+<p>4、Access 端口收到包后，将会查看到内层的 VLAN ID，就会直接转发了，转发到计算机</p>
+<h3 id="局限"><a class="markdownIt-Anchor" href="#局限"></a> 局限</h3>
+<p>1、有的交换机从 Access 接口收到带标签的帧，认为是非法的，会直接丢弃</p>
+<p>2、双标签攻击只能实现单向攻击</p>
+<blockquote>
+<p>由于是单向攻击，攻击者无法获得被攻击者的 MAC，因此攻击包只能是二层的广播或者组播帧</p>
+</blockquote>
+<h3 id="防御"><a class="markdownIt-Anchor" href="#防御"></a> 防御</h3>
+<p>1、设置 Trunk 缺省 VLAN ID 为不存在的 VLAN ID 即可；</p>
+<p>2、Access 端口不允许带有 VLAN 标签的帧通过；</p>
+<h2 id="dtp-跳跃攻击"><a class="markdownIt-Anchor" href="#dtp-跳跃攻击"></a> DTP 跳跃攻击</h2>
+<p>DTP，Dynamic Trunk Protocol，自动协商 Trunk 链路的缺省 ID</p>
+<blockquote>
+<p>管理员可以手动指定交换机之间的链路是否形成 Trunk，也可以让交换机使用 DTP 自动协商</p>
+</blockquote>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930141952004.png" alt="image-20210930141952004" /></p>
+<p>Perpetrator 伪装成交换机，发送 DTP 包，将攻击者与交换机之间的链路协商为为 Trunk 链路，随后攻击者通过该链路，可以收发带任意 VLAN 标签的数据，从而实现访问任意 VLAN 的目的</p>
+<p>特点：实现攻击者和被攻击者之间的双向访问，导致攻击者绕过防火墙直接访问目标主机</p>
+<p>防范：关闭不需要开启的交换机接口；关闭 DTP；</p>
+<h2 id="vtp-攻击"><a class="markdownIt-Anchor" href="#vtp-攻击"></a> VTP 攻击</h2>
+<p>VTP，VLAN Trunk Protocol，思科私有协议，帮助用户减少枯燥繁重的配置工作</p>
+<p>原理：管理员在网络中设置一个或者多个 VTP Sever，然后在 VTP Sever 上面创建、删除、修改VLAN，VTP协议会将这些变化通告到其他交换机，这些交换机可以更新 VLAN 信息，实现管理的自动化</p>
+<p>1、VLAN 信息的同步是通过 VTP 通告来实现的，VTP 通告只能在 Trunk 链路上传输</p>
+<p>2、通告是以组播帧的方式发送的，通告中有一个字段称为修订号 Revision。每次添加删除或修改时，Revision都会递增</p>
+<p>3、如果收到的Revision更高，则本交换机将根据此通告更新自身的信息。如果交换机收到更低的通告，会用自己的信息反向覆盖</p>
+<p>4、攻击者发送高的Revision的VTP通告，就能把网络中的VLAN信息覆盖了。如果攻击者把网络中的全部VLAN信息删除了，整个网络的通信也就中断了</p>
+<p>防范：关闭不需要开启的交换机接口；和用户计算机连接的接口要明确配置为 Access 模式。只要Trunk无法协商成功，VTP将无法工作；配置VTP密码，使攻击者发送的VTP消息被拒绝接收</p>
 
                 
             </div>
@@ -794,7 +689,7 @@ crypto map tunnel <span aria-hidden="true" class="line-numbers-rows"><span></spa
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/10/26/sui-dao-yu-ipsec-vpn/">https://Coming98.github.io/Coming-blog/2021/10/26/sui-dao-yu-ipsec-vpn/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2021/12/05/vlan-and-vlan-security/">https://Coming98.github.io/Coming-blog/2021/12/05/vlan-and-vlan-security/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -834,10 +729,6 @@ crypto map tunnel <span aria-hidden="true" class="line-numbers-rows"><span></spa
                             
                                 <a href="/Coming-blog/tags/security/">
                                     <span class="chip bg-color">security</span>
-                                </a>
-                            
-                                <a href="/Coming-blog/tags/experiment/">
-                                    <span class="chip bg-color">experiment</span>
                                 </a>
                             
                         </div>
@@ -1031,50 +922,48 @@ crypto map tunnel <span aria-hidden="true" class="line-numbers-rows"><span></spa
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/Coming-blog/2021/10/28/torch-scatter/">
+                <a href="/Coming-blog/2021/12/05/vlan-and-vlan-security/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/20.jpg" class="responsive-img" alt="torch.scatter">
+                        <img src="/Coming-blog/medias/featureimages/7.jpg" class="responsive-img" alt="VLAN and VLAN Security">
                         
-                        <span class="card-title">torch.scatter</span>
+                        <span class="card-title">VLAN and VLAN Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            对 torch.scatter 函数的理解
+                            虚拟局域网安全分析
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/Pytorch/" class="post-category">
-                                    Pytorch
+                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
+                                    Protocol Security
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/DL/">
-                        <span class="chip bg-color">DL</span>
-                    </a>
-                    
-                    <a href="/Coming-blog/tags/pytorch/">
-                        <span class="chip bg-color">pytorch</span>
+                    <a href="/Coming-blog/tags/security/">
+                        <span class="chip bg-color">security</span>
                     </a>
                     
                 </div>
@@ -1088,24 +977,24 @@ crypto map tunnel <span aria-hidden="true" class="line-numbers-rows"><span></spa
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/10/10/mac-spoofing-and-vlan-defense/">
+                <a href="/Coming-blog/2021/12/05/802-11-protocol-and-security/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/14.jpg" class="responsive-img" alt="MAC Spoofing and Vlan Defense">
+                        <img src="/Coming-blog/medias/featureimages/5.jpg" class="responsive-img" alt="802.11 Protocol and Security">
                         
-                        <span class="card-title">MAC Spoofing and Vlan Defense</span>
+                        <span class="card-title">802.11 Protocol and Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            局域网下MAC欺骗与VLAN防御实践
+                            无线网络协议安全分析
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
                             </span>
                         <span class="publish-author">
                             
