@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SSL/TLS Protocol and Security, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="IPv6 Protocol and Security, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SSL/TLS Protocol and Security | Coming is here</title>
+    <title>IPv6 Protocol and Security | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SSL/TLS Protocol and Security</h1>
+                    <h1 class="description center-align post-title">IPv6 Protocol and Security</h1>
                 </div>
             </div>
         </div>
@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-04
+                    2021-12-05
                 </div>
                 
 
@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.4k
+                    5.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    19 分
                 </div>
                 
 
@@ -497,282 +497,282 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="传输层安全协议-ssltls"><a class="markdownIt-Anchor" href="#传输层安全协议-ssltls"></a> 传输层安全协议 SSL/TLS</h1>
-<p>HTTPS = HTTP + SSL/TLS</p>
-<h2 id="ssl-tls-简述"><a class="markdownIt-Anchor" href="#ssl-tls-简述"></a> SSL / TLS 简述</h2>
-<p>SSL，Secure Socket Layer，安全套接字（IP 地址 + 端口）层，是一种在 TCP 协议之上为两个应用层端实体（End Entity）之间提供安全通道的协议，利用数据加密技术确保数据在网络上传输过程中不会被窃取或篡改</p>
-<p>TLS，Transport Layer Security，传输层安全协议，用于两个应用程序之间提供保密性和数据完整性</p>
+                <h1 id="ipv6"><a class="markdownIt-Anchor" href="#ipv6"></a> IPv6</h1>
+<h2 id="ipv4-存在的问题"><a class="markdownIt-Anchor" href="#ipv4-存在的问题"></a> IPv4 存在的问题</h2>
+<p>1、地址空间匮乏；</p>
+<p>2、报文头结构冗余，影响转发效率；</p>
+<p>3、<strong>存在网络空间安全隐患</strong>；</p>
+<p>4、不提供服务质量保证；</p>
+<p>5、缺少移动性支持；</p>
+<h2 id="ipv6-的特点"><a class="markdownIt-Anchor" href="#ipv6-的特点"></a> IPv6 的特点</h2>
+<p>几乎无限大的地址空间；减少路由表大小；<strong>更好的安全性</strong>；</p>
+<p>主要解决的问题：</p>
+<p>1、地址短缺问题</p>
+<p>2、路由速度慢的问题：(a) 通过对报头结构的更改简化路由，加快路由速度; (b) 若不能指定路由器就不会打开处理扩展头部，改善了路由性能；(c) 在 IPv6 头部，有两个相应的优先权和流标识字段，允许把数据报指定为某一信息流的组成部分，并可对这些数据报进行流量控制。</p>
+<p>3、安全缺陷问题</p>
+<h2 id="ipv6-报文格式"><a class="markdownIt-Anchor" href="#ipv6-报文格式"></a> IPv6 报文格式</h2>
+<p>IPv6 协议数据单元由固定首部，base header，和有效载荷，payload，组成，固定首部有 40 字节，包含有 8 个字段</p>
+<p>对比 IPv4：协议首部去掉了 7 个字段，增加了 1 个流标签字段，源地址和目的地址字段的地址位数扩大到 128 比特</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192327.png" alt="IPv6 报文格式" /></p>
+<h2 id="ipv6-扩展首部"><a class="markdownIt-Anchor" href="#ipv6-扩展首部"></a> IPv6 扩展首部</h2>
+<p>有效载荷又包括扩展首部，extension header，和数据部分，IPv6 数据报在基本首部后面允许有零个或多个扩展首部，再后面是数据</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192657.png" alt="IPv6 扩展首部" /></p>
+<p>这么多扩展首部将通过 <code>下一个首部字段</code> 进行连接，例如，Next Header 为 58 表示下一个扩展首部为 ICMP 报文</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192918.png" alt="下一个首部字段" /></p>
+<h3 id="扩展报头"><a class="markdownIt-Anchor" href="#扩展报头"></a> 扩展报头</h3>
+<p>IPv6 提供了诸多扩展选项</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192829.png" alt="诸多扩展选项" /></p>
+<h2 id="ipv6-地址"><a class="markdownIt-Anchor" href="#ipv6-地址"></a> IPv6 地址</h2>
+<p>IPv6 地址结构：共128位，由全球路由前缀(GRP)，子网 ID，接口 ID组成，写成 8 个 16 进制数的形式，如 <code>2001:A304:6101:1::E0:F726:4E58</code></p>
+<h3 id="接口标识"><a class="markdownIt-Anchor" href="#接口标识"></a> 接口标识</h3>
+<p>其生成方式有三：</p>
+<p>1、有 IEEE EUI-64 规范自动生成：将 48 比特的 MAC 地址转化为 64 比特的接口 ID</p>
 <blockquote>
-<p>通常来讲 SSL 与 TLS 是一个东西，因为 SSL 是企业提出的，所以 TLS 1.0 才是 IETF 制定的 SSL 的互联网标准版本，当时的 SSL 版本是 3.0，因此 TLS v1 与 SSL v3 的差别非常微小</p>
+<p>这是设备自动生成的，MAC 唯一因此生成的接口 ID 也唯一</p>
 </blockquote>
-<h2 id="ipsec-与-ssl"><a class="markdownIt-Anchor" href="#ipsec-与-ssl"></a> IPSec 与 SSL</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204183341.png" alt="IPSec 与 SSL" /></p>
-<p>谁更安全？</p>
-<p>安全可以从 CIA（机密性，完整性，可用性），不可抵赖性，可控性 这五个维度来评价下，IPSec 与 SSL 都能保证机密性，完整性，不可抵赖性（私钥签名与公钥验证）</p>
-<p>但是不同的是 IPSec 在网络层，SSL 在应用层，因为 TCP 协议更为复杂，所以 TCP 安全威胁也较多，因此很多对 TCP 的攻击都将会影响到 SSL 的可用性与可控性，因此工作在较可靠的 IP 上的 IPSec 更为安全</p>
-<h2 id="ssl-提供的安全服务"><a class="markdownIt-Anchor" href="#ssl-提供的安全服务"></a> SSL 提供的安全服务</h2>
-<p>SSL 基于身份认证，机密性与完整性安全服务建立服务器与客户端之间的安全数据通道</p>
-<h3 id="身份认证"><a class="markdownIt-Anchor" href="#身份认证"></a> 身份认证</h3>
-<p>利用数字证书技术和可信任的第三方认证机构，为客户端和服务器之间的通信提供身份认证功能，以便于彼此之间进行身份识别</p>
-<p>1、使用 X.509 v3  数字证书</p>
-<p>2、客户对服务器的身份认证：使用标准的公钥加密技术和可靠认证中心（CA）的证书，来确认服务器的合法性</p>
-<p>3、服务器对客户的身份认证：通过公钥技术和证书进行认证或通过用户名 + 口令来认证</p>
+<p>2、设备随机生成：一定程度上保护主机的私密性</p>
+<p>3、手工配置：建议在服务器和重要网络设备上配置</p>
+<h3 id="地址分类"><a class="markdownIt-Anchor" href="#地址分类"></a> 地址分类</h3>
+<p>单播地址：Unicast Address，用于标识单一网络接口</p>
+<p>多播地址：Multicast Address，用来标识一组网络接口(通常属于不同的节点)</p>
+<p>任播地址：Anycast Address，用来标识一组网络接口，这些接口通常属于不同的节点</p>
 <blockquote>
-<p>双向认证才能保证一定的安全，单向认证一定会存在漏洞</p>
+<p>任播地址是 IPv6 引人的一种新的地址类型
+广播，Broadcast Address，地址因为安全问题被 IPv4 取消</p>
 </blockquote>
-<h3 id="机密性"><a class="markdownIt-Anchor" href="#机密性"></a> 机密性</h3>
-<p>在 SSL 客户端和服务器之间传输的所有数据都经过了加密处理，以防止非法用户进行窃取、篡改和冒充：Triple DES，IDEA，RC2，RC4 …</p>
-<h3 id="完整性"><a class="markdownIt-Anchor" href="#完整性"></a> 完整性</h3>
-<p>SSL 利用加密算法和 Hash 函数来保证客户机和服务器之间传输的数据的完整性，MAC with MD5 or SHA-*</p>
-<h2 id="ssl-体系结构"><a class="markdownIt-Anchor" href="#ssl-体系结构"></a> SSL 体系结构</h2>
-<h3 id="连接与会话的定义"><a class="markdownIt-Anchor" href="#连接与会话的定义"></a> 连接与会话的定义</h3>
-<p><strong>连接</strong>：连接是能提供合适服务类型的传输；对 SSL 来说，连接是点对点的而且是暂时的；每一条连接都与一个会话相关联</p>
-<p><strong>会话</strong>：SSL 会话是指在客户端和服务器之间的一种虚拟的关联关系，由一组连接组成</p>
+<h2 id="多播地址"><a class="markdownIt-Anchor" href="#多播地址"></a> 多播地址</h2>
+<p>去掉广播后对那些原来使用了广播地址的场合，则使用一些更加<strong>有限</strong>的多播地址：也就是各节点自行选择加入某多播地址，使得节点发送的单个数据报可以被<strong>指明的</strong>多个目的节点收到</p>
+<h3 id="广播存在的问题"><a class="markdownIt-Anchor" href="#广播存在的问题"></a> 广播存在的问题</h3>
+<p>1、广播被用来携带去向多个节点的信息，或被那些不知信息来自何方的节点用来发出请求</p>
+<p>2、广播可能会为网络性能设置障碍：同一网络链路上的大量广播意味着该链路上的每个节点都必须处理所有广播，但是其中绝大部分节点最终都将忽略该广播，因为该广播信息与自己无关</p>
+<h3 id="多播地址格式"><a class="markdownIt-Anchor" href="#多播地址格式"></a> 多播地址格式</h3>
+<p>用最高 8 位是 11111111 二进制位组合来标识多播地址，即 <code>FFxx::...</code></p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205193939.png" alt="多播" /></p>
+<p>1、Flags 字段：用来表示 permanent 或 transient 多播组</p>
+<p>2、Scope 字段：表示多播组的范围</p>
+<p>3、Group ID 字段：表示多播组的 ID</p>
+<h3 id="预定义的多播组"><a class="markdownIt-Anchor" href="#预定义的多播组"></a> 预定义的多播组</h3>
+<p>本地链路时可用：</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205194153.png" alt="预定义的多播组" /></p>
+<h2 id="任播地址"><a class="markdownIt-Anchor" href="#任播地址"></a> 任播地址</h2>
+<p>任播地址是 IPv6 协议特有的地址类型，适合于一对一组中的一个(One to One of Many)的通信需求</p>
 <blockquote>
-<p>会话由握手协议创建；定义了一组可以被多个连接共用的密码安全参数（协商）；对于每个连接，可以利用会话来避免对新的安全参数进行代价昂贵的协商（<strong>会话重用</strong>）</p>
+<p>因此任播地址只能用作 IPv6 数据报的目的地址，任播地址只能分配给 IPv6 路由器或服务器主机。</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126105635371.png" alt="image-20211126105635371" /></p>
-<h3 id="状态"><a class="markdownIt-Anchor" href="#状态"></a> 状态</h3>
-<p>每一个会话或连接都与若干个会话或连接状态相关联</p>
+<p>因此任播地址会标识一组网络接口，但是路由器会把目标地址是任播地址的数据发送给离该路由器最近的一个网络接口</p>
+<h3 id="与多播比较"><a class="markdownIt-Anchor" href="#与多播比较"></a> 与多播比较</h3>
+<p>1、同样是多个节点共享一个任播地址</p>
+<p>2、不同的是，只有一个节点期待接收给任播地址的数据报；而多播还是全部发送，更像是受限的广播。</p>
+<h3 id="任播的应用"><a class="markdownIt-Anchor" href="#任播的应用"></a> 任播的应用</h3>
+<p>任播地址在移动通信中很有用，接收方只需要是一组接口中的一个即可，这样可以使移动用户在地理位置上不会受过多的限制</p>
+<h2 id="本地链路地址"><a class="markdownIt-Anchor" href="#本地链路地址"></a> 本地链路地址</h2>
+<p>link-local address，本地链路地址具有固定的地址格式，是在 IPv6 中应用范围受限制的地址类型</p>
+<p>1、应用范围限制在连接到同一本地链路的节点之间</p>
+<p>2、在邻居发现等 IPv6 机制中使用到该类型的地址</p>
+<p>3、由设备自动生成，在本地网络中使用</p>
+<h3 id="本地链路地址格式"><a class="markdownIt-Anchor" href="#本地链路地址格式"></a> 本地链路地址格式</h3>
+<p>一个特定的前缀和接口 ID 两部分，使用特定的本地链路前缀 FE80:: /64，低 64 位为接口ID（设备自动生成）。</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205195005.png" alt="本地链路地址格式" /></p>
+<h2 id="本地站点地址"><a class="markdownIt-Anchor" href="#本地站点地址"></a> 本地站点地址</h2>
+<p>site-local address，本地站点地址也是应用范围受限的地址，仅能在一个单位的网络内使用，类似于 IPv4 中的专用地址（私有地址）</p>
+<h2 id="地址配置技术"><a class="markdownIt-Anchor" href="#地址配置技术"></a> 地址配置技术</h2>
+<p>即对路由器的接口配置一个 IPv6 地址，并指定一个前缀长度</p>
 <blockquote>
-<p>一旦建立起一个会话或连接，对于发送和接收就存在一个当前操作状态</p>
-<p>在握手协议中还会创建发送挂起和接受挂起状态，等握手协议结束后又回到当前状态</p>
-<p>会话或连接状态由会话或连接状态参数定义</p>
+<p>IPv6 没有子网掩码的概念，而是前缀长度取代了子网掩码</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126110715060.png" alt="image-20211126110715060" /></p>
-<h3 id="工作原理"><a class="markdownIt-Anchor" href="#工作原理"></a> 工作原理</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211118140429315.png" alt="image-20211118140429315" /></p>
-<p>1、采用握手协议建立客户与服务器之间的安全通道，该协议包括：双方的相互认证，交换密钥参数（密码协商）</p>
-<p>2、采用告警协议向对端指示其安全错误</p>
-<p>3、采用变更密码规格协议告知改变密码参数</p>
-<p>4、采用记录协议封装以上三种协议或应用层数据（比如HTTP）</p>
-<h2 id="ssl-握手协议"><a class="markdownIt-Anchor" href="#ssl-握手协议"></a> SSL 握手协议</h2>
-<h3 id="基本功能"><a class="markdownIt-Anchor" href="#基本功能"></a> 基本功能</h3>
-<p>1、客户端和服务器之间相互认证</p>
-<p>2、客户端和服务器之间协商加密算法和 MAC 算法</p>
-<p>3、客户端和服务器之间协商用于加密 SSL 载荷的共享密钥：机密型秘钥</p>
-<p>4、客户端和服务器之间协商用于产生 MAC 的共享密钥：完整型秘钥</p>
-<blockquote>
-<p>握手协议在任何应用数据被传输之前使用</p>
-</blockquote>
+<h3 id="无状态自动配置"><a class="markdownIt-Anchor" href="#无状态自动配置"></a> 无状态自动配置</h3>
+<p>用于网络节点的地址自动配置，网络接口接收路由器宣告的全局地址前缀，再结合接口 ID 得到一个可聚集全局单播地址</p>
+<p>具体如下：</p>
+<p>1、主机发送 Router Solicitation 报文，路由器回应 Router Advertisement 报文</p>
+<p>2、主机获得前缀及其它参数</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205204554.png" alt="无状态自动配置" /></p>
+<h3 id="有状态自动配置"><a class="markdownIt-Anchor" href="#有状态自动配置"></a> 有状态自动配置</h3>
+<p>该配置就需要专门的 DHCP 服务器的支持了，网络接口通过客户机/服务器模式从 DHCP 服务器处得到地址配置信息</p>
+<h3 id="手工配置"><a class="markdownIt-Anchor" href="#手工配置"></a> 手工配置</h3>
+<p>常用于服务器和重要网络设备</p>
+<h2 id="icmpv6"><a class="markdownIt-Anchor" href="#icmpv6"></a> ICMPv6</h2>
+<p>Internet Control Message Protocol，网际管理协议, 实现 IPv4 中 ICMP、ARP 和 IGMP 的功能</p>
+<p>向源节点报告关于目的地址传输 IPv6 包的错误和信息，具有差错报告、网络诊断、邻节点发现和多播实现等功能</p>
 <h3 id="报文格式"><a class="markdownIt-Anchor" href="#报文格式"></a> 报文格式</h3>
-<p>典型的 TLV 格式，类型 + 长度 + 内容</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211118141706256.png" alt="image-20211118141706256" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126112239897.png" alt="image-20211126112239897" /></p>
-<p>0、hello_request（可选），无参数，服务器告知客户端需要启动握手协议</p>
+<p>该报文封装在 IPv6 中，next header 号是 58</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128110949.png" alt="IPv6中的封装" /></p>
+<p>但是是在最后一个扩展首部后:</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205205144.png" alt="报文位置" /></p>
+<p>具体报文格式如下：IMCP 类型，ICMP 代码，校验和，ICMP 报文内容</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128111232.png" alt="具体报文格式" /></p>
+<h3 id="预定义类型"><a class="markdownIt-Anchor" href="#预定义类型"></a> 预定义类型</h3>
+<p>存在多种预定义类型：</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128111330.png" alt="预定义类型" /></p>
+<h2 id="ndp"><a class="markdownIt-Anchor" href="#ndp"></a> NDP</h2>
+<p>NDP，Neighbor Discovery Protocol，邻居发现协议，是由 IPv4 中的地址解析协议ARP、ICMP 路由探测协议 RDISC、ICMP 报文重定向等协议综合而成的</p>
 <blockquote>
-<p>Tips ：SSL 的握手都是由客户端先发起的，如果服务器主动需要建立 SSL，也会用 hello_request 告知客户端，让其主动握手（傲娇）</p>
+<p>并非全新的协议
+需要用到 133 - 137 这五类预定义 IMCP报文</p>
 </blockquote>
-<p><strong>1、建立安全能力</strong></p>
-<p>client_hello，参数有版本、随机数、会话 id、密码参数、压缩方法，客户端发出 c_h 启动 SSL 会话</p>
-<p>server_hello，参数有版本、随机数、会话 id、密码参数、压缩方法，服务器响应客户端的 c_h</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126111750083.png" alt="image-20211126111750083" /></p>
-<p><strong>2、服务器认证与秘钥交换</strong></p>
-<p>certificate，X.509 v3 证书链，服务器发出的向客户端验证自己身份的消息</p>
-<p>server_key_exchange，参数为签名信息，由服务端发起的秘钥交换</p>
-<p>certificate_request，参数为 CAs，服务器要求进行客户端认证（可选）</p>
-<p>server_done，无参数，指示服务器的 Hello 消息发送完毕</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204184156.png" alt="服务器认证与秘钥交换" /></p>
-<p><strong>3、客户端认证与秘钥交换</strong>：得到了域主秘钥</p>
-<p>certificate_verify，参数为签名信息，对客户证书进行验证</p>
-<p>client_key_exchange，参数为签名信息，表示秘钥交换</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126112603353.png" alt="" /></p>
-<p><strong>4、变更密码规格并结束握手</strong></p>
-<p>finished，参数为 hash 值，验证秘钥交换和鉴别过程是成功的</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126112201222.png" alt="image-20211126112201222" /></p>
-<h3 id="协议流程"><a class="markdownIt-Anchor" href="#协议流程"></a> 协议流程</h3>
-<p><strong>0x01 建立安全能力</strong></p>
-<p>1、Client Hello：客户端明文发送，包含：版本（客户端 SSL 最高版本），随机数（32位时间戳+28字节随机序列，用于秘钥生成），会话 ID （0，在新会话上建立一条新连接；非0，为现有会话创建一个新连接或更新现有连接参数），客户支持的密码算法列表（CipherSuite，也被称作密码套件），客户支持的压缩方法列表</p>
+<p>1、替换了原来的 ARP 协议</p>
+<p>2、无状态地址自动配置：前缀通告；重复地址检测；前缀重新编址</p>
+<p>3、路由器重定向</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128111652.png" alt="报文类型的应用" /></p>
+<h3 id="ndp-邻接点请求与通告报文"><a class="markdownIt-Anchor" href="#ndp-邻接点请求与通告报文"></a> NDP 邻接点请求与通告报文</h3>
+<p>邻居节点请求/通告报文完成 ARP 功能以及连通性测试</p>
+<p><strong>实现 ARP 的功能</strong>：</p>
+<p>1、源地址为本地链路地址，目的地址为 FF02::1 (所有节点的多播地址)</p>
 <blockquote>
-<p>每个加密套件对应前面 TLS 原理中的四个功能的组合：认证算法 Au (身份验证)、密钥交换算法 KeyExchange(密钥协商)、对称加密算法 Enc (信息加密)和信息摘要 Mac(完整性校验);</p>
+<p>邻接点请求报文，多播形式发送</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126113459835.png" alt="image-20211126113459835" /></p>
-<p>2、Server Hello：服务器发送，包含：版本（客户端建议的较低版本以及服务器支持的最高本），会话 ID（若客户端会话 ID 非0，采用相同值；否则应为一个新会话ID），随机数（独立于客户端随机数，同样参与密钥生成），服务器从客户端建议的密码套件中挑出一组，服务器从客户端建议的压缩方法中挑出一种</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126113510948.png" alt="image-20211126113510948" /></p>
-<p><strong>0x02 服务器认证与秘钥交换</strong></p>
-<p>3、certificate：服务器发送，包含一个 X.509 证书或者一条 X.509 证书链；</p>
-<p>4、（可选）server_key_exchange：若使用 RSA 密钥交换方法或服务器已发送了包含 DH 算法参数的证书，则无须发送该消息（固态 DH）</p>
+<p>2、收到的数据将检查 ICMP 报文中的 IPv6 地址是否为自己的主机地址</p>
+<p>3、（T）将自己数据链路层地址 MAC 封装在邻节点通告报文中，应答邻接点请求报文</p>
+<p><strong>实现连通性测试（ICMP）</strong>：已知 MAC 地址的情况下判断存活性</p>
+<p>1、邻节点请求报文以<strong>单播</strong> IPv6 分组的形式发送：源地址为自己的本地链路地址，目的地址为对方的链路地址</p>
+<p>2、如果发送者收到了应答的邻节点通告报文，它认为目的地址是可达的；否则它认为目的主机是不可达的。</p>
 <blockquote>
-<p>Tips：如果是暂态或匿名 DH，则要发送 server_key_exchange 消息</p>
+<p>在这一过程中涉及源地址与目的地址<strong>都使用本地链路地址，并非真实的 IPv6 地址</strong>，因为本地链路地址就是用来<strong>邻居节点</strong>发现的</p>
 </blockquote>
-<p>5、（可选）Client Certificate Request：服务器发送，表示向客户请求一个证书，请求内容包含证书类型和证书机构（CAs）</p>
+<h3 id="ndp-路由器请求报文和路由器通告报文"><a class="markdownIt-Anchor" href="#ndp-路由器请求报文和路由器通告报文"></a> NDP 路由器请求报文和路由器通告报文</h3>
+<p>路由器每 5 分钟就发送一个路由器通告报文，使得主机了解并更新每个网络接口所连接的链路上的路由器的有关信息</p>
 <blockquote>
-<p>使用 HTTPS 浏览网站通常不需要客户端提供证书，但是某些情况下，客户端在浏览过程中的某些操作可能会触发服务器要求验证客户端证书，比如网银转账</p>
+<p>多接口主机需要发送 IPv6 分组时，需要了解每个网络接口所连接的链路上的路由器的有关信息</p>
 </blockquote>
-<p>6、Server Done，服务器发送，表示服务器的 hello 及相关消息已经结束，等待客户端响应（协商的密码套件版本等客户端是否接收）</p>
-<p><strong>0x03 客户端认证与秘钥交换</strong></p>
-<p>7、Server Done，客户端接收到，根据需要验证服务器提供的证书是否有效；判断 server_hello 的参数是否可以接受；如果都没有问题的话，发送一个或多个消息给服务器</p>
+<p>另外，主机可以主动向路由器发送路由器请求报文，路由器一旦收到路由器请求报文，将立即发送路由器通告报文</p>
 <blockquote>
-<p>验证证书链的可信性；证书是否吊销；证书是否在有效期内；证书中的域名是否与当前访问的域名匹配；</p>
+<p>适用于网络刚连接近一台新主机</p>
 </blockquote>
-<p>8、（可选）Client Certificate，客户端发送，如果服务器请求证书，则客户端首先发送一个certificate 消息，作为该阶段的开始；若客户没有证书，则发送一个 no_certificate 警告</p>
-<p>9、Client Key Exchange，客户端发送，客户端计算产生随机数字 Pre-master，并用证书公钥加密，发送给服务器；</p>
+<p><strong>实现前缀通告功能</strong>：前缀通告是无状态自动配置中的初始机制，IPv6 路由器使用所有节点多播地址 <code>FF02::1</code>，在本地链路上周期性地发送路由器通告报文</p>
 <blockquote>
-<p>消息具体内容取决于密钥交换的类型</p>
-<p>RSA：客户端产生一个 48 字节的 pre_master_secret，并用服务器公钥加密</p>
-<p>固态 DH：以 certificate 消息的形式发送客户端 DH 公钥参数，该消息为空</p>
-<p>暂态或匿名 DH：发送客户端的 DH 公钥参数 C
-这一步完成后客户端已经获取全部的计算协商密钥需要的信息，以 RSA 为例：两个明文随机数 random_C 和 random_S 与自己计算产生的 pre_master_secret，并用服务器公钥加密，计算得到协商密钥</p>
+<p>只有 IPv6 路由器能在本地链路上通告前缀，禁止主机通告前缀</p>
 </blockquote>
-<p>10、（可选）Certificate Verify，客户端发送，发送一个 certificate_verify 消息验证客户端证书</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205210051.png" alt="前缀通告" /></p>
+<h3 id="ndp-重复地址检测"><a class="markdownIt-Anchor" href="#ndp-重复地址检测"></a> NDP 重复地址检测</h3>
+<p>每个网络接口可以进行 IPv6 地址的无状态配置，但是配置前需要根据路由器请求报文和路由器通告报文获取前缀，然后进行重复地址检测，即发送一个邻接点请求域通告报文询问是否有人使用了这个地址</p>
+<p>Q：MAC 地址生成的接口 ID 是唯一的，还通告啥？</p>
+<p>A：地址既可以无状态配置也可以手动配置，因此需要防止与手动配置的地址冲突。</p>
+<h1 id="ipv6-安全机制"><a class="markdownIt-Anchor" href="#ipv6-安全机制"></a> IPv6 安全机制</h1>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128121525.png" alt="攻击方式对比" /></p>
+<p>1、v6 没有广播包（但是多播包或许也可以被利用）</p>
+<p>2、v6 没有 ARP 协议（但是 ICMP 的邻节点请求实现欺骗或许也可以）</p>
+<p>3、v6 地址空间太大，可以有效防止 IP 扫描</p>
+<p>4、v6 忽略很小的分片，防止碎片攻击</p>
+<p>5、v6 集成了 IPSec</p>
+<p>6、Dos 跟 IP 的关系较少，比如 TCP 和 UDP 的DOS</p>
+<p>7、v6 会进行真实源地址检查，防止网络放大攻击，可溯源</p>
+<p>8、v6 禁用了 NAT 那么目标主机地址将会暴露</p>
+<p>9、v6 的功能强大，因此对应的攻击点也更多</p>
+<p>10、v6 引入了扩展头</p>
+<p>11、v6 中 DNS 引入了一定的变化，略</p>
+<h2 id="端到端-ipsec-安全协议"><a class="markdownIt-Anchor" href="#端到端-ipsec-安全协议"></a> 端到端 IPSec 安全协议</h2>
+<p>IPv6 中集成了 IPSec，通过认证报头（AH）和封装安全载荷报头（ESP）两个扩展头实现加密、验证功能</p>
 <blockquote>
-<p>该消息是对一个 HMAC 的签名，该 HMAC 基于之前的握手消息</p>
+<p>IPSec 抗重放攻击等安全功能在 IPv6 协议中同样被继承</p>
 </blockquote>
-<p>11、Change Cipher Spec，客户端发送 change_cipher_spec 消息，通知服务器后续的通信都采用协商的通信密钥和加密算法进行加密通信，并且把协商得到的密码套件拷贝到当前连接的状态之中；</p>
-<p><strong>0x04 变更密码规格并结束握手</strong></p>
-<p>12、Client Finished，随后客户端用本次连接协商的算法和密钥参数加密发送一个 finished 消息</p>
+<p>Tips：IPv6 限制使用 NAT，因此集成了 IPSec 的 IPv6 协议真正实现了端到端的安全，中间转发设备只需要对带有 IPSec 扩展包头的报文进行普通透明转发，大大减轻转发压力</p>
 <blockquote>
-<p>这条消息用于验证密钥交换和鉴别过程是否成功：其中包括一个校验值（verify_data），对所有以来的消息进行校验</p>
+<p>透明转发：中间路由器将不必处理报文直接转发即可</p>
+<p>IPv6 提高了转发效率减轻了转发压力：IPv4 中包头中项较多，每一台路由器都得处理一遍；在 IPv6 中缩减了包头，将大部分功能放到了扩展报头中实现，路由器借助 Next Header 只检查必要的扩展包头即可</p>
 </blockquote>
-<p>13、Change Cipher Spec，Server Finished，服务器计算出协商秘钥后同样发送 change_cipher_spec 消息和 finished （加密，并且包含相同的 verify_data）消息</p>
-<p>客户端计算所有接收信息的 hash 值，并采用协商密钥解密 encrypted_handshake_message，验证服务器发送的数据和密钥，验证通过则握手完成握手过程完成，客户和服务器可以传送应用层数据</p>
-<p><strong>0x05 应用数据传输</strong></p>
-<h2 id="记录协议"><a class="markdownIt-Anchor" href="#记录协议"></a> 记录协议</h2>
-<p>主要功能：封装握手协议、告警协议、变更密码规格协议或应用层协议的数据</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204185938.png" alt="记录协议" /></p>
-<p>加密时要注意：加密内容为消息数据域 MAC；加密增加长度不超过 1024 字节；总长度不超过214 + 2048 字节；对于流加密算法，不需要填充数据，消息和 MAC 一起被直接加密；对于 CBC 模式的分组加密算法，需要填充数据，加密算法由 Cipher Spec 指定，并且需要指定初始化向量 IV</p>
-<p>添加 SSL 记录头：主要有四部分内容：</p>
-<p>内容类型（1字节）：上层协议类型，包含握手协议、告警协议、变更密码规格协议和应用数据四种</p>
-<p>主版本号（1字节）：SSL 协议的主版本号，对于 SSL v3.0 该值为 3</p>
-<p>副版本号（1字节）：SSL 协议的副版本号，对于 SSL v3.0 该值为 0</p>
-<p>压缩后的长度（1字节）：加密后的数据长度，最大值为 214 + 2048 字节</p>
-<h2 id="密钥交换方法"><a class="markdownIt-Anchor" href="#密钥交换方法"></a> 密钥交换方法</h2>
-<p>密钥交换的目的是让双方获得相同的 pre_master_secret，预备主密钥，后续将由 pre_master_secret 生成 master_secret（主密钥）</p>
-<h3 id="rsa"><a class="markdownIt-Anchor" href="#rsa"></a> RSA</h3>
-<p>1、客户端生成一个 48 字节的随机数 k 作为 pre_master_secret</p>
-<p>2、<strong>数字信封</strong>：客户端用服务器公钥加密 k 得到 k' 并发送给客户端，服务器收到 k' 后用自己的私钥解密得到 k</p>
-<p>3、此时双方都得到了 k 即 pre_master_secret，密钥交换完成</p>
-<h3 id="dh"><a class="markdownIt-Anchor" href="#dh"></a> DH</h3>
-<p>共有 6 个参数，分别是 DH 算法参数（P，G）、服务器私钥参数 s 和公钥参数 S、客户端私钥参数 c 和公钥参数 C</p>
-<p>1、服务器选定 DH 算法参数（P，G），可包含在证书中（固态 DH），或通过server_key_exchange 消息发送给客户端（暂态或匿名 DH）</p>
-<p>2、客户端生成一个随机数 c，根据（P，G）计算出 C，C 可通过证书（固态 DH）或者client_key_exchange 消息发送给服务器（暂态或匿名DH）</p>
-<p>3、同时服务器生成一个随机数 s，根据（P，G）计算出 S，S 可通过证书（固态 DH）或者通过server_key_exchange 消息发送给客户端（暂态或匿名DH）</p>
-<p>4、客户端和服务器各自根据（c，S）和（s，C）计算出相同的 pre_master_secret（DH 算法保证该值相同）</p>
-<h2 id="密钥生成"><a class="markdownIt-Anchor" href="#密钥生成"></a> 密钥生成</h2>
-<p>通过秘钥交换算法得到的秘钥为预备主密钥，随后将通过预备主密钥生成主密钥</p>
-<h3 id="主密钥生成"><a class="markdownIt-Anchor" href="#主密钥生成"></a> 主密钥生成</h3>
-<p>Master Secret，服务器和客户端都有一份相同的 Pre_Master_Secret 和 随机数，这个随机数将作为产生 Master_Secret 的种子</p>
+<h2 id="真实源地址检查体系"><a class="markdownIt-Anchor" href="#真实源地址检查体系"></a> 真实源地址检查体系</h2>
+<p>在 IPv6 中将对接入路由器的用户进行源地址检查，使得因特网服务提供商 ISP 可以验证其客户地址的合法性</p>
 <blockquote>
-<p>生成方法可以多样</p>
+<p>真实IP源地址的三重含义：经授权的 (是不是我配的或者可信机构配的)、唯一的、可追溯的</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126163441460.png" alt="image-20211126163441460" /></p>
-<h3 id="密码参数生成"><a class="markdownIt-Anchor" href="#密码参数生成"></a> 密码参数生成</h3>
-<p>密码规格要求的客户端写 MAC 密钥、服务器写 MAC 密钥(用于数据完整性校验)、客户端写密钥、服务器写密钥（用于对称加密数据）、客户端写初始向量 IV、服务器写初始向量 IV（作为很多加密算法的初始化向量使用，具体可以研究对称加密算法），这些都是按顺序由主密钥生成</p>
-<p>生成的方法是：主密钥利用散列函数产生安全字节序列（key_block），序列足够长以便生成所有需要的参数；具体的需要进行 12 次迭代，得到 12 个 hash 值，分组成 6 个元素：client / server mac key，encryption key，IV：共两组加密元素，分别被客户端和服务器使用，这两组元素都被两边同时获取</p>
-<p>客户端使用 client 组元素加密数据，服务器使用 client 元素解密;服务器使用 server 元素加密，client 使用 server 元素解密;</p>
+<p>真实源 IPv6 地址验证体系结构（SAVA）：分为接入网（Access Network）、区域内（Intra-AS）和区域间（Inter-AS）源地址验证三个层次</p>
 <blockquote>
-<p>双向通信的不同方向使用的密钥不同，破解通信至少需要破解两次</p>
+<p>从主机IP地址、IP地址前缀和自治域三个粒度构成多重监控防御体系</p>
+<p>该体系不但可以有效阻止仿冒源地址类攻击；而且能够通过监控流量来实现基于真实源地址的计费和网管。</p>
 </blockquote>
-<h2 id="会话重用"><a class="markdownIt-Anchor" href="#会话重用"></a> 会话重用</h2>
-<p>SSL 认为会话通常是具有较长的生命期，在一个会话基础上可派生出多个连接；本质是基于 session_id 的复用</p>
-<p>1、对于已经建立的 SSL 会话，使用 session_id 为 key，master_secret 为 value 组成一对键值，保存在本地，服务器和客户端都保存一份</p>
-<p>2、当第二次握手（发起新的连接）时，客户端若想使用会话复用，则将 client hello 消息中 session id 设为相应的值</p>
-<p>3、服务器收到这个 client hello，查找本地是否有该 session_id，如果有，判断当前的加密套件和上个会话的加密套件是否一致，一致则允许使用会话复用，将 server hello 中 session_id 也设为相同的值，然后计算对称秘钥，执行后续操作</p>
-<p>4、如果服务器未查到客户端的 session_id（可能是会话已经老化），则会重新握手，session id 要么重新计算（和 client hello 中的不一样），要么置成 0，这两个方式都会告诉客户端这次会话不进行会话复用</p>
-<h2 id="tls-与-ssl-的差异"><a class="markdownIt-Anchor" href="#tls-与-ssl-的差异"></a> TLS 与 SSL 的差异</h2>
-<p>1、版本号：TLS 记录格式与 SSL 记录格式相同，但版本号的值不同，TLSv1.0 使用的版本号为SSLv3.1</p>
-<p>2、SSLv3.0 和 TLS 的 MAC 算法及 MAC 计算的范围不同：TLS 使用了 RFC 2104 定义的 HMAC 算法；SSLv3.0 使用了相似的算法，两者差别在于 SSLv3.0 中，填充字节与密钥之间采用的是连接运算，而 HMAC 算法采用的是异或运算</p>
+<h2 id="防扫描"><a class="markdownIt-Anchor" href="#防扫描"></a> 防扫描</h2>
+<p>IPv4 中：黑客攻击前通常对目标主机及网络进行扫描并搜集数据，以此推断出目标网络的拓扑结构及主机开放的服务、端口等</p>
+<p>IPv6 中：每一个 IPv6 地址是 128 位，假设网络前缀为 64 位，那么在一个子网中就会存在 2^64 个地址，假设攻击者以 10M/s 的速度扫描，需要 5 万年才能遍历所有的地址</p>
 <blockquote>
-<p>但是两者的安全程度是相同的</p>
+<p>这使网络侦察的难度和代价都大大增加
+也间接增加了蠕虫病毒扩散的难度</p>
 </blockquote>
-<p>3、伪随机函数：TLS 使用称为 PRF 的伪随机函数来将密钥扩展成数据块，是更安全的方式</p>
-<p>4、告警代码：TLS 支持几乎所有的 SSLv3.0 报警代码，而且 TLS 还补充定义了很多报警代码</p>
-<p>5、密码套件和客户证书：SSLv3.0 和 TLS 存在少量差别，即 TLS 不支持 Fortezza 密钥交换、加密算法和客户证书</p>
-<p>6、Certificate Verify 和 Finished 消息：SSLv3.0 和 TLS 在用 MD5 和 SHA-1 计算 Certificate Verify 和 Finished 消息中的 HMAC 时，计算的输入有少许差别，但安全性相当</p>
-<p>7、加密计算：TLS 与 SSLv3.0 在计算主密钥（master_secret）时采用的方式不同</p>
-<p>8、用户数据加密之前需要增加的填充字节：在 SSL 中，填充后的数据长度要达到密文块长度的<strong>最小</strong>整数倍；在 TLS 中，填充后的数据长度可以是密文块长度的任意整数倍（但填充的最大长度为 255 字节），这种方式可以<strong>防止基于报文长度分析的攻击</strong></p>
-<h1 id="ssltls-安全威胁"><a class="markdownIt-Anchor" href="#ssltls-安全威胁"></a> SSL/TLS 安全威胁</h1>
-<h2 id="strip-攻击"><a class="markdownIt-Anchor" href="#strip-攻击"></a> Strip 攻击</h2>
-<p>基于用户习惯的安全威胁</p>
-<p>Principle：多数用户不会主动请求 SSL 协议来保护通信内容，即不会主动在浏览器中输入 https 访问域名；一般情况下都是刘浏览器帮我们重定向到安全的 https 了</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126172249577.png" alt="image-20211126172249577" /></p>
-<p>但是如果通信中间存在中间人，那就会被欺骗：</p>
-<p>1、攻击者利用 ARP 欺骗等方式成功监听客户端</p>
-<p>2、客户端向服务器端发送 http 请求，攻击者如实转发请求</p>
-<p>3、服务器端回复 https 链接给客户端，攻击者收到请求并将该链接篡改为 http 链接回复给客户端</p>
-<p>4、客户端再次发送 http 请求给服务器端，攻击者将其改为 https 发送至服务器端</p>
-<p>5、客户端与攻击者此时建立一个 http 明文链接，攻击者与服务器端建立 https 加密链接，攻击者因此可以获取客户端的所有信息</p>
+<h2 id="可溯源"><a class="markdownIt-Anchor" href="#可溯源"></a> 可溯源</h2>
+<p>IPv4 中：NAT 的广泛应用一定程度上破坏了互联网端到端通信的特性并隐藏了用户的真实 IP，导致事前基于过滤类的预防机制和事后追踪溯源变的尤为困难</p>
 <blockquote>
-<p>用户到攻击者的连接是 http，而攻击者却通过 https 连接到安全服务器，这就意味着浏览器上警告提示已经被阻止，浏览器看起来正常工作，在此期间所有的用户敏感信息都可以轻易被截获</p>
-<p>Tips：各大主流浏览器对未部署 SSL 证书的 HTTP 网站会发出 不安全 的警告，但是目标网站是合法的，所以浏览器警告会被阻止</p>
+<p>我过滤的公网地址可能是一个机构的公网地址，不能因为机构内的一个人，封掉整个机构</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126172341706.png" alt="image-20211126172341706" /></p>
-<h2 id="重协商攻击"><a class="markdownIt-Anchor" href="#重协商攻击"></a> 重协商攻击</h2>
-<p>基于协议漏洞的安全威胁</p>
-<p>重协商指客户端和服务器在已经协商好的 SSL/TLS 连接上重新协商，用以更换算法、更换数字证书、重新验证对方身份、更新共享密钥等等；SSL/TLS 协议本身支持重协商，且 RFC 建议 SSL/TLS 实现（OpenSSL 等）也应该默认支持重协商</p>
-<p>两种协商方式：重协商都是客户端主动发起，如果服务器想发起，那么需要向客户端通知</p>
-<p>图A：ClientHello1 表示首次协商；ClientHello2 表示客户主动提出重协商；</p>
-<p>图B：ClientHello1 表示首次协商；Hello Request，服务器请求客户端发起重协商；ClientHello2 表示客户主动提出重协商；</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126175358531.png" alt="image-20211126175358531" /></p>
-<p>1、客户端发出 ClientHello1 进行首次协商</p>
-<p>2、中间人缓存 ClientHello1，自己构造 ClientHello2，对服务器发起首次协商</p>
-<p>3、协商好后中间人将精心伪造的数据给服务器（服务器的 APP 程序通常需要处理粘包，所以中间人可以构造不完整的数据，让 APP 程序认为发生粘包而暂缓处理数据）</p>
+<p>IPv6 中：每一个终端都可以分配到一个 IP 地址并和个人信息进行绑定，安全设备可以通过简单的过滤策略对节点进行安全控制，进一步提高网络安全性</p>
+<h2 id="防止网络放大攻击"><a class="markdownIt-Anchor" href="#防止网络放大攻击"></a> 防止网络放大攻击</h2>
+<p>IPv6 中不存广播地址只有有限的多播地址，因此在一定程度上防止了网络放大攻击</p>
 <blockquote>
-<p>粘包：故意构造的不完整数据，让服务应用程序因为不完整而暂缓处理</p>
+<p>ICMPv6 在设计上不会响应组播地址和广播地址的消息，不存在广播，所以，只需要在网络边缘过滤组播数据包，即可阻止由攻击者向广播网段发送数据包而引起的网络放大攻击。</p>
 </blockquote>
-<p>4、中间人将 ClientHello1 发送给服务器（在同一个连接中），服务器收到后会认为这是一次重协商请求</p>
-<p>5、重协商好后客户端发送真正的数据给服务器（服务器的 APP 程序收到后，将其与之前缓存的中间人精心构造的数据粘合起来，进行业务处理）</p>
-<p>至此，中间人在不需要劫持或解密 SSL/TLS 连接的情况下，成功地将自己伪造的数据插入到用户真正数据之前（数据注入）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126180212571.png" alt="image-20211126180212571" /></p>
-<p>关键点：客户端认为的首次协商却被服务器认为是重协商，首次协商和重协商直接缺少关联性</p>
-<p>防御：</p>
-<p>1、禁用重协商</p>
-<p>2、禁用不安全的重协商而允许安全重协商（需要在首次协商时携带“支持安全重协商”标识）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126180538546.png" alt="image-20211126180538546" /></p>
-<p>3、允许安全重协商，但是只允许在首次协商时携带“支持安全重协商”标识，并且会验证两次协商时Finish 消息中的 verify_data 是否一致</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204193125.png" alt="" /></p>
-<h2 id="三次握手攻击"><a class="markdownIt-Anchor" href="#三次握手攻击"></a> 三次握手攻击</h2>
-<p>基于协议漏洞的安全威胁</p>
-<h3 id="阶段一未知密钥共享"><a class="markdownIt-Anchor" href="#阶段一未知密钥共享"></a> 阶段一：未知密钥共享</h3>
-<p>1、客户端访问攻击者搭建的<strong>带有证书</strong>的恶意网站（比如钓鱼网站等）</p>
-<p>2、客户端生成一个预备主密钥（使用攻击者公钥加密）和一个随机数，发送给攻击者</p>
+<h2 id="防止碎片攻击"><a class="markdownIt-Anchor" href="#防止碎片攻击"></a> 防止碎片攻击</h2>
+<p>IPv6 认为 MTU 小于 1280 字节的数据包是非法的，处理时会丢弃 MTU 小于 1280 字节的数据包(除非它是最后一个包)</p>
+<h1 id="ipv6-安全问题"><a class="markdownIt-Anchor" href="#ipv6-安全问题"></a> IPv6 安全问题</h1>
+<h2 id="扩展包头安全问题"><a class="markdownIt-Anchor" href="#扩展包头安全问题"></a> 扩展包头安全问题</h2>
+<p>协议规范没有约束扩展报头的使用，这存在极大的安全隐患</p>
+<h3 id="下一报头不存在"><a class="markdownIt-Anchor" href="#下一报头不存在"></a> 下一报头不存在</h3>
+<p>攻击者可将下一报头字段设置畸形值，可实施拒绝服务（DoS）攻击</p>
+<h3 id="扩展报头数目过多"><a class="markdownIt-Anchor" href="#扩展报头数目过多"></a> 扩展报头数目过多</h3>
+<p>v6 协议对扩展头数量没有做出限制且同一种类型的扩展头也可以出现多次，攻击者可以通过构造包含异常数量扩展头的报文对防火墙进行 DOS 攻击，防火墙在解析报文时耗费大量资源，从而影响转发性能</p>
 <blockquote>
-<p>这里可以看做是客户端和攻击者建立 TLS</p>
+<p>防御技术：限制扩展头的数量和同一类型扩展头的数目来避免</p>
 </blockquote>
-<p>3、恶意网站向目标网站服务器发起连接，复用客户端的预备主密钥（使用服务器公钥加密）和随机数</p>
+<h3 id="逐跳选项报头"><a class="markdownIt-Anchor" href="#逐跳选项报头"></a> 逐跳选项报头</h3>
+<p>发送大量包含路由提示选项的 IPv6 数据包，包含有该报头的数据包为每次跳转指定转发参数，要求所有路由器对该数据包进行处理并仔细查看该数据包的报头信息，当攻击者发送大量此类 IPv6 数据包时，将消耗链路上路由器大量资源，严重可造成 DoS 攻击。</p>
 <blockquote>
-<p>这里复用客户端预备主密钥和随机数，也就是攻击者用相同的参数与目标服务器建立 TLS</p>
+<p>限制路由器对包含路由提示选项的数据包的处理数量。</p>
 </blockquote>
-<p>4、恶意网站将目标服务器的随机数传给客户端</p>
+<h3 id="目的选项报头"><a class="markdownIt-Anchor" href="#目的选项报头"></a> 目的选项报头</h3>
+<p>目的选项报头本用于为中间或最终目标指定数据包的转发参数</p>
+<p>因为在移动 IP 协议的数据通信以明文进行传输，其本身就是不安全的；攻击者可对移动 IPv6 数据包进行嗅探进而识别其通信节点、转交地址、家乡地址、家乡代理等信息（定义了新的目的选项报头），并利用这些信息伪造数据包；</p>
+<p>随后攻击者可通过拦截类型为消息绑定更新的数据包，修改绑定关系中的转交地址（目的选项）</p>
 <blockquote>
-<p>将目标服务器的相关参数也告诉客户端一份</p>
+<p>此外，移动节点标识符选项揭示了用户的家乡从属关系，攻击者可利用该选项确定用户身份，锁定特定的攻击对象</p>
 </blockquote>
-<p>5、客户端与攻击者、攻击者与服务器分别进行证书验证与密钥协商</p>
-<p>6、密钥协商结束后，将会形成两个 TLS 连接，通信三方拥有相同主密钥（由相同的预备主密钥和随机数生成），共享相同的连接参数</p>
 <blockquote>
-<p>但是由于两个连接使用的证书是不一样的，而且每个连接都拥有不同的 verify_data 值，这就需要利用会话恢复的机制来进行下一步的破解</p>
+<p>解决 TCP/IP 不支持移动性的问题；家乡地址中配有服务，将截获通信并通过隧道转发给新地址，保证了 TCP 五元组不变，连接不断。
+开启IPSec保证数据包不会被窃听</p>
 </blockquote>
-<h3 id="阶段二全同步"><a class="markdownIt-Anchor" href="#阶段二全同步"></a> 阶段二：全同步</h3>
-<p>1、客户端再次向恶意网站发起请求时，客户端与恶意网站之间采用会话重用机制，主密钥不变；恶意网站直接转发请求到目标网站，同样采用会话重用机制</p>
-<p>2、两个连接分别使用相同的主密钥实现会话重用（<strong>会话重用不需要证书，仅使用主密钥就可实现通信双方的身份验证</strong>），并且协商出相同的连接参数</p>
+<h3 id="路由报头"><a class="markdownIt-Anchor" href="#路由报头"></a> 路由报头</h3>
+<p>路由报头列出数据包从源地址到目的地址之间将要访问的一个或多个中间节点，在 RH0 路由类型（即type 0）下，攻攻击者可利用路由报头选项伪装成合法用户接收返回的数据包</p>
+<p>攻击点：RH0 允许在路由头部中的多个位置指定相同地址。这可能导致流量在一条特定路径上的两台或多台路由器或主机之间重复转发</p>
 <blockquote>
-<p>仅检查 session_id 是否存在，加密参数是否一致</p>
+<p>尽快更新安全设备并升级至最新的 IPv6 协议版本 RH2 ，同时对所有的 RH0 数据包进行丢弃。RH2 只容纳一个地址</p>
 </blockquote>
-<p>3、会话重用结束，两个连接的 Finish 消息一致，verify_data 相同</p>
-<blockquote>
-<p>在会话重用的时候，不要求进行证书的验证，也没有身份的验证。而仅仅通过主密钥进行通讯双方的身份认证，从而导致在握手结束的时候，Finished消息将一致，verify_data相同</p>
-</blockquote>
-<h3 id="阶段三身份仿冒"><a class="markdownIt-Anchor" href="#阶段三身份仿冒"></a> 阶段三：身份仿冒</h3>
-<p>1、攻击者浏览到一个需要进行身份验证的资源（比如转账），提交 HTTP 请求；对此，目标服务器发出重协商请求并要求<strong>客户端提供证书</strong>(新的连接需要重协商；转账请求需要客户端证书验证身份)</p>
-<p>2、因为安全连接参数在两个连接上均相同，攻击者就可以复制消息，让受害者和目标服务器进行重协商；由于两个连接上一次协商的 verify_data 相同，满足安全重协商要求，重协商能够完成</p>
-<p>3、重协商结束，客户端证书通过验证，攻击者之前提交的 HTTP 请求（转账）被执行，攻击完成</p>
-<p>或者</p>
-<p>攻击者提前向客户端浏览器注入恶意代码，完全控制客户端浏览器：在重协商完成之后，攻击者能够以客户端的身份向服务器提交不受限制的 HTTP 请求并且可以随意获取结果（比如敏感的企业或个人数据等）</p>
-<blockquote>
-<p>攻击者再发起重协商，利用客户端的证书伪造自己的身份，从而控制两边的连接，发送任意修改的数据内容。从而完成攻击</p>
-</blockquote>
-<p><strong>关键点</strong>：</p>
-<p>攻击能够成功的原因在于重协商之前发往目标服务器的数据是由攻击者发出的，之后的数据是由经过身份验证的受害者发出的，而目标服务器却无法进行区分</p>
-<p>防御：最简单的方法就是禁止重协商</p>
-<h2 id="心脏滴血"><a class="markdownIt-Anchor" href="#心脏滴血"></a> 心脏滴血</h2>
-<p>基于协议实现的安全威胁</p>
-<h1 id="cookies"><a class="markdownIt-Anchor" href="#cookies"></a> Cookies</h1>
-<p>Q：TLS 是否可以穿过 Net</p>
-<p>A：TLS 是一种在 TCP 协议之上为两个应用层端实体（End Entity）之间提供安全通道的协议，并未涉及到 IP 和 端口，可以穿越 Net，</p>
-<h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hherima/article/details/52469674">参考 - CSDN -
-hherima - HTTPS协议详解(四)：TLS/SSL握手过程</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.wosign.com/FAQ/faq2016-0309-04.htm">参考 - wosign - HTTPS加密协议详解(四)：TLS/SSL握手过程</a></p>
+<h3 id="分段报头"><a class="markdownIt-Anchor" href="#分段报头"></a> 分段报头</h3>
+<p>略</p>
+<h2 id="icmpv6-安全威胁"><a class="markdownIt-Anchor" href="#icmpv6-安全威胁"></a> ICMPv6 安全威胁</h2>
+<h3 id="smurf-攻击"><a class="markdownIt-Anchor" href="#smurf-攻击"></a> Smurf 攻击</h3>
+<p>以目标节点作为源地址向组播地址 FF02::1 发送 ICMPv6  Echo Request 消息实现Smurf攻击</p>
+<h3 id="本地链路扫描"><a class="markdownIt-Anchor" href="#本地链路扫描"></a> 本地链路扫描</h3>
+<p>向组播地址 FF02::1 发送 Echo Request 报文，通过接收 Echo Reply 报文，实现扫描</p>
+<h3 id="dos-攻击"><a class="markdownIt-Anchor" href="#dos-攻击"></a> Dos 攻击</h3>
+<p>向目标节点发送过多的 ICMPv6 包以及发送错误消息，导致会话被丢弃，从而破坏已建立的通信</p>
+<h3 id="主机扫描"><a class="markdownIt-Anchor" href="#主机扫描"></a> 主机扫描</h3>
+<p>向主机发送格式不正确的消息刺激主机对 ICMPv6 的响应，从而发现潜在的攻击目标</p>
+<h3 id="降低传输速率"><a class="markdownIt-Anchor" href="#降低传输速率"></a> 降低传输速率</h3>
+<p>向目标节点发送 ICMPv6 Packet too big 报文，减小接收节点的 MTU，降低传输速率</p>
+<h3 id="防御"><a class="markdownIt-Anchor" href="#防御"></a> 防御</h3>
+<p>1、在交换机的每个物理端口设置流量限制；</p>
+<p>2、在防火墙或边界路由器上启动 ICMPv6 数据包过滤机制；</p>
+<p>3、配置路由器拒绝转发带有组播地址的 ICMPv6 Echo Request 报文；</p>
+<p>4、可尝试关闭 PMTU 发现机制，但其会影响到网络数据的传输速率</p>
+<h2 id="ndp-协议攻击"><a class="markdownIt-Anchor" href="#ndp-协议攻击"></a> NDP 协议攻击</h2>
+<h3 id="中间人攻击"><a class="markdownIt-Anchor" href="#中间人攻击"></a> 中间人攻击</h3>
+<p>NDP 协议基于可信网络因此并不具备认证功能，因此可通过伪造 ICMPv6 NA/RA 报文实现中间人攻击。</p>
+<p>过程：攻击者可以伪造 NA 报文（邻节点通告），将自己的链路层地址作为链路上其他主机的地址进行广播（主动响应其它主机的邻节点请求）。</p>
+<p>攻击者可伪造 RA 报文（路由器通告）发送至目标节点修改其默认网关。</p>
+<h3 id="重复地址检测攻击"><a class="markdownIt-Anchor" href="#重复地址检测攻击"></a> 重复地址检测攻击</h3>
+<p>当目标节点向 FF02::1 所有节点发送 NS 数据包（邻节点请求）进行重复地址检测时，攻击者可向该节点发送 NA 报文（邻节点通告）进行响应，并表明该地址已被自己使用。当节点接收到该地址已被占用消息后重新生成新的 IPv6 地址并再一次进行重复地址检测时，攻击者可继续进行 NA 响应实现 DoS 攻击</p>
+<h3 id="泛洪攻击"><a class="markdownIt-Anchor" href="#泛洪攻击"></a> 泛洪攻击</h3>
+<p>攻击者可伪造不同网络前缀 RA 消息对 FF02 :: 1 进行进行泛洪攻击，接收节点将会根据不同的网络前缀进行更新，从而消耗大量的 CPU 资源。</p>
+<h2 id="ndp-协议防御"><a class="markdownIt-Anchor" href="#ndp-协议防御"></a> NDP 协议防御</h2>
+<h3 id="send-协议"><a class="markdownIt-Anchor" href="#send-协议"></a> SEND 协议</h3>
+<p>安全邻居发现协议，SEND 协议，使网络中每个 IPv6 节点都有一对公私钥以及多个邻居扩展选项。</p>
+<p>采用 SEND 协议后，各个节点的接口标识符（IPv6 地址低 64 比特）将基于当前的 IPv6 网络前缀与公钥进行计算产生，而不能由各个节点自行选择</p>
+<p>并且 SEND 协议通过时间戳和 Nonce 选项抵御重放攻击，并引入了 CGA（密码生成地址）与 RSA 签名对数据源进行验证以解决邻居请求/邻居通告欺骗的问题</p>
+<p>局限：SEND 虽然可以解决一定的安全问题，但目前系统与设备对 SEND 的支持十分有限</p>
+<h3 id="ra-guard"><a class="markdownIt-Anchor" href="#ra-guard"></a> RA-Guard</h3>
+<p>RA-Guard，一种安全 RA（路由器通告） 方案，其通过阻断非信任端口 RA 报文转发来避免恶意 RA 可能带来的威胁，在攻击包实际到达目标节点之前阻塞二层设备上的攻击数据包；</p>
+<p>使用访问控制列表或空路由过滤对地址空间中未分配的部分的访问限制，用以防止攻击者迫使路由解析未使用的地址</p>
+<h2 id="安全硬件问题"><a class="markdownIt-Anchor" href="#安全硬件问题"></a> 安全硬件问题</h2>
+<h3 id="防火墙"><a class="markdownIt-Anchor" href="#防火墙"></a> 防火墙</h3>
+<p>1、防火墙必须对 IPv6 基本报头与所有的扩展首部进行解析，才能获取传输层与应用层的信息，从而确定当前数据报是否应该被允许通过或是被丢弃。在一定程度上将加剧防火墙的负担，影响防火墙的性能。</p>
+<p>2、如若在 IPv6 数据包中启用加密选项，负载数据将进行加密处理，由于包过滤型防火墙无法对负载数据进行解密，无法获取 TCP 与 UDP 端口号，因此包过滤型防火墙无法判断是否可以将当前数据包放行。</p>
+<h3 id="ids-ips"><a class="markdownIt-Anchor" href="#ids-ips"></a> IDS / IPS</h3>
+<p>面对IPv6数据包，倘若启用了加密选项，IDS（入侵检测系统） 与 IPS（入侵防御系统） 则无法对加密数据进行提取与分析，无法通过报文分析获取 TCP、UDP 信息，进而无法对网络层进行全面的安全防护。即便只允许流量启用 AH 认证报头，但认证报头内部具有可变长度字段ICV，因此检测引擎并不能准确地定位开始内容检查的位置。</p>
 
                 
             </div>
@@ -799,7 +799,7 @@ hherima - HTTPS协议详解(四)：TLS/SSL握手过程</a></p>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/12/04/ssl-tls-protocol-and-security/">https://Coming98.github.io/Coming-blog/2021/12/04/ssl-tls-protocol-and-security/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2021/12/05/ipv6-protocol-and-security/">https://Coming98.github.io/Coming-blog/2021/12/05/ipv6-protocol-and-security/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1032,46 +1032,48 @@ hherima - HTTPS协议详解(四)：TLS/SSL握手过程</a></p>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/04/react-router/">
+                <a href="/Coming-blog/2021/12/05/ipv6-protocol-and-security/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/10.jpg" class="responsive-img" alt="React Router">
+                        <img src="/Coming-blog/medias/featureimages/0.jpg" class="responsive-img" alt="IPv6 Protocol and Security">
                         
-                        <span class="card-title">React Router</span>
+                        <span class="card-title">IPv6 Protocol and Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            React 组件相关知识点
+                            IPv6 协议安全分析（略版）
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Coming98
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
+                                    Protocol Security
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/react/">
-                        <span class="chip bg-color">react</span>
-                    </a>
-                    
-                    <a href="/Coming-blog/tags/react-components/">
-                        <span class="chip bg-color">react components</span>
+                    <a href="/Coming-blog/tags/security/">
+                        <span class="chip bg-color">security</span>
                     </a>
                     
                 </div>
@@ -1085,31 +1087,31 @@ hherima - HTTPS协议详解(四)：TLS/SSL握手过程</a></p>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/04/react-components/">
+                <a href="/Coming-blog/2021/12/05/ipv4-protocol-and-security/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/1.jpg" class="responsive-img" alt="React components">
+                        <img src="/Coming-blog/medias/featureimages/10.jpg" class="responsive-img" alt="IPv4 Protocol and Security">
                         
-                        <span class="card-title">React components</span>
+                        <span class="card-title">IPv4 Protocol and Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            React 组件相关知识点
+                            IPv4 协议安全分析
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/React/" class="post-category">
-                                    React
+                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
+                                    Protocol Security
                                 </a>
                             
                             
@@ -1119,12 +1121,8 @@ hherima - HTTPS协议详解(四)：TLS/SSL握手过程</a></p>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/react/">
-                        <span class="chip bg-color">react</span>
-                    </a>
-                    
-                    <a href="/Coming-blog/tags/react-components/">
-                        <span class="chip bg-color">react components</span>
+                    <a href="/Coming-blog/tags/security/">
+                        <span class="chip bg-color">security</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2021-12-05T11:15:02.967Z</updated>
+  <updated>2021-12-05T13:43:03.156Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>IPv6 Protocol and Security</title>
+    <link href="https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/"/>
+    <id>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</id>
+    <published>2021-12-05T21:40:49.000Z</published>
+    <updated>2021-12-05T13:43:03.156Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;ipv6&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#ipv6&quot;&gt;&lt;/a&gt; IPv6&lt;/h1&gt;
+&lt;h2 id=&quot;ipv4-存在的问题&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
+    
+    
+    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
+    
+  </entry>
+  
+  <entry>
     <title>IPv4 Protocol and Security</title>
     <link href="https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</id>
     <published>2021-12-05T19:12:45.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -47,7 +73,7 @@
     <link href="https://coming98.github.io/2021/12/05/icmp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</id>
     <published>2021-12-05T19:11:02.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -73,7 +99,7 @@
     <link href="https://coming98.github.io/2021/12/05/vlan-and-vlan-security/"/>
     <id>https://coming98.github.io/2021/12/05/vlan-and-vlan-security/</id>
     <published>2021-12-05T14:54:03.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -99,7 +125,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-11-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-11-protocol-and-security/</id>
     <published>2021-12-05T14:47:50.000Z</published>
-    <updated>2021-12-05T11:15:02.963Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -124,7 +150,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-3-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-3-protocol-and-security/</id>
     <published>2021-12-05T14:18:31.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -150,7 +176,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-router/"/>
     <id>https://coming98.github.io/2021/12/04/react-router/</id>
     <published>2021-12-04T20:22:16.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -176,7 +202,7 @@
     <link href="https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/</id>
     <published>2021-12-04T19:58:10.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -203,7 +229,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-components/"/>
     <id>https://coming98.github.io/2021/12/04/react-components/</id>
     <published>2021-12-04T14:03:58.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -231,7 +257,7 @@
     <link href="https://coming98.github.io/2021/12/03/tcp-and-tcp-security/"/>
     <id>https://coming98.github.io/2021/12/03/tcp-and-tcp-security/</id>
     <published>2021-12-03T18:37:48.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -257,7 +283,7 @@
     <link href="https://coming98.github.io/2021/12/02/ipsec/"/>
     <id>https://coming98.github.io/2021/12/02/ipsec/</id>
     <published>2021-12-02T17:31:49.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -283,7 +309,7 @@
     <link href="https://coming98.github.io/2021/10/29/same-origin-policy/"/>
     <id>https://coming98.github.io/2021/10/29/same-origin-policy/</id>
     <published>2021-10-29T16:36:44.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -309,7 +335,7 @@
     <link href="https://coming98.github.io/2021/10/28/torch-scatter/"/>
     <id>https://coming98.github.io/2021/10/28/torch-scatter/</id>
     <published>2021-10-28T20:12:19.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -337,7 +363,7 @@
     <link href="https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/"/>
     <id>https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/</id>
     <published>2021-10-26T16:26:22.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -365,7 +391,7 @@
     <link href="https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/"/>
     <id>https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/</id>
     <published>2021-10-10T19:50:36.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -391,7 +417,7 @@
     <link href="https://coming98.github.io/2021/09/25/arp-attack-experiment/"/>
     <id>https://coming98.github.io/2021/09/25/arp-attack-experiment/</id>
     <published>2021-09-25T19:11:00.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -417,7 +443,7 @@
     <link href="https://coming98.github.io/2021/07/24/knn-yu-kdtree/"/>
     <id>https://coming98.github.io/2021/07/24/knn-yu-kdtree/</id>
     <published>2021-07-24T15:10:21.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -443,7 +469,7 @@
     <link href="https://coming98.github.io/2021/07/24/shang-quan-fa/"/>
     <id>https://coming98.github.io/2021/07/24/shang-quan-fa/</id>
     <published>2021-07-24T10:20:21.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -468,7 +494,7 @@
     <link href="https://coming98.github.io/2021/07/24/xin-wen-zhu-ti-fen-lei-ren-wu/"/>
     <id>https://coming98.github.io/2021/07/24/xin-wen-zhu-ti-fen-lei-ren-wu/</id>
     <published>2021-07-24T10:13:30.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -496,7 +522,7 @@
     <link href="https://coming98.github.io/2021/07/12/word2vec-li-lun-jie-shao-yu-tui-dao/"/>
     <id>https://coming98.github.io/2021/07/12/word2vec-li-lun-jie-shao-yu-tui-dao/</id>
     <published>2021-07-12T22:24:58.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
+    <updated>2021-12-05T13:43:03.156Z</updated>
     
     
       
@@ -516,31 +542,6 @@
     <category term="python" scheme="https://coming98.github.io/tags/python/"/>
     
     <category term="DL" scheme="https://coming98.github.io/tags/DL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>感知机模型</title>
-    <link href="https://coming98.github.io/2021/07/09/gan-zhi-ji-mo-xing/"/>
-    <id>https://coming98.github.io/2021/07/09/gan-zhi-ji-mo-xing/</id>
-    <published>2021-07-09T22:45:14.000Z</published>
-    <updated>2021-12-05T11:15:02.967Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://gitee.com/Butterflier/pictures/raw/master/image-20210709204458015.png&quot; alt=&quot;image-20210709204458015&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="统计学习方法" scheme="https://coming98.github.io/categories/StatisticalLearning/"/>
-    
-    
-    <category term="ML" scheme="https://coming98.github.io/tags/ML/"/>
     
   </entry>
   
