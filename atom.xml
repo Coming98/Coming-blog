@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2021-12-06T02:47:12.268Z</updated>
+  <updated>2021-12-06T03:24:32.709Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>OSPF Protocol and Security</title>
+    <link href="https://coming98.github.io/2021/12/06/ospf-protocol-and-security/"/>
+    <id>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</id>
+    <published>2021-12-06T11:22:25.000Z</published>
+    <updated>2021-12-06T03:24:32.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;ospf&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#ospf&quot;&gt;&lt;/a&gt; OSPF&lt;/h1&gt;
+&lt;p&gt;Open Shorted Path First，开放最短路径优先，是 IETF</summary>
+        
+      
+    
+    
+    
+    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
+    
+    
+    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
+    
+  </entry>
+  
+  <entry>
     <title>RIP Protocol and Security</title>
     <link href="https://coming98.github.io/2021/12/06/rip-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/rip-protocol-and-security/</id>
     <published>2021-12-06T10:45:21.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -47,7 +73,7 @@
     <link href="https://coming98.github.io/2021/12/06/overview-of-routing-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/overview-of-routing-protocol/</id>
     <published>2021-12-06T10:43:40.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -72,7 +98,7 @@
     <link href="https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/</id>
     <published>2021-12-06T09:22:48.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -98,7 +124,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</id>
     <published>2021-12-05T21:40:49.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -124,7 +150,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</id>
     <published>2021-12-05T19:12:45.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -150,7 +176,7 @@
     <link href="https://coming98.github.io/2021/12/05/icmp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</id>
     <published>2021-12-05T19:11:02.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -176,7 +202,7 @@
     <link href="https://coming98.github.io/2021/12/05/vlan-and-vlan-security/"/>
     <id>https://coming98.github.io/2021/12/05/vlan-and-vlan-security/</id>
     <published>2021-12-05T14:54:03.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -202,7 +228,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-11-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-11-protocol-and-security/</id>
     <published>2021-12-05T14:47:50.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -227,7 +253,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-3-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-3-protocol-and-security/</id>
     <published>2021-12-05T14:18:31.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -253,7 +279,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-router/"/>
     <id>https://coming98.github.io/2021/12/04/react-router/</id>
     <published>2021-12-04T20:22:16.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -279,7 +305,7 @@
     <link href="https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/</id>
     <published>2021-12-04T19:58:10.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -306,7 +332,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-components/"/>
     <id>https://coming98.github.io/2021/12/04/react-components/</id>
     <published>2021-12-04T14:03:58.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -334,7 +360,7 @@
     <link href="https://coming98.github.io/2021/12/03/tcp-and-tcp-security/"/>
     <id>https://coming98.github.io/2021/12/03/tcp-and-tcp-security/</id>
     <published>2021-12-03T18:37:48.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -360,7 +386,7 @@
     <link href="https://coming98.github.io/2021/12/02/ipsec/"/>
     <id>https://coming98.github.io/2021/12/02/ipsec/</id>
     <published>2021-12-02T17:31:49.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -386,7 +412,7 @@
     <link href="https://coming98.github.io/2021/10/29/same-origin-policy/"/>
     <id>https://coming98.github.io/2021/10/29/same-origin-policy/</id>
     <published>2021-10-29T16:36:44.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -412,7 +438,7 @@
     <link href="https://coming98.github.io/2021/10/28/torch-scatter/"/>
     <id>https://coming98.github.io/2021/10/28/torch-scatter/</id>
     <published>2021-10-28T20:12:19.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -440,7 +466,7 @@
     <link href="https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/"/>
     <id>https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/</id>
     <published>2021-10-26T16:26:22.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.709Z</updated>
     
     
       
@@ -468,7 +494,7 @@
     <link href="https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/"/>
     <id>https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/</id>
     <published>2021-10-10T19:50:36.000Z</published>
-    <updated>2021-12-06T02:47:12.268Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -494,7 +520,7 @@
     <link href="https://coming98.github.io/2021/09/25/arp-attack-experiment/"/>
     <id>https://coming98.github.io/2021/09/25/arp-attack-experiment/</id>
     <published>2021-09-25T19:11:00.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
+    <updated>2021-12-06T03:24:32.705Z</updated>
     
     
       
@@ -512,32 +538,6 @@
     
     
     <category term="security" scheme="https://coming98.github.io/tags/security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>KNN与kdTree</title>
-    <link href="https://coming98.github.io/2021/07/24/knn-yu-kdtree/"/>
-    <id>https://coming98.github.io/2021/07/24/knn-yu-kdtree/</id>
-    <published>2021-07-24T15:10:21.000Z</published>
-    <updated>2021-12-06T02:47:12.264Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;k-近邻法&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#k-近邻法&quot;&gt;&lt;/a&gt; K 近邻法&lt;/h1&gt;
-&lt;p&gt;K 近邻 - K Nearest Neighbor -</summary>
-        
-      
-    
-    
-    
-    <category term="统计学习方法" scheme="https://coming98.github.io/categories/StatisticalLearning/"/>
-    
-    
-    <category term="ML" scheme="https://coming98.github.io/tags/ML/"/>
     
   </entry>
   
