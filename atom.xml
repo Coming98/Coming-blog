@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2021-12-06T03:24:32.709Z</updated>
+  <updated>2021-12-06T05:22:00.773Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>BGP Protocol and Security</title>
+    <link href="https://coming98.github.io/2021/12/06/bgp-protocol-and-security/"/>
+    <id>https://coming98.github.io/2021/12/06/bgp-protocol-and-security/</id>
+    <published>2021-12-06T13:19:52.000Z</published>
+    <updated>2021-12-06T05:22:00.773Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;bgp&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#bgp&quot;&gt;&lt;/a&gt; BGP&lt;/h1&gt;
+&lt;p&gt;BGP 是外部网关协议，属于增强的距离矢量路由协议，用来在AS之间传递路由信息&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AS</summary>
+        
+      
+    
+    
+    
+    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
+    
+    
+    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
+    
+  </entry>
+  
+  <entry>
     <title>OSPF Protocol and Security</title>
     <link href="https://coming98.github.io/2021/12/06/ospf-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</id>
     <published>2021-12-06T11:22:25.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -47,7 +75,7 @@
     <link href="https://coming98.github.io/2021/12/06/rip-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/rip-protocol-and-security/</id>
     <published>2021-12-06T10:45:21.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -73,7 +101,7 @@
     <link href="https://coming98.github.io/2021/12/06/overview-of-routing-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/overview-of-routing-protocol/</id>
     <published>2021-12-06T10:43:40.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -98,7 +126,7 @@
     <link href="https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/</id>
     <published>2021-12-06T09:22:48.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -124,7 +152,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</id>
     <published>2021-12-05T21:40:49.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -150,7 +178,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</id>
     <published>2021-12-05T19:12:45.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -176,7 +204,7 @@
     <link href="https://coming98.github.io/2021/12/05/icmp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</id>
     <published>2021-12-05T19:11:02.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -202,7 +230,7 @@
     <link href="https://coming98.github.io/2021/12/05/vlan-and-vlan-security/"/>
     <id>https://coming98.github.io/2021/12/05/vlan-and-vlan-security/</id>
     <published>2021-12-05T14:54:03.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -228,7 +256,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-11-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-11-protocol-and-security/</id>
     <published>2021-12-05T14:47:50.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.773Z</updated>
     
     
       
@@ -253,7 +281,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-3-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-3-protocol-and-security/</id>
     <published>2021-12-05T14:18:31.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.773Z</updated>
     
     
       
@@ -279,7 +307,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-router/"/>
     <id>https://coming98.github.io/2021/12/04/react-router/</id>
     <published>2021-12-04T20:22:16.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -305,7 +333,7 @@
     <link href="https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/</id>
     <published>2021-12-04T19:58:10.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -332,7 +360,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-components/"/>
     <id>https://coming98.github.io/2021/12/04/react-components/</id>
     <published>2021-12-04T14:03:58.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -360,7 +388,7 @@
     <link href="https://coming98.github.io/2021/12/03/tcp-and-tcp-security/"/>
     <id>https://coming98.github.io/2021/12/03/tcp-and-tcp-security/</id>
     <published>2021-12-03T18:37:48.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -386,7 +414,7 @@
     <link href="https://coming98.github.io/2021/12/02/ipsec/"/>
     <id>https://coming98.github.io/2021/12/02/ipsec/</id>
     <published>2021-12-02T17:31:49.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -412,7 +440,7 @@
     <link href="https://coming98.github.io/2021/10/29/same-origin-policy/"/>
     <id>https://coming98.github.io/2021/10/29/same-origin-policy/</id>
     <published>2021-10-29T16:36:44.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -438,7 +466,7 @@
     <link href="https://coming98.github.io/2021/10/28/torch-scatter/"/>
     <id>https://coming98.github.io/2021/10/28/torch-scatter/</id>
     <published>2021-10-28T20:12:19.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -466,7 +494,7 @@
     <link href="https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/"/>
     <id>https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/</id>
     <published>2021-10-26T16:26:22.000Z</published>
-    <updated>2021-12-06T03:24:32.709Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -494,7 +522,7 @@
     <link href="https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/"/>
     <id>https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/</id>
     <published>2021-10-10T19:50:36.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
+    <updated>2021-12-06T05:22:00.777Z</updated>
     
     
       
@@ -503,32 +531,6 @@
         
     <summary type="html">&lt;h1 id=&quot;prepare&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#prepare&quot;&gt;&lt;/a&gt; Prepare&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Packet Tracer&lt;/strong&gt;：&lt;a target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
-    
-    
-    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ARP Attack Experiment</title>
-    <link href="https://coming98.github.io/2021/09/25/arp-attack-experiment/"/>
-    <id>https://coming98.github.io/2021/09/25/arp-attack-experiment/</id>
-    <published>2021-09-25T19:11:00.000Z</published>
-    <updated>2021-12-06T03:24:32.705Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;tools&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#tools&quot;&gt;&lt;/a&gt; Tools&lt;/h1&gt;
-&lt;h2 id=&quot;cain-winpcap&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;</summary>
         
       
     
