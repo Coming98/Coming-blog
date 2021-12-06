@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="DHCP Protocol and Security, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="RIP Protocol and Security, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>DHCP Protocol and Security | Coming is here</title>
+    <title>RIP Protocol and Security | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">DHCP Protocol and Security</h1>
+                    <h1 class="description center-align post-title">RIP Protocol and Security</h1>
                 </div>
             </div>
         </div>
@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    7 分
                 </div>
                 
 
@@ -497,56 +497,121 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="dhcp"><a class="markdownIt-Anchor" href="#dhcp"></a> DHCP</h1>
-<p>Dynamic Host Configuration Protocol，动态主机配置协议，提供动态 IP 配置，它增强了 BOOTP，并与 BOOTP 向后兼容</p>
-<h2 id="bootp"><a class="markdownIt-Anchor" href="#bootp"></a> BOOTP</h2>
-<p>引导程序协议，Bootstrap protocol，BOOTP，使一个客户工作站能够用一个最小的 IP 堆栈进行初始化，并向 BOOTP 服务器请求它的 IP 地址、网关地址以及名字服务器的地址，是 DHCP 协议的前身</p>
-<h3 id="bootp-工作过程"><a class="markdownIt-Anchor" href="#bootp-工作过程"></a> BOOTP 工作过程</h3>
-<p>1、客户确定它自己的硬件地址，地址一般在硬件的 ROM 内</p>
-<p>2、BOOTP 客户在一个 UDP 数据报中把它的硬件地址发送到服务器</p>
-<p>3、服务器接收数据报，并在它的配置文件中查找客户的硬件地址，这个文件包含客户的 IP 地址</p>
-<h2 id="dhcp-功能"><a class="markdownIt-Anchor" href="#dhcp-功能"></a> DHCP 功能</h2>
-<p>1、保证任何 IP 地址在同一时刻只能由一台 DHCP 客户机所使用</p>
-<p>2、DHCP 应当可以给用户分配永久固定的 IP 地址</p>
-<p>3、DHCP 应当可以同用其他方法获得 IP 地址的主机共存（如手工配置 IP 地址的主机）</p>
-<p>4、DHCP 服务器应当向现有的 BOOTP 客户端提供服务（向下兼容）</p>
-<h2 id="dhcp-数据包"><a class="markdownIt-Anchor" href="#dhcp-数据包"></a> DHCP 数据包</h2>
-<p>DHCP 属于应用层协议，建立在 UDP 协议之上，因此数据包形式如下：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206090640.png" alt="DHCP 数据包" /></p>
-<p>1、最外层的以太网标头（ MAC 帧）源 MAC 地址为客户 MAC 地址，目的 MAC 地址未知，因此填入广播 MAC <code>FF-FF-FF-FF-FF-FF</code></p>
-<p>2、内部是 IP 标头，源 IP 地址未知，这里设置为 <code>0.0.0.0</code> 目的 IP 也未知，这里设置为 <code>255.255.255.255</code></p>
+                <h1 id="rip"><a class="markdownIt-Anchor" href="#rip"></a> RIP</h1>
+<p>RIP，Routing Information Protocol，路由信息协议，是一种距离矢量路由协议，基于 UDP 传输，端口号 520</p>
 <blockquote>
-<p><code>255.255.255.255</code> 在 <a href="https://coming98.github.io/Coming-blog/2021/12/05/ipv4-protocol-and-security/#toc-heading-7">IPv4 Protocol and Security</a> 我们提到过这是受限广播地址，应用于 DHCP 中</p>
+<p>适用于小型网络</p>
 </blockquote>
-<p>3、UDP 标头，源端口固定为 68，目的端口固定为 67</p>
-<h3 id="数据包发送过程"><a class="markdownIt-Anchor" href="#数据包发送过程"></a> 数据包发送过程</h3>
-<p>1、广播发送，子网内每个主机都能收到该包</p>
-<p>2、根据 MAC 地址无法判断目的地是谁，因此查看 IP 信息(<code>0.0.0.0</code> -&gt; <code>255.255.255.255</code>) DHCP 服务器就能意识到这是 DHCP DISCOVER 包，其它主机将丢弃该包</p>
-<p>3、DHCP 分配好 IP 地址后将返回一个 DHCP OFFER 包，源 MAC 与目的 MAC 都明确了，源 IP 为 DHCP 服务器的 IP，目的 IP 未知，此时仍设置为 <code>255.255.255.255</code> ，源端口为 67，目的端口为 68，分配给请求端的 IP 地址和本网络的具体参数则包含在 Data 部分</p>
+<h2 id="rip-报文格式-v2"><a class="markdownIt-Anchor" href="#rip-报文格式-v2"></a> RIP 报文格式 (v2)</h2>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128171804.png" alt="RIP报文格式" /></p>
+<h2 id="rip-工作过程"><a class="markdownIt-Anchor" href="#rip-工作过程"></a> RIP 工作过程</h2>
+<p>1、路由器初始启动，发现直连网段（哪个接口对应哪个地址）</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172017.png" alt="RIP1" /></p>
+<p>2、邻居互相发起请求，交换自己的路由表学习自己不知道的网段</p>
 <blockquote>
-<p>通过 MAC 寻址</p>
+<p>直到收敛：即当所有路由表都包含相同的网络信息且无新信息时
+RIP 协议所接收的路由信息都是封装在 UDP 协议的数据包中的，使用 UDP 的 520 号端口接收来自相邻路由器的路由表信息，并对本地的路由表进行相应的修改
+Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
 </blockquote>
-<h2 id="dhcp-工作过程"><a class="markdownIt-Anchor" href="#dhcp-工作过程"></a> DHCP 工作过程</h2>
-<p>1、客户在它的本地物理子网上广播一个 DHCP DISCOVER 消息</p>
-<p>2、每个服务器可以用一个 DHCP OFFER 消息作出响应，这个消息包含一个可用的网络地址和其他配置选项</p>
-<p>3、客户从一个或多个服务器接收到一个或者多个 DHCP OFFER 消息，选择一个</p>
-<p>4、服务器从客户接收 DHCP REQUEST</p>
-<p>5、客户接收到带有配置参数的 DHCP ACK 消息</p>
-<p>6、客户通过发送一个 DHCP RELEASE 消息给服务器，它可以选择不再继续租用地址</p>
-<h2 id="dhcp-欺骗"><a class="markdownIt-Anchor" href="#dhcp-欺骗"></a> DHCP 欺骗</h2>
-<p>1、攻击者首先发起大量的 DHCP 请求（伪造大量的 DHCP 请求包），伪装成 DHCP 客户端</p>
-<p>2、很快正常的 DHCP 服务器的 IP 地址被消耗殆尽，DHCP服务器停止为其他 DHCP 客户端分配 IP 地址</p>
-<p>3、攻击者在网络架设自己的 DHCP 服务器，为真正需要 IP 地址的客户端分配 IP 地址</p>
-<p>4、攻击者的 DHCP 服务器为客户端分配 IP 参数，这些参数里可能包含人为错误设置的参数</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172124.png" alt="RIP2" /></p>
+<p>3、周期性发送 Response 信息，确保路由的有效性</p>
+<h2 id="metric-度量值"><a class="markdownIt-Anchor" href="#metric-度量值"></a> Metric 度量值</h2>
+<p>RIP 是以跳数作为 metric 的唯一标准</p>
+<p>同一台路由器可能从不同方向学到去往同一方向的路由，此时就会比较 Metric 值，选择最优的路由加入路由表</p>
 <blockquote>
-<p>DNS 可以指向恶意 DNS 服务器
-网关指向攻击者控制的路由器，实现中间人攻击</p>
+<p>次优条目会隐藏起来作为备用，在优选路径 Down 掉之后会重新衡量备用 route
+当两条 route 的 metric 相等时，会形成负载均衡</p>
 </blockquote>
-<h2 id="dhcp-防御"><a class="markdownIt-Anchor" href="#dhcp-防御"></a> DHCP 防御</h2>
-<p>1、可以通过建立一张包含有用户 MAC 地址、IP 地址、租用期、VLAN ID、交换机端口等信息的一张表，限制同一端口下的数目，限制 MAC等</p>
-<p>2、将交换机的端口分为可信任端口和不可信任端口，当交换机从一个不可信任端口收到 DHCP 服务器的报文时，比如 DHCP OFFER 报文、DHCP ACK报文、DHCP NAK 报文，交换机会直接将该报文弃</p>
-<h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23337642?sort=created">知乎 - wuxinliulei - DHCP属于OSI的哪一层？</a></p>
+<h1 id="rip-环路问题"><a class="markdownIt-Anchor" href="#rip-环路问题"></a> RIP 环路问题</h1>
+<p>RIP 支持水平分割、毒性逆转和触发更新等工作机制防止路由环路</p>
+<h2 id="环路产生原因"><a class="markdownIt-Anchor" href="#环路产生原因"></a> 环路产生原因</h2>
+<p>这和 RIP 检测到拓扑变化并在网络中扩展的过程有关： RIP 将先更新路由表，等待下一个周期在传递更新</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206100433.png" alt="拓扑变化" /></p>
+<h2 id="单路径环路产生"><a class="markdownIt-Anchor" href="#单路径环路产生"></a> 单路径环路产生</h2>
+<p>1、以线性路由为例：此时网络正常收敛</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172756.png" alt="circle1" /></p>
+<p>2、突然 <code>10.4.0.0</code> 网段发生错误，RTC 路由器检测出来后先更新自己的路由表：将相关路由表项应被删除</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172928.png" alt="circle2" /></p>
+<p>3、随后 RTC 等待下一周期发送路由更新信息，但是此时 RTB 的更新信息先来到，就把正确的信息给覆盖了</p>
+<blockquote>
+<p>RTB 从 RTC 学的能到 <code>10.4.0.0</code> 又反手教给了 RTC</p>
+</blockquote>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128173035.png" alt="circle3" /></p>
+<h2 id="单路径环路避免"><a class="markdownIt-Anchor" href="#单路径环路避免"></a> 单路径环路避免</h2>
+<h3 id="路由毒化"><a class="markdownIt-Anchor" href="#路由毒化"></a> 路由毒化</h3>
+<p>类似触发更新机制，一旦网络拓扑结构发生变化，路由将将失效条目度量值设为无穷大并立即主动通告出去，做到及时更新</p>
+<h3 id="水平分割"><a class="markdownIt-Anchor" href="#水平分割"></a> 水平分割</h3>
+<p>禁止路由器将从一个接口学习到的路由再从同一个接口广播出去</p>
+<h3 id="毒性逆转"><a class="markdownIt-Anchor" href="#毒性逆转"></a> 毒性逆转</h3>
+<p>指当路由器从一个接口学习到去往某个网络的路由时，它就会从该接口通告一个该网络不可达的路由</p>
+<blockquote>
+<p>实质上就是水平分割的升级版，目的都是为了避免传递错误信息</p>
+</blockquote>
+<h2 id="多路径环路产生"><a class="markdownIt-Anchor" href="#多路径环路产生"></a> 多路径环路产生</h2>
+<p>1、正常的收敛状态</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175601.png" alt="正常的收敛状态" /></p>
+<p>2、突然 <code>10.4.0.0</code> 网段发生错误，RTC 置路由表项 10.4.0.0 为无穷大并发送路由更新信息(路由毒化机制)：但此时 RTA 也给 RTB 更新，一对比选择了 RTA 的，环路产生</p>
+<blockquote>
+<p>RTA 从 RTC 学的，不会给 RTC 发（水平分割）</p>
+</blockquote>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175627.png" alt="网络发生故障" /></p>
+<p>3、随后 RTB 转而又会影响 RTC</p>
+<blockquote>
+<p>RTB 从 RTA 学的，因此可以告诉 RTC，并没有违背水平分割
+随后 RTC 又会告诉 RTA，RTA 收到看之间走 RTC 1 步到 10.4.0.0 现在变了啊要走三步，那我得更新；环路至此闭合</p>
+</blockquote>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175751.png" alt="" /></p>
+<h2 id="多路径环路避免"><a class="markdownIt-Anchor" href="#多路径环路避免"></a> 多路径环路避免</h2>
+<h3 id="定义最大值"><a class="markdownIt-Anchor" href="#定义最大值"></a> 定义最大值</h3>
+<p>给这个环路学习定义一个最大值，超过这个值则认定该学习过程为环路，因此不再转发目标 IP 的包</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175943.png" alt="定义最大值" /></p>
+<h3 id="抑制时间"><a class="markdownIt-Anchor" href="#抑制时间"></a> 抑制时间</h3>
+<p>指一条路由信息无效之后，一段时间内这条路由都处于抑制状态，即在一定时间内不再接收关于同一目的地址的路由更新</p>
+<blockquote>
+<p>此时 RTB 接收到 RTA 和 RTC 关于 10.4.0.0 的消息时会认定 10.4.0.0 为抑制状态，因此忽略 RTA
+抑制时间时间内小于 16 的更新将被忽略，因此会设定为 inf；抑制时间后只接手小于 16 的更新</p>
+</blockquote>
+<h3 id="触发更新"><a class="markdownIt-Anchor" href="#触发更新"></a> 触发更新</h3>
+<p>不必等到更新周期到来，路由器马上发送路由 10.4.0.0 不可达消息</p>
+<h1 id="rip-版本简介"><a class="markdownIt-Anchor" href="#rip-版本简介"></a> RIP 版本简介</h1>
+<h2 id="ripv1-的缺陷"><a class="markdownIt-Anchor" href="#ripv1-的缺陷"></a> RIPv1 的缺陷</h2>
+<p>发送协议报文时不携带掩码，路由交换过程中有时会造成错误；不支持认证；只能以广播方式发布协议报文；</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206102248.png" alt="RIPv1 的缺陷" /></p>
+<h2 id="ripv2"><a class="markdownIt-Anchor" href="#ripv2"></a> RIPv2</h2>
+<p>RIPv2 是一种无类别路由协议，报文中携带掩码信息，支持 VLSM（可变长子网掩码）和 CIDR（无类别域间路由）；</p>
+<p>支持以组播方式发送路由更新报文，组播地址为 224.0.0.9，减少网络与系统资源消耗；</p>
+<p>支持对协议报文进行验证，并提供明文验证和 MD5 验证两种方式，增强安全性</p>
+<p>总评：RIP 协议简单、便捷，在中小型网络中得到广泛应用</p>
+<h3 id="cidr略"><a class="markdownIt-Anchor" href="#cidr略"></a> CIDR（略）</h3>
+<p>无类别域间路由，Classless Inter-Domain Routing，是一个用于给用户分配 IP 地址以及在互联网上有效地路由 IP 数据包的对 IP 地址进行归类的方法</p>
+<p>基于可变长子网掩码（VLSM）来进行任意长度的前缀的分配的，将好几个 IP 网络结合在一起，使用一种无类别的域际路由选择算法，使它们合并成一条路由从而较少路由表中的路由条目，减轻 Internet 路由器的负担。</p>
+<p>例如：192.168.0.0/24 - 192.168.3.0/24，CIDR 汇总后：192.168.0.0/30</p>
+<h3 id="vlsm略"><a class="markdownIt-Anchor" href="#vlsm略"></a> VLSM（略）</h3>
+<p>可变长子网掩码，把一个标准网络分成几个小型网络(子网)</p>
+<h3 id="路由汇总"><a class="markdownIt-Anchor" href="#路由汇总"></a> 路由汇总</h3>
+<p>略</p>
+<h3 id="有类别与无类别路由协议"><a class="markdownIt-Anchor" href="#有类别与无类别路由协议"></a> 有类别与无类别路由协议</h3>
+<p>1、有类的路由协议不会识别子网的信息只能识别出基本的 IPv4 类别划分，无类别路由协议能根据子网掩码的长度来区分网段</p>
+<blockquote>
+<p>正是因为有类的不能识别子网，因此往往要在枢纽路由器进行路由汇总，比如 10.0.0.8/24 与 10.0.9.9/24 都会汇总为 10.0.10.10 因为在A类看来他们都是一样的</p>
+</blockquote>
+<p>2、有类的路由协议只会传送网络前缀（网络地址）；无类路由协议传输网络前缀（网络地址）的同时也会传输子网掩码，所以它支持 VLSM（可变长子网掩码）</p>
+<h1 id="rip-安全缺陷"><a class="markdownIt-Anchor" href="#rip-安全缺陷"></a> RIP 安全缺陷</h1>
+<p>1、使用不可靠的 UDP 报文进行传送，安全性差</p>
+<p>2、路由器如果没有使用认证机制，则没有发出更新请求的路由器也能够接收到更新报文</p>
+<h2 id="rip-路由欺骗"><a class="markdownIt-Anchor" href="#rip-路由欺骗"></a> RIP 路由欺骗</h2>
+<p>攻击者冒充正常路由器向受害路由器发送路由更新请求，更新后实现流量劫持</p>
+<p>1、先伪造包冒充 R1 毁掉原有的路径：1.0.0.0/8， Metric 4</p>
+<p>2、然后发送优先级更高的虚假路由跟新：1.0.0.0/8, Metric 1</p>
+<p>3、完成流量劫持</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128202300.png" alt="RIP 路由欺骗" /></p>
+<h2 id="rip-路由防御"><a class="markdownIt-Anchor" href="#rip-路由防御"></a> RIP 路由防御</h2>
+<p>基于 RIPv2 报文验证，将 RIP 报文前 20 个字节作为验证信息：</p>
+<p>1、建立邻居的双方必须使用相同的验证方式和口令</p>
+<p>2、不直接建立邻居的路由器可以使用不同的验证方式和口令</p>
+<p>3、在哪些链路上实施验证、使用哪种验证方式，全由管理员根据需求进行考量和设计</p>
+<p>Tips：仅仅采用 MAC 机制并不安全，如上图 攻击者可以劫持 R1 到 R2 的明文信息，而 MAC 只能保证完整性，所以该认证还是能被篡改；只有带密钥加密的 HMAC 才比较安全</p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128202442.png" alt="报文验证机制" /></p>
 
                 
             </div>
@@ -573,7 +638,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/12/06/dhcp-protocol-and-security/">https://Coming98.github.io/Coming-blog/2021/12/06/dhcp-protocol-and-security/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2021/12/06/rip-protocol-and-security/">https://Coming98.github.io/Coming-blog/2021/12/06/rip-protocol-and-security/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -806,29 +871,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/06/overview-of-routing-protocol/">
+                <a href="/Coming-blog/2021/12/06/rip-protocol-and-security/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/4.jpg" class="responsive-img" alt="Overview of Routing Protocol">
+                        <img src="/Coming-blog/medias/featureimages/22.jpg" class="responsive-img" alt="RIP Protocol and Security">
                         
-                        <span class="card-title">Overview of Routing Protocol</span>
+                        <span class="card-title">RIP Protocol and Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            路由协议概述
+                            RIP 协议安全分析
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -841,6 +907,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -859,24 +926,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/05/ipv6-protocol-and-security/">
+                <a href="/Coming-blog/2021/12/06/overview-of-routing-protocol/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/0.jpg" class="responsive-img" alt="IPv6 Protocol and Security">
+                        <img src="/Coming-blog/medias/featureimages/4.jpg" class="responsive-img" alt="Overview of Routing Protocol">
                         
-                        <span class="card-title">IPv6 Protocol and Security</span>
+                        <span class="card-title">Overview of Routing Protocol</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            IPv6 协议安全分析（略版）
+                            路由协议概述
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-06
                             </span>
                         <span class="publish-author">
                             
