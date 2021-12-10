@@ -563,7 +563,7 @@
 <p>传输模式适用于两台主机之间的数据保护；隧道模式适宜于在站点间建立安全 VPN 隧道：保护多台主机</p>
 <h1 id="ah"><a class="markdownIt-Anchor" href="#ah"></a> AH</h1>
 <p>AH 协议：Authentication Header，认证头协议，协议号：51</p>
-<p>提的服务如下：数据完整性服务（哈希校验），数据源身份认证（共享秘钥），防止数据重放攻击（ESP 头中序列号字段），数据机密性服务（加密）</p>
+<p>提的服务如下：数据完整性服务（哈希校验），数据源身份认证（共享秘钥），防止数据重放攻击（AH 头中序列号字段）</p>
 <blockquote>
 <p>提供报头验证工能，但是不能提供数据加密工能，使得数据可以读取但是无法修改</p>
 </blockquote>
@@ -1324,7 +1324,7 @@ SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥<span ari
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79k</span>&nbsp;字
+                class="white-color">78.9k</span>&nbsp;字
             
             
             
