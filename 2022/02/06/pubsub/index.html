@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ICMP Protocol and Security, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="PubSub, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ICMP Protocol and Security | Coming is here</title>
+    <title>PubSub | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ICMP Protocol and Security</h1>
+                    <h1 class="description center-align post-title">PubSub</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Coming-blog/tags/security/">
-                                <span class="chip bg-color">security</span>
+                            <a href="/Coming-blog/tags/react/">
+                                <span class="chip bg-color">react</span>
+                            </a>
+                        
+                            <a href="/Coming-blog/tags/react-tools/">
+                                <span class="chip bg-color">react tools</span>
                             </a>
                         
                     </div>
@@ -445,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
-                                Protocol Security
+                            <a href="/Coming-blog/categories/React/" class="post-category">
+                                React
                             </a>
                         
                     </div>
@@ -458,7 +462,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-05
+                    2022-02-06
                 </div>
                 
 
@@ -467,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    904
+                    251
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -497,56 +501,29 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="icmp"><a class="markdownIt-Anchor" href="#icmp"></a> ICMP</h1>
-<p>Internet Control Message Protocol，Internet 控制报文协议，用于在IP主机、路由器之间传递控制消息</p>
-<blockquote>
-<p>控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息</p>
-</blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127135407400.png" alt="image-20211127135407400" /></p>
-<h2 id="报文种类"><a class="markdownIt-Anchor" href="#报文种类"></a> 报文种类</h2>
-<p>攻击也是从正常的所提供的功能出发：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211007133301183.png" alt="image-20211007133301183" /></p>
-<h1 id="icmp-攻击"><a class="markdownIt-Anchor" href="#icmp-攻击"></a> ICMP 攻击</h1>
-<h2 id="ping-of-death"><a class="markdownIt-Anchor" href="#ping-of-death"></a> Ping of death</h2>
-<p>又名 死亡之 ping</p>
-<p>Backdrop：当一个 IP 包的长度超过以太网帧的最大尺寸时，包就会被分片，作为多个帧来发送。接收端的机器提取各个分片，并重组为一个完整的 IP 包；</p>
-<p>Attack Point ：IP 协议规范规定了一个 IP 包的最大尺寸（65535）而大多数的包处理程序又<strong>假设</strong>包的长度不会超过这个最大尺寸。因此，包重组代码所分配的内存区域也不会超过这个尺寸</p>
-<h3 id="攻击方式"><a class="markdownIt-Anchor" href="#攻击方式"></a> 攻击方式</h3>
-<p>Attack：缓存溢出（Buffer Overflow）攻击；构造超过这个最大尺寸的包，包当中的额外数据就会被写入其他正常区域，使得系统进入非稳定状态</p>
-<blockquote>
-<p>在防火墙一级对这种攻击进行检测是相当难的，因为每个分片包看起来都很正常，在内部重组后却出事了</p>
-</blockquote>
-<h3 id="demo"><a class="markdownIt-Anchor" href="#demo"></a> Demo</h3>
-<p>ping 指令将发送一个 ICMP 回声请求消息给目的地并报告是否收到所希望的 ICMP echo，用于检查网络是否通畅或者网络连接速度的命令</p>
-<blockquote>
-<p>Tips ：ping 只是利用这个漏洞的工具之一</p>
-</blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ping -l 65500 192.168.1.1 -t
-# 最终的大小还有加上 ICMP(8) 与 IP(20-60)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="防御"><a class="markdownIt-Anchor" href="#防御"></a> 防御</h3>
-<p>对操作系统打补丁，使内核将不再对超过规定长度的包进行重组</p>
-<h2 id="icmp-smurf-攻击"><a class="markdownIt-Anchor" href="#icmp-smurf-攻击"></a> ICMP Smurf 攻击</h2>
-<p>又名反射放大攻击，利用 IP 欺骗和 ICMP 回应包引起目标主机网络阻塞，实现 DoS 攻击</p>
-<h3 id="攻击原理"><a class="markdownIt-Anchor" href="#攻击原理"></a> 攻击原理</h3>
-<p>在构造数据包时将源地址设置为被攻击主机的地址，而将目的地址设置为广播地址，于是大量 ICMP echo 的回应包 ICMP reply 被发送给被攻击主机，使其因网络阻塞而无法提供服务</p>
-<h3 id="防御-2"><a class="markdownIt-Anchor" href="#防御-2"></a> 防御</h3>
-<p>防火墙源地址检查过滤</p>
-<h2 id="icmp-redirect-攻击"><a class="markdownIt-Anchor" href="#icmp-redirect-攻击"></a> ICMP Redirect 攻击</h2>
-<p>Backdrop：当路由器检测到主机在启动时具有一定的路由信息（但不一定是最优的）并检测到 IP 数据报经非最优路由传输，就通过 <strong>ICMP 重定向报文</strong>通知主机去往该目的地的最优路径；其目的旨在保证主机拥有动态的、既小且优的路由表；</p>
-<h3 id="攻击原理-2"><a class="markdownIt-Anchor" href="#攻击原理-2"></a> 攻击原理</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211006104322321.png" alt="image-20211006104322321" /></p>
-<p>Attack：攻击者通过发送 ICMP 重定向报文可以在受害者主机路由表中添加一条到达特定主机的路由信息，使得受害者发往特定主机的数据包被发往攻击者主机，攻击者进而实施监听、欺骗等攻击行为；</p>
-<p>核心：欺骗路由表。通过添加特定路由表实施</p>
-<h3 id="限制"><a class="markdownIt-Anchor" href="#限制"></a> 限制</h3>
-<p>1、ICMP 重定向机制只能在同一网络的路由器与主机之间使用；</p>
-<p>2、ICMP 重定向攻击一次只能指定一个目的地址；</p>
-<p>3、指定的地址路由上必须是直达的；</p>
-<p>4、重定向包必须来自去往目标的当前路由；</p>
-<p>5、重定向包不能通知主机用自己做路由（需要合谋者）；</p>
-<p>6、受害者和攻击者要处于同一网络环境中；</p>
-<h3 id="防御-3"><a class="markdownIt-Anchor" href="#防御-3"></a> 防御</h3>
-<p>修改系统和防火墙配置，拒绝接收 ICMP 重定向报文</p>
-
+                <h1 id="消息订阅与发布技术"><a class="markdownIt-Anchor" href="#消息订阅与发布技术"></a> 消息订阅与发布技术</h1>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yarn add pubsub-js
+import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>不必将信息一级一级的传递下去，可以实现任一组件之间通信</p>
+<p>1、App 作为顶级 壳，不应该过多的涉及管理子组件之间的状态变化与通信问题，因此使用消息订阅与发布技术实现子组件之间的自发通信</p>
+<p>Q：实现消息订阅与发布的库很多，你要选择哪个？</p>
+<p>A：PubSub，历史悠久，应用广泛</p>
+<h2 id="何时订阅"><a class="markdownIt-Anchor" href="#何时订阅"></a> 何时订阅</h2>
+<p>A：在组件刚挂载上就要完成所有的订阅，一次性定义完成该组件所接收的所有消息类型。</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>updateHeaderData <span class="token operator">=</span> PubSub<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">'updateHeaderData'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">msgName<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="如何发送消息"><a class="markdownIt-Anchor" href="#如何发送消息"></a> 如何发送消息</h2>
+<p>A：引入 <code>PubSub</code> 后调用其 <code>publish</code> 方法</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">PubSub<span class="token punctuation">.</span><span class="token function">publish</span><span class="token punctuation">(</span><span class="token string">'updateHeaderData'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>data<span class="token operator">:</span> activeName<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="如何取消订阅"><a class="markdownIt-Anchor" href="#如何取消订阅"></a> 如何取消订阅</h2>
+<p>A：引入 <code>PubSub</code> 后调用其 <code>unsubscribe</code> 方法，一般再组件卸载时调用</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 取消订阅</span>
+    PubSub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>updateHeaderData<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -572,7 +549,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/12/05/icmp-protocol-and-security/">https://Coming98.github.io/Coming-blog/2021/12/05/icmp-protocol-and-security/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2022/02/06/pubsub/">https://Coming98.github.io/Coming-blog/2022/02/06/pubsub/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -610,8 +587,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Coming-blog/tags/security/">
-                                    <span class="chip bg-color">security</span>
+                                <a href="/Coming-blog/tags/react/">
+                                    <span class="chip bg-color">react</span>
+                                </a>
+                            
+                                <a href="/Coming-blog/tags/react-tools/">
+                                    <span class="chip bg-color">react tools</span>
                                 </a>
                             
                         </div>
@@ -805,46 +786,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/05/ipv4-protocol-and-security/">
+                <a href="/Coming-blog/2022/02/06/pubsub/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/10.jpg" class="responsive-img" alt="IPv4 Protocol and Security">
+                        <img src="/Coming-blog/medias/featureimages/5.jpg" class="responsive-img" alt="PubSub">
                         
-                        <span class="card-title">IPv4 Protocol and Security</span>
+                        <span class="card-title">PubSub</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            IPv4 协议安全分析
+                            React 中消息订阅与发布技术
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
-                                    Protocol Security
+                            <a href="/Coming-blog/categories/React/" class="post-category">
+                                    React
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/security/">
-                        <span class="chip bg-color">security</span>
+                    <a href="/Coming-blog/tags/react/">
+                        <span class="chip bg-color">react</span>
+                    </a>
+                    
+                    <a href="/Coming-blog/tags/react-tools/">
+                        <span class="chip bg-color">react tools</span>
                     </a>
                     
                 </div>
@@ -858,24 +845,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/05/vlan-and-vlan-security/">
+                <a href="/Coming-blog/2021/12/06/udp-and-udp-protocol/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/7.jpg" class="responsive-img" alt="VLAN and VLAN Security">
+                        <img src="/Coming-blog/medias/featureimages/9.jpg" class="responsive-img" alt="UDP and UDP Protocol">
                         
-                        <span class="card-title">VLAN and VLAN Security</span>
+                        <span class="card-title">UDP and UDP Protocol</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            虚拟局域网安全分析
+                            传输层与UDP 安全简述
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-06
                             </span>
                         <span class="publish-author">
                             

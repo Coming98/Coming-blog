@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>PubSub</title>
+      <link href="/Coming-blog/2022/02/06/pubsub/"/>
+      <url>/Coming-blog/2022/02/06/pubsub/</url>
+      
+        <content type="html"><![CDATA[<h1 id="消息订阅与发布技术"><a class="markdownIt-Anchor" href="#消息订阅与发布技术"></a> 消息订阅与发布技术</h1><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yarn add pubsub-jsimport PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>不必将信息一级一级的传递下去，可以实现任一组件之间通信</p><p>1、App 作为顶级 壳，不应该过多的涉及管理子组件之间的状态变化与通信问题，因此使用消息订阅与发布技术实现子组件之间的自发通信</p><p>Q：实现消息订阅与发布的库很多，你要选择哪个？</p><p>A：PubSub，历史悠久，应用广泛</p><h2 id="何时订阅"><a class="markdownIt-Anchor" href="#何时订阅"></a> 何时订阅</h2><p>A：在组件刚挂载上就要完成所有的订阅，一次性定义完成该组件所接收的所有消息类型。</p><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    <span class="token keyword">this</span><span class="token punctuation">.</span>updateHeaderData <span class="token operator">=</span> PubSub<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">'updateHeaderData'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">msgName<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="如何发送消息"><a class="markdownIt-Anchor" href="#如何发送消息"></a> 如何发送消息</h2><p>A：引入 <code>PubSub</code> 后调用其 <code>publish</code> 方法</p><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">PubSub<span class="token punctuation">.</span><span class="token function">publish</span><span class="token punctuation">(</span><span class="token string">'updateHeaderData'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>data<span class="token operator">:</span> activeName<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="如何取消订阅"><a class="markdownIt-Anchor" href="#如何取消订阅"></a> 如何取消订阅</h2><p>A：引入 <code>PubSub</code> 后调用其 <code>unsubscribe</code> 方法，一般再组件卸载时调用</p><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>    <span class="token comment">// 取消订阅</span>    PubSub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>updateHeaderData<span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> react </tag>
+            
+            <tag> react tools </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UDP and UDP Protocol</title>
       <link href="/Coming-blog/2021/12/06/udp-and-udp-protocol/"/>
       <url>/Coming-blog/2021/12/06/udp-and-udp-protocol/</url>
