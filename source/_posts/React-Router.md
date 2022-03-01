@@ -259,3 +259,39 @@ V6 中没有这个概念了，下面就简单记录下历史吧...
 ## 二级路由
 
 ![二级路由](https://gitee.com/Butterflier/pictures/raw/master/20211204213135.png)
+
+# 参数传递
+
+## params
+
+只能传字符串, 传值过多 url 会变得很长, 参数必须在路由上配置
+
+参数绑定在 url 上，刷新页面，参数不丢失
+
+1、通过 `url` 传递参数
+
+```jsx
+<MyNavLink to="/paramsSend/cjc/123456" onClick={this.setActive('paramsSend')}>paramsSend</MyNavLink>
+```
+
+
+2、匹配路由时定义好参数模式
+
+```jsx
+<Route path="/paramsSend/:user/:pwd" element={<ParamsSend/>}/>
+```
+
+3、引入 `useParams` 获取参数
+
+```jsx
+import { useParams } from 'react-router-dom';
+const params = useParams()
+<p>用户名：{params.user}</p>
+<p>密码：{params.pwd}</p>
+```
+
+## search 传参
+
+优点：刷新页面，参数不丢失
+
+缺点：只能传字符串，传值过多url会变得很长，获取参数需要自定义hooks

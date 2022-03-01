@@ -13,294 +13,74 @@ tags:
 
 ## 函数定义组件
 
+1、定义一个函数式组件：组件中  `this` 为 `undefined`，是因为经过 `babel` 翻译开起严格模式，从而禁止了自定义 `this` 指向 `window`
+
+2、渲染组件到页面：`<Demo/>` 首先解析组件标签，寻找 `Demo` 组件的位置；直接调用 `Demo` 函数，将返回的虚拟 `DOM` 渲染到页面
+
 ```jsx
-// 1、定义一个函数式组件
 function Demo() {
-    console.log(this) // undefined: 经过 babel 翻译开起来严格模式，从而禁止了自定义 this 指向 window，所以指向 undefined
-    return <h2>函数式组件</h2>
+    console.log(this) // undefined
+    return (<h2>函数式组件</h2>)
 }
-// 2、渲染组件到页面
-// <Demo/> - 组件标签，首先解析组件标签，寻找 Demo 组件的位置；直接调用 Demo 函数，将返回的虚拟 DOM 渲染到页面
+
 ReactDOM.render(<Demo/>, document.getElementById('test'))
 ```
 
 ## 类定义组件
 
+1、定义一个类式组件：this 问题后续详述
+
+2、渲染到页面
+
 ```jsx
-// 1、定义一个类式组件
+// 1、
 class Demo extends React.Component {
     render() {
         return <h2>类式组件</h2>
     }
 }
-// 2、渲染到页面
+
 ReactDOM.render(<Demo/>, document.getElementById('test'))
-/*
-    1、React 解析组件标签，寻找目标组件的定义位置
-    2、类定义组件：React 创建实例对象，调用 render() 方法
-*/
 ```
 
-# 组件核心属性
-
-## state
-
-### 企业版本
-
-```jsx
-// 忽略构造器，直接初始化 state 属性
-state = {isHot: true}
-
-// 添加工具函数
-// 使用箭头函数默认没有 this, 使用 this 时自动寻找上层的 this
-// 组件类中程序员定义的事件回调，必须写成赋值语句 + 箭头函数
-changeWeather = () => {
-    // state 不可以直接修改，要使用 API 间接修改 - setState
-    const isHot = !this.state.isHot
-    this.setState({isHot:isHot})
-}
-render() {
-    return <h2 onClick={this.changeWeather}>今天天气很{this.state.isHot ? '炎热' : '凉爽'}！</h2>
-}
-```
-
-### 繁琐版本
-
-在构造器中设置 `state` 属性
-
-```jsx
-constructor(props) {
-    super(props)
-    this.state = { isHot : false}
-    // 添加实例方法，使得后续执行中 this 指向没问题（如果不使用箭头函数的话）
-    this.changeWeather = this.changeWeather.bind(this)
-}
-```
-
-`state` 不可以直接修改，要使用 API 间接修改 - `setState`
-
-```jsx
-render() {
-    return <h2 onClick={this.changeWeather}>今天天气很{this.state.isHot ? '炎热' : '凉爽'}！</h2>
-}
-
-changeWeather() {
-    // state 不可以直接修改，要使用 API 间接修改 - setState
-    const isHot = !this.state.isHot
-    this.setState({isHot:isHot})
-}
-```
-
-## props
+# 组件的样式
 
-结构化赋值
-
-```jsx
-const {name, sex, age} = this.props
-```
-
-### 类组件中使用
+react 推荐组件使用行内样式，因为 react 旨在实现组件的便利服用，如果组件的设计与展示分开，那么复用组件时就较为麻烦；使用行内样式只需要迁移组件代码即可
+> 推荐每一个组件建立一个文件夹，文件夹中 `index.js` 写组件设计代码；`index.css` 写组件样式代码
 
-在渲染时传入参数由 `props` 接收
-
-```jsx
-ReactDOM.render(<Person name="cjc" sex="男" age={16} />, document.getElementById('person1'))
-ReactDOM.render(<Person {...data.person1} />, document.getElementById('person1'))
-```
-
-通过添加类属性 `propTypes` 与 `defaultProps` 对属性进行限制
-
-```jsx
-static propTypes = {
-    name: PropTypes.string.isRequired,
-    age: PropTypes.number,
-    sex: PropTypes.string
-}
+## 特殊的样式属性
 
-static defaultProps = {
-    age: 18
-}
-```
+1、`class` 属性改为 `className`
 
-### 函数组件中使用
+2、`for` 属性改为 `htmlFor`
 
-定义函数，传参为 `props`
+3、样式中带有 `-` 的样式都改为小驼峰的写法，`backgroundColor`, `fontSize`
 
-```jsx
-function Person(props) {
-    const {name, sex, age} = props
-    return (
-        <ul>
-            <li>姓名:{name}</li>
-            <li>性别:{sex}</li>
-            <li>年龄:{age}</li>    
-        </ul>
-    )
-}
-```
 
-给函数定义属性，限制 `props`
+# 组件的事件绑定
 
-```jsx
-Person.propTypes = {
-    name: PropTypes.string.isRequired,
-    age: PropTypes.number,
-    sex: PropTypes.string
-}
+所有事件命名都是 `on` + `事件的驼峰命名` 如 `onClick, onMouseOver`
 
-Person.defaultProps = {
-    age: 18
-}
-```
+常见的事件绑定方式有三种：
 
-## ref
+1、普通函数调用：`onClick={this.function}` 这里的 `function` 指向的是非匿名函数
+> 普通函数一般 this 应指向调用者，但是事件并不是直接绑定到标签上的，而是通过事件代理的机制实现的，因此 this 指向了 `undefined`；可使用 bind 修正
+> `.call(this)` 会改变 this 指向但是会制动执行函数
+> `.apply(this)` 和 call 类似改变 this 指向的同时会执行函数
+> `.bind(this)` 仅仅改变 this
 
-### 字符串形式 ref
+2、显式匿名函数调用：`onClick={()=>{do sth...}}`
+> 箭头函数中的 this 与外界保持一致
 
-<font color='red'>不再推荐</font>
+3、隐式匿名函数调用：`onClick={this.function}` 这里的 `function` 指向的是匿名函数
 
-执行回调函数时通过 ref 获取目标
+4、匿名函数+普通函数：`onClick={()=>{this.function()}}` 
 
-```jsx
-<input type="text" ref="clickInput"/>&nbsp;
-<button onClick={this.clickShow}>点击提示</button>&nbsp;
-<input type="text" onBlur={this.blurShow} ref="blurInput"/>
-```
+比较推荐第四种方式，既能修正 `this` 指向还有较好的封装并且参数传递也容易实现
 
-通过结构化赋值，语义性良好
+## React 事件绑定原理
 
-```jsx
-clickShow = () => {
-    // 结构化赋值
-    // const {refs:{clickInput:{value}}} = this // 语义性不好
-    const {clickInput} = this.refs
-    console.log(clickInput.value)
-}
-
-blurShow = () => {
-    const {blurInput} = this.refs
-    console.log(blurInput.value)
-}
-```
-
-### 回调形式 ref
-
-<font color='red'>不再推荐</font>
-
-React 调用该函数（箭头函数），默认传参为目标节点
-
-箭头函数的 this 向外找，即可找到 类组件，即可记录该目标节点到类组件上
-
-```jsx
-<input type="text" ref={(item)=> {this.clickInput = item}}/>&nbsp;
-<button onClick={this.clickShow}>点击提示</button>&nbsp;
-<input type="text" onBlur={this.blurShow} ref={(item)=> {this.blurInput = item}} placeholder="失去焦点提示"/>         
-```
-
-函数内使用
-
-```jsx
-clickShow = () => {
-    const {clickInput} = this
-    console.log(clickInput.value)
-}
-
-blurShow = () => {
-    const {blurInput} = this
-    console.log(blurInput.value)
-}
-```
-
-### create 形式
-
-1、类中 cerate ref 的容器 container
-
-```jsx
-clickContainer = React.createRef()
-```
-
-2、调用时 ref 指定容器
-
-```jsx
-<input type="text" ref={this.clickContainer}/>&nbsp;
-```
-
-3、函数内通过容器获取目标组件
-
-```jsx
-clickShow = () => {
-    const item = this.clickContainer.current
-    console.log(item.value)
-}
-```
-
-# 组件生命周期
-
-## 常用声明周期
-
-![image-20210928220114057](https://gitee.com/Butterflier/pictures/raw/master/image-20210928220114057.png)
-
-**componentDidMount**: 只执行一次，开启定时器，ajax 请求，消息订阅等初始化的事务
-
-**componentDidUpdate**: 完成更新后执行，用户控制页面显示等操作
-
-**componentWillUnmount**: 关闭定时器，取消订阅等收尾事务
-```javascript
-// 需要由 ReactDOM 调用
-unloadomponent = () => {
-    ReactDOM.unmountComponentAtNode(document.getElementById('demo'))
-}
-componentWillUnmount() {
-    console.log('componentWillUnmount')
-}
-```
-## 新生命周期（全）
-
-![image-20210928215958508](https://gitee.com/Butterflier/pictures/raw/master/image-20210928215958508.png)
-
-**getDerivedStateFromProps**: 不常见，有 bug，不推荐
-
-```jsx
-static getDerivedStateFromProps(props, state)
-```
-
-通过 props 完成 state 的初始化，但是 setState 后也会执行他，因此当 state 完全由 初始化参数决定时才会使用这个 hook
-
-**getSnapshotBeforeUpdate**: 不常用，必须与 componentDidUpdate 同时使用，必须返回一个 snapshotValue 值 或 null
-
-应用场景：用户在阅读/观看聊天记录时，有新内容来时，滚动条位置不变，需要在更新前拿到老的页面高度 以得到新内容的高度
-
-```javascript
-getSnapshotBeforeUpdate() {
-    return this.refs.container.scrollHeight // old scroll height
-}
-
-componentDidUpdate(prevProps, prevState, snapshotValue) {
-    const {container} = this.refs
-    container.scrollTop += container.scrollHeight - snapshotValue
-}
-```
-
-## 旧生命周期
-
-![image-20210927203306313](https://gitee.com/Butterflier/pictures/raw/master/image-20210927203306313.png)
-
-左侧线路表示初次挂载：constructor  componentWillMount  render  componentDidMount
-
-右侧线路：
-
-1、更新组件信息：shouldComponentUpdate() componentWillUpdate()  Render()  componentDidUpdate()
-
-> setState() 是导火索，回调函数是 shouldComponentUpdate() 
->
-> shouldComponentUpdate 是阀门，如果返回 false 则后面不会执行  
-
-2、强制更新组件：forceUpdate()  componentWillUpdate()  componentDidUpdate()
-
-> 绕过了阀门 valve
-
-3、父子组件传递（非首次）：componentWillReceiveProps()  
-
+React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，再根标签上进行事件的监听（冒泡）
 
 # 一般组件与路由组件
 
