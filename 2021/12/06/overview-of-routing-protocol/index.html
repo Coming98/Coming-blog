@@ -519,7 +519,7 @@
 <p>8、CIDR，无类别域间路由</p>
 <h2 id="路由协议概述"><a class="markdownIt-Anchor" href="#路由协议概述"></a> 路由协议概述</h2>
 <p>动态路由协议在协议栈上的位置如下图所示：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211201141135.png" alt="路由协议" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211201141135.png" alt="路由协议" /></p>
 <p>RIP 基于 UDP，端口为 520</p>
 <p>OSPF 基于 IP，协议号为 89</p>
 <p>BGP 基于 TCP，端口号为 179</p>
@@ -536,7 +536,7 @@
 </blockquote>
 <p>IGP，Interior Gateway Protocols，内部网关协议，在一个 AS 内部使用的路由协议。RIP、OSPF、IS-IS都是典型的IGP</p>
 <p>EGP，Exterior Gateway Protocol，外部网关协议，在多个 AS 之间使用的路由协议。BGP 是互联网事实上的 EGP 标准</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128170339.png" alt="IGP, EGP" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128170339.png" alt="IGP, EGP" /></p>
 <p>区别：内部网关协议和作用于一个AS（自治系统）内部，而外部网关协议作用于两个相邻的AS（自治系统）之间；内部网关协议有一族，而外部网关协议只有一个。</p>
 <h2 id="距离矢量协议与链路状态协议"><a class="markdownIt-Anchor" href="#距离矢量协议与链路状态协议"></a> 距离矢量协议与链路状态协议</h2>
 <h3 id="距离矢量协议"><a class="markdownIt-Anchor" href="#距离矢量协议"></a> 距离矢量协议</h3>
@@ -554,7 +554,7 @@
 <p>优势：每台路由器<strong>自行创建网络拓扑图</strong>以确定最短路径；立即泛洪，实现快速收敛；仅当拓扑变化时才发送链路状态数据包，且仅包含变化的信息；多域环境中采取了层次式设计</p>
 <p>劣势：对资源要求较高（内存，处理器，带宽）</p>
 <h3 id="对比"><a class="markdownIt-Anchor" href="#对比"></a> 对比</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128171046.png" alt="对比" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128171046.png" alt="对比" /></p>
 <p>1、距离矢量协议信息传递和更新时是发送完整的路由表，资源利用低；而链路状态协议只是发送必要的链路状态信息，资源利用率高</p>
 <p>2、距离矢量协议将路由转发给其它路由器之前，先运行路由算法（更新自己的度量值），随后逐跳发送给邻居，所以网络的规模越大，其收敛速度越慢；而链路状态协议在转发链路状态包时，可以直接转发且划分了区域，只需要作区域通告即可，因此链路状态收敛更快。</p>
 <p>3、距离矢量协更新的是路由条目；而链路状态协议更新的是“拓扑”，每台路由器上都有完全相同的拓扑，他们各自分别进行SPF算法，计算出路由条目；因此一条重要链路的变化，距离矢量协议需要将变化的条目逐跳更新并通告，而链路状态协议只需要发送一条通告即可，使得相关路由器改变拓扑，并重新计算。</p>
@@ -1117,7 +1117,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

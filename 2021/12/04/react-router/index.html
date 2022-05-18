@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -655,7 +655,23 @@ Tips: 但是我测试时并没有成功，母鸡</p>
 <h3 id="严格匹配"><a class="markdownIt-Anchor" href="#严格匹配"></a> 严格匹配</h3>
 <p>就是完全一致，在 Routes 中从上到小找，匹配到就渲染，匹配不到就空</p>
 <h2 id="二级路由-2"><a class="markdownIt-Anchor" href="#二级路由-2"></a> 二级路由</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204213135.png" alt="二级路由" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211204213135.png" alt="二级路由" /></p>
+<h1 id="参数传递"><a class="markdownIt-Anchor" href="#参数传递"></a> 参数传递</h1>
+<h2 id="params"><a class="markdownIt-Anchor" href="#params"></a> params</h2>
+<p>只能传字符串, 传值过多 url 会变得很长, 参数必须在路由上配置</p>
+<p>参数绑定在 url 上，刷新页面，参数不丢失</p>
+<p>1、通过 <code>url</code> 传递参数</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">MyNavLink</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/paramsSend/cjc/123456<span class="token punctuation">"</span></span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setActive</span><span class="token punctuation">(</span><span class="token string">'paramsSend'</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text">paramsSend</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">MyNavLink</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>2、匹配路由时定义好参数模式</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Route</span></span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/paramsSend/:user/:pwd<span class="token punctuation">"</span></span> <span class="token attr-name">element</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">ParamsSend</span></span><span class="token punctuation">/></span></span><span class="token punctuation">&#125;</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>3、引入 <code>useParams</code> 获取参数</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> useParams <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> params <span class="token operator">=</span> <span class="token function">useParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">用户名：</span><span class="token punctuation">&#123;</span>params<span class="token punctuation">.</span>user<span class="token punctuation">&#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">密码：</span><span class="token punctuation">&#123;</span>params<span class="token punctuation">.</span>pwd<span class="token punctuation">&#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="search-传参"><a class="markdownIt-Anchor" href="#search-传参"></a> search 传参</h2>
+<p>优点：刷新页面，参数不丢失</p>
+<p>缺点：只能传字符串，传值过多url会变得很长，获取参数需要自定义hooks</p>
 
                 
             </div>
@@ -1211,7 +1227,7 @@ Tips: 但是我测试时并没有成功，母鸡</p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

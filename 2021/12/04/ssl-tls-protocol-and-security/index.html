@@ -506,7 +506,7 @@
 <p>通常来讲 SSL 与 TLS 是一个东西，因为 SSL 是企业提出的，所以 TLS 1.0 才是 IETF 制定的 SSL 的互联网标准版本，当时的 SSL 版本是 3.0，因此 TLS v1 与 SSL v3 的差别非常微小</p>
 </blockquote>
 <h2 id="ipsec-与-ssl"><a class="markdownIt-Anchor" href="#ipsec-与-ssl"></a> IPSec 与 SSL</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204183341.png" alt="IPSec 与 SSL" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211204183341.png" alt="IPSec 与 SSL" /></p>
 <p>谁更安全？</p>
 <p>安全可以从 CIA（机密性，完整性，可用性），不可抵赖性，可控性 这五个维度来评价下，IPSec 与 SSL 都能保证机密性，完整性，不可抵赖性（私钥签名与公钥验证）</p>
 <p>但是不同的是 IPSec 在网络层，SSL 在应用层，因为 TCP 协议更为复杂，所以 TCP 安全威胁也较多，因此很多对 TCP 的攻击都将会影响到 SSL 的可用性与可控性，因此工作在较可靠的 IP 上的 IPSec 更为安全</p>
@@ -531,7 +531,7 @@
 <blockquote>
 <p>会话由握手协议创建；定义了一组可以被多个连接共用的密码安全参数（协商）；对于每个连接，可以利用会话来避免对新的安全参数进行代价昂贵的协商（<strong>会话重用</strong>）</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126105635371.png" alt="image-20211126105635371" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126105635371.png" alt="image-20211126105635371" /></p>
 <h3 id="状态"><a class="markdownIt-Anchor" href="#状态"></a> 状态</h3>
 <p>每一个会话或连接都与若干个会话或连接状态相关联</p>
 <blockquote>
@@ -539,9 +539,9 @@
 <p>在握手协议中还会创建发送挂起和接受挂起状态，等握手协议结束后又回到当前状态</p>
 <p>会话或连接状态由会话或连接状态参数定义</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126110715060.png" alt="image-20211126110715060" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126110715060.png" alt="image-20211126110715060" /></p>
 <h3 id="工作原理"><a class="markdownIt-Anchor" href="#工作原理"></a> 工作原理</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211118140429315.png" alt="image-20211118140429315" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211118140429315.png" alt="image-20211118140429315" /></p>
 <p>1、采用握手协议建立客户与服务器之间的安全通道，该协议包括：双方的相互认证，交换密钥参数（密码协商）</p>
 <p>2、采用告警协议向对端指示其安全错误</p>
 <p>3、采用变更密码规格协议告知改变密码参数</p>
@@ -557,8 +557,8 @@
 </blockquote>
 <h3 id="报文格式"><a class="markdownIt-Anchor" href="#报文格式"></a> 报文格式</h3>
 <p>典型的 TLV 格式，类型 + 长度 + 内容</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211118141706256.png" alt="image-20211118141706256" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126112239897.png" alt="image-20211126112239897" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211118141706256.png" alt="image-20211118141706256" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126112239897.png" alt="image-20211126112239897" /></p>
 <p>0、hello_request（可选），无参数，服务器告知客户端需要启动握手协议</p>
 <blockquote>
 <p>Tips ：SSL 的握手都是由客户端先发起的，如果服务器主动需要建立 SSL，也会用 hello_request 告知客户端，让其主动握手（傲娇）</p>
@@ -566,29 +566,29 @@
 <p><strong>1、建立安全能力</strong></p>
 <p>client_hello，参数有版本、随机数、会话 id、密码参数、压缩方法，客户端发出 c_h 启动 SSL 会话</p>
 <p>server_hello，参数有版本、随机数、会话 id、密码参数、压缩方法，服务器响应客户端的 c_h</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126111750083.png" alt="image-20211126111750083" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126111750083.png" alt="image-20211126111750083" /></p>
 <p><strong>2、服务器认证与秘钥交换</strong></p>
 <p>certificate，X.509 v3 证书链，服务器发出的向客户端验证自己身份的消息</p>
 <p>server_key_exchange，参数为签名信息，由服务端发起的秘钥交换</p>
 <p>certificate_request，参数为 CAs，服务器要求进行客户端认证（可选）</p>
 <p>server_done，无参数，指示服务器的 Hello 消息发送完毕</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204184156.png" alt="服务器认证与秘钥交换" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211204184156.png" alt="服务器认证与秘钥交换" /></p>
 <p><strong>3、客户端认证与秘钥交换</strong>：得到了域主秘钥</p>
 <p>certificate_verify，参数为签名信息，对客户证书进行验证</p>
 <p>client_key_exchange，参数为签名信息，表示秘钥交换</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126112603353.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126112603353.png" alt="" /></p>
 <p><strong>4、变更密码规格并结束握手</strong></p>
 <p>finished，参数为 hash 值，验证秘钥交换和鉴别过程是成功的</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126112201222.png" alt="image-20211126112201222" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126112201222.png" alt="image-20211126112201222" /></p>
 <h3 id="协议流程"><a class="markdownIt-Anchor" href="#协议流程"></a> 协议流程</h3>
 <p><strong>0x01 建立安全能力</strong></p>
 <p>1、Client Hello：客户端明文发送，包含：版本（客户端 SSL 最高版本），随机数（32位时间戳+28字节随机序列，用于秘钥生成），会话 ID （0，在新会话上建立一条新连接；非0，为现有会话创建一个新连接或更新现有连接参数），客户支持的密码算法列表（CipherSuite，也被称作密码套件），客户支持的压缩方法列表</p>
 <blockquote>
 <p>每个加密套件对应前面 TLS 原理中的四个功能的组合：认证算法 Au (身份验证)、密钥交换算法 KeyExchange(密钥协商)、对称加密算法 Enc (信息加密)和信息摘要 Mac(完整性校验);</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126113459835.png" alt="image-20211126113459835" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126113459835.png" alt="image-20211126113459835" /></p>
 <p>2、Server Hello：服务器发送，包含：版本（客户端建议的较低版本以及服务器支持的最高本），会话 ID（若客户端会话 ID 非0，采用相同值；否则应为一个新会话ID），随机数（独立于客户端随机数，同样参与密钥生成），服务器从客户端建议的密码套件中挑出一组，服务器从客户端建议的压缩方法中挑出一种</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126113510948.png" alt="image-20211126113510948" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126113510948.png" alt="image-20211126113510948" /></p>
 <p><strong>0x02 服务器认证与秘钥交换</strong></p>
 <p>3、certificate：服务器发送，包含一个 X.509 证书或者一条 X.509 证书链；</p>
 <p>4、（可选）server_key_exchange：若使用 RSA 密钥交换方法或服务器已发送了包含 DH 算法参数的证书，则无须发送该消息（固态 DH）</p>
@@ -629,7 +629,7 @@
 <p><strong>0x05 应用数据传输</strong></p>
 <h2 id="记录协议"><a class="markdownIt-Anchor" href="#记录协议"></a> 记录协议</h2>
 <p>主要功能：封装握手协议、告警协议、变更密码规格协议或应用层协议的数据</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204185938.png" alt="记录协议" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211204185938.png" alt="记录协议" /></p>
 <p>加密时要注意：加密内容为消息数据域 MAC；加密增加长度不超过 1024 字节；总长度不超过214 + 2048 字节；对于流加密算法，不需要填充数据，消息和 MAC 一起被直接加密；对于 CBC 模式的分组加密算法，需要填充数据，加密算法由 Cipher Spec 指定，并且需要指定初始化向量 IV</p>
 <p>添加 SSL 记录头：主要有四部分内容：</p>
 <p>内容类型（1字节）：上层协议类型，包含握手协议、告警协议、变更密码规格协议和应用数据四种</p>
@@ -655,7 +655,7 @@
 <blockquote>
 <p>生成方法可以多样</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126163441460.png" alt="image-20211126163441460" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126163441460.png" alt="image-20211126163441460" /></p>
 <h3 id="密码参数生成"><a class="markdownIt-Anchor" href="#密码参数生成"></a> 密码参数生成</h3>
 <p>密码规格要求的客户端写 MAC 密钥、服务器写 MAC 密钥(用于数据完整性校验)、客户端写密钥、服务器写密钥（用于对称加密数据）、客户端写初始向量 IV、服务器写初始向量 IV（作为很多加密算法的初始化向量使用，具体可以研究对称加密算法），这些都是按顺序由主密钥生成</p>
 <p>生成的方法是：主密钥利用散列函数产生安全字节序列（key_block），序列足够长以便生成所有需要的参数；具体的需要进行 12 次迭代，得到 12 个 hash 值，分组成 6 个元素：client / server mac key，encryption key，IV：共两组加密元素，分别被客户端和服务器使用，这两组元素都被两边同时获取</p>
@@ -685,7 +685,7 @@
 <h2 id="strip-攻击"><a class="markdownIt-Anchor" href="#strip-攻击"></a> Strip 攻击</h2>
 <p>基于用户习惯的安全威胁</p>
 <p>Principle：多数用户不会主动请求 SSL 协议来保护通信内容，即不会主动在浏览器中输入 https 访问域名；一般情况下都是刘浏览器帮我们重定向到安全的 https 了</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126172249577.png" alt="image-20211126172249577" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126172249577.png" alt="image-20211126172249577" /></p>
 <p>但是如果通信中间存在中间人，那就会被欺骗：</p>
 <p>1、攻击者利用 ARP 欺骗等方式成功监听客户端</p>
 <p>2、客户端向服务器端发送 http 请求，攻击者如实转发请求</p>
@@ -696,14 +696,14 @@
 <p>用户到攻击者的连接是 http，而攻击者却通过 https 连接到安全服务器，这就意味着浏览器上警告提示已经被阻止，浏览器看起来正常工作，在此期间所有的用户敏感信息都可以轻易被截获</p>
 <p>Tips：各大主流浏览器对未部署 SSL 证书的 HTTP 网站会发出 不安全 的警告，但是目标网站是合法的，所以浏览器警告会被阻止</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126172341706.png" alt="image-20211126172341706" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126172341706.png" alt="image-20211126172341706" /></p>
 <h2 id="重协商攻击"><a class="markdownIt-Anchor" href="#重协商攻击"></a> 重协商攻击</h2>
 <p>基于协议漏洞的安全威胁</p>
 <p>重协商指客户端和服务器在已经协商好的 SSL/TLS 连接上重新协商，用以更换算法、更换数字证书、重新验证对方身份、更新共享密钥等等；SSL/TLS 协议本身支持重协商，且 RFC 建议 SSL/TLS 实现（OpenSSL 等）也应该默认支持重协商</p>
 <p>两种协商方式：重协商都是客户端主动发起，如果服务器想发起，那么需要向客户端通知</p>
 <p>图A：ClientHello1 表示首次协商；ClientHello2 表示客户主动提出重协商；</p>
 <p>图B：ClientHello1 表示首次协商；Hello Request，服务器请求客户端发起重协商；ClientHello2 表示客户主动提出重协商；</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126175358531.png" alt="image-20211126175358531" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126175358531.png" alt="image-20211126175358531" /></p>
 <p>1、客户端发出 ClientHello1 进行首次协商</p>
 <p>2、中间人缓存 ClientHello1，自己构造 ClientHello2，对服务器发起首次协商</p>
 <p>3、协商好后中间人将精心伪造的数据给服务器（服务器的 APP 程序通常需要处理粘包，所以中间人可以构造不完整的数据，让 APP 程序认为发生粘包而暂缓处理数据）</p>
@@ -713,14 +713,14 @@
 <p>4、中间人将 ClientHello1 发送给服务器（在同一个连接中），服务器收到后会认为这是一次重协商请求</p>
 <p>5、重协商好后客户端发送真正的数据给服务器（服务器的 APP 程序收到后，将其与之前缓存的中间人精心构造的数据粘合起来，进行业务处理）</p>
 <p>至此，中间人在不需要劫持或解密 SSL/TLS 连接的情况下，成功地将自己伪造的数据插入到用户真正数据之前（数据注入）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126180212571.png" alt="image-20211126180212571" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126180212571.png" alt="image-20211126180212571" /></p>
 <p>关键点：客户端认为的首次协商却被服务器认为是重协商，首次协商和重协商直接缺少关联性</p>
 <p>防御：</p>
 <p>1、禁用重协商</p>
 <p>2、禁用不安全的重协商而允许安全重协商（需要在首次协商时携带“支持安全重协商”标识）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211126180538546.png" alt="image-20211126180538546" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211126180538546.png" alt="image-20211126180538546" /></p>
 <p>3、允许安全重协商，但是只允许在首次协商时携带“支持安全重协商”标识，并且会验证两次协商时Finish 消息中的 verify_data 是否一致</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211204193125.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211204193125.png" alt="" /></p>
 <h2 id="三次握手攻击"><a class="markdownIt-Anchor" href="#三次握手攻击"></a> 三次握手攻击</h2>
 <p>基于协议漏洞的安全威胁</p>
 <h3 id="阶段一未知密钥共享"><a class="markdownIt-Anchor" href="#阶段一未知密钥共享"></a> 阶段一：未知密钥共享</h3>
@@ -1332,7 +1332,7 @@ hherima - HTTPS协议详解(四)：TLS/SSL握手过程</a></p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

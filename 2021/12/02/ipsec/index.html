@@ -507,8 +507,8 @@
 <p>完整性：IPSec 在目的地使用单向散列函数验证数据包的完整性</p>
 <p>身份验证：单向散列函数、数字签名和公开密钥加密来判断一份数据是否源于正确的创建者</p>
 <p>防重放：通过查阅序列号，目的地会拒绝老的或重复的数据包</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211007150244277.png" alt="image-20211007150244277" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211007164204042.png" alt="image-20211007164204042" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007150244277.png" alt="image-20211007150244277" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007164204042.png" alt="image-20211007164204042" /></p>
 <h2 id="加密算法"><a class="markdownIt-Anchor" href="#加密算法"></a> 加密算法</h2>
 <p>对称加密算法：加密密钥与解密密钥相同；由于对称加密的运算速度快，所以 IPSec 使用对称加密算法来加密数据；Example ：DES，3DES，AES</p>
 <p>非对称加密算法：加密密钥与解密密钥不同；由于非对称加密的运算速度慢，所以主要用来交换秘钥和身份认证；Example ：RSA，DH</p>
@@ -547,18 +547,18 @@
 <p>由于一个 CA 不能满足所有的需求，因此形成了一个类似于 DNS 的层次 CA 结构</p>
 </blockquote>
 <h1 id="ipsec-工作模式"><a class="markdownIt-Anchor" href="#ipsec-工作模式"></a> IPSec 工作模式</h1>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013181505022.png" alt="image-20211013181505022" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181505022.png" alt="image-20211013181505022" /></p>
 <h2 id="传输模式"><a class="markdownIt-Anchor" href="#传输模式"></a> 传输模式</h2>
 <p>实现端到端的保护：封装简单，传输效率不高，只对有效载荷进行了保护，IP 头未被保护</p>
 <p>Application：较适用于两台主机之间的数据保护</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013181231672.png" alt="image-20211013181231672" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181231672.png" alt="image-20211013181231672" /></p>
 <h2 id="隧道模式"><a class="markdownIt-Anchor" href="#隧道模式"></a> 隧道模式</h2>
 <p>实现站点到站点保护：对整个报文进行了封装，IP 头被保护（实现了匿名）</p>
 <p>Application：较适用于站点间建立安全 VPN 隧道，以保护多台主机</p>
 <blockquote>
 <p>站点和站点之间（网关之上），一个站点的所有主机都指代同一个公网 IP 地址</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013181308850.png" alt="image-20211013181308850" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181308850.png" alt="image-20211013181308850" /></p>
 <h2 id="对比"><a class="markdownIt-Anchor" href="#对比"></a> 对比</h2>
 <p>传输模式适用于两台主机之间的数据保护；隧道模式适宜于在站点间建立安全 VPN 隧道：保护多台主机</p>
 <h1 id="ah"><a class="markdownIt-Anchor" href="#ah"></a> AH</h1>
@@ -568,7 +568,7 @@
 <p>提供报头验证工能，但是不能提供数据加密工能，使得数据可以读取但是无法修改</p>
 </blockquote>
 <h2 id="ah-头"><a class="markdownIt-Anchor" href="#ah-头"></a> AH 头</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013181648238.png" alt="image-20211013181648238" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181648238.png" alt="image-20211013181648238" /></p>
 <p><strong>下一头部</strong>（8位）：表示紧跟在 AH 头部后面的协议类型：传输模式下，该字段是处于保护中的传输层协议的值，如6（TCP），17（UDP）或 50（ESP）；在隧道模式下，AH 保护整个 IP 包，该值是4，表示是 IP-in-IP 协议</p>
 <p><strong>有效载荷长度</strong>（8位）：其值是以 32 位为单位的整个 AH 数据（包括头部和变长验证数据）的长度再减 2。</p>
 <p><strong>安全参数索引</strong>，SPI，表示对安全策略的索引</p>
@@ -579,10 +579,10 @@
 <p><strong>验证数据</strong>：可变长，取决于采用何种消息验证算法。包含完整性验证码，也就是 HMAC 算法的结果，称为 ICV，它的生成算法由 SA 指定。</p>
 <h2 id="传输模式-2"><a class="markdownIt-Anchor" href="#传输模式-2"></a> 传输模式</h2>
 <p>保护有效载荷，验证时还需要验证 IP 报文的数据部分，以及 IP 头中的不变部分（ 可变部分预先置0）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013181938033.png" alt="image-20211013181938033" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181938033.png" alt="image-20211013181938033" /></p>
 <h2 id="隧道模式-2"><a class="markdownIt-Anchor" href="#隧道模式-2"></a> 隧道模式</h2>
 <p>验证全部的内部 IP 报文，以及外部新 IP 头中的不变部分，对于可变部分如 TTL 等应提前置位为 0</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013182402554.png" alt="image-20211013182402554" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013182402554.png" alt="image-20211013182402554" /></p>
 <h1 id="esp"><a class="markdownIt-Anchor" href="#esp"></a> ESP</h1>
 <p>ESP 协议：Encapsulating Security Payload，封装安全载荷安全协议，协议号：50</p>
 <p>提的服务如下：数据完整性服务（哈希校验），数据源身份认证（共享秘钥），防止数据重放攻击（ESP 头中序列号字段），数据机密性服务（加密）</p>
@@ -592,29 +592,29 @@
 </blockquote>
 <h2 id="esp-头"><a class="markdownIt-Anchor" href="#esp-头"></a> ESP 头</h2>
 <p>安全参数索引 SPI 与 序列号与 AH 头作用一致</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013183211644.png" alt="image-20211013183211644" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183211644.png" alt="image-20211013183211644" /></p>
 <h2 id="传输模式-3"><a class="markdownIt-Anchor" href="#传输模式-3"></a> 传输模式</h2>
 <p>传输模式下对原始 IP 头不进行保护，仅对 IP 报文的有效数据部分提供加密</p>
 <p>Tips ：ESP 头不加密只认证；ESP 尾部加密也认证；原始 IP 头不加密也不认证；</p>
 <blockquote>
 <p>ESP 头中有安全参数索引与序列号，传输过程中需要知道索引与序列号得知安全加密策略与序列号信息</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013183359384.png" alt="image-20211013183359384" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183359384.png" alt="image-20211013183359384" /></p>
 <h2 id="隧道模式-3"><a class="markdownIt-Anchor" href="#隧道模式-3"></a> 隧道模式</h2>
 <p>对整个内部 IP 报文进行加密，新 IP 头不加密也不认证</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013183443513.png" alt="image-20211013183443513" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183443513.png" alt="image-20211013183443513" /></p>
 <h1 id="ah-esp"><a class="markdownIt-Anchor" href="#ah-esp"></a> AH + ESP</h1>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127155954664.png" alt="image-20211127155954664" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127155954664.png" alt="image-20211127155954664" /></p>
 <p>AH 相较于 ESP 提供了 IP 头的认证，ESP 相较于 AH 提供了数据加密</p>
 <blockquote>
 <p>所以需要结合使用 AH 和 ESP 才能保证 IP 报头的机密性和完整性</p>
 <p>AH 为 IP 报头提供尽可能多的验证保护，验证失败的包将被丢弃，不交给上层协议解密，这种操作模式可以减少拒绝服务攻击成功的机会。</p>
 </blockquote>
 <h2 id="传输模式下"><a class="markdownIt-Anchor" href="#传输模式下"></a> 传输模式下</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013183714583.png" alt="image-20211013183714583" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183714583.png" alt="image-20211013183714583" /></p>
 <p>这里把 ESP 头也加密了，是因为 AH 头在外面呢，只需要用一个头即可</p>
 <h2 id="隧道模式下"><a class="markdownIt-Anchor" href="#隧道模式下"></a> 隧道模式下</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211013183817158.png" alt="image-20211013183817158" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183817158.png" alt="image-20211013183817158" /></p>
 <h2 id="nat-穿越问题"><a class="markdownIt-Anchor" href="#nat-穿越问题"></a> NAT 穿越问题</h2>
 <p><strong>Q：使用 IPSec 在跨域 NAT 出现什么问题？NAT 要变换 IP，如何保证 IPSec 认证依然成功？</strong></p>
 <p>NAT 实现了私有地址向公有地址的映射，会对 IP 头进行更改，因此使用对 IP 报头进行验证的 AH 协议的 IPsec 是不能穿越 NAT 的；</p>
@@ -687,7 +687,7 @@
 <p>IKE 真正定义了一个密钥交换的过程，而 ISAKMP 只是定义了一个通用的可以被任何密钥交换协议使用的框架</p>
 </blockquote>
 <h2 id="ikes-process"><a class="markdownIt-Anchor" href="#ikes-process"></a> IKE’s Process</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211014090730684.png" alt="image-20211014090730684" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211014090730684.png" alt="image-20211014090730684" /></p>
 <p>1、对等体之间建立一个 IKE SA 完成身份验证和密钥信息交换后，</p>
 <p>2、在 IKE SA 的保护下，根据配置的 AH/ESP 安全协议等参数协商出一对 IPSec SA</p>
 <p>此后，对等体间的数据将在IPSec隧道中加密传输</p>
@@ -706,8 +706,8 @@
 </blockquote>
 <h3 id="阶段-1-主动协商模式"><a class="markdownIt-Anchor" href="#阶段-1-主动协商模式"></a> 阶段 1 - 主动协商模式</h3>
 <p>通信双方协商和建立 IKE 协议本身使用的安全通道，即建立一个IKE SA，总共是三次交换过程，总共有 6 个消息交互</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211202165713.png" alt="阶段 1 主动协商模式" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211015090109438.png" alt="阶段 1 主动协商模式2" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202165713.png" alt="阶段 1 主动协商模式" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211015090109438.png" alt="阶段 1 主动协商模式2" /></p>
 <p>1、协商对等体间的管理连接使用何种安全策略：A 发送一个或多个 IKE 安全提议；B 收到后查找最先匹配的 IKE 安全提议，并进行确认返回；A 将接收对端确认的策略</p>
 <blockquote>
 <p>交换 ISAKMP / IKE 传输集
@@ -732,10 +732,10 @@ SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥<span ari
 <p><strong>前四个报文为明文信息，后续报文为密文传输</strong></p>
 <p>Q：为什么有了预共享秘钥还要用 DH 生成 skey_ID 然后在生成三个子秘钥呢？</p>
 <p>A：预共享秘钥是预设并不能经常改变，而其它的秘钥是需要经常改变来保证安全性（随机生成），因此使用预共享秘钥负责身份认证，后续的秘钥随机生成使用</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211015090753216.png" alt="image-20211015090753216" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211015090753216.png" alt="image-20211015090753216" /></p>
 <h3 id="阶段-1-野蛮模式"><a class="markdownIt-Anchor" href="#阶段-1-野蛮模式"></a> 阶段 1 - 野蛮模式</h3>
 <p>野蛮模式交互过程少，所以在传输过程中，其传输的数据比较多，并且前两个数据为明文传输，仅消息3为加密传输。</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211202170905.png" alt="阶段 1 - 野蛮模式" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202170905.png" alt="阶段 1 - 野蛮模式" /></p>
 <p>1、发起方建议SA，发起DH交换：发起者发送 5 元组（IKE SA的各项参数），DH 公共值，辅助随机数 nonce 以及身份资料。响应者可以选择接受或者拒绝该建议</p>
 <p>2、接收方接受SA, 认证接收方：回应一个选定的 5 元组，DH 公共值，辅助随机数nonce，身份材料以及一个“认证散列值”。</p>
 <blockquote>
@@ -743,7 +743,7 @@ SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥<span ari
 </blockquote>
 <p>3、发起方认证接受方：发起者发送一个“认证散列值”，该消息被验证，让应答方能够确定其中的散列值是否与计算得到的散列值相同，进而确定消息是否有问题。实际上，这个消息认证发起者并且证明它是交换的参与者。这个消息使用前两个消息交换的密钥信息生成的密钥进行加密。</p>
 <h3 id="阶段-1-对比"><a class="markdownIt-Anchor" href="#阶段-1-对比"></a> 阶段 1 - 对比</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211202171632.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202171632.png" alt="" /></p>
 <h3 id="阶段-2"><a class="markdownIt-Anchor" href="#阶段-2"></a> 阶段 2</h3>
 <p>双方协商 IPSec SA 安全参数，称为变换集 transform set，包括：加密算法、Hash算法、安全协议、封装模式、存活时间；其次还需要周期性的对数据连接更新密钥信息；</p>
 <p>1、A 向 B 认证自己、建议安全关联、交换公开值、选择 nonce 等</p>
@@ -756,8 +756,8 @@ SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥<span ari
 <p>Q：为什么又要协商 IPSec 的参数？</p>
 <p>A：一个 IKE 下可以承载多个 IPSec（quick 模式），使得 IKE 可以复用；第一个 SA 作用与 IKE 保证了通道安全；随后的 IPSec SA 使得 IKE 可以复用；</p>
 <h2 id="demo-分析"><a class="markdownIt-Anchor" href="#demo-分析"></a> Demo 分析</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211202172856.png" alt="Demo 分析" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211203091232.png" alt="Demo 分析2" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202172856.png" alt="Demo 分析" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211203091232.png" alt="Demo 分析2" /></p>
 <p>1、数据传输</p>
 <p>2、到 SPD 中查找安全策略：发现源地址为 <code>1.25</code> 目的地址为 <code>2.34</code> 的需要使用安全策略</p>
 <p>3、需要建立相应的 IKE SA（安全关联）：查找策略表中是否存在 SA</p>
@@ -1324,7 +1324,7 @@ SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥<span ari
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

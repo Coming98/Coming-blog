@@ -504,7 +504,7 @@
 Tips：各个物理网络的最大传输单元 MTU 可能不同，A，B 两个路由器之间与 B，C 两个路由器之间的 MTU 可能不一致</p>
 <h2 id="ip-地址"><a class="markdownIt-Anchor" href="#ip-地址"></a> IP 地址</h2>
 <p>给连接到因特网上的每一台主机分配一个全世界范围内惟一的 32 位的标识符，包含了两个独立的信息段：网络号（net-id）+ 主机号（host-id），常用点分十进制记法表示</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205164142.png" alt="IP 地址分类" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205164142.png" alt="IP 地址分类" /></p>
 <p>A 类：1 - 126</p>
 <p>B 类：128 - 191</p>
 <p>C 类：192 - 233</p>
@@ -541,32 +541,32 @@ Tips：各个物理网络的最大传输单元 MTU 可能不同，A，B 两个�
 比如主机 192.168.1.1/30 可以发送广播包到 192.168.1.7，使主机 192.168.1.5/30也可以接收到该数据包</p>
 </blockquote>
 <h1 id="ip-数据报"><a class="markdownIt-Anchor" href="#ip-数据报"></a> IP 数据报</h1>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205162718.png" alt="IP 数据报格式" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205162718.png" alt="IP 数据报格式" /></p>
 <h2 id="ip-数据报选项"><a class="markdownIt-Anchor" href="#ip-数据报选项"></a> IP 数据报选项</h2>
 <p>该选项为变长部分，用于网络控制和测试目的（如源路由、记录路由、时间戳等），最大长度不能超过 40 字节</p>
 <blockquote>
 <p>IP 选项在使用时是可选的，但在 TCP/IP 软件的实现中却是必须有的，也就是说所有的IP 协议都具有 IP 选项的处理功能</p>
 </blockquote>
 <p>选项格式如下：</p>
-<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127123337344.png" alt="image-20211127123337344" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127123337344.png" alt="image-20211127123337344" style="zoom:50%;" />
 <h2 id="源路由选项"><a class="markdownIt-Anchor" href="#源路由选项"></a> 源路由选项</h2>
 <p>通常 IP 数据报在传输时，由路由器自动为其选择路由。为了使数据报绕开出错网络，或者为了对某特定网络的吞吐率进行测试，需要在信源机控制 IP 数据报的传输路径</p>
 <h3 id="严格源路由"><a class="markdownIt-Anchor" href="#严格源路由"></a> 严格源路由</h3>
 <p>要求信源机上的发送者指定数据报必须经过每一个路由器</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127124111380.png" alt="image-20211127124111380" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127124111380.png" alt="image-20211127124111380" /></p>
 <p>1、信源机从上层收到源路由 IP 地址表后，将第一个 IP 地址从列表中去掉，并作为当前数据报的目的地址</p>
 <p>2、将剩余的表项前移（逻辑前移，已经经过的地址还会在表中）</p>
 <p>3、将最终要去的目的地址写入到选项地址表的最后（最后一步真实的目的 IP 将被取出，路由表项中全部为中间指定的路由）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127124347061.png" alt="image-20211127124347061" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127124347061.png" alt="image-20211127124347061" /></p>
 <h3 id="宽松源路由"><a class="markdownIt-Anchor" href="#宽松源路由"></a> 宽松源路由</h3>
 <p>要求信源机上的发送者指定数据报必须经过指定的路由，指定的路由只是一些关键路由，可能并不临接，两个路由之间的通道由路由器自动路由决定</p>
 <p>Tips：其 IP 选项的格式与严格源路由相同</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127124111380.png" alt="image-20211127124111380" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127124111380.png" alt="image-20211127124111380" /></p>
 <h2 id="无连接数据报传输"><a class="markdownIt-Anchor" href="#无连接数据报传输"></a> 无连接数据报传输</h2>
 <p>IP 数据报传输是 IP 层要解决的重要问题之一，是影响数据传输效率的一个重要因素，IP 数据报在经过路由器进行转发时一般要进行三个方面的处理：首部校验，路由选择，数据分片。</p>
 <h3 id="首部校验"><a class="markdownIt-Anchor" href="#首部校验"></a> 首部校验</h3>
 <p>IP 数据报的首部通过校验和（Checksum）来保证其正确性</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205162443.png" alt="首部校验" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205162443.png" alt="首部校验" /></p>
 <p><strong>为什么要进行首部校验：</strong></p>
 <p>1、IP 首部属于 IP 层协议的内容，不可能由上层协议处理</p>
 <p>2、IP 首部中的部分字段在点到点的传递过程中是不断变化的，只能在每个中间点重新形成校验数据，在相邻点之间完成校验</p>
@@ -580,13 +580,13 @@ Tips：各个物理网络的最大传输单元 MTU 可能不同，A，B 两个�
 <h2 id="acl"><a class="markdownIt-Anchor" href="#acl"></a> ACL</h2>
 <p>ACL ：Access Control List，访问控制列表，应用在<strong>路由器接口</strong>上的指令列表；告知路由器哪些数据报分组可以接收，哪些拒绝</p>
 <p>Application：路由器上进行配置；防火墙的相关配置也基于 ACL 指令；一个访问控制列表可以被应用到多个接口上，接口又分进入方向与出去方向；一个接口的 in 和 out 每个方向各只能应用一个访问控制列表。</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127141040398.png" alt="image-20211127141040398" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127141040398.png" alt="image-20211127141040398" /></p>
 <h3 id="标准访问控制列表"><a class="markdownIt-Anchor" href="#标准访问控制列表"></a> 标准访问控制列表</h3>
 <p>标准访问控制列表：基于<strong>源地址</strong>作为判断依据，编号为：1-99, 1300-1999</p>
 <blockquote>
 <p>路由器对每一个数据包都按照列表顺序逐条检查，如果匹配某一条语句，要么允许数据包通过，要么拒绝通过，不再检查后面的语句；否则向下继续匹配；如果所有的语句都不匹配，就拒绝数据包通过（缺省策略）。</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211007140314775.png" alt="image-20211007140314775" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007140314775.png" alt="image-20211007140314775" /></p>
 <h3 id="扩展访问控制列表"><a class="markdownIt-Anchor" href="#扩展访问控制列表"></a> 扩展访问控制列表</h3>
 <p>扩展访问控制列表：基于 <strong>源地址、目标地址、源端口、目标端口、协议类型</strong>，更为灵活，编号为 100-199, 2000-2699</p>
 <p>Application：包过滤防火墙；</p>
@@ -600,22 +600,22 @@ Tips：各个物理网络的最大传输单元 MTU 可能不同，A，B 两个�
 <p>可以在局域网内部提供给外部FTP、WWW、Telnet服务</p>
 <h3 id="静态-nat-配置"><a class="markdownIt-Anchor" href="#静态-nat-配置"></a> 静态 NAT 配置</h3>
 <p>实现内部 IP 地址与 外部 IP 地址的映射</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205185404.png" alt="静态 NAT 配置" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205185404.png" alt="静态 NAT 配置" /></p>
 <h3 id="端口地址转换"><a class="markdownIt-Anchor" href="#端口地址转换"></a> 端口地址转换</h3>
 <p>Port Address Translation，PAT，该技术出现之前使用多个公网地址单射多个私网地址，因此为了解决公网地址短缺问题，引入端口地址转换实现私有地址向公有地址的 n:1 的映射</p>
 <p>Q：外面回来的包都是一个公网 IP 我咋知道发给私网中的谁呢？</p>
 <p>A：使用端口地址转换技术，利用不同的端口区分私网内各个机器</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211127142039263.png" alt="image-20211127142039263" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127142039263.png" alt="image-20211127142039263" /></p>
 <h2 id="vpn"><a class="markdownIt-Anchor" href="#vpn"></a> VPN</h2>
 <p>虚拟专用网络，是企业网在因特网上的延伸</p>
 <p>隧道：封装一个隧道报头（三层），直接发送到目标网络所在的网关</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211007142318338.png" alt="image-20211007142318338" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007142318338.png" alt="image-20211007142318338" /></p>
 <h3 id="vpn-功能"><a class="markdownIt-Anchor" href="#vpn-功能"></a> VPN 功能</h3>
 <p>1、数据机密性保护：传输时进行加密传输</p>
 <p>2、数据完整性保护：对数据进行 hash 得到摘要，将摘要与加密后的数据一起传输；接收方解密数据后再次计算摘要，与传输来的摘要进行比较，验证数据的完整性</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205185841.png" alt="数据完整性保护" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205185841.png" alt="数据完整性保护" /></p>
 <p>3、数据源身份认证：使用私钥对摘要进行加密得到数字签名，将摘要与加密后的数据一起传输；接收方解密数据后再次计算摘要，将传输来的数字签名解密得到源摘要，将两个摘要进行比对实现身份验证</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205185935.png" alt="数据源身份认证" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205185935.png" alt="数据源身份认证" /></p>
 <p>4、重放攻击保护：加时间戳；加随机数；加流水号 / 序列号；</p>
 <blockquote>
 <p>Replay Attacks，重播攻击，回放攻击，指攻击者发送一个目的主机已接收过的包，来达到欺骗系统的目的；比如身份认证重放，转账重放。</p>
@@ -1185,7 +1185,7 @@ Tips：各个物理网络的最大传输单元 MTU 可能不同，A，B 两个�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

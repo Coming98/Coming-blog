@@ -521,26 +521,26 @@
 <h2 id="vlan-实现方式"><a class="markdownIt-Anchor" href="#vlan-实现方式"></a> VLAN 实现方式</h2>
 <p>基于端口的 VLAN；基于 MAC 的 VLAN；基于协议的 VLAN；基于子网的 VLAN</p>
 <h3 id="基于端口的-vlan"><a class="markdownIt-Anchor" href="#基于端口的-vlan"></a> 基于端口的 VLAN</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150331.png" alt="基于端口的 VLAN" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150331.png" alt="基于端口的 VLAN" /></p>
 <p>需要配置 VLAN 表：端口与所属 VLAN 映射表</p>
 <p>优势：操作简单</p>
 <p>劣势：与端口绑定，并未与主机绑定，主机迁移后容易发生错误</p>
 <h3 id="基于-mac-的-vlan"><a class="markdownIt-Anchor" href="#基于-mac-的-vlan"></a> 基于 MAC 的 VLAN</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150415.png" alt="基于 MAC 的 VLAN" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150415.png" alt="基于 MAC 的 VLAN" /></p>
 <p>需要配置 VLAN 表：MAC 与所属 VLAN 映射表</p>
 <p>优势：当用户物理位置移动时，即从一个交换机换到其他的交换机时，VLAN不用重新配置，故认为这种根据 MAC 地址的划分方法是基于用户的 VLAN</p>
 <p>劣势：初始化时，所有的用户都必须进行配置，如果用户很多，配置的工作量是很大的；并且同一端口下可能存在属于不同 VLAN 的多个主机，则该端口不能隔离广播包了</p>
 <h3 id="基于协议的-vlan"><a class="markdownIt-Anchor" href="#基于协议的-vlan"></a> 基于协议的 VLAN</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150603.png" alt="基于协议的 VLAN" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150603.png" alt="基于协议的 VLAN" /></p>
 <p>需要配置 VLAN 表：协议类型与 VLAN 的映射表（不常见）</p>
 <p>根据二层数据帧中的协议字段进行 VLAN 的划分</p>
 <h3 id="基于子网的-vlan"><a class="markdownIt-Anchor" href="#基于子网的-vlan"></a> 基于子网的 VLAN</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205150634.png" alt="基于子网的 VLAN" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150634.png" alt="基于子网的 VLAN" /></p>
 <p>需要配置 VLAN 表：IP 网络与 VLAN 的映射表</p>
 <p>优势：用户可以在网络内部自由移动而不用重新配置自己的工作站</p>
 <p>劣势：效率低，检查每一个数据包的网络层地址是很费时的，并且同一个端口下可能存在多个VLAN 的成员，无法隔离广播包</p>
 <h2 id="vlan-的可跨越性"><a class="markdownIt-Anchor" href="#vlan-的可跨越性"></a> VLAN 的可跨越性</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210923160359426.png" alt="image-20210923160359426" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923160359426.png" alt="image-20210923160359426" /></p>
 <p>1、VLAN 数据可以跨越多台交换机被转递</p>
 <p>2、不同 VLAN 的信息必须通过三层路由处理才能转发到这个端口上</p>
 <p>3、二层的广播只能在一个 VLAN 下进行</p>
@@ -577,7 +577,7 @@
 <p>这样当一下包过来的时候，交换机就会 查看硬件转发表直接转发而不会再经过路由表的查询了，也即是交换机的<strong>一次路由，多次交换</strong>的原理</p>
 </blockquote>
 <h2 id="vlan-的链路类型与端口类型"><a class="markdownIt-Anchor" href="#vlan-的链路类型与端口类型"></a> VLAN 的链路类型与端口类型</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930133649605.png" alt="image-20210930133649605" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930133649605.png" alt="image-20210930133649605" /></p>
 <p>默认情况下，交换机所有端口都是Access-Link端口，并属于VLAN-1</p>
 <h3 id="接入链路"><a class="markdownIt-Anchor" href="#接入链路"></a> 接入链路</h3>
 <p>Access link，交换机与主机之间，通常只涉及一个 VLAN</p>
@@ -607,7 +607,7 @@
 </blockquote>
 <h2 id="vlan-帧格式"><a class="markdownIt-Anchor" href="#vlan-帧格式"></a> VLAN 帧格式</h2>
 <p>Swith 配置 VLAN 后，会将收到的数据报加入 VLAN 头：<strong>交换机</strong>负责打标签和去标签，对于主机来说是透明的</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930135517564.png" alt="image-20210930135517564" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930135517564.png" alt="image-20210930135517564" /></p>
 <h2 id="vlan-转发原则"><a class="markdownIt-Anchor" href="#vlan-转发原则"></a> VLAN 转发原则</h2>
 <h3 id="access-端口"><a class="markdownIt-Anchor" href="#access-端口"></a> Access 端口</h3>
 <p><strong>Access 端口收到帧时</strong>：计算机 → 交换机</p>
@@ -629,7 +629,7 @@
 <p>主要介绍 跳跃攻击 与 VTP 攻击</p>
 <h2 id="双标签跳跃攻击"><a class="markdownIt-Anchor" href="#双标签跳跃攻击"></a> 双标签跳跃攻击</h2>
 <p>Target：实现跨 VLAN 通信</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930140913396.png" alt="image-20210930140913396" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930140913396.png" alt="image-20210930140913396" /></p>
 <h3 id="攻击过程"><a class="markdownIt-Anchor" href="#攻击过程"></a> 攻击过程</h3>
 <p>1、攻击者使用双层标签，其外层标记为 Trunk 链路的 Native VLAN 号（也是攻击者所处的 VLAN），内层标记为目的 Vlan ID</p>
 <p>2、Access 端口收到主机发来的带有 VLAN ID 的包，匹配一致后，转到 Trunk 端口准备发送</p>
@@ -651,7 +651,7 @@
 <blockquote>
 <p>管理员可以手动指定交换机之间的链路是否形成 Trunk，也可以让交换机使用 DTP 自动协商</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210930141952004.png" alt="image-20210930141952004" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930141952004.png" alt="image-20210930141952004" /></p>
 <p>Perpetrator 伪装成交换机，发送 DTP 包，将攻击者与交换机之间的链路协商为为 Trunk 链路，随后攻击者通过该链路，可以收发带任意 VLAN 标签的数据，从而实现访问任意 VLAN 的目的</p>
 <p>特点：实现攻击者和被攻击者之间的双向访问，导致攻击者绕过防火墙直接访问目标主机</p>
 <p>防范：关闭不需要开启的交换机接口；关闭 DTP；</p>
@@ -1214,7 +1214,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

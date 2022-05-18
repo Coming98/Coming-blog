@@ -517,7 +517,7 @@ self<span class="token punctuation">[</span>i<span class="token punctuation">]</
 <p>为了保证索引对应 index 索引张量的维度应与 src 张量的维度一致，但是 shape 可以不一致</p>
 </blockquote>
 <p>让我们以一个二维的情形为例：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028195119040.png" alt="image-20211028195119040" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028195119040.png" alt="image-20211028195119040" /></p>
 <p>从 index 出发，因为 dim = 1，所以我们能够得知目标填充索引为 (0, 3)</p>
 <blockquote>
 <p>可以认为先从 (i = 0, j=0) 找到了 index 和 value 的值（3, 9），又因为 dim = 1，因此 index 的值将作用于列索引所以得到最终索引为 (i=0, j=3)</p>
@@ -527,7 +527,7 @@ self<span class="token punctuation">[</span>i<span class="token punctuation">]</
 <p>我们对 index 进行遍历时，dim 影响的那一个维度会由 index 内部的值决定，其余维度索引保持一致</p>
 </blockquote>
 <p>那我们看 value 中的 5，它的行索引是 1，因此它必然撒到 dest 中的第一行（dim=1），但是撒在第几列将由 index 决定，index 说撒在第 4 列，done！</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028195554262.png" alt="image-20211028195554262" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028195554262.png" alt="image-20211028195554262" /></p>
 <h1 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h1>
 <p><strong>Example： Lable 转 one-hot</strong></p>
 <p>Label 通常是一维的 <code>shape=(N,)</code>，而模型的 output 通常是 softmax 之后的二维结果
@@ -1109,7 +1109,7 @@ torch<span class="token punctuation">.</span>zeros<span class="token punctuation
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

@@ -500,7 +500,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709204458015.png" alt="image-20210709204458015" /></p>
+                <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709204458015.png" alt="image-20210709204458015" /></p>
 <p>本文来自于书籍以及自己的一些想法，内容不一定正确，还请大家批评指正。</p>
 <h1 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h1>
 <ul>
@@ -523,7 +523,7 @@
 <li>
 <p>目标：<strong>假设数据集是线性可分的</strong>，寻找一个超平面，将训练数据全部分类正确</p>
 <blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709210455875.png" alt="image-20210709210455875" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709210455875.png" alt="image-20210709210455875" /></p>
 </blockquote>
 </li>
 <li>
@@ -596,7 +596,7 @@ F：进行步骤 4</p>
 <p>跳转至步骤2，直至训练集中没有误分类点</p>
 </li>
 </ol>
-<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709220511277.png" alt="image-20210709220511277" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709220511277.png" alt="image-20210709220511277" style="zoom:50%;" />
 <h2 id="函数实现"><a class="markdownIt-Anchor" href="#函数实现"></a> 函数实现</h2>
 <h3 id="预准备"><a class="markdownIt-Anchor" href="#预准备"></a> 预准备</h3>
 <p>首先可以定义一个函数，感知机模型最终就要找到这个函数的表示形式</p>
@@ -623,7 +623,7 @@ y <span class="token operator">=</span> np<span class="token punctuation">.</spa
     y_axis <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span>w<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">/</span>w<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> x <span class="token operator">-</span> b <span class="token operator">/</span> w<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> x_axis<span class="token punctuation">]</span>
     plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x_axis<span class="token punctuation">,</span> y_axis<span class="token punctuation">)</span>
     plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709221404570.png" alt="image-20210709221404570" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709221404570.png" alt="image-20210709221404570" /></p>
 <h3 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h3>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Perceptron_1</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> learning_rate <span class="token operator">=</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -652,7 +652,7 @@ y <span class="token operator">=</span> np<span class="token punctuation">.</spa
 <p><strong>效果展示如下</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">my_perceptron <span class="token operator">=</span> Perceptron_1<span class="token punctuation">(</span><span class="token punctuation">)</span>
 my_perceptron<span class="token punctuation">.</span>train<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709221558656.png" alt="image-20210709221558656" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709221558656.png" alt="image-20210709221558656" /></p>
 <h1 id="感知机对偶形式"><a class="markdownIt-Anchor" href="#感知机对偶形式"></a> 感知机对偶形式</h1>
 <p>（确实还未能理解换形式表达的真正原因，仅仅记录些书面看到的信息啦~）</p>
 <ul>
@@ -683,7 +683,7 @@ F：进行步骤 4</p>
 <p>跳转至步骤2，直至训练集中没有误分类点</p>
 </li>
 </ol>
-<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709223032341.png" alt="image-20210709223032341" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709223032341.png" alt="image-20210709223032341" style="zoom:50%;" />
 <h3 id="函数实现-2"><a class="markdownIt-Anchor" href="#函数实现-2"></a> 函数实现</h3>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Perceptron_2</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> learning_rate<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -725,7 +725,7 @@ F：进行步骤 4</p>
 <p><strong>效果展示</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">my_perceptron <span class="token operator">=</span> Perceptron_2<span class="token punctuation">(</span><span class="token punctuation">)</span>
 my_perceptron<span class="token punctuation">.</span>train<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709223249283.png" alt="image-20210709223249283" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709223249283.png" alt="image-20210709223249283" /></p>
 <p>书上 P45 页例子的展示</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">X_1 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>
     <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -735,7 +735,7 @@ my_perceptron<span class="token punctuation">.</span>train<span class="token pun
 y_1 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 my_perceptron <span class="token operator">=</span> Perceptron_2<span class="token punctuation">(</span><span class="token punctuation">)</span>
 my_perceptron<span class="token punctuation">.</span>train<span class="token punctuation">(</span>X_1<span class="token punctuation">,</span> y_1<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210709223338511.png" alt="image-20210709223338511" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709223338511.png" alt="image-20210709223338511" /></p>
 <h1 id="附录"><a class="markdownIt-Anchor" href="#附录"></a> 附录</h1>
 <h2 id="点到超平面的距离"><a class="markdownIt-Anchor" href="#点到超平面的距离"></a> 点到超平面的距离</h2>
 <p>求点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 到超平面 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi><mo separator="true">⋅</mo><mi mathvariant="bold">x</mi><mo>+</mo><mi>b</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">w·\mathbf{x}+b=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathbf">x</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的距离</p>
@@ -1353,7 +1353,7 @@ my_perceptron<span class="token punctuation">.</span>train<span class="token pun
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

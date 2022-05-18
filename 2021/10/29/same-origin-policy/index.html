@@ -541,7 +541,7 @@
 <p>Cookie 只有同源网页才能共享（Protocol，Port，host）</p>
 <h2 id="dom-same-origin-policy"><a class="markdownIt-Anchor" href="#dom-same-origin-policy"></a> DOM Same-Origin Policy</h2>
 <p>DOM，文档对象模型，Document Object Model：在网页上组织页面或文档的对象被组织在一个树形结构中，用来表示文档中对象的标准模型即为 DOM</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210920152526889.png" alt="image-20210920152526889" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920152526889.png" alt="image-20210920152526889" /></p>
 <p>1、<code>&lt;script&gt;, &lt;img&gt;, &lt;iframe&gt;, &lt;link&gt;</code> 的跨域请求，不受同源策略的约束，但不能通过 ajax 来获取</p>
 <blockquote>
 <p>就是我们可以引入外部网站的 script, img, iframe, link，我们所限制的是引入的内容的操作</p>
@@ -555,7 +555,7 @@
 <blockquote>
 <p>注意请求可以送达，但是响应将被拦截</p>
 <p>不同源 JavaScript 受限，同源不受限</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210920152846907.png" alt="image-20210920152846907" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920152846907.png" alt="image-20210920152846907" /></p>
 </blockquote>
 <p>5、<code>&lt;iframe&gt;</code> 父子页面（点击进入的下一页面）交互受同源策略约束</p>
 <h2 id="ajax-same-origin-policy"><a class="markdownIt-Anchor" href="#ajax-same-origin-policy"></a> Ajax Same-Origin Policy</h2>
@@ -567,17 +567,17 @@
 <p><strong>sessionStorage</strong>：绑定当前浏览器端口，浏览器会话结束后清理</p>
 <h2 id="脚本型-url-的同源策略"><a class="markdownIt-Anchor" href="#脚本型-url-的同源策略"></a> 脚本型 URL 的同源策略</h2>
 <p>伪 URL 的源如何判定？</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210920154445387.png" alt="image-20210920154445387" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210920154552671.png" alt="image-20210920154552671" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920154445387.png" alt="image-20210920154445387" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920154552671.png" alt="image-20210920154552671" /></p>
 <p><strong>Tips</strong>：在脚本型 URL 加载的页面里，以父页面的上下文权限执行相应的脚本代码——与父页面同源</p>
 <blockquote>
 <p>通过 bank 执行的脚本型 js 代码，即与 bank 同源，即可操作 iframe 内的内容</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028222503110.png" alt="image-20211028222503110" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028222503110.png" alt="image-20211028222503110" /></p>
 <h1 id="cross-origin"><a class="markdownIt-Anchor" href="#cross-origin"></a> Cross Origin</h1>
 <h2 id="server-proxy"><a class="markdownIt-Anchor" href="#server-proxy"></a> Server Proxy</h2>
 <p>同源策略的作用域是<strong>浏览器</strong>，因此可以利用服务器实现跨域通信，即使用第三方服务器获取目标信息在返回给自己（也就是我们常说的代理服务器）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210920155214194.png" alt="image-20210920155214194" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920155214194.png" alt="image-20210920155214194" /></p>
 <p>React Scaffolding 中在 package.json 追加如下配置，当用 ajax 请求了本地不存在的资源，将会转发给目标代理（但是不支持配置多个代理）</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">&quot;proxy&quot;:&quot;http:&#x2F;&#x2F;localhost:5000&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="documentdomain"><a class="markdownIt-Anchor" href="#documentdomain"></a> document.domain</h2>
@@ -585,7 +585,7 @@
 <blockquote>
 <p>这样做使得主站和子站，以及子站之间可以跨域访问，不适用于跨基础域的站点间共享数据</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028215714174.png" alt="image-20211028215714174" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028215714174.png" alt="image-20211028215714174" /></p>
 <p>Tips：Ajax 请求该跨域方法无效；<strong>Ajax跨域必须 Protocol，port，host 一致</strong></p>
 <h2 id="jsonp"><a class="markdownIt-Anchor" href="#jsonp"></a> JSONP</h2>
 <p>JSON with Padding，利用 <code>&lt;script&gt;</code> 标签可以跨域 <code>get</code> 引入 js 脚本这一点，需要服务器端配合接口，用脚本动态生成 <code>js</code> 将数据封装在返回的 <code>js</code> 脚本里，供客户端提前定义好的回调函数使用</p>
@@ -652,7 +652,7 @@ response<span class="token punctuation">.</span><span class="token function">get
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token function">header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Origin: *"</span><span class="token punctuation">)</span>
 <span class="token function">header</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Origin: http://server.net"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>Tips：存在预检机制，支持浏览器先询问服务器（即将请求的域名、方法和头信息是否许可，如果得到肯定答复，才发出正式请求，否则报错）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211029115407916.png" alt="image-20211029115407916" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211029115407916.png" alt="image-20211029115407916" /></p>
 <h2 id="windowpostmessage"><a class="markdownIt-Anchor" href="#windowpostmessage"></a> window.postMessage</h2>
 <p>允许不同源的脚本采用异步方式进行有限的通信</p>
 <p><strong>信息发送</strong></p>
@@ -678,9 +678,9 @@ response<span class="token punctuation">.</span><span class="token function">get
 window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"message"</span><span class="token punctuation">,</span> receiveMessage<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>主动获取信息步骤：A 想要获取 B 的信息，A 通过 iframe 或 window.open 嵌入 B，随后 A postMessage(message, B) 告诉 B 想要什么信息，B 检查 origin 后 postMessage(data, A) 将数据返回过去</p>
 <p>被动获取信息步骤：A 将数据准备完毕通过 postMessage 将信息传给 B，B 通过事件监听和处理获取数据</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210920162051524.png" alt="image-20210920162051524" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920162051524.png" alt="image-20210920162051524" /></p>
 <p>接收方：添加相关事件处理，实现跨域的数据传输</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210920162105671.png" alt="image-20210920162105671" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920162105671.png" alt="image-20210920162105671" /></p>
 <h1 id=""><a class="markdownIt-Anchor" href="#"></a> </h1>
 
                 
@@ -1237,7 +1237,7 @@ window<span class="token punctuation">.</span><span class="token function">addEv
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

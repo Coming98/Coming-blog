@@ -498,7 +498,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="传输层"><a class="markdownIt-Anchor" href="#传输层"></a> 传输层</h1>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211122204641955.png" alt="image-20211122204641955" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122204641955.png" alt="image-20211122204641955" /></p>
 <p>Transport Layer，从通信和信息处理的角度看，传输层向它上面的应用层提供通信服务，它属于面向通信部分的最高层，同时也是用户功能中的最低层；</p>
 <h2 id="基础概念"><a class="markdownIt-Anchor" href="#基础概念"></a> 基础概念</h2>
 <h3 id="udp"><a class="markdownIt-Anchor" href="#udp"></a> UDP</h3>
@@ -519,7 +519,7 @@
 <blockquote>
 <p>套接字 = IP 地址 + 端口号</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028150508864.png" alt="image-20211028150508864" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028150508864.png" alt="image-20211028150508864" /></p>
 <h2 id="传输层功能"><a class="markdownIt-Anchor" href="#传输层功能"></a> 传输层功能</h2>
 <p>1、传输层为<strong>应用进程之间</strong>提供端到端的逻辑通信</p>
 <blockquote>
@@ -534,12 +534,12 @@
 <p>首部有 8 个字节，由源端口、目的端口、长度和校验和 4个字段组成</p>
 <p>伪首部：用来生成校验和，只是一种根据真实的首部部分数据抽象出来的一种数据结构。并没有在数据包中真实的存在。包括源 IP，目的 IP，填充，协议号以及 包长度</p>
 <p>校验和：在接收端收到数据时，判断协议首部和数据是否被破坏</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211122210359366.png" alt="image-20211122210359366" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122210359366.png" alt="image-20211122210359366" /></p>
 <p><strong>伪首部中为什么要填充 8 个字符</strong></p>
 <p>因为校验和生成的过程要求伪首部的长度应为 16 的倍数，填充前为 11 * 8，填充后为 12 * 8</p>
 <h2 id="校验和计算过程"><a class="markdownIt-Anchor" href="#校验和计算过程"></a> 校验和计算过程</h2>
 <p>1、以 16 位为单位，拆分伪首部，UDP 首部以及数据部分</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211122211410103.png" alt="image-20211122211410103" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122211410103.png" alt="image-20211122211410103" /></p>
 <p>2、按照二进制反码规则执行求和运算：<code>0+0=0</code> <code>1+0=0+1=1</code> <code>1+1=10</code></p>
 <p>3、将求和结果求反码即得到校验和</p>
 <p>4、接收端收到数据后根据 TCP 首部数据构造出伪首部，重复生成校验和一直到取反的前一步，将得到的结果值与 TCP 首部中的校验和相加，如果是 16 个 1，则校验成功</p>
@@ -563,9 +563,9 @@
 <h2 id="udp-反射放大攻击"><a class="markdownIt-Anchor" href="#udp-反射放大攻击"></a> UDP 反射放大攻击</h2>
 <p><strong>Principle:</strong> 很多 UDP 应用的响应包远大于请求包，因此通过伪造源 IP 地址，让大量 UDP 响应包攻击受害主机，使其提供正常服务</p>
 <p><strong>Strength:</strong> 低成本，高隐蔽性</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028152455221.png" alt="image-20211028152455221" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028152455221.png" alt="image-20211028152455221" /></p>
 <h3 id="常见-udp-反射放大攻击类型"><a class="markdownIt-Anchor" href="#常见-udp-反射放大攻击类型"></a> 常见 UDP 反射放大攻击类型</h3>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206133858.png" alt="反射放大攻击类型" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206133858.png" alt="反射放大攻击类型" /></p>
 <h3 id="防御"><a class="markdownIt-Anchor" href="#防御"></a> 防御</h3>
 <p>1、IP 或 Port 限速</p>
 <p>2、报文特征学习</p>
@@ -1128,7 +1128,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

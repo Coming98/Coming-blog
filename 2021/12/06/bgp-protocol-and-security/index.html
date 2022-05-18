@@ -534,15 +534,15 @@
 </blockquote>
 <h3 id="邻居"><a class="markdownIt-Anchor" href="#邻居"></a> 邻居</h3>
 <p>Peers，任何两个形成 TCP 连接来交换 BGP 路由信息的 Speaker 称为邻居(peers)或对等体</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129105731.png" alt="Peers" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129105731.png" alt="Peers" /></p>
 <h3 id="外部与内部-bgp"><a class="markdownIt-Anchor" href="#外部与内部-bgp"></a> 外部与内部 BGP</h3>
 <p>外部 BGP 即 EBGP，当 BGP 邻居属于不同的自治系统，他们被称为 EBGP（相对而言的）</p>
 <blockquote>
 <p>EBGP 邻居, 默认情况下, 需要直连</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206113218.png" alt="EBGP" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206113218.png" alt="EBGP" /></p>
 <p>内部 BGP 即 IBGP，指 BGP 邻居存在于同一个 AS 内，通常这两个 BGP 不需要直连，是该 AS 的两个边界 BGP</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206113154.png" alt="IBGP" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206113154.png" alt="IBGP" /></p>
 <h3 id="五类消息报文"><a class="markdownIt-Anchor" href="#五类消息报文"></a> 五类消息/报文</h3>
 <p>1、Open, 建立 BGP 连接</p>
 <p>2、Keepalive, 检测和维护 BGP 连接</p>
@@ -559,7 +559,7 @@
 <p>内部网关协议信息注入外部网关协议中</p>
 <h3 id="纯动态注入"><a class="markdownIt-Anchor" href="#纯动态注入"></a> 纯动态注入</h3>
 <p>路由器将通过 IGP 路由协议动态获得的路由信息并直接注入到 BGP 系统中去</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129111408.png" alt="动态注入" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129111408.png" alt="动态注入" /></p>
 <h3 id="半动态注入"><a class="markdownIt-Anchor" href="#半动态注入"></a> 半动态注入</h3>
 <p>路由器有选择性的（通过配置命令）将 IGP 发现的动态路由信息注入到 BGP 系统中去</p>
 <blockquote>
@@ -587,7 +587,7 @@ Speaker 只把自己使用的路由通告给邻居</p>
 <blockquote>
 <p>建立连接后会发送所有有效BGP路由，之后只<strong>增量更新路由</strong></p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206125443.png" alt="增量路由" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206125443.png" alt="增量路由" /></p>
 <h3 id="ibgp-之间"><a class="markdownIt-Anchor" href="#ibgp-之间"></a> IBGP 之间</h3>
 <p>Speaker 从 IBGP 获得的路由不向它的 IBGP 邻居通告（避免环路）</p>
 <h2 id="bgp-路由属性"><a class="markdownIt-Anchor" href="#bgp-路由属性"></a> BGP 路由属性</h2>
@@ -602,7 +602,7 @@ EGP 中的 BGP 通告整条路径并使用属性标识路径好坏</p>
 <p>3、可选过度：在 AS 之间具有可传递性的属性。BGP 路由器可以不支持此属性，但它仍然会接收带有此属性的路由，并通告给其他邻居（我如果不支持但是会帮你传递）</p>
 <p>4、可选非过渡：如果 BGP 路由器不支持此属性，则相应的 Update 消息会被忽略，且不会通告给其他邻居（我如果不支持就不管那个属性）</p>
 <p>常用属性如下：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129113701.png" alt="BGP路由属性" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129113701.png" alt="BGP路由属性" /></p>
 <h2 id="bgp-路由更新策略"><a class="markdownIt-Anchor" href="#bgp-路由更新策略"></a> BGP 路由更新策略</h2>
 <p>当 BGP 路由器从多个邻居接收到达到同一目的前缀的路由信息时，会根据路由属性选择并通告一条最优路由（顺序决策）</p>
 <p>1、本地优先属性(Local_Pref)值最高的路由</p>
@@ -613,7 +613,7 @@ P2C 关系：Provider 为 Customer 提供接入互联网服务，收取流量费
 P2P 关系：AS 之间可以互相为对方(及其Customer)免费转发流量：关系平等
 S2S 关系：AS 之间可以免费转发对方任何流量(少见)</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129115251.png" alt="路由策略" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129115251.png" alt="路由策略" /></p>
 <p>Q：为什么优先级次序为 Customer &gt; Peer &gt; Provider</p>
 <p>A：这是由流量所产生的的经济利益决定的，customer 为购买方其产生的经济利益最大，因此优先级最高；Peer 与我是同等身份，经济利益应介于 Provider 与 Customer 之间；</p>
 <p>2、AS路径(AS_Path)长度最小的路由</p>
@@ -648,25 +648,25 @@ S2S 关系：AS 之间可以免费转发对方任何流量(少见)</p>
 </blockquote>
 <h2 id="前缀劫持"><a class="markdownIt-Anchor" href="#前缀劫持"></a> 前缀劫持</h2>
 <p>AS 对外发起的路由通告中的前缀未获授权（我可以随便说到某个 IP 要走我自己）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129123047.png" alt="前缀劫持" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129123047.png" alt="前缀劫持" /></p>
 <h2 id="路径伪造"><a class="markdownIt-Anchor" href="#路径伪造"></a> 路径伪造</h2>
 <p>AS 向邻居传播的路由通告中的 AS_PATH 路径属性非真（类似于前缀劫持）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129123141.png" alt="路径伪造" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129123141.png" alt="路径伪造" /></p>
 <h2 id="路由泄露"><a class="markdownIt-Anchor" href="#路由泄露"></a> 路由泄露</h2>
 <p>AS 向邻居传播的路由通告违反路由出站策略：路由通告合法，路由传播非法，会造成流量重定向</p>
 <blockquote>
 <p>来自 Peer 或 Provider 的路由仅通告给 Customer，不向 Peer 和 Provider 传播</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129123340.png" alt="路由泄露" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129123340.png" alt="路由泄露" /></p>
 <h2 id="典型事件分析"><a class="markdownIt-Anchor" href="#典型事件分析"></a> 典型事件分析</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206130550.png" alt="异常路由事件分析" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206130550.png" alt="异常路由事件分析" /></p>
 <h3 id="巴基斯坦电信恶意主动劫持-youtube-前缀"><a class="markdownIt-Anchor" href="#巴基斯坦电信恶意主动劫持-youtube-前缀"></a> 巴基斯坦电信恶意主动劫持 YouTube 前缀</h3>
 <p>1、巴基斯坦电信致使 YouTube 断网事件：巴基斯坦电信想要封掉 YouTube 的访问，因此在路由器在路由器上添加一条静态路由表项（人文静态注入）将目的地址设为黑洞路由地址；但是电信工程师不小心让这个路由注入到了 BGP 中，随后被通告给了巴基斯坦电信的 Provider 香港电讯盈科，Provider（香港电讯盈科） 一看 Customer （巴基斯坦电信）传来了路由，那我得给所有人通告啊，因此被逐渐同步到了全世界</p>
 <h1 id="bgp-安全技术"><a class="markdownIt-Anchor" href="#bgp-安全技术"></a> BGP 安全技术</h1>
 <p>BGP 安全技术分为<strong>路由认证技术</strong>和<strong>异常检测技术</strong>两大类</p>
 <p>路由认证技术：以制定和完善 BGP 路由协议的安全机制为目标，利用证书、数字签名和其他加密技术来保护路由信息的真实性和完整性。可以从根本上解决 BGP 异常路由通告问题，但同时也需要付出不小的代价，主要包括：需要建立 PKI、路由器的性能开销、需要修改现有协议规范等</p>
 <p>异常检测技术：提取 BGP 控制平面和数据平面的异常信息，对异常路由通告行为进行检测并报警。不能彻底解决 BGP 的安全问题，但在目前尚未部署完整 PKI体系的情况下，不失为一种轻量级的解决方案</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129124523.png" alt="BGP 安全技术对比" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129124523.png" alt="BGP 安全技术对比" /></p>
 <h2 id="s-bgp"><a class="markdownIt-Anchor" href="#s-bgp"></a> S-BGP</h2>
 <p>Secure BGP，基于PKI（公钥基础设施）的 BGP 路由认证技术：</p>
 <h3 id="组成"><a class="markdownIt-Anchor" href="#组成"></a> 组成</h3>
@@ -675,7 +675,7 @@ S2S 关系：AS 之间可以免费转发对方任何流量(少见)</p>
 <p>3、应用 IPsecBGP 对话系统间的确认。IPsec 同 BGP 发言者发布的证书相关联，来证实 BGP 邻居的真实性，提供 TCP 连接的数据完整性保护，同时可以防止重放攻击；</p>
 <h3 id="attestation"><a class="markdownIt-Anchor" href="#attestation"></a> Attestation</h3>
 <p>Attestation 分为 Address Attestation（地址证明）与 Route Attestation（路由证明）：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211129133832.png" alt="Attestation" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129133832.png" alt="Attestation" /></p>
 <h3 id="attestation-地址证明"><a class="markdownIt-Anchor" href="#attestation-地址证明"></a> Attestation 地址证明</h3>
 <p>地址证明：Signer 是 ISP，ExplicitPA 字段包含有该 ISP 拥有的一段 I P前缀，Target 是 ISP 授权用于通告该 IP 前缀的 AS 号。ISP 使用其私钥对 IP 前缀和 AS 号码数据进行签名并置于 Signature 字段，以保护该段数据的完整性和真实性。“地址证明”表明了哪个 AS 被 ISP 授权来通告其所拥有的前缀</p>
 <blockquote>
@@ -1250,7 +1250,7 @@ S2S 关系：AS 之间可以免费转发对方任何流量(少见)</p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

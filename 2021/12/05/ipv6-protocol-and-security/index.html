@@ -513,15 +513,15 @@
 <h2 id="ipv6-报文格式"><a class="markdownIt-Anchor" href="#ipv6-报文格式"></a> IPv6 报文格式</h2>
 <p>IPv6 协议数据单元由固定首部，base header，和有效载荷，payload，组成，固定首部有 40 字节，包含有 8 个字段</p>
 <p>对比 IPv4：协议首部去掉了 7 个字段，增加了 1 个流标签字段，源地址和目的地址字段的地址位数扩大到 128 比特</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192327.png" alt="IPv6 报文格式" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192327.png" alt="IPv6 报文格式" /></p>
 <h2 id="ipv6-扩展首部"><a class="markdownIt-Anchor" href="#ipv6-扩展首部"></a> IPv6 扩展首部</h2>
 <p>有效载荷又包括扩展首部，extension header，和数据部分，IPv6 数据报在基本首部后面允许有零个或多个扩展首部，再后面是数据</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192657.png" alt="IPv6 扩展首部" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192657.png" alt="IPv6 扩展首部" /></p>
 <p>这么多扩展首部将通过 <code>下一个首部字段</code> 进行连接，例如，Next Header 为 58 表示下一个扩展首部为 ICMP 报文</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192918.png" alt="下一个首部字段" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192918.png" alt="下一个首部字段" /></p>
 <h3 id="扩展报头"><a class="markdownIt-Anchor" href="#扩展报头"></a> 扩展报头</h3>
 <p>IPv6 提供了诸多扩展选项</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205192829.png" alt="诸多扩展选项" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192829.png" alt="诸多扩展选项" /></p>
 <h2 id="ipv6-地址"><a class="markdownIt-Anchor" href="#ipv6-地址"></a> IPv6 地址</h2>
 <p>IPv6 地址结构：共128位，由全球路由前缀(GRP)，子网 ID，接口 ID组成，写成 8 个 16 进制数的形式，如 <code>2001:A304:6101:1::E0:F726:4E58</code></p>
 <h3 id="接口标识"><a class="markdownIt-Anchor" href="#接口标识"></a> 接口标识</h3>
@@ -547,13 +547,13 @@
 <p>2、广播可能会为网络性能设置障碍：同一网络链路上的大量广播意味着该链路上的每个节点都必须处理所有广播，但是其中绝大部分节点最终都将忽略该广播，因为该广播信息与自己无关</p>
 <h3 id="多播地址格式"><a class="markdownIt-Anchor" href="#多播地址格式"></a> 多播地址格式</h3>
 <p>用最高 8 位是 11111111 二进制位组合来标识多播地址，即 <code>FFxx::...</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205193939.png" alt="多播" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205193939.png" alt="多播" /></p>
 <p>1、Flags 字段：用来表示 permanent 或 transient 多播组</p>
 <p>2、Scope 字段：表示多播组的范围</p>
 <p>3、Group ID 字段：表示多播组的 ID</p>
 <h3 id="预定义的多播组"><a class="markdownIt-Anchor" href="#预定义的多播组"></a> 预定义的多播组</h3>
 <p>本地链路时可用：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205194153.png" alt="预定义的多播组" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205194153.png" alt="预定义的多播组" /></p>
 <h2 id="任播地址"><a class="markdownIt-Anchor" href="#任播地址"></a> 任播地址</h2>
 <p>任播地址是 IPv6 协议特有的地址类型，适合于一对一组中的一个(One to One of Many)的通信需求</p>
 <blockquote>
@@ -572,7 +572,7 @@
 <p>3、由设备自动生成，在本地网络中使用</p>
 <h3 id="本地链路地址格式"><a class="markdownIt-Anchor" href="#本地链路地址格式"></a> 本地链路地址格式</h3>
 <p>一个特定的前缀和接口 ID 两部分，使用特定的本地链路前缀 FE80:: /64，低 64 位为接口ID（设备自动生成）。</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205195005.png" alt="本地链路地址格式" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205195005.png" alt="本地链路地址格式" /></p>
 <h2 id="本地站点地址"><a class="markdownIt-Anchor" href="#本地站点地址"></a> 本地站点地址</h2>
 <p>site-local address，本地站点地址也是应用范围受限的地址，仅能在一个单位的网络内使用，类似于 IPv4 中的专用地址（私有地址）</p>
 <h2 id="地址配置技术"><a class="markdownIt-Anchor" href="#地址配置技术"></a> 地址配置技术</h2>
@@ -585,7 +585,7 @@
 <p>具体如下：</p>
 <p>1、主机发送 Router Solicitation 报文，路由器回应 Router Advertisement 报文</p>
 <p>2、主机获得前缀及其它参数</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205204554.png" alt="无状态自动配置" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205204554.png" alt="无状态自动配置" /></p>
 <h3 id="有状态自动配置"><a class="markdownIt-Anchor" href="#有状态自动配置"></a> 有状态自动配置</h3>
 <p>该配置就需要专门的 DHCP 服务器的支持了，网络接口通过客户机/服务器模式从 DHCP 服务器处得到地址配置信息</p>
 <h3 id="手工配置"><a class="markdownIt-Anchor" href="#手工配置"></a> 手工配置</h3>
@@ -595,14 +595,14 @@
 <p>向源节点报告关于目的地址传输 IPv6 包的错误和信息，具有差错报告、网络诊断、邻节点发现和多播实现等功能</p>
 <h3 id="报文格式"><a class="markdownIt-Anchor" href="#报文格式"></a> 报文格式</h3>
 <p>该报文封装在 IPv6 中，next header 号是 58</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128110949.png" alt="IPv6中的封装" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128110949.png" alt="IPv6中的封装" /></p>
 <p>但是是在最后一个扩展首部后:</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205205144.png" alt="报文位置" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205205144.png" alt="报文位置" /></p>
 <p>具体报文格式如下：IMCP 类型，ICMP 代码，校验和，ICMP 报文内容</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128111232.png" alt="具体报文格式" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128111232.png" alt="具体报文格式" /></p>
 <h3 id="预定义类型"><a class="markdownIt-Anchor" href="#预定义类型"></a> 预定义类型</h3>
 <p>存在多种预定义类型：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128111330.png" alt="预定义类型" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128111330.png" alt="预定义类型" /></p>
 <h2 id="ndp"><a class="markdownIt-Anchor" href="#ndp"></a> NDP</h2>
 <p>NDP，Neighbor Discovery Protocol，邻居发现协议，是由 IPv4 中的地址解析协议ARP、ICMP 路由探测协议 RDISC、ICMP 报文重定向等协议综合而成的</p>
 <blockquote>
@@ -612,7 +612,7 @@
 <p>1、替换了原来的 ARP 协议</p>
 <p>2、无状态地址自动配置：前缀通告；重复地址检测；前缀重新编址</p>
 <p>3、路由器重定向</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128111652.png" alt="报文类型的应用" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128111652.png" alt="报文类型的应用" /></p>
 <h3 id="ndp-邻接点请求与通告报文"><a class="markdownIt-Anchor" href="#ndp-邻接点请求与通告报文"></a> NDP 邻接点请求与通告报文</h3>
 <p>邻居节点请求/通告报文完成 ARP 功能以及连通性测试</p>
 <p><strong>实现 ARP 的功能</strong>：</p>
@@ -641,13 +641,13 @@
 <blockquote>
 <p>只有 IPv6 路由器能在本地链路上通告前缀，禁止主机通告前缀</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211205210051.png" alt="前缀通告" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205210051.png" alt="前缀通告" /></p>
 <h3 id="ndp-重复地址检测"><a class="markdownIt-Anchor" href="#ndp-重复地址检测"></a> NDP 重复地址检测</h3>
 <p>每个网络接口可以进行 IPv6 地址的无状态配置，但是配置前需要根据路由器请求报文和路由器通告报文获取前缀，然后进行重复地址检测，即发送一个邻接点请求域通告报文询问是否有人使用了这个地址</p>
 <p>Q：MAC 地址生成的接口 ID 是唯一的，还通告啥？</p>
 <p>A：地址既可以无状态配置也可以手动配置，因此需要防止与手动配置的地址冲突。</p>
 <h1 id="ipv6-安全机制"><a class="markdownIt-Anchor" href="#ipv6-安全机制"></a> IPv6 安全机制</h1>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128121525.png" alt="攻击方式对比" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128121525.png" alt="攻击方式对比" /></p>
 <p>1、v6 没有广播包（但是多播包或许也可以被利用）</p>
 <p>2、v6 没有 ARP 协议（但是 ICMP 的邻节点请求实现欺骗或许也可以）</p>
 <p>3、v6 地址空间太大，可以有效防止 IP 扫描</p>
@@ -1324,7 +1324,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

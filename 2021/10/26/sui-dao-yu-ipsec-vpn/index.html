@@ -510,19 +510,19 @@
 <h2 id="1-路由器添加接口卡"><a class="markdownIt-Anchor" href="#1-路由器添加接口卡"></a> 1、路由器添加接口卡</h2>
 <p><strong>需要对公网路由器 R4，R5，R6 添加额外的接口卡</strong></p>
 <p>a、点开路由器的配置界面，先关闭路由器</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017173557977.png" alt="image-20211017173557977" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017173557977.png" alt="image-20211017173557977" /></p>
 <p>b、左侧选择 NM - 2FE2W 将其拖动进指定的插槽</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017173647869.png" alt="image-20211017173647869" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017173647869.png" alt="image-20211017173647869" /></p>
 <p>c、再次启动路由器</p>
 <h2 id="2-配置外网路由器"><a class="markdownIt-Anchor" href="#2-配置外网路由器"></a> 2、配置外网路由器</h2>
 <p>主要配置 R4，R5，R6 路由器全球 IP 地址与子网掩码</p>
 <p>Tips：配置时推荐打开接口：<code>no shut</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017184925520.png" alt="image-20211017184925520" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017184925520.png" alt="image-20211017184925520" /></p>
 <p>最终配置结果如图所示：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017194622660.png" alt="image-20211017194622660" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017194622660.png" alt="image-20211017194622660" /></p>
 <h2 id="3-配置内网路由器"><a class="markdownIt-Anchor" href="#3-配置内网路由器"></a> 3、配置内网路由器</h2>
 <p>主要配置 R1，R2，R3 路由器连接公共网络接口与内网接口的 IP 与 子网掩码</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017190327310.png" alt="image-20211017190327310" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017190327310.png" alt="image-20211017190327310" /></p>
 <h2 id="4-ospf-配置"><a class="markdownIt-Anchor" href="#4-ospf-配置"></a> 4、OSPF 配置</h2>
 <blockquote>
 <p>OSPF，开放最短路径优先，其路由过程如下：</p>
@@ -533,11 +533,11 @@
 <p>因此对 R1-6 路由器配置 OSPF 后，能够自动寻找邻居（路由器），交换路由信息，保证路由器之间的连通性</p>
 </blockquote>
 <p>以 R2 为例，配置过程如下：将 192.1.2.0 / 24 配置为一个 OSPF 区域（或者是自治系统 AS）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017192234046.png" alt="image-20211017192234046" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017192234046.png" alt="image-20211017192234046" /></p>
 <p>最终整体的初始架构如下：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017194711614.png" alt="image-20211017194711614" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017194711614.png" alt="image-20211017194711614" /></p>
 <p>以 R4 的路由表为例，我们查看一下是否配置正确：其中 O 表示 OSPF</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017194746959.png" alt="image-20211017194746959" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017194746959.png" alt="image-20211017194746959" /></p>
 <h2 id="5-隧道配置"><a class="markdownIt-Anchor" href="#5-隧道配置"></a> 5、隧道配置</h2>
 <p>对 R1，R2 与 R3 配置隧道</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">interface tunnel 1 # 创建编号为 1 的 IP 隧道接口并进入配置模式
@@ -550,7 +550,7 @@ tunnel source FastEthernet 0&#x2F;1
 
 # 指定隧道目的端的公网 IP
 tunnel destination 192.1.2.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017202015250.png" alt="image-20211017202015250" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017202015250.png" alt="image-20211017202015250" /></p>
 <h2 id="6-rip-配置"><a class="markdownIt-Anchor" href="#6-rip-配置"></a> 6、RIP 配置</h2>
 <p>为什么要进行 RIP 配置，为了能使得 R1-3 发现（直连）隧道的私有 IP 地址</p>
 <blockquote>
@@ -564,7 +564,7 @@ network 192.168.4.0 # Tunnel 1 的私有地址
 network 192.168.5.0 # Tunnel 2 的私有地址<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="7-路由表分析"><a class="markdownIt-Anchor" href="#7-路由表分析"></a> 7、路由表分析</h2>
 <p>以 R1 为例</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017202946682.png" alt="image-20211017202946682" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017202946682.png" alt="image-20211017202946682" /></p>
 <p>C 类路由表项，表示直接连接的网络路邮项目，有 外部网段 <code>192.1.1.0</code> 走接口 <code>0/1</code>，有内部网段 <code>192.168.1.0</code> 走接口 <code>0/0</code> ，还有隧道 1 的 <code>192.168.4.0</code> 隧道源端，隧道 2 的 <code>192.168.5.0</code> 隧道源端；</p>
 <p>O 类路由表项，表示通往公共子网的传输路径（非直连），对于 R1 除了 <code>192.1.1.0</code> 网段直连外 <code>2.0, 3.0, 4.0, 5.0, 6.0</code> 均是通过OSPF 配置得到的动态路由项</p>
 <p>R 类路由表项，表示通往内部子网的传输路径（非直连），有 RIP 动态路由习得，对于 R1 除了 <code>192.1.1.0</code> 这一内部子网直连外，还能习得 <code>192.168.2.0, 192.168.2.0</code> 这两个，这是通过 RIP 配置的 <code>192.168.4.0, 192.168.5.0</code>  隧道直连得到；看到底部还有一个 <code>192.168.6.0</code> 这是 R3 那边配置隧道和 RIP 后，R1 习得的结果。</p>
@@ -628,25 +628,25 @@ network 192.168.5.0 # Tunnel 2 的私有地址<span aria-hidden="true" class="li
 <h2 id="9-隧道测试"><a class="markdownIt-Anchor" href="#9-隧道测试"></a> 9、隧道测试</h2>
 <p>使用 PC0 ping PC4 <code>192.168.3.1</code></p>
 <p>在内网中 先给交换机，交换机给网关，没有问题</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017205508453.png" alt="image-20211017205508453" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017205508453.png" alt="image-20211017205508453" /></p>
 <p>进入公网，需要隧道 2 配合换上公网 IP <code>192.1.1.1</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017223314685.png" alt="image-20211017223314685" /></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018085748762.png" alt="image-20211018085748762" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017223314685.png" alt="image-20211017223314685" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018085748762.png" alt="image-20211018085748762" /></p>
 <p>真实的行动轨迹</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017223418362.png" alt="image-20211017223418362" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017223418362.png" alt="image-20211017223418362" /></p>
 <p>到了 Router 3 后：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211017223512176.png" alt="image-20211017223512176" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017223512176.png" alt="image-20211017223512176" /></p>
 <p>Tips：如果没有这条 Tunnel2 私有地址（<code>192.168.1.1 - 192.168.3.1</code>）是无法在公网上路由的，但是他应该能找寻到 Tunnel1 -&gt; Tunnel3 -&gt; PC3 这样一条路径，我们来尝试下：</p>
 <h2 id="10-智能路由测试"><a class="markdownIt-Anchor" href="#10-智能路由测试"></a> 10、智能路由测试</h2>
 <p>关闭 Tunnel2 很简单：在 R1 与 R3 中输入如下命令，重启 Packet Tracer 后，R1 和 R3 就无法发现Tunnel 2 了。</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">router rip
 no network 192.168.5.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>随后我们尝试 PC0 Ping PC3，第一个关键节点是 R1 输出的 IP 包：可以看出他的确没有识别到 Tunnel 2，但是通过路由器之间互学习（路由表交换），R1 能够学习到通往 192.168.3.0/24 的路由项。</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018091036921.png" alt="image-20211018091036921" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018091036921.png" alt="image-20211018091036921" /></p>
 <p>R1 的部分路由表，192.168.3.0 /24 走 Tunnel1 即可</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018091244762.png" alt="image-20211018091244762" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018091244762.png" alt="image-20211018091244762" /></p>
 <p>随后能在公网上顺利到达 192.1.2.1 （R2），R2 能够通过 Tunnel 3，传给 R3，进而到达 PC3</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211018091415881.png" alt="image-20211018091415881" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018091415881.png" alt="image-20211018091415881" /></p>
 <h1 id="ipsec"><a class="markdownIt-Anchor" href="#ipsec"></a> IPSec</h1>
 <p>Target：通过 IPSec 实现经过点对点 IP 隧道传输内容的保密性以及完整性，分两个阶段完成，第一个阶段建立点对点 IP 隧道两端之间的安全传输通道；第二阶段是建立点对点 IP 隧道两端之间的双向安全关联。</p>
 <p>具体包括：</p>
@@ -714,11 +714,11 @@ match address 101<span aria-hidden="true" class="line-numbers-rows"><span></span
 <p>隧道两端都需要完成相应的 ISAKMP 安全策略配置过程，包括安全通道传输所使用的加密算法，报文摘要算法，共享秘钥鉴别机制和 DH 组号。</p>
 <p>隧道每一端可以配置多个安全 策略，但两端必须存在匹配的安全策略</p>
 <p><strong>Router 1</strong>：R1 上定义编号为 1 优先级最高的安全策略，身份鉴别机制采用共享秘钥鉴别机制，加密算法采用 3des，hash 采用 md5，DH 秘钥交换算法</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020083237656.png" alt="image-20211020083237656" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020083237656.png" alt="image-20211020083237656" /></p>
 <p><strong>Route 2</strong>：匹配 Tunnel 1 的 R1 端，采用相同的安全策略即可</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020084427570.png" alt="image-20211020084427570" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020084427570.png" alt="image-20211020084427570" /></p>
 <p><strong>Route 3</strong>：匹配 Tunnel 2 的 R1 端，与 Tunnel 3 的 R2 端，采用相同的安全策略即可</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020084337530.png" alt="image-20211020084337530" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020084337530.png" alt="image-20211020084337530" /></p>
 <h2 id="2-变换集配置"><a class="markdownIt-Anchor" href="#2-变换集配置"></a> 2、变换集配置</h2>
 <p>IPSec 参数配置：这属于阶段二中安全关联相关配置过程</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">crypto ipsec transform-set tunnel esp-3des esp-md5-hmac<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -748,26 +748,26 @@ access-list 102 deny ip any any<span aria-hidden="true" class="line-numbers-rows
 <h2 id="4-加密映射配置"><a class="markdownIt-Anchor" href="#4-加密映射配置"></a> 4、加密映射配置</h2>
 <p>将分组过滤器与变换集配置选项绑定至加密映射中</p>
 <p>R1：需要配置 Tunnel 1 与 Tunnel 2 的加密映射</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020091651843.png" alt="image-20211020091651843" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020091651843.png" alt="image-20211020091651843" /></p>
 <p>R2：需要配置 Tunnel 1 与 Tunnel 3 的加密映射</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020091911504.png" alt="image-20211020091911504" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020091911504.png" alt="image-20211020091911504" /></p>
 <p>R3：需要配置 Tunnel 2 与 Tunnel 3 的加密映射</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020092049086.png" alt="image-20211020092049086" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020092049086.png" alt="image-20211020092049086" /></p>
 <h2 id="5-绑定接口"><a class="markdownIt-Anchor" href="#5-绑定接口"></a> 5、绑定接口</h2>
 <p>将配置好的加密映射作用到路由器目标接口上</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">interface FastEthernet 0&#x2F;1
 crypto map tunnel <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="6-测试"><a class="markdownIt-Anchor" href="#6-测试"></a> 6、测试</h2>
 <p>使用 PC0 ping PC4 <code>192.168.3.1</code></p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093157410.png" alt="image-20211020093157410" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093157410.png" alt="image-20211020093157410" /></p>
 <p>首先能够看到初始的内层 IP 分组：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020092955818.png" alt="image-20211020092955818" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020092955818.png" alt="image-20211020092955818" /></p>
 <p>随后能够看到 R1 将原始 IP 分组封装后的报文：内部的信息（私有地址）已然看不到了</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093116200.png" alt="image-20211020093116200" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093116200.png" alt="image-20211020093116200" /></p>
 <p>然后该报文在公网上安全加密传输：</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093245915.png" alt="image-20211020093245915" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093245915.png" alt="image-20211020093245915" /></p>
 <p>直到 R3 开始解开外部 IP 报文，解密获取了内部 IP 分组，故而继续在私网上传输</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211020093419574.png" alt="image-20211020093419574" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093419574.png" alt="image-20211020093419574" /></p>
 
                 
             </div>
@@ -1327,7 +1327,7 @@ crypto map tunnel <span aria-hidden="true" class="line-numbers-rows"><span></spa
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             

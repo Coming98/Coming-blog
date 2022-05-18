@@ -503,17 +503,17 @@
 <p>适用于小型网络</p>
 </blockquote>
 <h2 id="rip-报文格式-v2"><a class="markdownIt-Anchor" href="#rip-报文格式-v2"></a> RIP 报文格式 (v2)</h2>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128171804.png" alt="RIP报文格式" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128171804.png" alt="RIP报文格式" /></p>
 <h2 id="rip-工作过程"><a class="markdownIt-Anchor" href="#rip-工作过程"></a> RIP 工作过程</h2>
 <p>1、路由器初始启动，发现直连网段（哪个接口对应哪个地址）</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172017.png" alt="RIP1" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172017.png" alt="RIP1" /></p>
 <p>2、邻居互相发起请求，交换自己的路由表学习自己不知道的网段</p>
 <blockquote>
 <p>直到收敛：即当所有路由表都包含相同的网络信息且无新信息时
 RIP 协议所接收的路由信息都是封装在 UDP 协议的数据包中的，使用 UDP 的 520 号端口接收来自相邻路由器的路由表信息，并对本地的路由表进行相应的修改
 Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172124.png" alt="RIP2" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172124.png" alt="RIP2" /></p>
 <p>3、周期性发送 Response 信息，确保路由的有效性</p>
 <h2 id="metric-度量值"><a class="markdownIt-Anchor" href="#metric-度量值"></a> Metric 度量值</h2>
 <p>RIP 是以跳数作为 metric 的唯一标准</p>
@@ -526,17 +526,17 @@ Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
 <p>RIP 支持水平分割、毒性逆转和触发更新等工作机制防止路由环路</p>
 <h2 id="环路产生原因"><a class="markdownIt-Anchor" href="#环路产生原因"></a> 环路产生原因</h2>
 <p>这和 RIP 检测到拓扑变化并在网络中扩展的过程有关： RIP 将先更新路由表，等待下一个周期在传递更新</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206100433.png" alt="拓扑变化" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206100433.png" alt="拓扑变化" /></p>
 <h2 id="单路径环路产生"><a class="markdownIt-Anchor" href="#单路径环路产生"></a> 单路径环路产生</h2>
 <p>1、以线性路由为例：此时网络正常收敛</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172756.png" alt="circle1" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172756.png" alt="circle1" /></p>
 <p>2、突然 <code>10.4.0.0</code> 网段发生错误，RTC 路由器检测出来后先更新自己的路由表：将相关路由表项应被删除</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128172928.png" alt="circle2" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172928.png" alt="circle2" /></p>
 <p>3、随后 RTC 等待下一周期发送路由更新信息，但是此时 RTB 的更新信息先来到，就把正确的信息给覆盖了</p>
 <blockquote>
 <p>RTB 从 RTC 学的能到 <code>10.4.0.0</code> 又反手教给了 RTC</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128173035.png" alt="circle3" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128173035.png" alt="circle3" /></p>
 <h2 id="单路径环路避免"><a class="markdownIt-Anchor" href="#单路径环路避免"></a> 单路径环路避免</h2>
 <h3 id="路由毒化"><a class="markdownIt-Anchor" href="#路由毒化"></a> 路由毒化</h3>
 <p>类似触发更新机制，一旦网络拓扑结构发生变化，路由将将失效条目度量值设为无穷大并立即主动通告出去，做到及时更新</p>
@@ -549,22 +549,22 @@ Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
 </blockquote>
 <h2 id="多路径环路产生"><a class="markdownIt-Anchor" href="#多路径环路产生"></a> 多路径环路产生</h2>
 <p>1、正常的收敛状态</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175601.png" alt="正常的收敛状态" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175601.png" alt="正常的收敛状态" /></p>
 <p>2、突然 <code>10.4.0.0</code> 网段发生错误，RTC 置路由表项 10.4.0.0 为无穷大并发送路由更新信息(路由毒化机制)：但此时 RTA 也给 RTB 更新，一对比选择了 RTA 的，环路产生</p>
 <blockquote>
 <p>RTA 从 RTC 学的，不会给 RTC 发（水平分割）</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175627.png" alt="网络发生故障" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175627.png" alt="网络发生故障" /></p>
 <p>3、随后 RTB 转而又会影响 RTC</p>
 <blockquote>
 <p>RTB 从 RTA 学的，因此可以告诉 RTC，并没有违背水平分割
 随后 RTC 又会告诉 RTA，RTA 收到看之间走 RTC 1 步到 10.4.0.0 现在变了啊要走三步，那我得更新；环路至此闭合</p>
 </blockquote>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175751.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175751.png" alt="" /></p>
 <h2 id="多路径环路避免"><a class="markdownIt-Anchor" href="#多路径环路避免"></a> 多路径环路避免</h2>
 <h3 id="定义最大值"><a class="markdownIt-Anchor" href="#定义最大值"></a> 定义最大值</h3>
 <p>给这个环路学习定义一个最大值，超过这个值则认定该学习过程为环路，因此不再转发目标 IP 的包</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128175943.png" alt="定义最大值" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175943.png" alt="定义最大值" /></p>
 <h3 id="抑制时间"><a class="markdownIt-Anchor" href="#抑制时间"></a> 抑制时间</h3>
 <p>指一条路由信息无效之后，一段时间内这条路由都处于抑制状态，即在一定时间内不再接收关于同一目的地址的路由更新</p>
 <blockquote>
@@ -576,7 +576,7 @@ Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
 <h1 id="rip-版本简介"><a class="markdownIt-Anchor" href="#rip-版本简介"></a> RIP 版本简介</h1>
 <h2 id="ripv1-的缺陷"><a class="markdownIt-Anchor" href="#ripv1-的缺陷"></a> RIPv1 的缺陷</h2>
 <p>发送协议报文时不携带掩码，路由交换过程中有时会造成错误；不支持认证；只能以广播方式发布协议报文；</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211206102248.png" alt="RIPv1 的缺陷" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206102248.png" alt="RIPv1 的缺陷" /></p>
 <h2 id="ripv2"><a class="markdownIt-Anchor" href="#ripv2"></a> RIPv2</h2>
 <p>RIPv2 是一种无类别路由协议，报文中携带掩码信息，支持 VLSM（可变长子网掩码）和 CIDR（无类别域间路由）；</p>
 <p>支持以组播方式发送路由更新报文，组播地址为 224.0.0.9，减少网络与系统资源消耗；</p>
@@ -604,14 +604,14 @@ Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
 <p>1、先伪造包冒充 R1 毁掉原有的路径：1.0.0.0/8， Metric 4</p>
 <p>2、然后发送优先级更高的虚假路由跟新：1.0.0.0/8, Metric 1</p>
 <p>3、完成流量劫持</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128202300.png" alt="RIP 路由欺骗" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128202300.png" alt="RIP 路由欺骗" /></p>
 <h2 id="rip-路由防御"><a class="markdownIt-Anchor" href="#rip-路由防御"></a> RIP 路由防御</h2>
 <p>基于 RIPv2 报文验证，将 RIP 报文前 20 个字节作为验证信息：</p>
 <p>1、建立邻居的双方必须使用相同的验证方式和口令</p>
 <p>2、不直接建立邻居的路由器可以使用不同的验证方式和口令</p>
 <p>3、在哪些链路上实施验证、使用哪种验证方式，全由管理员根据需求进行考量和设计</p>
 <p>Tips：仅仅采用 MAC 机制并不安全，如上图 攻击者可以劫持 R1 到 R2 的明文信息，而 MAC 只能保证完整性，所以该认证还是能被篡改；只有带密钥加密的 HMAC 才比较安全</p>
-<p><img src="https://gitee.com/Butterflier/pictures/raw/master/20211128202442.png" alt="报文验证机制" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128202442.png" alt="报文验证机制" /></p>
 
                 
             </div>
@@ -1163,7 +1163,7 @@ Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.2k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             
