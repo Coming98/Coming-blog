@@ -37,7 +37,7 @@ Dynamic Host Configuration Protocol，动态主机配置协议，提供动态 IP
 
 DHCP 属于应用层协议，建立在 UDP 协议之上，因此数据包形式如下：
 
-![DHCP 数据包](https://raw.githubusercontent.com/Coming98/pictures/main/20211206090640.png)
+![DHCP 数据包](https://gitee.com/Butterflier/pictures/raw/master/20211206090640.png)
 
 1、最外层的以太网标头（ MAC 帧）源 MAC 地址为客户 MAC 地址，目的 MAC 地址未知，因此填入广播 MAC `FF-FF-FF-FF-FF-FF`
 

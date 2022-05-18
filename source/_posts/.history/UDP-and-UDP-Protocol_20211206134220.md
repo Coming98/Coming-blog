@@ -9,7 +9,7 @@ tags:
 ---
 # 传输层
 
-![image-20211122204641955](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122204641955.png)
+![image-20211122204641955](https://gitee.com/Butterflier/pictures/raw/master/image-20211122204641955.png)
 
 Transport Layer，从通信和信息处理的角度看，传输层向它上面的应用层提供通信服务，它属于面向通信部分的最高层，同时也是用户功能中的最低层；
 
@@ -43,7 +43,7 @@ TCP：传输控制协议（Transmission Control Protocol），需建立连接，
 
 > 套接字 = IP 地址 + 端口号
 
-![image-20211028150508864](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028150508864.png)
+![image-20211028150508864](https://gitee.com/Butterflier/pictures/raw/master/image-20211028150508864.png)
 
 ## 传输层功能
 
@@ -68,7 +68,7 @@ Strength：发送数据前不需要建立连接，不需要维持连接，首部
 
 校验和：在接收端收到数据时，判断协议首部和数据是否被破坏
 
-![image-20211122210359366](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122210359366.png)
+![image-20211122210359366](https://gitee.com/Butterflier/pictures/raw/master/image-20211122210359366.png)
 
 **伪首部中为什么要填充 8 个字符**
 
@@ -78,7 +78,7 @@ Strength：发送数据前不需要建立连接，不需要维持连接，首部
 
 1、以 16 位为单位，拆分伪首部，UDP 首部以及数据部分
 
-![image-20211122211410103](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122211410103.png)
+![image-20211122211410103](https://gitee.com/Butterflier/pictures/raw/master/image-20211122211410103.png)
 
 2、按照二进制反码规则执行求和运算：`0+0=0` `1+0=0+1=1` `1+1=10`
 
@@ -126,11 +126,11 @@ Strength：发送数据前不需要建立连接，不需要维持连接，首部
 
 **Strength:** 低成本，高隐蔽性
 
-![image-20211028152455221](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028152455221.png)
+![image-20211028152455221](https://gitee.com/Butterflier/pictures/raw/master/image-20211028152455221.png)
 
 ### 常见 UDP 反射放大攻击类型
 
-![反射放大攻击类型](https://raw.githubusercontent.com/Coming98/pictures/main/20211206133858.png)
+![反射放大攻击类型](https://gitee.com/Butterflier/pictures/raw/master/20211206133858.png)
 
 ### 防御
 

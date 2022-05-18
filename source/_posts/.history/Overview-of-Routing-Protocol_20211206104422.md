@@ -40,7 +40,7 @@ tags:
 
 动态路由协议在协议栈上的位置如下图所示：
 
-![路由协议](https://raw.githubusercontent.com/Coming98/pictures/main/20211201141135.png)
+![路由协议](https://gitee.com/Butterflier/pictures/raw/master/20211201141135.png)
 
 RIP 基于 UDP，端口为 520
 
@@ -69,7 +69,7 @@ IGP，Interior Gateway Protocols，内部网关协议，在一个 AS 内部使�
 
 EGP，Exterior Gateway Protocol，外部网关协议，在多个 AS 之间使用的路由协议。BGP 是互联网事实上的 EGP 标准
 
-![IGP, EGP](https://raw.githubusercontent.com/Coming98/pictures/main/20211128170339.png)
+![IGP, EGP](https://gitee.com/Butterflier/pictures/raw/master/20211128170339.png)
 
 区别：内部网关协议和作用于一个AS（自治系统）内部，而外部网关协议作用于两个相邻的AS（自治系统）之间；内部网关协议有一族，而外部网关协议只有一个。
 
@@ -94,7 +94,7 @@ EGP，Exterior Gateway Protocol，外部网关协议，在多个 AS 之间使用
 
 ### 对比
 
-![对比](https://raw.githubusercontent.com/Coming98/pictures/main/20211128171046.png)
+![对比](https://gitee.com/Butterflier/pictures/raw/master/20211128171046.png)
 
 1、距离矢量协议信息传递和更新时是发送完整的路由表，资源利用低；而链路状态协议只是发送必要的链路状态信息，资源利用率高
 

@@ -39,23 +39,23 @@ IPv6 协议数据单元由固定首部，base header，和有效载荷，payload
 
 对比 IPv4：协议首部去掉了 7 个字段，增加了 1 个流标签字段，源地址和目的地址字段的地址位数扩大到 128 比特
 
-![IPv6 报文格式](https://raw.githubusercontent.com/Coming98/pictures/main/20211205192327.png)
+![IPv6 报文格式](https://gitee.com/Butterflier/pictures/raw/master/20211205192327.png)
 
 ## IPv6 扩展首部
 
 有效载荷又包括扩展首部，extension header，和数据部分，IPv6 数据报在基本首部后面允许有零个或多个扩展首部，再后面是数据
 
-![IPv6 扩展首部](https://raw.githubusercontent.com/Coming98/pictures/main/20211205192657.png)
+![IPv6 扩展首部](https://gitee.com/Butterflier/pictures/raw/master/20211205192657.png)
 
 这么多扩展首部将通过 `下一个首部字段` 进行连接，例如，Next Header 为 58 表示下一个扩展首部为 ICMP 报文
 
-![下一个首部字段](https://raw.githubusercontent.com/Coming98/pictures/main/20211205192918.png)
+![下一个首部字段](https://gitee.com/Butterflier/pictures/raw/master/20211205192918.png)
 
 ### 扩展报头
 
 IPv6 提供了诸多扩展选项
 
-![诸多扩展选项](https://raw.githubusercontent.com/Coming98/pictures/main/20211205192829.png)
+![诸多扩展选项](https://gitee.com/Butterflier/pictures/raw/master/20211205192829.png)
 
 ## IPv6 地址
 
@@ -96,7 +96,7 @@ IPv6 地址结构：共128位，由全球路由前缀(GRP)，子网 ID，接口 
 
 用最高 8 位是 11111111 二进制位组合来标识多播地址，即 `FFxx::...`
 
-![多播](https://raw.githubusercontent.com/Coming98/pictures/main/20211205193939.png)
+![多播](https://gitee.com/Butterflier/pictures/raw/master/20211205193939.png)
 
 1、Flags 字段：用来表示 permanent 或 transient 多播组
 
@@ -108,7 +108,7 @@ IPv6 地址结构：共128位，由全球路由前缀(GRP)，子网 ID，接口 
 
 本地链路时可用：
 
-![预定义的多播组](https://raw.githubusercontent.com/Coming98/pictures/main/20211205194153.png)
+![预定义的多播组](https://gitee.com/Butterflier/pictures/raw/master/20211205194153.png)
 
 ## 任播地址
 
@@ -141,7 +141,7 @@ link-local address，本地链路地址具有固定的地址格式，是在 IPv6
 
 一个特定的前缀和接口 ID 两部分，使用特定的本地链路前缀 FE80:: /64，低 64 位为接口ID（设备自动生成）。
 
-![本地链路地址格式](https://raw.githubusercontent.com/Coming98/pictures/main/20211205195005.png)
+![本地链路地址格式](https://gitee.com/Butterflier/pictures/raw/master/20211205195005.png)
 
 ## 本地站点地址
 
@@ -162,7 +162,7 @@ site-local address，本地站点地址也是应用范围受限的地址，仅�
 
 2、主机获得前缀及其它参数
 
-![无状态自动配置](https://raw.githubusercontent.com/Coming98/pictures/main/20211205204554.png)
+![无状态自动配置](https://gitee.com/Butterflier/pictures/raw/master/20211205204554.png)
 
 ### 有状态自动配置
 
@@ -185,21 +185,21 @@ Internet Control Message Protocol，网际管理协议, 实现 IPv4 中 ICMP、A
 
 该报文封装在 IPv6 中，next header 号是 58
 
-![IPv6中的封装](https://raw.githubusercontent.com/Coming98/pictures/main/20211128110949.png)
+![IPv6中的封装](https://gitee.com/Butterflier/pictures/raw/master/20211128110949.png)
 
 但是是在最后一个扩展首部后:
 
-![报文位置](https://raw.githubusercontent.com/Coming98/pictures/main/20211205205144.png)
+![报文位置](https://gitee.com/Butterflier/pictures/raw/master/20211205205144.png)
 
 具体报文格式如下：IMCP 类型，ICMP 代码，校验和，ICMP 报文内容
 
-![具体报文格式](https://raw.githubusercontent.com/Coming98/pictures/main/20211128111232.png)
+![具体报文格式](https://gitee.com/Butterflier/pictures/raw/master/20211128111232.png)
 
 ### 预定义类型
 
 存在多种预定义类型：
 
-![预定义类型](https://raw.githubusercontent.com/Coming98/pictures/main/20211128111330.png)
+![预定义类型](https://gitee.com/Butterflier/pictures/raw/master/20211128111330.png)
 
 ## NDP
 
@@ -213,7 +213,7 @@ NDP，Neighbor Discovery Protocol，邻居发现协议，是由 IPv4 中的地�
 
 3、路由器重定向
 
-![报文类型的应用](https://raw.githubusercontent.com/Coming98/pictures/main/20211128111652.png)
+![报文类型的应用](https://gitee.com/Butterflier/pictures/raw/master/20211128111652.png)
 
 ### NDP 邻接点请求与通告报文
 
@@ -247,7 +247,7 @@ NDP，Neighbor Discovery Protocol，邻居发现协议，是由 IPv4 中的地�
 **实现前缀通告功能**：前缀通告是无状态自动配置中的初始机制，IPv6 路由器使用所有节点多播地址 `FF02::1`，在本地链路上周期性地发送路由器通告报文
 > 只有 IPv6 路由器能在本地链路上通告前缀，禁止主机通告前缀
 
-![前缀通告](https://raw.githubusercontent.com/Coming98/pictures/main/20211205210051.png)
+![前缀通告](https://gitee.com/Butterflier/pictures/raw/master/20211205210051.png)
 
 ### NDP 重复地址检测
 
@@ -259,7 +259,7 @@ A：地址既可以无状态配置也可以手动配置，因此需要防止与�
 
 # IPv6 安全机制
 
-![攻击方式对比](https://raw.githubusercontent.com/Coming98/pictures/main/20211128121525.png)
+![攻击方式对比](https://gitee.com/Butterflier/pictures/raw/master/20211128121525.png)
 
 1、v6 没有广播包（但是多播包或许也可以被利用）
 

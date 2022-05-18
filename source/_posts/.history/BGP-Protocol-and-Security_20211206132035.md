@@ -62,18 +62,18 @@ Speaker，指发送 BGP 消息的路由器，它接收或产生新的路由信�
 
 Peers，任何两个形成 TCP 连接来交换 BGP 路由信息的 Speaker 称为邻居(peers)或对等体
 
-![Peers](https://raw.githubusercontent.com/Coming98/pictures/main/20211129105731.png)
+![Peers](https://gitee.com/Butterflier/pictures/raw/master/20211129105731.png)
 
 ### 外部与内部 BGP
 
 外部 BGP 即 EBGP，当 BGP 邻居属于不同的自治系统，他们被称为 EBGP（相对而言的）
 > EBGP 邻居, 默认情况下, 需要直连
 
-![EBGP](https://raw.githubusercontent.com/Coming98/pictures/main/20211206113218.png)
+![EBGP](https://gitee.com/Butterflier/pictures/raw/master/20211206113218.png)
 
 内部 BGP 即 IBGP，指 BGP 邻居存在于同一个 AS 内，通常这两个 BGP 不需要直连，是该 AS 的两个边界 BGP
 
-![IBGP](https://raw.githubusercontent.com/Coming98/pictures/main/20211206113154.png)
+![IBGP](https://gitee.com/Butterflier/pictures/raw/master/20211206113154.png)
 
 ### 五类消息/报文
 
@@ -107,7 +107,7 @@ Peers，任何两个形成 TCP 连接来交换 BGP 路由信息的 Speaker 称�
 
 路由器将通过 IGP 路由协议动态获得的路由信息并直接注入到 BGP 系统中去
 
-![动态注入](https://raw.githubusercontent.com/Coming98/pictures/main/20211129111408.png)
+![动态注入](https://gitee.com/Butterflier/pictures/raw/master/20211129111408.png)
 
 
 ### 半动态注入
@@ -137,7 +137,7 @@ Peers，任何两个形成 TCP 连接来交换 BGP 路由信息的 Speaker 称�
 1、Speaker 从 EBGP 获得的路由会向它所有 BGP 邻居通告（包括 EBGP 和 IBGP）
 > 建立连接后会发送所有有效BGP路由，之后只**增量更新路由**
 
-![增量路由](https://raw.githubusercontent.com/Coming98/pictures/main/20211206125443.png)
+![增量路由](https://gitee.com/Butterflier/pictures/raw/master/20211206125443.png)
 
 ### IBGP 之间
 
@@ -161,7 +161,7 @@ BGP 路由属性是包含在 BGP 路由器通告里的一套参数，它对特�
 
 常用属性如下：
 
-![BGP路由属性](https://raw.githubusercontent.com/Coming98/pictures/main/20211129113701.png)
+![BGP路由属性](https://gitee.com/Butterflier/pictures/raw/master/20211129113701.png)
 
 ## BGP 路由更新策略
 
@@ -174,7 +174,7 @@ BGP 路由属性是包含在 BGP 路由器通告里的一套参数，它对特�
 > P2P 关系：AS 之间可以互相为对方(及其Customer)免费转发流量：关系平等
 > S2S 关系：AS 之间可以免费转发对方任何流量(少见)
 
-![路由策略](https://raw.githubusercontent.com/Coming98/pictures/main/20211129115251.png)
+![路由策略](https://gitee.com/Butterflier/pictures/raw/master/20211129115251.png)
 
 Q：为什么优先级次序为 Customer > Peer > Provider
 
@@ -229,24 +229,24 @@ A：与路由器通告原则中本地优先属性规定类似，考虑到的还�
 
 AS 对外发起的路由通告中的前缀未获授权（我可以随便说到某个 IP 要走我自己）
 
-![前缀劫持](https://raw.githubusercontent.com/Coming98/pictures/main/20211129123047.png)
+![前缀劫持](https://gitee.com/Butterflier/pictures/raw/master/20211129123047.png)
 
 ## 路径伪造
 
 AS 向邻居传播的路由通告中的 AS_PATH 路径属性非真（类似于前缀劫持）
 
-![路径伪造](https://raw.githubusercontent.com/Coming98/pictures/main/20211129123141.png)
+![路径伪造](https://gitee.com/Butterflier/pictures/raw/master/20211129123141.png)
 
 ## 路由泄露
 
 AS 向邻居传播的路由通告违反路由出站策略：路由通告合法，路由传播非法，会造成流量重定向
 > 来自 Peer 或 Provider 的路由仅通告给 Customer，不向 Peer 和 Provider 传播
 
-![路由泄露](https://raw.githubusercontent.com/Coming98/pictures/main/20211129123340.png)
+![路由泄露](https://gitee.com/Butterflier/pictures/raw/master/20211129123340.png)
 
 ## 典型事件分析
 
-![异常路由事件分析](https://raw.githubusercontent.com/Coming98/pictures/main/20211206130550.png)
+![异常路由事件分析](https://gitee.com/Butterflier/pictures/raw/master/20211206130550.png)
 
 ### 巴基斯坦电信恶意主动劫持 YouTube 前缀
 
@@ -260,7 +260,7 @@ BGP 安全技术分为**路由认证技术**和**异常检测技术**两大类
 
 异常检测技术：提取 BGP 控制平面和数据平面的异常信息，对异常路由通告行为进行检测并报警。不能彻底解决 BGP 的安全问题，但在目前尚未部署完整 PKI体系的情况下，不失为一种轻量级的解决方案
 
-![BGP 安全技术对比](https://raw.githubusercontent.com/Coming98/pictures/main/20211129124523.png)
+![BGP 安全技术对比](https://gitee.com/Butterflier/pictures/raw/master/20211129124523.png)
 
 ## S-BGP
 
@@ -278,7 +278,7 @@ Secure BGP，基于PKI（公钥基础设施）的 BGP 路由认证技术：
 
 Attestation 分为 Address Attestation（地址证明）与 Route Attestation（路由证明）：
 
-![Attestation](https://raw.githubusercontent.com/Coming98/pictures/main/20211129133832.png)
+![Attestation](https://gitee.com/Butterflier/pictures/raw/master/20211129133832.png)
 
 ### Attestation 地址证明
 

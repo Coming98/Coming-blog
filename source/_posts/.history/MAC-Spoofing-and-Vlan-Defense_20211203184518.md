@@ -22,7 +22,7 @@ tags:
 >
 > 交叉线：一般用于相同设备的连接
 
-![image-20211009160503527](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009160503527.png)
+![image-20211009160503527](https://gitee.com/Butterflier/pictures/raw/master/image-20211009160503527.png)
 
 ## 2、配置 IP
 
@@ -34,7 +34,7 @@ tags:
 | PC1  | 192.168.1.11 | 0002.1625.5207 |
 | PC2  | 192.168.1.12 | 0006.2A16.0A3C |
 
-![image-20211009160855791](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009160855791.png)
+![image-20211009160855791](https://gitee.com/Butterflier/pictures/raw/master/image-20211009160855791.png)
 
 ## 3、测试
 
@@ -42,9 +42,9 @@ tags:
 
 点击 PC0 在 Desktop - Command Prompt 中输入 ping 命令即可
 
-![image-20211009161413510](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009161413510.png)
+![image-20211009161413510](https://gitee.com/Butterflier/pictures/raw/master/image-20211009161413510.png)
 
-![image-20211009161841196](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009161841196.png)
+![image-20211009161841196](https://gitee.com/Butterflier/pictures/raw/master/image-20211009161841196.png)
 
 ## 4、查看正确的转发表
 
@@ -60,7 +60,7 @@ c、输入 `enable` 进入特权模式
 
 d、输入 `show mac-address-table`
 
-![image-20211009162900224](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009162900224.png)
+![image-20211009162900224](https://gitee.com/Butterflier/pictures/raw/master/image-20211009162900224.png)
 
 ## 5、模拟操作模式查看正常通信过程
 
@@ -68,23 +68,23 @@ a、点击右下角的 simulation 进入模拟操作模式
 
 b、点击 Edit Filters 配置好过滤器，使得能够检测到 ICMP 报文的转发过程
 
-![image-20211009164036277](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009164036277.png)
+![image-20211009164036277](https://gitee.com/Butterflier/pictures/raw/master/image-20211009164036277.png)
 
 c、使用 PC1 ping PC0 查看过程动画
 
-![image-20211009164047994](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009164047994.png)
+![image-20211009164047994](https://gitee.com/Butterflier/pictures/raw/master/image-20211009164047994.png)
 
 ## 6、MAC 欺骗
 
 切换回实时操作模式，将 PC2 的 MAC 地址更改为 PC0 的 MAC 地址
 
-![image-20211009165759568](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009165759568.png)
+![image-20211009165759568](https://gitee.com/Butterflier/pictures/raw/master/image-20211009165759568.png)
 
 ## 7、通信欺骗
 
 使用 PC2 对 PC1通信后查看转发表信息：可以看到 PC2 成功伪造了 PC0 的身份，欺骗了各个交换机：Switch0 认为 0090…. 应该走端口 3 去找 Switch 1，Switch 1 认为 0090 应该走端口 2 去找 Switch 2，Switch 2 认为 0090…. 应该走端口 1 ，即找 PC2 
 
-![image-20211009170222140](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009170222140.png)
+![image-20211009170222140](https://gitee.com/Butterflier/pictures/raw/master/image-20211009170222140.png)
 
 ## 8、模拟 PC1 与 PC0 的通信
 
@@ -92,17 +92,17 @@ c、使用 PC1 ping PC0 查看过程动画
 
 a、PC1 ping PC0 的 IP 地址
 
-![image-20211009170655929](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009170655929.png)
+![image-20211009170655929](https://gitee.com/Butterflier/pictures/raw/master/image-20211009170655929.png)
 
 b、查看动画，发现 PC2 欺骗成功
 
-![image-20211009170826102](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009170826102.png)
+![image-20211009170826102](https://gitee.com/Butterflier/pictures/raw/master/image-20211009170826102.png)
 
 # VLAN 防 MAC 欺骗
 
 Target：通过 VLAN 的划分，隔离攻击者 PC2 与 PC1，使得 PC2 无法冒充”友军“
 
-![image-20211009171601483](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009171601483.png)
+![image-20211009171601483](https://gitee.com/Butterflier/pictures/raw/master/image-20211009171601483.png)
 
 ## 1、添加 VLAN
 
@@ -139,20 +139,20 @@ Switch(config-if)\#switchport access vlan 2
 
 可以查看到 1 号端口和 2 号端口均分配给了 VLAN 2
 
-![image-20211009172655898](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009172655898.png)
+![image-20211009172655898](https://gitee.com/Butterflier/pictures/raw/master/image-20211009172655898.png)
 
 ## 4、检验结果
 
 a、当前状态 Switch 转发表 遗忘了之前的信息，攻击者 PC2 有机可乘
 
-![image-20211009172940185](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009172940185.png)
+![image-20211009172940185](https://gitee.com/Butterflier/pictures/raw/master/image-20211009172940185.png)
 
 > 该 mac-address 是 Switch 0 与 Switch 1 之间的
 
 b、PC2 使用 PC0 的 MAC 地址，ping PC1，可以看出到达 Switch 0 后，因为不属于一个 VLAN 包就被丢弃了。欺骗失败！
 
-![image-20211009173426989](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009173426989.png)
+![image-20211009173426989](https://gitee.com/Butterflier/pictures/raw/master/image-20211009173426989.png)
 
 c、在检测下 PC0 能否与 PC1 正常通信：通信成功
 
-![image-20211009173638696](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009173638696.png)
+![image-20211009173638696](https://gitee.com/Butterflier/pictures/raw/master/image-20211009173638696.png)

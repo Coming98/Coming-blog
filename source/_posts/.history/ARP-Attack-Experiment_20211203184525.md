@@ -17,9 +17,9 @@ tags:
 
 **Tips**: Cain 工具依赖于 WinPcap，使用 Cain 时需要给与管理员权限
 
-![image-20210924193818343](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924193818343.png)
+![image-20210924193818343](https://gitee.com/Butterflier/pictures/raw/master/image-20210924193818343.png)
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924193834801.png" alt="image-20210924193834801" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924193834801.png" alt="image-20210924193834801" style="zoom:50%;" />
 
 ## Wireshark
 
@@ -49,39 +49,39 @@ tags:
 
 打开 Cain 工具，单击工具栏中的配置，对嗅探器进行配置，选择 IP 地址与网关 IP 对应的适配器即可
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924202538785.png" alt="image-20210924202538785" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924202538785.png" alt="image-20210924202538785" style="zoom:50%;" />
 
 ## 3 开始嗅探 - 扫描 MAC
 
 在主界面 - 嗅探器 - 主机中，点击左侧第二个按钮 开始/停止嗅探后，在空白处右击即可选择开始扫描 MAC  
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924202746250.png" alt="image-20210924202746250" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924202746250.png" alt="image-20210924202746250" style="zoom:50%;" />
 
 可以看出，我们扫到了 User B 与 Service C ！
 
-![image-20210924202830077](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924202830077.png)
+![image-20210924202830077](https://gitee.com/Butterflier/pictures/raw/master/image-20210924202830077.png)
 
 ## 4 准备攻击
 
 在主界面 - 嗅探器 - ARP 处，单击工具栏中的 加号按钮，添加 User B 到 Service C 的 ARP 欺骗
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924203217137.png" alt="image-20210924203217137" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924203217137.png" alt="image-20210924203217137" style="zoom:50%;" />
 
 攻击前先查看 User B 与 Service C 的 ARP 缓存信息（之前 ping 命令获取的）
 
 User B 的 ARP 缓存信息：可以看出其正确的记录了 Service C 的 MAC 地址
 
-![image-20210924203404086](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924203404086.png)
+![image-20210924203404086](https://gitee.com/Butterflier/pictures/raw/master/image-20210924203404086.png)
 
 Service C 的 ARP 缓存信息：可以看出其正确的记录了 User B 的 MAC 地址
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924203459563.png" alt="image-20210924203459563" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924203459563.png" alt="image-20210924203459563" style="zoom:50%;" />
 
 ## 5 开启攻击
 
 开始攻击！点击开始/停止 ARP 攻击按钮
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924203559237.png" alt="image-20210924203559237" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924203559237.png" alt="image-20210924203559237" style="zoom:50%;" />
 
 ## 6 攻击成功
 
@@ -89,11 +89,11 @@ Service C 的 ARP 缓存信息：可以看出其正确的记录了 User B 的 MA
 
 User B 的 ARP 缓存信息：可以看出 Perpetrator A 成功欺骗了 User B 将 Service C 的 MAC 地址改为了自身的 MAC 地址
 
-![image-20210924204046638](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924204046638.png)
+![image-20210924204046638](https://gitee.com/Butterflier/pictures/raw/master/image-20210924204046638.png)
 
 Service C 的 ARP 缓存信息：可以看出 Perpetrator A 成功欺骗了 Service C 将 User B 的 MAC 地址改为了自身的 MAC 地址
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924204103319.png" alt="image-20210924204103319" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924204103319.png" alt="image-20210924204103319" style="zoom:50%;" />
 
 # Ⅱ欺骗后监听通信
 
@@ -107,53 +107,53 @@ Service C 的 ARP 缓存信息：可以看出 Perpetrator A 成功欺骗了 Serv
 
 为了方便监听，在 Service C 上开启 IIS 与 DNS 服务，开启网站 www.flower.com
 
-![image-20210924210219293](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924210219293.png)
+![image-20210924210219293](https://gitee.com/Butterflier/pictures/raw/master/image-20210924210219293.png)
 
 设定好 DNS，并将 User B 的 默认 DNS 指向为 Service C
 
-![image-20210924210358844](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924210358844.png)
+![image-20210924210358844](https://gitee.com/Butterflier/pictures/raw/master/image-20210924210358844.png)
 
 验证
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924210523600.png" alt="image-20210924210523600" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924210523600.png" alt="image-20210924210523600" style="zoom:50%;" />
 
 ## 1 初始化 Wireshark
 
 按照同一局域网内的 ARP 欺骗步骤完成 ARP 欺骗后，开启 Wireshark，监听源IP 为 User B 或 Service C 的包
 
-![image-20210924210724905](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924210724905.png)
+![image-20210924210724905](https://gitee.com/Butterflier/pictures/raw/master/image-20210924210724905.png)
 
 ## 2 查看监听结果
 
 使用 User B 访问 www.flower.com，首先应该看到的是 10.1.1.11 与 10.1.1.12 的 DNS 相关请求，可以获取 User B 的访问域名：
 
-![image-20210924211232666](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924211232666.png)
+![image-20210924211232666](https://gitee.com/Butterflier/pictures/raw/master/image-20210924211232666.png)
 
 Tips：可以看到中间人将收到的包看了一眼后转发到了正确的地址，使得 User B 正常访问 www.flower.com 
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924211330279.png" alt="image-20210924211330279" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210924211330279.png" alt="image-20210924211330279" style="zoom:50%;" />
 
 随后就是 TCP 三次握手：
 
-![image-20210924211425093](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924211425093.png)
+![image-20210924211425093](https://gitee.com/Butterflier/pictures/raw/master/image-20210924211425093.png)
 
 然后是 HTTP：
 
-![image-20210924211559686](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924211559686.png)
+![image-20210924211559686](https://gitee.com/Butterflier/pictures/raw/master/image-20210924211559686.png)
 
 ## 3 尝试获取重要信息
 
 接下来我尝试使用 GET 传送一些参数进去，看看是否能够获取到呢？
 
-![image-20210924211753656](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924211753656.png)
+![image-20210924211753656](https://gitee.com/Butterflier/pictures/raw/master/image-20210924211753656.png)
 
 查看抓包详细结果：因为 DNS 缓存的原因，这次没有 DNS 的相关抓包信息
 
-![image-20210924211857375](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924211857375.png)
+![image-20210924211857375](https://gitee.com/Butterflier/pictures/raw/master/image-20210924211857375.png)
 
 可以看出，GET 请求中的参数将会被完全轻松的获取到：
 
-![image-20210924212025745](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210924212025745.png)
+![image-20210924212025745](https://gitee.com/Butterflier/pictures/raw/master/image-20210924212025745.png)
 
 # Ⅲ 欺骗网关之不同局域网的欺骗
 
@@ -177,11 +177,11 @@ Tips：可以看到中间人将收到的包看了一眼后转发到了正确的�
 
 得到 Perpetrator A IP 为 192.168.1.111，网关为 192.168.1.1
 
-![image-20210925194951365](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925194951365.png)
+![image-20210925194951365](https://gitee.com/Butterflier/pictures/raw/master/image-20210925194951365.png)
 
 得到 User B 的 IP 为 192.168.1.109，网关为 192.168.1.1
 
-![image-20210925131922146](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925131922146.png)
+![image-20210925131922146](https://gitee.com/Butterflier/pictures/raw/master/image-20210925131922146.png)
 
 ## 2 查看攻击前状态
 
@@ -189,11 +189,11 @@ Tips：可以看到中间人将收到的包看了一眼后转发到了正确的�
 
 User B 的 ARP 映射表：
 
-![image-20210925132622087](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925132622087.png)
+![image-20210925132622087](https://gitee.com/Butterflier/pictures/raw/master/image-20210925132622087.png)
 
 路由器 有关 User B 的 ARP 映射表：
 
-![image-20210925132710815](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925132710815.png)
+![image-20210925132710815](https://gitee.com/Butterflier/pictures/raw/master/image-20210925132710815.png)
 
 ## 3 主机扫描
 
@@ -203,7 +203,7 @@ A 先使用 nmap 扫描一下本局域网，可以扫出网关 192.168.1.1，用
 nmap -sP 192.168.1.0/24
 ```
 
-![image-20210925195305365](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925195305365.png)
+![image-20210925195305365](https://gitee.com/Butterflier/pictures/raw/master/image-20210925195305365.png)
 
 
 
@@ -218,11 +218,11 @@ arpspoof -i eth0 -t 192.168.1.109 192.168.1.1 # 将 109 发往 网关的包监�
 
 此时查看用户 B 的网络状态，发现已经无法上网：查看 B 的 ARP 缓存信息，可见 A 成功欺骗了 B，改写了网关 MAC 为 A 自己：
 
-![image-20210925200125750](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925200125750.png)
+![image-20210925200125750](https://gitee.com/Butterflier/pictures/raw/master/image-20210925200125750.png)
 
 查看路由器 C 的 ARP 缓存信息，并没有发现对 B MAC 的更改：是因为我们值攻击并监听了 192.168.1.109 -> 192.168.1.1 这一条信道，其实这已然可以实现我们想要的功能，只是很容易被 B 发现
 
-![image-20210925202212149](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925202212149.png)
+![image-20210925202212149](https://gitee.com/Butterflier/pictures/raw/master/image-20210925202212149.png)
 
 如果要双向监听，则在新开一个命令行窗口执行下方命令即可：
 
@@ -232,7 +232,7 @@ arpspoof -i eth0 -t 192.168.1.1 192.168.1.109
 
 再次查看，发现路由器也被欺骗啦
 
-![image-20210925202228390](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925202228390.png)
+![image-20210925202228390](https://gitee.com/Butterflier/pictures/raw/master/image-20210925202228390.png)
 
 ## 5 流量转发
 
@@ -246,9 +246,9 @@ arpspoof -i eth0 -t 192.168.1.1 192.168.1.109
 echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 ```
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925203541401.png" alt="image-20210925203541401" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210925203541401.png" alt="image-20210925203541401" style="zoom:50%;" />
 
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925203527816.png" alt="image-20210925203527816" style="zoom:50%;" />
+<img src="https://gitee.com/Butterflier/pictures/raw/master/image-20210925203527816.png" alt="image-20210925203527816" style="zoom:50%;" />
 
 ## 6 流量嗅探
 
@@ -260,11 +260,11 @@ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 ettercap -Tq -i eth0
 ```
 
-![image-20210925203914868](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925203914868.png)
+![image-20210925203914868](https://gitee.com/Butterflier/pictures/raw/master/image-20210925203914868.png)
 
 开启成功后，当用户进行正常的请求时，`ettercap` 就能帮助我们嗅探到信息
 
-![image-20210925204100160](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925204100160.png)
+![image-20210925204100160](https://gitee.com/Butterflier/pictures/raw/master/image-20210925204100160.png)
 
 # END
 

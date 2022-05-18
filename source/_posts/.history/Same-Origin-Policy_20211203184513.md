@@ -41,7 +41,7 @@ Cookie 只有同源网页才能共享（Protocol，Port，host）
 
 DOM，文档对象模型，Document Object Model：在网页上组织页面或文档的对象被组织在一个树形结构中，用来表示文档中对象的标准模型即为 DOM
 
-![image-20210920152526889](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920152526889.png)
+![image-20210920152526889](https://gitee.com/Butterflier/pictures/raw/master/image-20210920152526889.png)
 
 1、`<script>, <img>, <iframe>, <link>` 的跨域请求，不受同源策略的约束，但不能通过 ajax 来获取
 
@@ -59,7 +59,7 @@ DOM，文档对象模型，Document Object Model：在网页上组织页面或�
 >
 >  不同源 JavaScript 受限，同源不受限
 >
->  ![image-20210920152846907](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920152846907.png)
+>  ![image-20210920152846907](https://gitee.com/Butterflier/pictures/raw/master/image-20210920152846907.png)
 
 5、`<iframe>` 父子页面（点击进入的下一页面）交互受同源策略约束
 
@@ -81,15 +81,15 @@ Tips：阻止的是跨域资源的获取，而不是阻止跨域的请求；跨�
 
 伪 URL 的源如何判定？
 
-![image-20210920154445387](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920154445387.png)
+![image-20210920154445387](https://gitee.com/Butterflier/pictures/raw/master/image-20210920154445387.png)
 
-![image-20210920154552671](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920154552671.png)
+![image-20210920154552671](https://gitee.com/Butterflier/pictures/raw/master/image-20210920154552671.png)
 
 **Tips**：在脚本型 URL 加载的页面里，以父页面的上下文权限执行相应的脚本代码——与父页面同源
 
 > 通过 bank 执行的脚本型 js 代码，即与 bank 同源，即可操作 iframe 内的内容
 
-![image-20211028222503110](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028222503110.png)
+![image-20211028222503110](https://gitee.com/Butterflier/pictures/raw/master/image-20211028222503110.png)
 
 # Cross Origin
 
@@ -97,7 +97,7 @@ Tips：阻止的是跨域资源的获取，而不是阻止跨域的请求；跨�
 
 同源策略的作用域是**浏览器**，因此可以利用服务器实现跨域通信，即使用第三方服务器获取目标信息在返回给自己（也就是我们常说的代理服务器）
 
-![image-20210920155214194](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920155214194.png)
+![image-20210920155214194](https://gitee.com/Butterflier/pictures/raw/master/image-20210920155214194.png)
 
 React Scaffolding 中在 package.json 追加如下配置，当用 ajax 请求了本地不存在的资源，将会转发给目标代理（但是不支持配置多个代理）
 
@@ -111,7 +111,7 @@ script 父子页面中设置 `document.domain` 为共同祖先域即可，如果
 
 > 这样做使得主站和子站，以及子站之间可以跨域访问，不适用于跨基础域的站点间共享数据
 
-![image-20211028215714174](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028215714174.png)
+![image-20211028215714174](https://gitee.com/Butterflier/pictures/raw/master/image-20211028215714174.png)
 
 Tips：Ajax 请求该跨域方法无效；**Ajax跨域必须 Protocol，port，host 一致**
 
@@ -216,7 +216,7 @@ header("Access-Control-Allow-Origin: http://server.net")
 
 Tips：存在预检机制，支持浏览器先询问服务器（即将请求的域名、方法和头信息是否许可，如果得到肯定答复，才发出正式请求，否则报错）
 
-![image-20211029115407916](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211029115407916.png)
+![image-20211029115407916](https://gitee.com/Butterflier/pictures/raw/master/image-20211029115407916.png)
 
 ## window.postMessage
 
@@ -261,10 +261,10 @@ window.addEventListener("message", receiveMessage, false);
 
 被动获取信息步骤：A 将数据准备完毕通过 postMessage 将信息传给 B，B 通过事件监听和处理获取数据
 
-![image-20210920162051524](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920162051524.png)
+![image-20210920162051524](https://gitee.com/Butterflier/pictures/raw/master/image-20210920162051524.png)
 
 接收方：添加相关事件处理，实现跨域的数据传输
 
-![image-20210920162105671](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920162105671.png)
+![image-20210920162105671](https://gitee.com/Butterflier/pictures/raw/master/image-20210920162105671.png)
 
 # 

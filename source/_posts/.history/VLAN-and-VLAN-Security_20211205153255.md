@@ -40,7 +40,7 @@ Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求�
 
 ### 基于端口的 VLAN
 
-![基于端口的 VLAN](https://raw.githubusercontent.com/Coming98/pictures/main/20211205150331.png)
+![基于端口的 VLAN](https://gitee.com/Butterflier/pictures/raw/master/20211205150331.png)
 
 需要配置 VLAN 表：端口与所属 VLAN 映射表
 
@@ -50,7 +50,7 @@ Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求�
 
 ### 基于 MAC 的 VLAN
 
-![基于 MAC 的 VLAN](https://raw.githubusercontent.com/Coming98/pictures/main/20211205150415.png)
+![基于 MAC 的 VLAN](https://gitee.com/Butterflier/pictures/raw/master/20211205150415.png)
 
 需要配置 VLAN 表：MAC 与所属 VLAN 映射表
 
@@ -60,7 +60,7 @@ Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求�
 
 ### 基于协议的 VLAN
 
-![基于协议的 VLAN](https://raw.githubusercontent.com/Coming98/pictures/main/20211205150603.png)
+![基于协议的 VLAN](https://gitee.com/Butterflier/pictures/raw/master/20211205150603.png)
 
 需要配置 VLAN 表：协议类型与 VLAN 的映射表（不常见）
 
@@ -68,7 +68,7 @@ Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求�
 
 ### 基于子网的 VLAN
 
-![基于子网的 VLAN](https://raw.githubusercontent.com/Coming98/pictures/main/20211205150634.png)
+![基于子网的 VLAN](https://gitee.com/Butterflier/pictures/raw/master/20211205150634.png)
 
 需要配置 VLAN 表：IP 网络与 VLAN 的映射表
 
@@ -78,7 +78,7 @@ Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求�
 
 ## VLAN 的可跨越性
 
-![image-20210923160359426](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923160359426.png)
+![image-20210923160359426](https://gitee.com/Butterflier/pictures/raw/master/image-20210923160359426.png)
 
 1、VLAN 数据可以跨越多台交换机被转递
 
@@ -129,7 +129,7 @@ Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求�
 
 ## VLAN 的链路类型与端口类型
 
-![image-20210930133649605](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930133649605.png)
+![image-20210930133649605](https://gitee.com/Butterflier/pictures/raw/master/image-20210930133649605.png)
 
 默认情况下，交换机所有端口都是Access-Link端口，并属于VLAN-1
 
@@ -170,7 +170,7 @@ Trunk 端口属于多个 VLAN，所以需要设置缺省 VLAN ID，默认为 VLA
 
 Swith 配置 VLAN 后，会将收到的数据报加入 VLAN 头：**交换机**负责打标签和去标签，对于主机来说是透明的
 
-![image-20210930135517564](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930135517564.png)
+![image-20210930135517564](https://gitee.com/Butterflier/pictures/raw/master/image-20210930135517564.png)
 
 ## VLAN 转发原则
 
@@ -210,7 +210,7 @@ Swith 配置 VLAN 后，会将收到的数据报加入 VLAN 头：**交换机**�
 
 Target：实现跨 VLAN 通信
 
-![image-20210930140913396](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930140913396.png)
+![image-20210930140913396](https://gitee.com/Butterflier/pictures/raw/master/image-20210930140913396.png)
 
 ### 攻击过程
 
@@ -244,7 +244,7 @@ Target：实现跨 VLAN 通信
 DTP，Dynamic Trunk Protocol，自动协商 Trunk 链路的缺省 ID
 > 管理员可以手动指定交换机之间的链路是否形成 Trunk，也可以让交换机使用 DTP 自动协商
 
-![image-20210930141952004](https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930141952004.png)
+![image-20210930141952004](https://gitee.com/Butterflier/pictures/raw/master/image-20210930141952004.png)
 
 Perpetrator 伪装成交换机，发送 DTP 包，将攻击者与交换机之间的链路协商为为 Trunk 链路，随后攻击者通过该链路，可以收发带任意 VLAN 标签的数据，从而实现访问任意 VLAN 的目的
 

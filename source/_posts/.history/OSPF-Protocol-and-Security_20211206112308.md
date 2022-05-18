@@ -37,7 +37,7 @@ Open Shorted Path First，开放最短路径优先，是 IETF 开发的基于链
 
 ## OSPF 报文格式
 
-![OSPF 报文格式](https://raw.githubusercontent.com/Coming98/pictures/main/20211128203653.png)
+![OSPF 报文格式](https://gitee.com/Butterflier/pictures/raw/master/20211128203653.png)
 
 ### 区域
 
@@ -59,7 +59,7 @@ Open Shorted Path First，开放最短路径优先，是 IETF 开发的基于链
 
 主要有四个阶段：寻找邻居、建立邻接关系、链路状态信息传递、计算路由
 
-![OSPF协议工作过程](https://raw.githubusercontent.com/Coming98/pictures/main/20211128204301.png)
+![OSPF协议工作过程](https://gitee.com/Butterflier/pictures/raw/master/20211128204301.png)
 
 ### 寻找邻居
 
@@ -84,7 +84,7 @@ DRothers，相互之间虽然为邻居，却不会建立完全邻接关系，也
 
 2、采用 DR / BDR 方式建立邻接关系：(2 * (n-2) + 1)
 
-![建立邻接关系](https://raw.githubusercontent.com/Coming98/pictures/main/20211128210401.png)
+![建立邻接关系](https://gitee.com/Butterflier/pictures/raw/master/20211128210401.png)
 
 Q：为什么需要 DR 和 BDR ？
 
@@ -95,7 +95,7 @@ Q：如何选举？
 A：Hello 包携带路由器优先级，优先级为 0 的路由器不具备选举资格；先选举 BDR，再选举 DR；
 > DR 和 BDR一旦选定，即使 OSPF 区域内新增优先级更高的路由器，DR 和 BDR也不重新选举，只有当 DR 和 BDR 都失效后，才参与选举 (保证网络的稳定)
 
-![DR选举](https://raw.githubusercontent.com/Coming98/pictures/main/20211206110834.png)
+![DR选举](https://gitee.com/Butterflier/pictures/raw/master/20211206110834.png)
 
 ### 链路状态信息传递
 
@@ -119,7 +119,7 @@ Tips：
 
 3、LSA(链路状态通告)更新携带**掩码**，支持 VLSM
 
-![超时重传机制](https://raw.githubusercontent.com/Coming98/pictures/main/20211128211414.png)
+![超时重传机制](https://gitee.com/Butterflier/pictures/raw/master/20211128211414.png)
 
 ### 路由计算
 
@@ -130,7 +130,7 @@ Tips：
 
 3、每台路由器分别以自己为根节点计算最小生成树
 
-![路由计算](https://raw.githubusercontent.com/Coming98/pictures/main/20211128211752.png)
+![路由计算](https://gitee.com/Butterflier/pictures/raw/master/20211128211752.png)
 
 # OSPF 安全机制
 
@@ -145,7 +145,7 @@ Tips：
 > b、用共享密钥加密报文序列号
 > c、由共享密钥和路由消息共同生成 MAC（消息鉴别码），判断与发送来的 MAC 是否一致
 
-![MD5 认证](https://raw.githubusercontent.com/Coming98/pictures/main/20211128212402.png)
+![MD5 认证](https://gitee.com/Butterflier/pictures/raw/master/20211128212402.png)
 
 Q：OSPF MD5 认证与 RIPv2 MD5 认证有何不同？
 

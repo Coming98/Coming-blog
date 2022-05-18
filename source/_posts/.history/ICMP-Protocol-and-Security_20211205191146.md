@@ -12,13 +12,13 @@ tags:
 Internet Control Message Protocol，Internet 控制报文协议，用于在IP主机、路由器之间传递控制消息
 > 控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息
 
-![image-20211127135407400](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127135407400.png)
+![image-20211127135407400](https://gitee.com/Butterflier/pictures/raw/master/image-20211127135407400.png)
 
 ## 报文种类
 
 攻击也是从正常的所提供的功能出发：
 
-![image-20211007133301183](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007133301183.png)
+![image-20211007133301183](https://gitee.com/Butterflier/pictures/raw/master/image-20211007133301183.png)
 
 # ICMP 攻击
 
@@ -67,7 +67,7 @@ Backdrop：当路由器检测到主机在启动时具有一定的路由信息（
 
 ### 攻击原理
 
-![image-20211006104322321](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211006104322321.png)
+![image-20211006104322321](https://gitee.com/Butterflier/pictures/raw/master/image-20211006104322321.png)
 
 Attack：攻击者通过发送 ICMP 重定向报文可以在受害者主机路由表中添加一条到达特定主机的路由信息，使得受害者发往特定主机的数据包被发往攻击者主机，攻击者进而实施监听、欺骗等攻击行为；
 
