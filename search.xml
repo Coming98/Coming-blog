@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>01-TS的基本配置与使用</title>
+      <link href="/Coming-blog/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/"/>
+      <url>/Coming-blog/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/</url>
+      
+        <content type="html"><![CDATA[<h1 id="typescript"><a class="markdownIt-Anchor" href="#typescript"></a> TypeScript</h1><p>Backdrop：JS 没有表达不同代码单元之间关系的能力，因此引申出来 TS, 目标是成为 JS 的静态类型检查器</p><h2 id="jsests"><a class="markdownIt-Anchor" href="#jsests"></a> JS\ES\TS</h2><ul><li>JS, JavaScript</li><li>ES, ECMAScript, 为 JS 制定标准, 一年一个新版本</li><li>TS, TypeScript</li></ul><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202206222129869.png" alt="" /></p><h2 id="同类竞品"><a class="markdownIt-Anchor" href="#同类竞品"></a> 同类竞品</h2><ul><li>ESLint, TSLint</li><li>CoffeeScript, Flow</li></ul><ol><li>TypeScript 的定位是静态类型语言，在<strong>写代码阶段就能检查错误</strong>，而非运行阶段(边解析边执行)</li><li>类型系统是最好的文档，增加了代码的<strong>可读性</strong>和可维护性</li><li>有一定的学习成本，需要理解接口(Interfaces)、泛型(Generics)、类(Classes)等</li><li>ts 最后被编译成 js</li></ol><h1 id="为什么需要-typescript"><a class="markdownIt-Anchor" href="#为什么需要-typescript"></a> 为什么需要 TypeScript</h1><ol><li>JS 只支持动态类型：编写 JS 代码时通常需要知道变量或对象的所有细节（拥有的函数，是否可调用）</li><li>静态类型检查：在代码执行前就能检查代码是否有问题</li><li>逻辑错误检查：</li></ol><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202206282010687.png" alt="" /></p><h1 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h1><p>全局环境配置：</p><ul><li><code>npm install -g typescript</code></li></ul><p>脚手架中使用</p><ul><li><code>create-react-app my-app --template typescript</code></li></ul><h2 id="编译执行"><a class="markdownIt-Anchor" href="#编译执行"></a> 编译执行</h2><ol><li>命令行中通过 <code>tsc</code> 将目标 <code>ts</code> 文件编译为 <code>js</code> 文件: <code>tsc 01-hello.ts</code> -&gt; <code>01-hello.js</code></li><li>通过 <code>node</code> 命令即可执行目标 <code>js</code> 文件: <code>node 01-hello.js</code></li></ol><h1 id="配置与使用"><a class="markdownIt-Anchor" href="#配置与使用"></a> 配置与使用</h1><h2 id="tsconfigjson"><a class="markdownIt-Anchor" href="#tsconfigjson"></a> tsconfig.json</h2><p>输入命令 <code>tsc --init</code> -即可生成-&gt; <code>tsconfig.json</code></p><ul><li>解决 TS 与 JS 的冲突：注释掉 <code>strict</code> 即可关闭严格模式，但不推荐使用，推荐手动避免冲突</li><li>降级编译：为了更好的兼容, 在 <code>tsconfig.json</code> 中可以通过 <code>target:</code> 来指定想要编译出的 <code>ES</code> 版本</li><li>严格程度控制：建议检查全部开启: 否则还不如直接用 JavaScript<ul><li><code>strict: true</code>: 开启类型检查</li><li><code>noImplicitAny: true</code>: 更加严格, 禁用 any 类型</li><li><code>strictNullChecks: true</code>:</li></ul></li></ul><h2 id="自动编译与禁止错误更新"><a class="markdownIt-Anchor" href="#自动编译与禁止错误更新"></a> 自动编译与禁止错误更新</h2><ul><li>开启自动编译：<code>tsc --watch</code>，将检查 <code>rootDir</code> 中 <code>.ts</code> 文件的更改，并自动对其进行编译</li><li>禁止错误更新：<code>tsc -noEmitOnError hello.ts</code> 如果目标 TS 文件中存在错误，则不会生成或替换现有的 <code>hello.js</code> 文件</li><li>结合使用：<code>tsc --noEmitOnError --watch</code></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> TypeScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> typescript-basic </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PubSub</title>
       <link href="/Coming-blog/2022/02/06/pubsub/"/>
       <url>/Coming-blog/2022/02/06/pubsub/</url>

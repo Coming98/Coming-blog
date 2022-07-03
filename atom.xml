@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-05-18T05:57:04.836Z</updated>
+  <updated>2022-07-03T03:00:47.592Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>01-TS的基本配置与使用</title>
+    <link href="https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/"/>
+    <id>https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/</id>
+    <published>2022-07-03T10:56:15.000Z</published>
+    <updated>2022-07-03T03:00:47.592Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;typescript&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#typescript&quot;&gt;&lt;/a&gt; TypeScript&lt;/h1&gt;
+&lt;p&gt;Backdrop：JS 没有表达不同代码单元之间关系的能力，因此引申出来 TS, 目标是成为</summary>
+        
+      
+    
+    
+    
+    <category term="TypeScript" scheme="https://coming98.github.io/categories/TypeScript/"/>
+    
+    
+    <category term="typescript-basic" scheme="https://coming98.github.io/tags/typescript-basic/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PubSub</title>
     <link href="https://coming98.github.io/2022/02/06/pubsub/"/>
     <id>https://coming98.github.io/2022/02/06/pubsub/</id>
     <published>2022-02-06T19:35:37.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -49,7 +75,7 @@
     <link href="https://coming98.github.io/2021/12/06/udp-and-udp-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/udp-and-udp-protocol/</id>
     <published>2021-12-06T13:41:54.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -75,7 +101,7 @@
     <link href="https://coming98.github.io/2021/12/06/bgp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/bgp-protocol-and-security/</id>
     <published>2021-12-06T13:19:52.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -103,7 +129,7 @@
     <link href="https://coming98.github.io/2021/12/06/ospf-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</id>
     <published>2021-12-06T11:22:25.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -129,7 +155,7 @@
     <link href="https://coming98.github.io/2021/12/06/rip-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/rip-protocol-and-security/</id>
     <published>2021-12-06T10:45:21.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -155,7 +181,7 @@
     <link href="https://coming98.github.io/2021/12/06/overview-of-routing-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/overview-of-routing-protocol/</id>
     <published>2021-12-06T10:43:40.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -180,7 +206,7 @@
     <link href="https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/</id>
     <published>2021-12-06T09:22:48.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -206,7 +232,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</id>
     <published>2021-12-05T21:40:49.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -232,7 +258,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</id>
     <published>2021-12-05T19:12:45.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -258,7 +284,7 @@
     <link href="https://coming98.github.io/2021/12/05/icmp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</id>
     <published>2021-12-05T19:11:02.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -284,7 +310,7 @@
     <link href="https://coming98.github.io/2021/12/05/vlan-and-vlan-security/"/>
     <id>https://coming98.github.io/2021/12/05/vlan-and-vlan-security/</id>
     <published>2021-12-05T14:54:03.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -310,7 +336,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-11-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-11-protocol-and-security/</id>
     <published>2021-12-05T14:47:50.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.592Z</updated>
     
     
       
@@ -335,7 +361,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-3-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-3-protocol-and-security/</id>
     <published>2021-12-05T14:18:31.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -361,7 +387,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-router/"/>
     <id>https://coming98.github.io/2021/12/04/react-router/</id>
     <published>2021-12-04T20:22:16.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -389,7 +415,7 @@
     <link href="https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/</id>
     <published>2021-12-04T19:58:10.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -416,7 +442,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-components/"/>
     <id>https://coming98.github.io/2021/12/04/react-components/</id>
     <published>2021-12-04T14:03:58.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -444,7 +470,7 @@
     <link href="https://coming98.github.io/2021/12/03/tcp-and-tcp-security/"/>
     <id>https://coming98.github.io/2021/12/03/tcp-and-tcp-security/</id>
     <published>2021-12-03T18:37:48.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -470,7 +496,7 @@
     <link href="https://coming98.github.io/2021/12/02/ipsec/"/>
     <id>https://coming98.github.io/2021/12/02/ipsec/</id>
     <published>2021-12-02T17:31:49.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -496,7 +522,7 @@
     <link href="https://coming98.github.io/2021/10/29/same-origin-policy/"/>
     <id>https://coming98.github.io/2021/10/29/same-origin-policy/</id>
     <published>2021-10-29T16:36:44.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
+    <updated>2022-07-03T03:00:47.596Z</updated>
     
     
       
@@ -514,34 +540,6 @@
     
     
     <category term="security" scheme="https://coming98.github.io/tags/security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>torch.scatter</title>
-    <link href="https://coming98.github.io/2021/10/28/torch-scatter/"/>
-    <id>https://coming98.github.io/2021/10/28/torch-scatter/</id>
-    <published>2021-10-28T20:12:19.000Z</published>
-    <updated>2022-05-18T05:57:04.836Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;scatter&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#scatter&quot;&gt;&lt;/a&gt; scatter&lt;/h1&gt;
-&lt;p&gt;scatter</summary>
-        
-      
-    
-    
-    
-    <category term="Pytorch" scheme="https://coming98.github.io/categories/Pytorch/"/>
-    
-    
-    <category term="DL" scheme="https://coming98.github.io/tags/DL/"/>
-    
-    <category term="pytorch" scheme="https://coming98.github.io/tags/pytorch/"/>
     
   </entry>
   
