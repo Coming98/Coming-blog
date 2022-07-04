@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PubSub, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="03-TS的类型缩小机制, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PubSub | Coming is here</title>
+    <title>03-TS的类型缩小机制 | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PubSub</h1>
+                    <h1 class="description center-align post-title">03-TS的类型缩小机制</h1>
                 </div>
             </div>
         </div>
@@ -433,12 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Coming-blog/tags/react/">
-                                <span class="chip bg-color">react</span>
-                            </a>
-                        
-                            <a href="/Coming-blog/tags/react-tools/">
-                                <span class="chip bg-color">react tools</span>
+                            <a href="/Coming-blog/tags/typescript-basic/">
+                                <span class="chip bg-color">typescript-basic</span>
                             </a>
                         
                     </div>
@@ -449,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/Coming-blog/categories/React/" class="post-category">
-                                React
+                            <a href="/Coming-blog/categories/TypeScript/" class="post-category">
+                                TypeScript
                             </a>
                         
                     </div>
@@ -462,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-06
+                    2022-07-04
                 </div>
                 
 
@@ -471,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    251
+                    661
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -501,29 +497,98 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="消息订阅与发布技术"><a class="markdownIt-Anchor" href="#消息订阅与发布技术"></a> 消息订阅与发布技术</h1>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yarn add pubsub-js
-import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>不必将信息一级一级的传递下去，可以实现任一组件之间通信</p>
-<p>1、App 作为顶级 壳，不应该过多的涉及管理子组件之间的状态变化与通信问题，因此使用消息订阅与发布技术实现子组件之间的自发通信</p>
-<p>Q：实现消息订阅与发布的库很多，你要选择哪个？</p>
-<p>A：PubSub，历史悠久，应用广泛</p>
-<h2 id="何时订阅"><a class="markdownIt-Anchor" href="#何时订阅"></a> 何时订阅</h2>
-<p>A：在组件刚挂载上就要完成所有的订阅，一次性定义完成该组件所接收的所有消息类型。</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>updateHeaderData <span class="token operator">=</span> PubSub<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token string">'updateHeaderData'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">msgName<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="如何发送消息"><a class="markdownIt-Anchor" href="#如何发送消息"></a> 如何发送消息</h2>
-<p>A：引入 <code>PubSub</code> 后调用其 <code>publish</code> 方法</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">PubSub<span class="token punctuation">.</span><span class="token function">publish</span><span class="token punctuation">(</span><span class="token string">'updateHeaderData'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>data<span class="token operator">:</span> activeName<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="如何取消订阅"><a class="markdownIt-Anchor" href="#如何取消订阅"></a> 如何取消订阅</h2>
-<p>A：引入 <code>PubSub</code> 后调用其 <code>unsubscribe</code> 方法，一般再组件卸载时调用</p>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 取消订阅</span>
-    PubSub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>updateHeaderData<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="类型缩小"><a class="markdownIt-Anchor" href="#类型缩小"></a> 类型缩小</h1>
+<p>针对联合类型, 在参数使用是通常要对参数的类型进一步判断后在进行专门的处理, 这个判断过程就可以认为是类型防护; 将类型细化为比声明更具体的类型的过程为类型缩小</p>
+<ul>
+<li>具体的 TS 是针对函数控制流图来实现类型缩小与后续执行内容的类型检查的</li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">function padLeft(padding: number | string, input: string) : string &#123;
+    if (typeof padding &#x3D;&#x3D;&#x3D; number) &#123;
+        return new Array(padding + 1).join(&quot; &quot;) + input;
+    &#125;
+    return padding + input;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>常见类型防护：</p>
+<ul>
+<li><code>typeof</code>: <code>typeof strs === &quot;object&quot;</code> ....</li>
+<li><code>if(value)</code>: if 型真值缩小, 排除 <code>0, NaN, &quot;&quot;, 0n, null, undefined</code></li>
+<li></li>
+</ul>
+<h1 id="真值缩小"><a class="markdownIt-Anchor" href="#真值缩小"></a> 真值缩小</h1>
+<ul>
+<li>if 型真值缩小: <code>0, NaN, &quot;&quot;, 0n, null, undefined</code> 会被 if 认为式 false</li>
+<li>Boolean 强制类型转换的类型缩小: <code>Boolean(&quot;hello&quot;)</code></li>
+<li>双叹号类型缩小: <code>!!&quot;world&quot;</code></li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">function getUserOnlineMessage(numUsersOnline: number) &#123;
+    &#x2F;&#x2F; 
+    if (numUsersOnline) &#123;
+        return &#96;现在共有 $&#123;&#125; 人在线!&#96;;
+    &#125;
+    return &quot;现在没有人在线. :(&quot;;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>应用：主要用于判断参数是否为有效值（非 null, 非 undefined）</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">function multiplyAll(
+    values: number[] | undefined,
+    factor: number
+) &#123;
+    &#x2F;&#x2F; 如果 values 是 number[] 那么就将里面的值都乘以 factor 否则直接返回 values
+    if (values) &#123;
+        values &#x3D; values.map((item) &#x3D;&gt; &#123;
+            return item * factor
+        &#125;)
+        for (const item of values) &#123;
+            console.log(item)
+        &#125;
+    &#125; else &#123;
+        console.log(values)
+    &#125;
+    return values
+&#125; 
+multiplyAll(undefined, 2)
+multiplyAll([1, 3, 5], 2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="等值缩小"><a class="markdownIt-Anchor" href="#等值缩小"></a> 等值缩小</h1>
+<p>使用 <code>=== | !== | == | !=</code> 进行判断后也可以缩小类型空间, 但是个人感觉比较鸡肋, 应该不常用</p>
+<h1 id="in-操作符缩小"><a class="markdownIt-Anchor" href="#in-操作符缩小"></a> in 操作符缩小</h1>
+<p>in 用于判断对象是否具有某个属性, 可以被用于缩小类型范围</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">type Fish &#x3D; &#123; swim: () &#x3D;&gt; void &#125;
+type Bird &#x3D; &#123; fly: () &#x3D;&gt; void &#125;
+type Human &#x3D; &#123; swim?: () &#x3D;&gt; void; fly?: () &#x3D;&gt; void &#125;
+
+function move(animal: Fish | Bird | Human) &#123;
+    if (&quot;swim&quot; in animal) &#123;
+        &#x2F;&#x2F; Fish | Human 但是 Human 可能没有 swim
+        &#x2F;&#x2F; 因此可以用断言进行空间缩小
+        return (animal as Fish).swim()
+    &#125;
+    &#x2F;&#x2F; 可能是 Bird 或 Human 但是 Human 可能没有 fly
+    return (animal as Bird).fly()
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="instanceof-操作符缩小"><a class="markdownIt-Anchor" href="#instanceof-操作符缩小"></a> instanceof 操作符缩小</h1>
+<p>用于检查目标是否是另一个目标的实例： 检查原型链</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">function logValue(x: Date | string) &#123;
+    if (x instanceof Date) &#123;
+        console.log(x.toUTCString())
+    &#125; else &#123;
+        console.log(x.toUpperCase())
+    &#125;
+&#125;
+logValue(new Date())
+logValue(&quot;TIME&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="分配缩小"><a class="markdownIt-Anchor" href="#分配缩小"></a> 分配缩小</h1>
+<p>在对目标遍历进行第一个赋值时, ts 会对目标对象进行类型推断, 这样就限制了目标对象的类型空间</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">&#x2F;&#x2F; let x: string | number
+let x &#x3D; Math.random() &lt; 0.5 ? 10 : &quot;hello world&quot;
+
+x &#x3D; 1
+console.log(x)
+
+x &#x3D; &quot;Hello World&quot;
+console.log(x)
+
+x &#x3D; true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207042148443.png" alt="" /></p>
+
                 
             </div>
             <hr/>
@@ -549,7 +614,7 @@ import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbe
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2022/02/06/pubsub/">https://Coming98.github.io/Coming-blog/2022/02/06/pubsub/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/">https://Coming98.github.io/Coming-blog/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -587,12 +652,8 @@ import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbe
                     
                         <div class="article-tag">
                             
-                                <a href="/Coming-blog/tags/react/">
-                                    <span class="chip bg-color">react</span>
-                                </a>
-                            
-                                <a href="/Coming-blog/tags/react-tools/">
-                                    <span class="chip bg-color">react tools</span>
+                                <a href="/Coming-blog/tags/typescript-basic/">
+                                    <span class="chip bg-color">typescript-basic</span>
                                 </a>
                             
                         </div>
@@ -786,29 +847,30 @@ import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbe
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/Coming-blog/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/">
+                <a href="/Coming-blog/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/11.jpg" class="responsive-img" alt="01-TS的基本配置与使用">
+                        <img src="/Coming-blog/medias/featureimages/21.jpg" class="responsive-img" alt="03-TS的类型缩小机制">
                         
-                        <span class="card-title">01-TS的基本配置与使用</span>
+                        <span class="card-title">03-TS的类型缩小机制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            TS的基本配置与使用
+                            TS的类型缩小机制
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -821,6 +883,7 @@ import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbe
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -839,31 +902,31 @@ import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbe
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/06/udp-and-udp-protocol/">
+                <a href="/Coming-blog/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/9.jpg" class="responsive-img" alt="UDP and UDP Protocol">
+                        <img src="/Coming-blog/medias/featureimages/7.jpg" class="responsive-img" alt="02-TS的类型声明与基本操作">
                         
-                        <span class="card-title">UDP and UDP Protocol</span>
+                        <span class="card-title">02-TS的类型声明与基本操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            传输层与UDP 安全简述
+                            TS的类型声明与基本操作
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
-                                    Protocol Security
+                            <a href="/Coming-blog/categories/TypeScript/" class="post-category">
+                                    TypeScript
                                 </a>
                             
                             
@@ -873,8 +936,8 @@ import PubSub from &#39;pubsub-js&#39;<span aria-hidden="true" class="line-numbe
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/security/">
-                        <span class="chip bg-color">security</span>
+                    <a href="/Coming-blog/tags/typescript-basic/">
+                        <span class="chip bg-color">typescript-basic</span>
                     </a>
                     
                 </div>
