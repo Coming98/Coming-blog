@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    10 分
                 </div>
                 
 
@@ -497,152 +497,151 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="显式类型"><a class="markdownIt-Anchor" href="#显式类型"></a> 显式类型</h1>
+                <h1 id="类型声明"><a class="markdownIt-Anchor" href="#类型声明"></a> 类型声明</h1>
 <p>使用 <code>:</code> + <code>类型</code> 为目标变量制定显示类型</p>
-<p>此外, TS 还能支持类型推断, 因此不用一直手动指定类型</p>
-<h1 id="常用类型"><a class="markdownIt-Anchor" href="#常用类型"></a> 常用类型</h1>
 <ul>
-<li>基本类型：<code>string</code>, <code>number</code>, <code>boolean</code></li>
+<li><code>let param: type = value</code></li>
+<li><code>function fn(param1: type1, param2: type2): typeRet &#123;&#125;</code></li>
 </ul>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">let str: string &#x3D; &#39;hello typescript&#39;
-let num: number &#x3D; 100
-let bool: boolean &#x3D; true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>此外, TS 还能支持类型推断, 因此不用一直手动指定类型</p>
+<h1 id="typescript-类型"><a class="markdownIt-Anchor" href="#typescript-类型"></a> TypeScript 类型</h1>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207051644467.png" alt="" /></p>
+<h2 id="基本类型"><a class="markdownIt-Anchor" href="#基本类型"></a> 基本类型</h2>
+<ul>
+<li><code>string</code>, <code>number</code>, <code>boolean</code></li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> str<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">'hello typescript'</span>
+<span class="token keyword">let</span> num<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token keyword">let</span> bool<span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token operator">=</span> <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>数组: <code>type[]</code> 或 <code>Array&lt;type&gt;</code></li>
 </ul>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">let arr: number[] &#x3D; [1, 2, 3]
-let strArr: string[] &#x3D; [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> arr<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> strArr<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'2'</span><span class="token punctuation">,</span> <span class="token string">'3'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>tuple: 元组, 固定长度的数组</li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> h<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">number</span><span class="token punctuation">]</span> <span class="token comment">// 表示长度为 3 的数组, 数组中元素的类型可以不一致</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="object-类型"><a class="markdownIt-Anchor" href="#object-类型"></a> object 类型</h2>
+<p>对对象的属性进行类型约束</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token comment">// 逗号与分号都能当作分隔符</span>
+<span class="token keyword">function</span> <span class="token function">printCoord</span><span class="token punctuation">(</span>pt<span class="token operator">:</span> <span class="token punctuation">&#123;</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"坐标的 x 值为: "</span> <span class="token operator">+</span> pt<span class="token punctuation">.</span>x<span class="token punctuation">)</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"坐标的 y 值为: "</span> <span class="token operator">+</span> pt<span class="token punctuation">.</span>y<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>? 表示可选属性</li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token function">printName</span><span class="token punctuation">(</span>obj<span class="token operator">:</span> <span class="token punctuation">&#123;</span> first<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> last<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>last <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        obj<span class="token punctuation">.</span>last <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        obj<span class="token punctuation">.</span>last <span class="token operator">+=</span> <span class="token string">' '</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>last <span class="token operator">+</span> obj<span class="token punctuation">.</span>first<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>当有多个可选属性时, <code>[propName: string]</code> 是对属性名的限制, <code>: any</code> 是对属性值的限制</li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> d<span class="token operator">:</span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>propName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+d <span class="token operator">=</span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span> <span class="token string">'coming'</span><span class="token punctuation">,</span> age<span class="token operator">:</span> <span class="token number">23</span><span class="token punctuation">,</span> like<span class="token operator">:</span> <span class="token string">'123'</span><span class="token punctuation">,</span> apple<span class="token operator">:</span> <span class="token string">'apple'</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="any-与-unknown"><a class="markdownIt-Anchor" href="#any-与-unknown"></a> any 与 unknown</h2>
+<p>任意类型, any 相当于关闭了相关的类型检查, unknown 相当于类型安全的 any</p>
+<p>当把一个 any 类型赋值给一个指定类型(如字符串时), 就会影响到目标的类型检查; 但是如果把一个 unknown 类型赋值给一个指定类型(如字符串时), 就会进行报错提醒</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token string">'hello'</span>
+<span class="token keyword">let</span> b<span class="token operator">:</span> <span class="token builtin">unknown</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> c<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
 
-console.log(arr)
-console.log(strArr)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p>any 类型: 相当于关闭了相关的类型检查</p>
-</li>
-<li>
-<p>函数类型</p>
-</li>
-</ul>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">function greet(name: string): void &#123;
-    console.log(&quot;Hello, &quot; + name)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>对象类型:</li>
-</ul>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">&#x2F;&#x2F; 逗号与分号都能当作分隔符
-function printCoord(pt: &#123; x: number, y: number &#125;): void &#123;
-    console.log(&quot;坐标的 x 值为: &quot; + pt.x)
-    console.log(&quot;坐标的 y 值为: &quot; + pt.y)
-&#125;
-&#x2F;&#x2F; ? 表示可选属性
-function printName(obj: &#123; first: string; last?: string &#125;) &#123;
-    if(obj.last &#x3D;&#x3D;&#x3D; undefined) &#123;
-        obj.last &#x3D; &#39;&#39;
-    &#125; else &#123;
-        obj.last +&#x3D; &#39; &#39;
-    &#125;
-    console.log(obj.last + obj.first)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="函数类型"><a class="markdownIt-Anchor" href="#函数类型"></a> 函数类型</h1>
+a <span class="token operator">=</span> c <span class="token comment">// 通过检查</span>
+<span class="token comment">// a = b // 不能将类型“unknown”分配给类型“string”</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="函数类型"><a class="markdownIt-Anchor" href="#函数类型"></a> 函数类型</h2>
 <p>故名思意, 其值是一个函数, 可以进一步规定其函数返回值的类型等</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">type Fish &#x3D; &#123; swim: () &#x3D;&gt; void &#125;
-type Bird &#x3D; &#123; fly: () &#x3D;&gt; void &#125;
-type Human &#x3D; &#123; swim?: () &#x3D;&gt; void; fly?: () &#x3D;&gt; void &#125;
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">type</span> <span class="token class-name">Fish</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token function-variable function">swim</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span> <span class="token punctuation">&#125;</span>
+<span class="token keyword">type</span> <span class="token class-name">Bird</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token function-variable function">fly</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span> <span class="token punctuation">&#125;</span>
+<span class="token keyword">type</span> <span class="token class-name">Human</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span> swim<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">;</span> fly<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span> <span class="token punctuation">&#125;</span>
 
-function move(animal: Fish | Bird | Human) &#123;
-    if (&quot;swim&quot; in animal) &#123;
-        &#x2F;&#x2F; Fish | Human 但是 Human 可能没有 swim
-        &#x2F;&#x2F; 因此可以用断言进行空间缩小
-        return (animal as Fish).swim()
-    &#125;
-    &#x2F;&#x2F; 可能是 Bird 或 Human 但是 Human 可能没有 fly
-    return (animal as Bird).fly()
-&#125;
+<span class="token keyword">function</span> <span class="token function">move</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Fish <span class="token operator">|</span> Bird <span class="token operator">|</span> Human<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"swim"</span> <span class="token keyword">in</span> animal<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// Fish | Human 但是 Human 可能没有 swim</span>
+        <span class="token comment">// 因此可以用断言进行空间缩小</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>animal <span class="token keyword">as</span> Fish<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 可能是 Bird 或 Human 但是 Human 可能没有 fly</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>animal <span class="token keyword">as</span> Bird<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
 
-const petA: Fish &#x3D; &#123; swim: () &#x3D;&gt; &#123;
-    console.log(&quot;petA is a Fish.&quot;)
-&#125;&#125;
-const petB: Bird &#x3D; &#123; fly: () &#x3D;&gt; &#123;
-    console.log(&quot;petB is a Bird.&quot;)
-&#125;&#125;
-const petC: Human &#x3D; &#123;&#125;
+<span class="token keyword">const</span> petA<span class="token operator">:</span> Fish <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token function-variable function">swim</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"petA is a Fish."</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> petB<span class="token operator">:</span> Bird <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token function-variable function">fly</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"petB is a Bird."</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> petC<span class="token operator">:</span> Human <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
-move(petA)
-move(petB)
-&#x2F;&#x2F; move(petC) &#x2F;&#x2F; 因为断言而报错<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="联合类型"><a class="markdownIt-Anchor" href="#联合类型"></a> 联合类型</h1>
-<p>表示可能是目标类型集中的任意一种类型</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">function printId(id: number | string) &#123;
-    if(typeof id &#x3D;&#x3D;&#x3D; &#39;string&#39;)&#123;
-        console.log(id.toUpperCase())
-    &#125; else &#123;
-        console.log(id)
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>因为传入的值可能是众多类型的一种, 因此需要进行类型判断:</p>
-<ul>
-<li>判断是否为基本类型: <code>typeof value === 'string'</code> OR <code>number</code> OR <code>boolean</code></li>
-<li>判断是否为数组: <code>Array.isArray(value)</code></li>
-</ul>
-<h1 id="文字类型"><a class="markdownIt-Anchor" href="#文字类型"></a> 文字类型</h1>
+<span class="token function">move</span><span class="token punctuation">(</span>petA<span class="token punctuation">)</span>
+<span class="token function">move</span><span class="token punctuation">(</span>petB<span class="token punctuation">)</span>
+<span class="token comment">// move(petC) // 因为断言而报错</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="文字类型"><a class="markdownIt-Anchor" href="#文字类型"></a> 文字类型</h2>
 <p>let 与 const: 文字类型就是去模拟 const 的声明限制</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">let testString &#x3D; &quot;hello world&quot;
-testString &#x3D; &quot;world hello&quot;
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> testString <span class="token operator">=</span> <span class="token string">"hello world"</span>
+testString <span class="token operator">=</span> <span class="token string">"world hello"</span>
 
-const constantString &#x3D; &quot;hello world&quot;
-&#x2F;&#x2F; constantString &#x3D; &quot;world hello&quot; &#x2F;&#x2F; Wrong
+<span class="token keyword">const</span> constantString <span class="token operator">=</span> <span class="token string">"hello world"</span>
+<span class="token comment">// constantString = "world hello" // Wrong</span>
 
-let x: &#39;hello&#39; &#x3D; &#39;hello&#39; &#x2F;&#x2F; 类型定义为 &#39;hello&#39; 其值只能是字符串 &#39;hello&#39;
-let b1: true &#x3D; true &#x2F;&#x2F; 布尔文字类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">let</span> x<span class="token operator">:</span> <span class="token string">'hello'</span> <span class="token operator">=</span> <span class="token string">'hello'</span> <span class="token comment">// 类型定义为 'hello' 其值只能是字符串 'hello'</span>
+<span class="token keyword">let</span> b1<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token operator">=</span> <span class="token boolean">true</span> <span class="token comment">// 布尔文字类型</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>单独的应用其实就是 const, 但是结合联合类型, 就可以规定变量的内容选择空间</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">&#x2F;&#x2F; demo-1
-function printText(s: string, alignment: &#39;left&#39; | &#39;right&#39; | &#39;center&#39;) &#123;
-    console.log(alignment + &#39; : &#39; + s)
-&#125;
-&#x2F;&#x2F; demo-2
-function compare(a: number, b: number): -1 | 0 | 1 &#123;
-    return a &#x3D;&#x3D;&#x3D; b ? 0 : a &gt; b ? 1 : -1;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="与类型推断结合使用"><a class="markdownIt-Anchor" href="#与类型推断结合使用"></a> 与类型推断结合使用</h2>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token comment">// demo-1</span>
+<span class="token keyword">function</span> <span class="token function">printText</span><span class="token punctuation">(</span>s<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> alignment<span class="token operator">:</span> <span class="token string">'left'</span> <span class="token operator">|</span> <span class="token string">'right'</span> <span class="token operator">|</span> <span class="token string">'center'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>alignment <span class="token operator">+</span> <span class="token string">' : '</span> <span class="token operator">+</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// demo-2</span>
+<span class="token keyword">function</span> <span class="token function">compare</span><span class="token punctuation">(</span>a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">|</span> <span class="token number">0</span> <span class="token operator">|</span> <span class="token number">1</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> a <span class="token operator">===</span> b <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> a <span class="token operator">></span> b <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="与类型推断结合使用"><a class="markdownIt-Anchor" href="#与类型推断结合使用"></a> 与类型推断结合使用</h3>
 <p>当我们定义一个对象的属性但没有显示指明其类型时，ts 会自动帮助我们进行类型推断：</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">const obj2 &#x3D; &#123;
-    count: 0 &#x2F;&#x2F; 推断为 number 类型
-&#125;
-if (true) &#123;
-    obj2.count &#x3D; 1
-    &#x2F;&#x2F; obj2.count &#x3D; &quot;1&quot; &#x2F;&#x2F; Wrong:  Type &#39;string&#39; is not assignable to type &#39;number&#39;.
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">const</span> obj2 <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    count<span class="token operator">:</span> <span class="token number">0</span> <span class="token comment">// 推断为 number 类型</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    obj2<span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token comment">// obj2.count = "1" // Wrong:  Type 'string' is not assignable to type 'number'.</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>针对复杂的函数调用，我们可以将有限的可传递的参数封装为对象实现复用：</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">function handleRequest(url: string, method: &#39;GET&#39; | &#39;POST&#39; | &#39;GUESS&#39;) &#123;
-    &#x2F;&#x2F; pass
-&#125;
-const req &#x3D; &#123;
-    url: &#39;https:&#x2F;&#x2F;example.com&#39;,
-    method: &#39;GET&#39;,
-&#125;
-&#x2F;&#x2F; handleRequest(req.url, req.method) &#x2F;&#x2F; Wrong: Argument of type &#39;string&#39; is not assignable to parameter of type &#39;&quot;GET&quot; | &quot;POST&quot; | &quot;GUESS&quot;&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span>url<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> method<span class="token operator">:</span> <span class="token string">'GET'</span> <span class="token operator">|</span> <span class="token string">'POST'</span> <span class="token operator">|</span> <span class="token string">'GUESS'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// pass</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> req <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    url<span class="token operator">:</span> <span class="token string">'https://example.com'</span><span class="token punctuation">,</span>
+    method<span class="token operator">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// handleRequest(req.url, req.method) // Wrong: Argument of type 'string' is not assignable to parameter of type '"GET" | "POST" | "GUESS"'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>但是基于类型推断，属性 method 会被推断为 string 类型，并不是函数参数所要求的文字类型，因此需要进行类型转换</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">&#x2F;&#x2F; 比较简单的解决方案就是在参数对象定义时手动进行类型推断
-const req &#x3D; &#123;
-    url: &#39;https:&#x2F;&#x2F;example.com&#39;,
-    method: &#39;GET&#39; as &#39;GET&#39;
-&#125;
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token comment">// 比较简单的解决方案就是在参数对象定义时手动进行类型推断</span>
+<span class="token keyword">const</span> req <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    url<span class="token operator">:</span> <span class="token string">'https://example.com'</span><span class="token punctuation">,</span>
+    method<span class="token operator">:</span> <span class="token string">'GET'</span> <span class="token keyword">as</span> <span class="token string">'GET'</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 或者直接将参数对象推断为文字类型
-const req &#x3D; &#123;
-    url: &#39;https:&#x2F;&#x2F;example.com&#39;,
-    method: &#39;GET&#39;
-&#125; as const<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="null-和-undefined-类型"><a class="markdownIt-Anchor" href="#null-和-undefined-类型"></a> null 和 undefined 类型</h1>
-<p>分别对应 JS 的 null 和 undefined 类型</p>
+<span class="token comment">// 或者直接将参数对象推断为文字类型</span>
+<span class="token keyword">const</span> req <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    url<span class="token operator">:</span> <span class="token string">'https://example.com'</span><span class="token punctuation">,</span>
+    method<span class="token operator">:</span> <span class="token string">'GET'</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">as</span> <span class="token keyword">const</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="void-类型"><a class="markdownIt-Anchor" href="#void-类型"></a> void 类型</h2>
+<p>主要用于函数无返回值的情况</p>
+<h2 id="null-undefined"><a class="markdownIt-Anchor" href="#null-undefined"></a> null undefined</h2>
+<p>null 和 undefined 类型分别对应 JS 的 null 和 undefined 类型</p>
 <p>声明与定义时会自动进行类型推断：</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">let x_11 &#x3D; undefined &#x2F;&#x2F; 自动推断 undefined
-let x_11_1: undefined &#x3D; undefined
-let y_11 &#x3D; null
-let y_11_1: null &#x3D; null<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> x_11 <span class="token operator">=</span> <span class="token keyword">undefined</span> <span class="token comment">// 自动推断 undefined</span>
+<span class="token keyword">let</span> x_11_1<span class="token operator">:</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> <span class="token keyword">undefined</span>
+<span class="token keyword">let</span> y_11 <span class="token operator">=</span> <span class="token keyword">null</span>
+<span class="token keyword">let</span> y_11_1<span class="token operator">:</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>但是默认情况下（严格模式）其它类型的显示声明不能被赋值为 null 或 undefined：</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">&#x2F;&#x2F; let z_11: string &#x3D; undefined &#x2F;&#x2F; 因为开启了 strictNullChecks 因此不能将 string 类型预定义为 undefined 类型
-let z_11_1: string &#x3D; undefined &#x2F;&#x2F; 关闭后即可, 但是不建议关闭<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token comment">// let z_11: string = undefined // 因为开启了 strictNullChecks 因此不能将 string 类型预定义为 undefined 类型</span>
+<span class="token keyword">let</span> z_11_1<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token keyword">undefined</span> <span class="token comment">// 关闭后即可, 但是不建议关闭</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>针对 null 与 undefined 这两个类型，<code>!</code> 表示断言目标变量不为 null 或 undefined：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">liveDangerously_11</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">?</span><span class="token operator">:</span> number <span class="token operator">|</span> <span class="token keyword">null</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token comment">// x! 表示断言(assert) 虽然支持 null 的输入，但是执行到这句时会进行异常处理</span>
@@ -650,81 +649,61 @@ let z_11_1: string &#x3D; undefined &#x2F;&#x2F; 关闭后即可, 但是不建�
 <span class="token punctuation">&#125;</span>
 <span class="token function">liveDangerously_11</span><span class="token punctuation">(</span><span class="token number">1.1</span><span class="token punctuation">)</span>
 <span class="token comment">// liveDangerously_11(null)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="type-类型别名"><a class="markdownIt-Anchor" href="#type-类型别名"></a> type 类型别名</h1>
-<p>大型项目中可以将常用的类型集合预定义为某个类型别名(通常首字母大写)</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">type Point &#x3D; &#123;
-    x: Number;
-    y: number;
-&#125;
-type ID &#x3D; number | string
+<h2 id="never-类型"><a class="markdownIt-Anchor" href="#never-类型"></a> never 类型</h2>
+<p>在类型缩小时, 如果目标变量的类型可能性为 0 时, 就会被赋予 never 类型, 表示不存在的状态</p>
+<ul>
+<li>never 类型可以分配给每个类型</li>
+<li>但没有任何类型可以分配给 never</li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">Circle3</span> <span class="token punctuation">&#123;</span>
+    kind<span class="token operator">:</span> <span class="token string">'circle'</span><span class="token punctuation">,</span>
+    radius<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
 
-function printCoord2(pt: Point, id?: ID) &#123;
-    console.log(&#96;X: $&#123;pt.x&#125;; Y: $&#123;pt.y&#125;&#96;)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>也支持扩展, 使用符号 <code>&amp;</code> 实现继承的意思</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">type Animal &#x3D; &#123;
-    name: string
-&#125;
+<span class="token keyword">interface</span> <span class="token class-name">Square3</span> <span class="token punctuation">&#123;</span>
+    kind<span class="token operator">:</span> <span class="token string">'square'</span><span class="token punctuation">,</span>
+    length<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
 
-type Bear &#x3D; Animal &amp; &#123;
-    honey: number
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="接口"><a class="markdownIt-Anchor" href="#接口"></a> 接口</h1>
-<p>将类型封装为结构, 更加工程化</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">interface Point3 &#123;
-    x: number,
-    y: number,
-&#125;
+<span class="token keyword">interface</span> <span class="token class-name">Triangle3</span> <span class="token punctuation">&#123;</span>
+    kind<span class="token operator">:</span> <span class="token string">'triangle'</span><span class="token punctuation">,</span>
+    length<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
 
-function printCoord3(pt: Point) &#123;
-    console.log(&#96;X: $&#123;pt.x&#125;; Y: $&#123;pt.y&#125;&#96;)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>并且支持多种类型的继承, 更适合完整优雅的工程</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">interface Animal &#123;
-    name: string
-&#125;
+<span class="token keyword">type</span> <span class="token class-name">Shape3</span> <span class="token operator">=</span> Circle3 <span class="token operator">|</span> Square3 <span class="token operator">|</span> Triangle3
 
-interface Bear extends Animal &#123;
-    honey: number
-&#125;
-
-const teedyBear: Bear &#x3D; &#123;
-    name: &#39;Teedy&#39;,
-    honey: 100
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="添加新的字段"><a class="markdownIt-Anchor" href="#添加新的字段"></a> 添加新的字段</h2>
-<p>同名的接口不会覆盖, 而是会合并</p>
-<blockquote>
-<p>type 不支持重复定义进行类型合并</p>
-</blockquote>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">interface JCWindow &#123;
-    count: number
-&#125;
-
-interface JCWindow &#123;
-    title: string
-&#125;
-
-const myWindow: JCWindow &#x3D; &#123;
-    count: 1,
-    title: &quot;JCWindow&quot;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="类型断言"><a class="markdownIt-Anchor" href="#类型断言"></a> 类型断言</h1>
-<p>类型断言: 针对内置的 JS 语法获取对象时, 指定对象的类型:</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">const myCanvas &#x3D; document.getElementById(&quot;main_canvas&quot;) as HTMLCanvasElement &#x2F;&#x2F; Method 1
-const myCanvas &#x3D; &lt;HTMLCanvasElement&gt;document.getElementById(&quot;main_canvas&quot;) &#x2F;&#x2F; Method 2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h1 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h1>
-<p>TypeScript 为 JS 额外提供的语法,</p>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">&#x2F;&#x2F; Definition
-enum Direction &#123;
-    Up &#x3D; 1,
-    Down, &#x2F;&#x2F; default 2 - 枚举会自动提升
-    Left,
+<span class="token comment">// 使用类型缩小</span>
+<span class="token keyword">function</span> <span class="token function">getArea3</span><span class="token punctuation">(</span>shape<span class="token operator">:</span> Shape3<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>shape<span class="token punctuation">.</span>kind<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> <span class="token string">'circle'</span><span class="token operator">:</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shape<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> shape<span class="token punctuation">.</span>radius
+        <span class="token keyword">case</span> <span class="token string">'square'</span><span class="token operator">:</span>
+        <span class="token keyword">case</span> <span class="token string">'triangle'</span><span class="token operator">:</span>
+            <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shape<span class="token punctuation">.</span>length<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> shape<span class="token punctuation">.</span>length
+        <span class="token comment">// 穷尽性检查</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            <span class="token keyword">const</span> _exhaustiveCheck<span class="token operator">:</span> <span class="token builtin">never</span> <span class="token operator">=</span> shape
+            <span class="token keyword">return</span> _exhaustiveCheck
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此外 never 还能表示永远不会返回结果的情况(用于报错的函数) 了解即可</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">never</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Wrong Input..."</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="枚举类型"><a class="markdownIt-Anchor" href="#枚举类型"></a> 枚举类型</h2>
+<p>TypeScript 为 JS 额外提供的语法, 目标属性的取值可以离散索引</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token comment">// Definition</span>
+<span class="token keyword">enum</span> Direction <span class="token punctuation">&#123;</span>
+    Up <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    Down<span class="token punctuation">,</span> <span class="token comment">// default 2 - 枚举会自动提升</span>
+    Left<span class="token punctuation">,</span>
     Right
-&#125;
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; Assess
-console.log(Direction.Up)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">// Assess</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Direction<span class="token punctuation">.</span>Up<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>与 JS 代码对比一下：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// Definition</span>
 <span class="token keyword">var</span> Direction<span class="token punctuation">;</span>
@@ -736,24 +715,147 @@ console.log(Direction.Up)<span aria-hidden="true" class="line-numbers-rows"><spa
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Direction <span class="token operator">||</span> <span class="token punctuation">(</span>Direction <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// Assess</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Direction<span class="token punctuation">.</span>Up<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="联合类型"><a class="markdownIt-Anchor" href="#联合类型"></a> 联合类型</h1>
+<p><code>|</code> 表示可能是目标类型集中的任意一种类型</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">function</span> <span class="token function">printId</span><span class="token punctuation">(</span>id<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> id <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因为传入的值可能是众多类型的一种, 因此需要进行类型判断:</p>
+<ul>
+<li>判断是否为基本类型: <code>typeof value === 'string'</code> OR <code>number</code> OR <code>boolean</code></li>
+<li>判断是否为数组: <code>Array.isArray(value)</code></li>
+</ul>
+<p><code>&amp;</code> 则是表明要同时满足两个类型的约束, 通常用于合并两个对象的约束</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">let</span> j<span class="token operator">:</span> <span class="token punctuation">&#123;</span> name<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">&#125;</span> <span class="token operator">&amp;</span> <span class="token punctuation">&#123;</span> age<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">&#125;</span>
+j <span class="token operator">=</span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span> <span class="token string">'coming'</span><span class="token punctuation">,</span> age<span class="token operator">:</span> <span class="token number">23</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="类型受限"><a class="markdownIt-Anchor" href="#类型受限"></a> 类型受限</h1>
+<p>当参数是联合类型时, 有些逻辑需要配合类型缩小实现进一步的类型细化与检查:</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">Circle</span> <span class="token punctuation">&#123;</span>
+    kind<span class="token operator">:</span> <span class="token string">'circle'</span><span class="token punctuation">,</span>
+    radius<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Square</span> <span class="token punctuation">&#123;</span>
+    kind<span class="token operator">:</span> <span class="token string">'square'</span><span class="token punctuation">,</span>
+    length<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Shape2</span> <span class="token operator">=</span> Circle <span class="token operator">|</span> Square
+
+<span class="token comment">// 使用类型缩小</span>
+<span class="token keyword">function</span> <span class="token function">getArea</span><span class="token punctuation">(</span>shape<span class="token operator">:</span> Shape2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>shape<span class="token punctuation">.</span>kind <span class="token operator">===</span> <span class="token string">'circle'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shape<span class="token punctuation">.</span>radius<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> shape<span class="token punctuation">.</span>radius
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shape<span class="token punctuation">.</span>length<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> shape<span class="token punctuation">.</span>length
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="type-类型别名"><a class="markdownIt-Anchor" href="#type-类型别名"></a> type 类型别名</h1>
+<p>大型项目中可以将常用的类型集合预定义为某个类型别名(通常首字母大写)</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">type</span> <span class="token class-name">Point</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    x<span class="token operator">:</span> Number<span class="token punctuation">;</span>
+    y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">type</span> <span class="token class-name"><span class="token constant">ID</span></span> <span class="token operator">=</span> <span class="token builtin">number</span> <span class="token operator">|</span> <span class="token builtin">string</span>
+
+<span class="token keyword">function</span> <span class="token function">printCoord2</span><span class="token punctuation">(</span>pt<span class="token operator">:</span> Point<span class="token punctuation">,</span> id<span class="token operator">?</span><span class="token operator">:</span> <span class="token constant">ID</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">X: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>pt<span class="token punctuation">.</span>x<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">; Y: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>pt<span class="token punctuation">.</span>y<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>也支持扩展, 使用符号 <code>&amp;</code> 实现继承的意思</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">type</span> <span class="token class-name">Animal</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Bear</span> <span class="token operator">=</span> Animal <span class="token operator">&amp;</span> <span class="token punctuation">&#123;</span>
+    honey<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="接口"><a class="markdownIt-Anchor" href="#接口"></a> 接口</h1>
+<p>用来定义一个类的结构, 指明一个类中应该包含哪些属性和方法; 也可以当成类型声明去使用</p>
+<ul>
+<li>将类型封装为结构, 更加工程化</li>
+</ul>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">Point3</span> <span class="token punctuation">&#123;</span>
+    x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+    y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">printCoord3</span><span class="token punctuation">(</span>pt<span class="token operator">:</span> Point<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">X: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>pt<span class="token punctuation">.</span>x<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">; Y: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>pt<span class="token punctuation">.</span>y<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>并且支持多种类型的继承, 更适合完整优雅的工程</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">Animal</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Bear</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">&#123;</span>
+    honey<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> teedyBear<span class="token operator">:</span> Bear <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token string">'Teedy'</span><span class="token punctuation">,</span>
+    honey<span class="token operator">:</span> <span class="token number">100</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="添加新的字段"><a class="markdownIt-Anchor" href="#添加新的字段"></a> 添加新的字段</h2>
+<p>同名的接口不会覆盖, 而是会合并</p>
+<blockquote>
+<p>type 不支持重复定义进行类型合并</p>
+</blockquote>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">JCWindow</span> <span class="token punctuation">&#123;</span>
+    count<span class="token operator">:</span> <span class="token builtin">number</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">JCWindow</span> <span class="token punctuation">&#123;</span>
+    title<span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> myWindow<span class="token operator">:</span> JCWindow <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    count<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    title<span class="token operator">:</span> <span class="token string">"JCWindow"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="类型断言"><a class="markdownIt-Anchor" href="#类型断言"></a> 类型断言</h1>
+<p>类型断言: 针对内置的 JS 语法获取对象时, 指定对象的类型</p>
+<p>主要是为了通过类型检查, 如果按照你的逻辑此处的变量类型一定能走的通, 可以用 as 进行类型断言</p>
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">const</span> myCanvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"main_canvas"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLCanvasElement <span class="token comment">// Method 1</span>
+<span class="token keyword">const</span> myCanvas <span class="token operator">=</span> <span class="token operator">&lt;</span>HTMLCanvasElement<span class="token operator">></span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"main_canvas"</span><span class="token punctuation">)</span> <span class="token comment">// Method 2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h1 id="原语"><a class="markdownIt-Anchor" href="#原语"></a> 原语</h1>
 <p>不常用, 了解即可</p>
 <ul>
 <li><code>bigint</code>: 表示非常大的整数, 对应 ES2020 以后引入的 <code>BigInt</code></li>
 <li><code>symbol</code>: 用于定义全局唯一的引用</li>
 </ul>
-<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">const oneHundred: bigint &#x3D; BigInt(100)
-const anotherHundred: bigint &#x3D; 100n
+<pre class="line-numbers language-ts" data-language="ts"><code class="language-ts"><span class="token keyword">const</span> oneHundred<span class="token operator">:</span> bigint <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> anotherHundred<span class="token operator">:</span> bigint <span class="token operator">=</span> <span class="token number">100n</span>
 
-&#x2F;&#x2F; 虽然都是符号 name, 但是他们的值是完全不一样的
-const firstName &#x3D; Symbol(&quot;name&quot;)
-const lastName &#x3D; Symbol(&quot;name&quot;)
+<span class="token comment">// 虽然都是符号 name, 但是他们的值是完全不一样的</span>
+<span class="token keyword">const</span> firstName <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> lastName <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span>
 
-&#x2F;&#x2F; 始终返回 false
-if (firstName &#x3D;&#x3D;&#x3D; lastName) &#123;
-    console.log(&quot;Equal&quot;)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">// 始终返回 false</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>firstName <span class="token operator">===</span> lastName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Equal"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="属性的封装"><a class="markdownIt-Anchor" href="#属性的封装"></a> 属性的封装</h1>
+<p>属性是在对象中设置的, 但是在外部属性可以被任意修改, 因此 TS 引入了属性修饰符: public 与 private protected</p>
+<ul>
+<li>private 表示私有属性, 只能在类内部进行修改（不能继承）</li>
+<li>protected 受保护的属性, 只能在当前类和子类中访问与修改（能够继承）</li>
+</ul>
+<p>ES6 引入了更方便的 getter 与 setter 机制</p>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">get</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>propName<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
+<span class="token keyword">set</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">&#125;</span>
+
+person<span class="token punctuation">.</span>name <span class="token comment">// 对应的就是 get 修饰的 name()</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1304,7 +1406,7 @@ if (firstName &#x3D;&#x3D;&#x3D; lastName) &#123;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.6k</span>&nbsp;字
+                class="white-color">86.2k</span>&nbsp;字
             
             
             

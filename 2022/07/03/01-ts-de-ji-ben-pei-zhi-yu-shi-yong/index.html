@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    521
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -499,6 +499,12 @@
             <div id="articleContent">
                 <h1 id="typescript"><a class="markdownIt-Anchor" href="#typescript"></a> TypeScript</h1>
 <p>Backdrop：JS 没有表达不同代码单元之间关系的能力，因此引申出来 TS, 目标是成为 JS 的静态类型检查器</p>
+<ul>
+<li>以 Javascript 为基础构建的语言</li>
+<li>Javascript 的超集</li>
+<li>可以在任何支持 Javascript 的平台中执行(不代表能被 JS 解析器直接执行, .ts -&gt; .js -&gt; 浏览器执行)</li>
+<li>Typescript 扩展了 Javascript 并添加了类型</li>
+</ul>
 <h2 id="jsests"><a class="markdownIt-Anchor" href="#jsests"></a> JS\ES\TS</h2>
 <ul>
 <li>JS, JavaScript</li>
@@ -552,6 +558,57 @@
 </ul>
 </li>
 </ul>
+<h3 id="编译配置"><a class="markdownIt-Anchor" href="#编译配置"></a> 编译配置</h3>
+<ul>
+<li>include: 数组, 里面存放要进行编译的 ts 文件, 支持 ** 表示任意文件夹, * 表示任意文件</li>
+<li>exclude: 数组, 里面存放不需要进行编译的 ts 文件, 通常为默认值即可</li>
+<li>files: 数组, 指定需要编译的文件</li>
+</ul>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token punctuation">&#123;</span>
+  <span class="token string">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"./src/**/*"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"exclude"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"files"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="编译器配置"><a class="markdownIt-Anchor" href="#编译器配置"></a> 编译器配置</h3>
+<p>compilerOptions：</p>
+<ul>
+<li>target: 设置 ts 代码编译的目标版本: <code>ES3, ES5, ES6(ES2015), ES7(ES2016), ES2017, ES2018, ES2019, ES2020, ESNext</code>
+<ul>
+<li>ESNext 表示最新版本</li>
+</ul>
+</li>
+<li>lib: 指定代码运行时所包含的库(宿主环境): <code>DOM, WebWorker, ScriptHost, ES3, ES5, ES6(ES2015), ES7(ES2016), ES2017, ES2018, ES2019, ES2020, ESNext, ...</code></li>
+<li>module: 设置编译后代码使用的模块化系统: <code>CommonJS, UMD, AMD, System, ES2020, ESNext, None</code></li>
+<li>outDir: 编译后生成的 js 文件所在的目录, 默认会在同一目录</li>
+<li>outFile: 将所有 ts 文件合并生成为一个 js 文件</li>
+<li>allowJS: 是否对 js 文件进行编译生成到 outDir, 默认为 false</li>
+<li>checkJs: 是否对 js 代码进行语法规范检查（像 TS 一样检查）, 默认为 false</li>
+<li><strong>removeComments</strong>: 编译后是否移除注释</li>
+<li>noEmit: 不生产编译后的文件</li>
+<li>noEmitOnError: 当有错误时不生成编译错误的文件</li>
+<li>alwaysStrict: 设置编译后的文件是否使用严格模式</li>
+<li>noImplicitAny: 不指定类型时默认其类型为 any （隐式）</li>
+<li>noImplicitThis: 不允许不明确类型的 this</li>
+<li>strictNullChecks: 严格的检查空值, 比如根据 id 获取目标组件对象, 可能返回的是 null</li>
+<li>strict: 所有严格检查的总开关, 如果是 true 则开启最高的严格检查, 推荐打开</li>
+</ul>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">let</span> box1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"box1"</span><span class="token punctuation">)</span>
+box1<span class="token operator">?.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"BOX"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token punctuation">&#123;</span>
+  <span class="token string">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"target"</span><span class="token operator">:</span> <span class="token string">"ES6"</span><span class="token punctuation">,</span>
+    <span class="token string">"lib"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"DOM"</span><span class="token punctuation">,</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"module"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"es2015"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"outDir"</span><span class="token operator">:</span> <span class="token string">"./dist"</span><span class="token punctuation">,</span>
+    <span class="token string">"outFile"</span><span class="token operator">:</span> <span class="token string">"./app.js"</span><span class="token punctuation">,</span>
+    <span class="token string">"allowJs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string">"checkJs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="自动编译与禁止错误更新"><a class="markdownIt-Anchor" href="#自动编译与禁止错误更新"></a> 自动编译与禁止错误更新</h2>
 <ul>
 <li>开启自动编译：<code>tsc --watch</code>，将检查 <code>rootDir</code> 中 <code>.ts</code> 文件的更改，并自动对其进行编译</li>
@@ -1113,7 +1170,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.6k</span>&nbsp;字
+                class="white-color">86.2k</span>&nbsp;字
             
             
             
