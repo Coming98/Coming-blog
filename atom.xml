@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-07-14T02:52:24.040Z</updated>
+  <updated>2022-07-15T05:10:38.660Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>01-活跃主机发现技术</title>
+    <link href="https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/"/>
+    <id>https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/</id>
+    <published>2022-07-15T13:07:04.000Z</published>
+    <updated>2022-07-15T05:10:38.660Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;活跃主机发现技术&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#活跃主机发现技术&quot;&gt;&lt;/a&gt; 活跃主机发现技术&lt;/h1&gt;
+&lt;p&gt;活跃主机: 那些已经于运行状态并且网络功能正常的主机&lt;/p&gt;
+&lt;p&gt;协议与约定:</summary>
+        
+      
+    
+    
+    
+    <category term="Kali" scheme="https://coming98.github.io/categories/Kali/"/>
+    
+    
+    <category term="nmap" scheme="https://coming98.github.io/tags/nmap/"/>
+    
+  </entry>
+  
+  <entry>
     <title>02-Kotlin</title>
     <link href="https://coming98.github.io/2022/07/14/02-kotlin/"/>
     <id>https://coming98.github.io/2022/07/14/02-kotlin/</id>
     <published>2022-07-14T10:46:25.000Z</published>
-    <updated>2022-07-14T02:52:24.040Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -49,7 +76,7 @@
     <link href="https://coming98.github.io/2022/07/14/01-android-basic/"/>
     <id>https://coming98.github.io/2022/07/14/01-android-basic/</id>
     <published>2022-07-14T10:46:17.000Z</published>
-    <updated>2022-07-14T02:52:24.040Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -77,7 +104,7 @@
     <link href="https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/"/>
     <id>https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/</id>
     <published>2022-07-04T21:59:53.000Z</published>
-    <updated>2022-07-14T02:52:24.040Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -103,7 +130,7 @@
     <link href="https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/"/>
     <id>https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/</id>
     <published>2022-07-04T21:59:44.000Z</published>
-    <updated>2022-07-14T02:52:24.040Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -129,7 +156,7 @@
     <link href="https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/"/>
     <id>https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/</id>
     <published>2022-07-03T10:56:15.000Z</published>
-    <updated>2022-07-14T02:52:24.040Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -155,7 +182,7 @@
     <link href="https://coming98.github.io/2022/02/06/pubsub/"/>
     <id>https://coming98.github.io/2022/02/06/pubsub/</id>
     <published>2022-02-06T19:35:37.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.664Z</updated>
     
     
       
@@ -183,7 +210,7 @@
     <link href="https://coming98.github.io/2021/12/06/udp-and-udp-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/udp-and-udp-protocol/</id>
     <published>2021-12-06T13:41:54.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.664Z</updated>
     
     
       
@@ -209,7 +236,7 @@
     <link href="https://coming98.github.io/2021/12/06/bgp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/bgp-protocol-and-security/</id>
     <published>2021-12-06T13:19:52.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -237,7 +264,7 @@
     <link href="https://coming98.github.io/2021/12/06/ospf-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</id>
     <published>2021-12-06T11:22:25.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.664Z</updated>
     
     
       
@@ -263,7 +290,7 @@
     <link href="https://coming98.github.io/2021/12/06/rip-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/rip-protocol-and-security/</id>
     <published>2021-12-06T10:45:21.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.664Z</updated>
     
     
       
@@ -289,7 +316,7 @@
     <link href="https://coming98.github.io/2021/12/06/overview-of-routing-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/overview-of-routing-protocol/</id>
     <published>2021-12-06T10:43:40.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.664Z</updated>
     
     
       
@@ -314,7 +341,7 @@
     <link href="https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/</id>
     <published>2021-12-06T09:22:48.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -340,7 +367,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</id>
     <published>2021-12-05T21:40:49.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -366,7 +393,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</id>
     <published>2021-12-05T19:12:45.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -392,7 +419,7 @@
     <link href="https://coming98.github.io/2021/12/05/icmp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</id>
     <published>2021-12-05T19:11:02.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -418,7 +445,7 @@
     <link href="https://coming98.github.io/2021/12/05/vlan-and-vlan-security/"/>
     <id>https://coming98.github.io/2021/12/05/vlan-and-vlan-security/</id>
     <published>2021-12-05T14:54:03.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.664Z</updated>
     
     
       
@@ -444,7 +471,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-11-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-11-protocol-and-security/</id>
     <published>2021-12-05T14:47:50.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -469,7 +496,7 @@
     <link href="https://coming98.github.io/2021/12/05/802-3-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/802-3-protocol-and-security/</id>
     <published>2021-12-05T14:18:31.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.660Z</updated>
     
     
       
@@ -495,7 +522,7 @@
     <link href="https://coming98.github.io/2021/12/04/react-router/"/>
     <id>https://coming98.github.io/2021/12/04/react-router/</id>
     <published>2021-12-04T20:22:16.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
+    <updated>2022-07-15T05:10:38.664Z</updated>
     
     
       
@@ -515,33 +542,6 @@
     <category term="react" scheme="https://coming98.github.io/tags/react/"/>
     
     <category term="react components" scheme="https://coming98.github.io/tags/react-components/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSL/TLS Protocol and Security</title>
-    <link href="https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/"/>
-    <id>https://coming98.github.io/2021/12/04/ssl-tls-protocol-and-security/</id>
-    <published>2021-12-04T19:58:10.000Z</published>
-    <updated>2022-07-14T02:52:24.044Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;传输层安全协议-ssltls&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#传输层安全协议-ssltls&quot;&gt;&lt;/a&gt; 传输层安全协议 SSL/TLS&lt;/h1&gt;
-&lt;p&gt;HTTPS = HTTP + SSL/TLS&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
-    
-    
-    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
     
   </entry>
   

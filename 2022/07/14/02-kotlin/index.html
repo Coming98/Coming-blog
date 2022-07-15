@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    3.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    13 分
                 </div>
                 
 
@@ -528,6 +528,7 @@
 <ul>
 <li>Kotlin 完全抛弃了 Java 的基本数据类型, 使用对象数据类型</li>
 <li><code>Int, Long, Short, Float, Double, Boolean, Char, Byte</code></li>
+<li><code>Unit</code> 类型表示函数返回无意义的值, 可以省略</li>
 </ul>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> a<span class="token operator">:</span> Int <span class="token operator">=</span> <span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="定义区间"><a class="markdownIt-Anchor" href="#定义区间"></a> 定义区间</h2>
@@ -536,7 +537,28 @@
 <li><code>val range = 0 until 10</code>: 定义 <code>[0, 10)</code> 的区间</li>
 <li><code>val range = 10 downTo 0</code>: 定义 <code>[10, 0]</code> 的区间</li>
 </ul>
+<p>使用 <code>in</code> 关键字检测目标是否在区间/集合中:</p>
+<ul>
+<li><code>if (-1 !in 0..list.lastIndex) &#123; ... &#125;</code></li>
+<li><code>if (list.size !in list.indices) &#123; ... &#125;</code></li>
+</ul>
+<h2 id="模板字符串"><a class="markdownIt-Anchor" href="#模板字符串"></a> 模板字符串</h2>
+<ul>
+<li><code>$value</code> 在字符串中调用变量</li>
+<li><code>$&#123;s1.replace(&quot;is&quot;, &quot;was&quot;)&#125;</code> 模板表达式</li>
+</ul>
+<h2 id="类型检测"><a class="markdownIt-Anchor" href="#类型检测"></a> 类型检测</h2>
+<p>使用 <code>is</code> 关键字(类比 Java 的 <code>instanceof</code>)</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token keyword">is</span> String<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> obj<span class="token punctuation">.</span>length
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 取反</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token operator">!</span><span class="token keyword">is</span> String<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="函数"><a class="markdownIt-Anchor" href="#函数"></a> 函数</h1>
+<ul>
+<li>支持默认参数</li>
+<li></li>
+</ul>
 <h2 id="if"><a class="markdownIt-Anchor" href="#if"></a> if</h2>
 <p>Kotlin 中的 if 语句存在返回值, 值为条件中最后一行代码的返回值</p>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">JCMax2</span><span class="token punctuation">(</span>a<span class="token operator">:</span> Int<span class="token punctuation">,</span> b<span class="token operator">:</span> Int<span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">&#123;</span>
@@ -608,6 +630,16 @@
 <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token keyword">in</span> range2 step <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="while"><a class="markdownIt-Anchor" href="#while"></a> while</h2>
+<p>与 Java 的用法一致</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> items <span class="token operator">=</span> <span class="token function">listOf</span><span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">,</span> <span class="token string">"banana"</span><span class="token punctuation">,</span> <span class="token string">"kiwifruit"</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> index <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> items<span class="token punctuation">.</span>size<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"item at <span class="token interpolation variable">$index</span> is <span class="token interpolation"><span class="token delimiter variable">$&#123;</span>items<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token delimiter variable">&#125;</span></span>"</span><span class="token punctuation">)</span>
+        index <span class="token operator">++</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="类"><a class="markdownIt-Anchor" href="#类"></a> 类</h1>
 <ul>
 <li>实例化时取消了 <code>new</code> 关键字</li>
@@ -796,7 +828,142 @@ singleton<span class="token punctuation">.</span><span class="token function">si
     Singoton<span class="token punctuation">.</span><span class="token function">SingotonTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// Kotlin 会先创建 Singoton 的实例然后在调用(并且保证全局只有一个实例)</span>
     <span class="token function">println</span><span class="token punctuation">(</span>Singoton<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="lambda-编程"><a class="markdownIt-Anchor" href="#lambda-编程"></a> Lambda 编程</h1>
+<p>Lambda 就是一小段可以作为参数传递的代码</p>
+<p>语法结构: <code>&#123;参数名1: 参数类型, 参数名2: 参数类型 -&gt; 函数体&#125;</code></p>
+<h2 id="集合"><a class="markdownIt-Anchor" href="#集合"></a> 集合</h2>
+<ul>
+<li><code>listOf()</code>: 初始化不可变集合, 只能读取, 不能添加修改或删除</li>
+<li><code>mutableListOf()</code>: 初始化可变集合</li>
+<li>同理 <code>setOf()</code> 于 <code>mutableSetOf()</code> 只是 set 中不可以存放重复的元素, 对于重复的元素只会保留一份</li>
+<li>方法: <code>.filter</code>, <code>map</code>, <code>maxBy</code>, <code>any</code>, <code>all</code></li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> fruitList <span class="token operator">=</span> <span class="token function">listOf</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Banana"</span><span class="token punctuation">,</span> <span class="token string">"Orange"</span><span class="token punctuation">,</span> <span class="token string">"Pear"</span><span class="token punctuation">,</span> <span class="token string">"Grape"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>fruit <span class="token keyword">in</span> fruitList<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span>fruit<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
 
+    <span class="token keyword">val</span> friendList <span class="token operator">=</span> <span class="token function">mutableListOf</span><span class="token punctuation">(</span><span class="token string">"Coming"</span><span class="token punctuation">,</span> <span class="token string">"ZH"</span><span class="token punctuation">,</span> <span class="token string">"ZCY"</span><span class="token punctuation">)</span>
+    friendList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"GTY"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>friend <span class="token keyword">in</span> friendList<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span>friend<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="遍历索引值"><a class="markdownIt-Anchor" href="#遍历索引值"></a> 遍历索引值</h3>
+<p>通过集合的属性 <code>indices</code></p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> items <span class="token operator">=</span> <span class="token function">listOf</span><span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">,</span> <span class="token string">"banana"</span><span class="token punctuation">,</span> <span class="token string">"kiwifruit"</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>index <span class="token keyword">in</span> items<span class="token punctuation">.</span>indices<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"item at <span class="token interpolation variable">$index</span> is <span class="token interpolation"><span class="token delimiter variable">$&#123;</span>items<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token delimiter variable">&#125;</span></span>"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="map"><a class="markdownIt-Anchor" href="#map"></a> Map</h2>
+<ul>
+<li>支持 Java 中的 put 与 get, 但是不推荐</li>
+<li>推荐使用类似于数组下标的语法结构去赋值与获取</li>
+<li>也支持 <code>mapOf()</code> 与 <code>mutableMapOf()</code></li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> map1 <span class="token operator">=</span> HashMap<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Int<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    map1<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"Coming"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span>
+
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Coming's age = "</span> <span class="token operator">+</span> map1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"Coming"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">val</span> map2 <span class="token operator">=</span> HashMap<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Int<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    map2<span class="token punctuation">[</span><span class="token string">"Coming"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">23</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Coming's age = "</span> <span class="token operator">+</span> map2<span class="token punctuation">[</span><span class="token string">"Coming"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">val</span> fruitMap <span class="token operator">=</span> <span class="token function">mapOf</span><span class="token punctuation">(</span><span class="token string">"Apple"</span> <span class="token keyword">to</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"Banana"</span> <span class="token keyword">to</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"Orange"</span> <span class="token keyword">to</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"Pear"</span> <span class="token keyword">to</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"Grape"</span> <span class="token keyword">to</span> <span class="token number">5</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>fruit<span class="token punctuation">,</span> id<span class="token punctuation">)</span> <span class="token keyword">in</span> fruitMap<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span>fruit <span class="token operator">+</span> <span class="token string">" : "</span> <span class="token operator">+</span> id<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="java-函数式-api-的使用"><a class="markdownIt-Anchor" href="#java-函数式-api-的使用"></a> Java 函数式 API 的使用</h2>
+<p>Kotlin 中调用 Java 方法时也可以使用函数式 API, 如果我们在 Kotlin 代码中调用了一个 Java 方法，并且该方法<strong>接收一个 Java 单抽象方法接口参数</strong>，就可以使用函数式API</p>
+<ul>
+<li>接口中只有一个待实现方法</li>
+<li>Java 函数式 API 的使用都限定于从 Kotlin 中调用 Java 方法，并且单抽象方法接口也必须是用 Java 语言定义的</li>
+</ul>
+<p>在 Java 中使用函数式 API: 匿名类, 创建了一个 Runnable 接口的匿名类实例，并将它传给了 Thread 类的构造方法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Thread is running"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用 Kotlin 直观的改写: object 关键字是用于定义单例类, 在这里也直接用于创建了匿名类的实例(因为单例类只有一个实例, 所以类名直接引用是咧)</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Thread</span><span class="token punctuation">(</span><span class="token keyword">object</span> <span class="token operator">:</span> Runnable <span class="token punctuation">&#123;</span>
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"RUNNING"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>简化实现代码:因为只有一个待实现的方法, 所以没必要显示的重写 <code>run</code> 方法</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token function">Thread</span><span class="token punctuation">(</span>Runnable <span class="token punctuation">&#123;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"RUNING2"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>继续简化实现代码: 如果一个 Java 方法的参数列表中有且仅有一个 Java 单抽象方法接口参数，我们还可以将接口名进行省略</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token function">Thread</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"RUNING3"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>最终简化: 当 Lambda 表达式是方法的最后一个参数时，可以将 Lambda 表达式移到方法括号的外面</li>
+<li>同时，如果 Lambda 表达式还是方法的唯一一个参数，还可以将方法的括号省略</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">Thread <span class="token punctuation">&#123;</span> <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"RUNNING4"</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="空指针检查"><a class="markdownIt-Anchor" href="#空指针检查"></a> 空指针检查</h1>
+<p>Kotlin 默认所有的参数和变量都不可为空, 但可以在类型名后面加上 <code>?</code> 来定义可空类型系统：</p>
+<ul>
+<li><code>Int</code> 表示不可为空的整型, <code>Int?</code> 表示可为空的整型</li>
+</ul>
+<p>但使用可空类型系统时就需要对参数进行判空处理, 常用的符号有 <code>?.</code> <code>!!.</code> <code>?:</code></p>
+<ul>
+<li><code>a?.doSomething()</code>: a 为 null 时不再执行, 直接返回 null, a 不为 null 时正常执行</li>
+<li><code>a ?: b</code>: 左右两边都接收一个表达式，如果左边表达式的结果不为空就返回左边表达式的结果，否则就返回右边表达式的结果</li>
+<li><code>!!.</code>: 函数内部进行了非空判断, 但是函数返回后 Kotlin 不能知道已经做了非空判断, 因此使用 <code>!!.</code> 进行非空断言, 表明这个对象绝对不为空</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">getTextLength</span><span class="token punctuation">(</span>text<span class="token operator">:</span> String<span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">&#123;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span>text<span class="token operator">?</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>text <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> text<span class="token punctuation">.</span>length
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// text 不为 null 则 text.length 返回值不为空, ?: 操作符返回左边的结果</span>
+<span class="token comment">// text 为 null 则 text.length 返回值为空, ?: 操作符返回右边的结果</span>
+<span class="token keyword">fun</span> <span class="token function">JCGetTextLength</span><span class="token punctuation">(</span>text<span class="token operator">:</span> String<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token operator">=</span> text<span class="token operator">?</span><span class="token punctuation">.</span>length <span class="token operator">?:</span> <span class="token number">0</span>
+
+<span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">getTextLength</span><span class="token punctuation">(</span><span class="token string">"WWW"</span><span class="token punctuation">)</span> <span class="token comment">// text?.length = 3</span>
+    <span class="token function">getTextLength</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token comment">// text?.length = null</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token function">JCGetTextLength</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token function">JCGetTextLength</span><span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="let-函数"><a class="markdownIt-Anchor" href="#let-函数"></a> let 函数</h2>
+<p>这个函数提供了函数式 API 的编程接口，并将原始调用对象作为参数传递到 Lambda 表达式中, 配合进行非空判断十分方便:</p>
+<ul>
+<li><code>obj.let &#123; obj_ -&gt; ... &#125;</code>: <code>obj_</code> 与 <code>obj</code> 是相同的对象, 只不过为了不重名</li>
+<li>如下例, 如果 study 为 null 则不会执行 let 函数; 如果 study 不为 null 则执行 let 函数并实现了非空判断</li>
+<li>与 <code>if</code> 不同的是, let 函数是可以处理全局变量的判空问题的: if 中如果存在全局变量, 其值随时都有可能被其他线程所修改，即使做了判空处理，仍然无法保证 if 语句中的 study 变量没有空指针风险</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">doStudy</span><span class="token punctuation">(</span>study<span class="token operator">:</span> Study<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    study<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span> stu <span class="token operator">-></span>
+        stu<span class="token punctuation">.</span><span class="token function">readBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        stu<span class="token punctuation">.</span><span class="token function">doHomework</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// lambda 只有一个参数时可以简化改参数为 it</span>
+<span class="token keyword">fun</span> <span class="token function">doStudy</span><span class="token punctuation">(</span>study<span class="token operator">:</span> Study<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    study<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span>
+        it<span class="token punctuation">.</span><span class="token function">readBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        it<span class="token punctuation">.</span><span class="token function">doHomework</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1055,48 +1222,46 @@ singleton<span class="token punctuation">.</span><span class="token function">si
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/Coming-blog/2022/07/14/02-kotlin/">
+                <a href="/Coming-blog/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/4.jpg" class="responsive-img" alt="02-Kotlin">
+                        <img src="/Coming-blog/medias/featureimages/7.jpg" class="responsive-img" alt="01-活跃主机发现技术">
                         
-                        <span class="card-title">02-Kotlin</span>
+                        <span class="card-title">01-活跃主机发现技术</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Android 开发语言 Kotlin
+                            Nmap-活跃主机发现技术
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-14
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-15
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/Android-Dev/" class="post-category">
-                                    Android Dev.
+                            <a href="/Coming-blog/categories/Kali/" class="post-category">
+                                    Kali
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/Android/">
-                        <span class="chip bg-color">Android</span>
+                    <a href="/Coming-blog/tags/nmap/">
+                        <span class="chip bg-color">nmap</span>
                     </a>
                     
                 </div>
@@ -1349,7 +1514,7 @@ singleton<span class="token punctuation">.</span><span class="token function">si
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">86.2k</span>&nbsp;字
+                class="white-color">89.4k</span>&nbsp;字
             
             
             
