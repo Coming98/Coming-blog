@@ -40,6 +40,7 @@ Kotlin 具有出色的类型推导机制, 因此仅有两种声明变量的关�
 当变量需要延迟赋值时, 通过 `: Type` 的形式指定变量的类型
 - Kotlin 完全抛弃了 Java 的基本数据类型, 使用对象数据类型
 - `Int, Long, Short, Float, Double, Boolean, Char, Byte`
+- `Unit` 类型表示函数返回无意义的值, 可以省略
 
 ```kotlin
 val a: Int = 10
@@ -51,7 +52,32 @@ val a: Int = 10
 - `val range = 0 until 10`: 定义 `[0, 10)` 的区间
 - `val range = 10 downTo 0`: 定义 `[10, 0]` 的区间
 
+使用 `in` 关键字检测目标是否在区间/集合中:
+- `if (-1 !in 0..list.lastIndex) { ... }`
+- `if (list.size !in list.indices) { ... }`
+
+## 模板字符串
+
+- `$value` 在字符串中调用变量
+- `${s1.replace("is", "was")}` 模板表达式
+
+## 类型检测
+
+使用 `is` 关键字(类比 Java 的 `instanceof`)
+
+```kotlin
+if (obj is String) {
+    return obj.length
+}
+// 取反
+if (obj !is String) return null
+```
+
+
 # 函数
+
+- 支持默认参数
+- 
 
 ## if
 
@@ -134,6 +160,21 @@ fun main() {
 val range2 = 0 until 10
 for ( i in range2 step 2) {
     println(i)
+}
+```
+
+## while
+
+与 Java 的用法一致
+
+```kotlin
+fun main() {
+    val items = listOf("apple", "banana", "kiwifruit")
+    var index = 0
+    while (index < items.size) {
+        println("item at $index is ${items[index]}")
+        index ++
+    }
 }
 ```
 
@@ -347,5 +388,173 @@ object Singoton {
 fun main() {
     Singoton.SingotonTest() // Kotlin 会先创建 Singoton 的实例然后在调用(并且保证全局只有一个实例)
     println(Singoton.name)
+}
+```
+
+# Lambda 编程
+
+Lambda 就是一小段可以作为参数传递的代码
+
+语法结构: `{参数名1: 参数类型, 参数名2: 参数类型 -> 函数体}`
+
+## 集合
+
+- `listOf()`: 初始化不可变集合, 只能读取, 不能添加修改或删除
+- `mutableListOf()`: 初始化可变集合
+- 同理 `setOf()` 于 `mutableSetOf()` 只是 set 中不可以存放重复的元素, 对于重复的元素只会保留一份
+- 方法: `.filter`, `map`, `maxBy`, `any`, `all`
+
+```kotlin
+fun main() {
+    val fruitList = listOf("Apple", "Banana", "Orange", "Pear", "Grape")
+    for (fruit in fruitList) {
+        println(fruit)
+    }
+
+    val friendList = mutableListOf("Coming", "ZH", "ZCY")
+    friendList.add("GTY")
+    for (friend in friendList) {
+        println(friend)
+    }
+}
+```
+
+### 遍历索引值
+
+通过集合的属性 `indices`
+
+```kotlin
+val items = listOf("apple", "banana", "kiwifruit")
+for (index in items.indices) {
+    println("item at $index is ${items[index]}")
+}
+```
+
+## Map
+
+- 支持 Java 中的 put 与 get, 但是不推荐
+- 推荐使用类似于数组下标的语法结构去赋值与获取
+- 也支持 `mapOf()` 与 `mutableMapOf()`
+
+```kotlin
+fun main() {
+    val map1 = HashMap<String, Int>()
+    map1.put("Coming", 23)
+
+    println("Coming's age = " + map1.get("Coming"))
+
+    val map2 = HashMap<String, Int>()
+    map2["Coming"] = 23
+    println("Coming's age = " + map2["Coming"])
+
+    val fruitMap = mapOf("Apple" to 1, "Banana" to 2, "Orange" to 3, "Pear" to 4, "Grape" to 5)
+    for ((fruit, id) in fruitMap) {
+        println(fruit + " : " + id)
+    }
+}
+```
+
+## Java 函数式 API 的使用
+
+Kotlin 中调用 Java 方法时也可以使用函数式 API, 如果我们在 Kotlin 代码中调用了一个 Java 方法，并且该方法**接收一个 Java 单抽象方法接口参数**，就可以使用函数式API
+- 接口中只有一个待实现方法
+- Java 函数式 API 的使用都限定于从 Kotlin 中调用 Java 方法，并且单抽象方法接口也必须是用 Java 语言定义的
+
+在 Java 中使用函数式 API: 匿名类, 创建了一个 Runnable 接口的匿名类实例，并将它传给了 Thread 类的构造方法
+```java
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Thread is running");
+    }
+}).start();
+```
+
+使用 Kotlin 直观的改写: object 关键字是用于定义单例类, 在这里也直接用于创建了匿名类的实例(因为单例类只有一个实例, 所以类名直接引用是咧)
+
+```kotlin
+fun main() {
+    Thread(object : Runnable {
+        override fun run() {
+            println("RUNNING")
+        }
+    })
+}
+```
+
+- 简化实现代码:因为只有一个待实现的方法, 所以没必要显示的重写 `run` 方法
+
+```kotlin
+Thread(Runnable {
+    println("RUNING2")
+}).start()
+```
+
+- 继续简化实现代码: 如果一个 Java 方法的参数列表中有且仅有一个 Java 单抽象方法接口参数，我们还可以将接口名进行省略
+
+```kotlin
+Thread({
+    println("RUNING3")
+}).start()
+```
+
+- 最终简化: 当 Lambda 表达式是方法的最后一个参数时，可以将 Lambda 表达式移到方法括号的外面
+- 同时，如果 Lambda 表达式还是方法的唯一一个参数，还可以将方法的括号省略
+
+```kotlin
+Thread { println("RUNNING4") }.start()
+```
+
+# 空指针检查
+
+Kotlin 默认所有的参数和变量都不可为空, 但可以在类型名后面加上 `?` 来定义可空类型系统：
+- `Int` 表示不可为空的整型, `Int?` 表示可为空的整型
+
+但使用可空类型系统时就需要对参数进行判空处理, 常用的符号有 `?.` `!!.` `?:`
+- `a?.doSomething()`: a 为 null 时不再执行, 直接返回 null, a 不为 null 时正常执行
+- `a ?: b`: 左右两边都接收一个表达式，如果左边表达式的结果不为空就返回左边表达式的结果，否则就返回右边表达式的结果
+- `!!.`: 函数内部进行了非空判断, 但是函数返回后 Kotlin 不能知道已经做了非空判断, 因此使用 `!!.` 进行非空断言, 表明这个对象绝对不为空
+
+```kotlin
+fun getTextLength(text: String?): Int {
+    println(text?.length)
+    if (text != null) {
+        return text.length
+    }
+    return 0
+}
+
+// text 不为 null 则 text.length 返回值不为空, ?: 操作符返回左边的结果
+// text 为 null 则 text.length 返回值为空, ?: 操作符返回右边的结果
+fun JCGetTextLength(text: String?) = text?.length ?: 0
+
+fun main() {
+    getTextLength("WWW") // text?.length = 3
+    getTextLength(null) // text?.length = null
+    println(JCGetTextLength(null))
+    println(JCGetTextLength("Hello World"))
+}
+```
+
+## let 函数
+
+这个函数提供了函数式 API 的编程接口，并将原始调用对象作为参数传递到 Lambda 表达式中, 配合进行非空判断十分方便:
+- `obj.let { obj_ -> ... }`: `obj_` 与 `obj` 是相同的对象, 只不过为了不重名
+- 如下例, 如果 study 为 null 则不会执行 let 函数; 如果 study 不为 null 则执行 let 函数并实现了非空判断
+- 与 `if` 不同的是, let 函数是可以处理全局变量的判空问题的: if 中如果存在全局变量, 其值随时都有可能被其他线程所修改，即使做了判空处理，仍然无法保证 if 语句中的 study 变量没有空指针风险
+
+```kotlin
+fun doStudy(study: Study?) {
+    study?.let { stu ->
+        stu.readBooks()
+        stu.doHomework()
+    }
+}
+// lambda 只有一个参数时可以简化改参数为 it
+fun doStudy(study: Study?) {
+    study?.let {
+        it.readBooks()
+        it.doHomework()
+    }
 }
 ```
