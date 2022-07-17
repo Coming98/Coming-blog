@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分词器Tokenizer使用方法与实践, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="02-端口扫描技术, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分词器Tokenizer使用方法与实践 | Coming is here</title>
+    <title>02-端口扫描技术 | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">分词器Tokenizer使用方法与实践</h1>
+                    <h1 class="description center-align post-title">02-端口扫描技术</h1>
                 </div>
             </div>
         </div>
@@ -433,12 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Coming-blog/tags/keras/">
-                                <span class="chip bg-color">keras</span>
-                            </a>
-                        
-                            <a href="/Coming-blog/tags/tensorflow/">
-                                <span class="chip bg-color">tensorflow</span>
+                            <a href="/Coming-blog/tags/nmap/">
+                                <span class="chip bg-color">nmap</span>
                             </a>
                         
                     </div>
@@ -449,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/Coming-blog/categories/NLP/" class="post-category">
-                                NLP
+                            <a href="/Coming-blog/categories/Kali/" class="post-category">
+                                Kali
                             </a>
                         
                     </div>
@@ -462,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-07
+                    2022-07-17
                 </div>
                 
 
@@ -471,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    859
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -501,135 +497,124 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h1>
-<p>该类允许使用两种方法向量化一个文本语料库：</p>
+                <h1 id="端口分类"><a class="markdownIt-Anchor" href="#端口分类"></a> 端口分类</h1>
+<ul>
+<li>公认端口, Well Known Port: 0 - 1024, 被明确的和某种服务的协议进行了关联</li>
+<li>注册端口, Registered Port: 1025 - 49151, 不同的程序可以根据实际情况进行绑定</li>
+<li>动态和/或私有端口, dynamic and/or private port: 49152 - 65535, 常见的服务不使用, 但是由于这部分端口不容易引起注意，因此有些程序尤其是一些木马或者病毒程序十分钟爱这部分端口</li>
+</ul>
+<h1 id="常见端口"><a class="markdownIt-Anchor" href="#常见端口"></a> 常见端口</h1>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207161909382.png" alt="" /></p>
+<h1 id="nmap-中端口的状态"><a class="markdownIt-Anchor" href="#nmap-中端口的状态"></a> Nmap 中端口的状态</h1>
+<ul>
+<li>
+<p>Open: 应用程序正在这个端口上监听连接, 接收 TCP 连接或者 UDP 报文</p>
+</li>
+<li>
+<p>Closed: 端口对探测做出了响应，但是现在没有应用程序在监听这个端口</p>
+</li>
+<li>
+<p>Filtered: 没有响应，可能被一些过滤器（防火墙）终止了</p>
+</li>
+<li>
+<p>Unfiltered: 端口对探测做出了响应，但是 Nmap 无法确定它们是 Closed 还是 Open（很少见，常见于 ACK 扫描）</p>
+</li>
+<li>
+<p>Open/Filtered: 端口被过滤或者是开放的，Nmap 无法做出判断（例如开放的端口不响应）</p>
+</li>
+<li>
+<p>Closed/Filtered: 端口被过滤或者是关闭的，Nmap无法做出判断（只有在使用 idle 扫描时才会发生这种情况）</p>
+</li>
+</ul>
+<h1 id="指定扫描的端口"><a class="markdownIt-Anchor" href="#指定扫描的端口"></a> 指定扫描的端口</h1>
+<p>针对端口扫描, nmap 单独列出了一些列参数实现目标端口的筛选：</p>
+<ul>
+<li><code>-F</code>: 扫描常见的 100 个端口</li>
+<li><code>-p 80</code>: 扫描指定的一个端口</li>
+<li><code>-p http</code>: 使用服务名称指定扫描的目标端口</li>
+<li><code>-p U: [UDP ports], T: [TCP, ports]</code>: 根据 TCP 和 UDP 区分</li>
+<li><code>-p *</code>: 扫描所有端口</li>
+<li><code>--top-ports N</code>: 扫描常用的前 N 个端口</li>
+</ul>
+<h1 id="syn-扫描"><a class="markdownIt-Anchor" href="#syn-扫描"></a> SYN 扫描</h1>
+<p>默认的端口扫描方式</p>
+<ul>
+<li>优势: 速度快, 隐蔽性高,</li>
+</ul>
 <ol>
-<li>将每个文本转化为一个整数序列（每个整数都是词典中标记的索引）</li>
-<li>将每个文本转化为一个向量，其中每个标记的系数可以是二进制值、词频、TF-IDF权重等。</li>
+<li>向目标主机的一个端口发送请求连接的 SYN 数据包</li>
+<li>目标计算机在接收到这个 SYN 数据包之后会以 SYN/ACK 进行应答</li>
+<li>收到 SYN/ACK 后会发送 RST 包请求断开连接
+<ul>
+<li>如果收到 RST: closed</li>
+<li>没有收到应答: filtered</li>
+<li>ICMP 无法抵达错误(类型 3, 代码 1, 2, 3, 4, 10, 13): filtered</li>
+</ul>
+</li>
 </ol>
-<p>Tips：词索引分配从 1 开始</p>
-<p>Tips：基于词频保留 <code>num_words - 1</code> 个词，其余词将会像过滤字符过滤掉</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>text<span class="token punctuation">.</span>Tokenizer<span class="token punctuation">(</span>
-    num_words<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token comment"># 处理最大单词数目(num_words-1)，基于词频筛选</span>
-    filters<span class="token operator">=</span><span class="token string">"!"</span><span class="token comment">#$%&amp;()*+,-./:;&lt;=>?@[\]^_`&#123;|&#125;~ ", # 过滤的元素，字符级匹配过滤</span>
-    lower<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token comment"># 是否将文本转为小写</span>
-    split<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">,</span> <span class="token comment"># 词分隔符</span>
-    char_level<span class="token operator">=</span><span class="token boolean">False</span> <span class="token comment"># 如果为 True，则每个字符都将被视为标记。</span>
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="attributes"><a class="markdownIt-Anchor" href="#attributes"></a> Attributes</h1>
-<p>数据格式如：语料库 - <code>texts</code> = <code>[ document1:&quot;AAAA.BBBB.CCCC.&quot;, document2, ...]</code></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">document_count
-word_counts <span class="token comment"># 词在语料库中的频数</span>
-word_docs <span class="token comment"># 词在 documents 中出现的频数，用于 TF-IDF 算法</span>
-<span class="token triple-quoted-string string">"""
-for w in seq:
-	if w in self.word_counts:
-		self.word_counts[w] += 1
-    else:
-		self.word_counts[w] = 1
-for w in set(seq):
-	# In how many documents each word occurs
-	self.word_docs[w] += 1
-"""</span>
-index_docs <span class="token comment"># 同 word_docs 只不过将词映射为了索引值</span>
-index_word <span class="token comment"># 索引 To 词的映射词典</span>
-word_index <span class="token comment"># 词 To 索引的映射词典</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="methods"><a class="markdownIt-Anchor" href="#methods"></a> Methods</h1>
-<p>总体来说就是完成了语料库中 Token 与 index 的映射支持，映射以词频为基础</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">fit_on_sequences<span class="token punctuation">(</span>sequences<span class="token punctuation">)</span> <span class="token comment"># 列表，内部元素为单词索引</span>
-fit_on_texts<span class="token punctuation">(</span>texts<span class="token punctuation">)</span> <span class="token comment"># 列表，内部元素为分词后的单个 token</span>
-
-sequences_to_matrix<span class="token punctuation">(</span>sequences<span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">'binary'</span><span class="token punctuation">)</span> <span class="token comment"># 将各个语料的元素索引信息转为 numpy 矩阵 - 通常用于构建数据集</span>
-sequences_to_texts<span class="token punctuation">(</span>sequences<span class="token punctuation">)</span> <span class="token comment"># list of word indices(int) TO list of tokens(string)</span>
-texts_to_sequences<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
-
-get_config<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># 字典，返回 tokenizer 实例的配置信息</span>
-
-to_json <span class="token comment"># json，返回 tokenizer 实例的配置信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Tips: 三次握手没有完成，无法建立正常的 TCP 连接，因此，这次扫描就不会被记录到系统日志中</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sS 192.168.80.132<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="idle-扫描"><a class="markdownIt-Anchor" href="#idle-扫描"></a> idle 扫描</h1>
+<p>在整个扫描过程中，扫描者无须向目标主机发送任何数据包, 通过第三方探测目标主机:</p>
 <ol>
-<li>通过 <code>fit_on_texts</code> 完成 Tokenizer 的拟合，更新 Attributes <code>document_count, word_counts, word_docs, index_docs, index_word, word_index</code></li>
-<li>通过内置方法或属性名获取相关信息</li>
+<li>检测第三方的 IP ID 值并记录下来</li>
+<li>在本机上伪造一个源地址为第三方主机的数据包，并将数据包发送给目标主机端口，根据目标端口状态的不同，目标主机可能会导致第三方主机的 IP ID 值增加</li>
+<li>再回来检查第三方主机的 IP ID 值, 比较这两次的值
+<ul>
+<li>如果增加了 1: 说明第三方主机在这期间并没有向外发送数据包，这种情况就认为目标主机的端口是关闭的</li>
+<li>如果增加了 2: 表明第三方主机在这期间向外部发送了数据包，这样就说明目标主机的端口是开放的</li>
+</ul>
+</li>
 </ol>
-<h1 id="demo"><a class="markdownIt-Anchor" href="#demo"></a> Demo</h1>
-<p>语料库数据如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">texts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'United were league champions last season.'</span><span class="token punctuation">,</span>
-        <span class="token string">"They're in a different league from us."</span><span class="token punctuation">,</span>
-        <span class="token string">"the League of Nations"</span><span class="token punctuation">,</span>
-        <span class="token string">"a meeting of the Women's League for Peace"</span><span class="token punctuation">,</span>
-        <span class="token string">"Her success has taken her out of my league"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>测试如下</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_default</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> tokenizer<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    fit_req <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>fit_on_texts<span class="token punctuation">(</span>texts<span class="token punctuation">)</span> <span class="token comment"># return None</span>
-
-    <span class="token comment"># 文本未分词先进行分词，然后将词转为索引值</span>
-    seq <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
-    seq_arr <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>sequences_to_matrix<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
-    <span class="token triple-quoted-string string">"""
-    seq : 可以看出 1 的位置是词频最高的 league
-    [[6, 7, 1, 8, 9, 10],
-    [11, 12, 3, 13, 1, 14, 15],
-    [4, 1, 2, 16],
-    [3, 17, 2, 4, 18, 1, 19, 20],
-    [5, 21, 22, 23, 5, 24, 2, 25, 1]]
-    seq_arr: 过长，请看下方示例
-	"""</span>
-
-<span class="token keyword">def</span> <span class="token function">test_limit_numWords</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> tokenizer<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    tokenizer<span class="token punctuation">.</span>fit_on_texts<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
-    seq <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>texts<span class="token punctuation">)</span>
-	seq_arr <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>sequences_to_matrix<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
-    texts_from_seq <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>sequences_to_texts<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
-
-    <span class="token triple-quoted-string string">"""
-    seq : 词频低的词直接舍去，知保留词频较高的前 num_words - 1 个词
-	[[6, 7, 1, 8, 9], 
-	[3, 1], 
-	[4, 1, 2], 
-	[3, 2, 4, 1], 
-	[5, 5, 2, 1]]
-    seq_arr : 索引 0 保留，因此词典数目为 seq_arr.shape[1]
-    [[0. 1. 0. 0. 0. 0. 1. 1. 1. 1.]
-     [0. 1. 0. 1. 0. 0. 0. 0. 0. 0.]
-     [0. 1. 1. 0. 1. 0. 0. 0. 0. 0.]
-     [0. 1. 1. 1. 1. 0. 0. 0. 0. 0.]
-     [0. 1. 1. 0. 0. 1. 0. 0. 0. 0.]]
-     texts_from_seq :
- 	['united were league champions last',
- 	'a league',
- 	'the league of',
- 	'a of the league',
- 	'her her of league']
-    """</span>
-
-<span class="token triple-quoted-string string">"""Attributes
-'document_count': 5
-
-'word_counts': '&#123;"united": 1, "were": 1, ... "her": 2, "my": 1&#125;'
-
-'word_docs': '&#123;"united": 1, ... , "her": 1, "my": 1&#125;'
-
-'index_docs': '&#123;"6": 1, "8": 1, ... "25": 1&#125;'
-
-'index_word': '&#123;"1": "league", "2": "of", "3": "a", ... "24": "out", "25": "my"&#125;'
-
-'word_index': '&#123;"league": 1, "of": 2, "a": 3, ... "out": 24, "my": 25&#125;'
-"""</span>
-
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    tokenizer_default <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    tokenizer_limit_numWords <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>num_words<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment"># 只考虑词频前9的词</span>
-
-    test_default<span class="token punctuation">(</span><span class="token string">"default test"</span><span class="token punctuation">,</span> tokenizer_default<span class="token punctuation">)</span>
-    test_limit_numWords<span class="token punctuation">(</span><span class="token string">"limit num_words test"</span><span class="token punctuation">,</span> tokenizer_limit_numWords<span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<hr />
-<p>如果存在错误，欢迎留言指出哦~</p>
-
+<p>优势：隐蔽性高, 可以绕过网络中的一些安全机制（伪造指定 IP 绕过 ACL）</p>
+<ul>
+<li>有些时候，一些工作人员为了方便，经常会在防火墙或者路由器上设置例外，允许他们从家中对单位的网络进行访问</li>
+</ul>
+<p>劣势：速度慢, 很多时候，宽带提供商并不会允许你向外发送伪造的数据包, 要求你必须能找到一个正在工作的第三方主机</p>
+<h2 id="寻找合适第三方主机"><a class="markdownIt-Anchor" href="#寻找合适第三方主机"></a> 寻找合适第三方主机</h2>
+<ol>
+<li>在对一台主机进行扫描的时候，执行一个端口扫描以及操作系统检测，启动详细模式（-v），操作系统就会检测 IP ID 增长方法，如果返回值为 “IP ID Sequence Generation:Incremental”，表明该机器是一个很好的僵尸候选机器</li>
+<li>运行 ipidseq NSE 脚本</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -Pn -p- -sI kiosk.adobe.com www.riaa.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="其它扫描方式"><a class="markdownIt-Anchor" href="#其它扫描方式"></a> 其它扫描方式</h1>
+<h2 id="connect-扫描"><a class="markdownIt-Anchor" href="#connect-扫描"></a> Connect 扫描</h2>
+<p>与 SYN 类似, 只不过完成了 TCP 的三次握手(但是不需要 root 或 administrator 权限了)</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sT 192.168.80.132<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="udp-扫描"><a class="markdownIt-Anchor" href="#udp-扫描"></a> UDP 扫描</h2>
+<p>UDP 程序的服务通常不会对 Nmap 所发送的空数据包做出回应，需要对常见的 UDP 服务发送合适的数据包：</p>
+<ul>
+<li>
+<p>为了针对性的发送合适的数据包, Nmap 采用了一个很大的数据库来存储这些格式 <code>Nmap-service-probes</code></p>
+</li>
+<li>
+<p>可以使用 -sV 或者 -A, Nmap 将会向每个 open|filtered 的端口发送 UDP probe，如果目标端口对任何一个 probe 有了反应，状态都会被修改为 open</p>
+</li>
+<li>
+<p>如果目标端口有应答: open</p>
+</li>
+<li>
+<p>没有应答: open | filtered</p>
+</li>
+<li>
+<p>ICMP 无法抵达错误(类型 3, 代码 3): closed</p>
+</li>
+<li>
+<p>ICMP 无法抵达错误(类型 3, 代码 1, 2, 9, 10, 13): filtered</p>
+</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sU 192.168.80.132
+nmap -sV 192.168.80.132<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207161946961.png" alt="" /></p>
+<h2 id="tcp-fin-扫描"><a class="markdownIt-Anchor" href="#tcp-fin-扫描"></a> TCP FIN 扫描</h2>
+<p>向目标端口发送一个 FIN 数据包, 对于所有关闭的端口(RFC 793 规定), 目标系统应返回 RST 标志</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sF 192.168.80.132<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="null-扫描"><a class="markdownIt-Anchor" href="#null-扫描"></a> NULL 扫描</h2>
+<p>向目标端口发送一个不包含任何标志的数据包, 对于所有关闭的端口(RFC 793 规定), 目标系统应返回 RST 标志</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sN 192.168.80.132<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="xmas-tree-扫描"><a class="markdownIt-Anchor" href="#xmas-tree-扫描"></a> Xmas Tree 扫描</h2>
+<p>向目标端口发送一个含有 FIN、URG 和 PUSH 标志的数据包, 对于所有关闭的端口(RFC 793 规定), 目标系统应返回 RST 标志</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sX 192.168.80.132<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -655,7 +640,7 @@ to_json <span class="token comment"># json，返回 tokenizer 实例的配置信
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/">https://Coming98.github.io/Coming-blog/2021/07/07/fen-ci-qi-tokenizer-shi-yong-fang-fa-yu-shi-jian/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2022/07/17/02-duan-kou-sao-miao-ji-zhu/">https://Coming98.github.io/Coming-blog/2022/07/17/02-duan-kou-sao-miao-ji-zhu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -693,12 +678,8 @@ to_json <span class="token comment"># json，返回 tokenizer 实例的配置信
                     
                         <div class="article-tag">
                             
-                                <a href="/Coming-blog/tags/keras/">
-                                    <span class="chip bg-color">keras</span>
-                                </a>
-                            
-                                <a href="/Coming-blog/tags/tensorflow/">
-                                    <span class="chip bg-color">tensorflow</span>
+                                <a href="/Coming-blog/tags/nmap/">
+                                    <span class="chip bg-color">nmap</span>
                                 </a>
                             
                         </div>
@@ -892,46 +873,48 @@ to_json <span class="token comment"># json，返回 tokenizer 实例的配置信
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/Coming-blog/2021/07/07/91-tong-ji-xue-xi-fang-fa-93-gai-lun-pian/">
+                <a href="/Coming-blog/2022/07/17/02-duan-kou-sao-miao-ji-zhu/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/18.jpg" class="responsive-img" alt="【统计学习方法】概论篇">
+                        <img src="/Coming-blog/medias/featureimages/14.jpg" class="responsive-img" alt="02-端口扫描技术">
                         
-                        <span class="card-title">【统计学习方法】概论篇</span>
+                        <span class="card-title">02-端口扫描技术</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            统计学习方法的基础知识【保持更新】
+                            端口扫描技术
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/StatisticalLearning/" class="post-category">
-                                    统计学习方法
+                            <a href="/Coming-blog/categories/Kali/" class="post-category">
+                                    Kali
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/ML/">
-                        <span class="chip bg-color">ML</span>
+                    <a href="/Coming-blog/tags/nmap/">
+                        <span class="chip bg-color">nmap</span>
                     </a>
                     
                 </div>
@@ -945,31 +928,31 @@ to_json <span class="token comment"># json，返回 tokenizer 实例的配置信
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/04/29/github-pages-ge-ren-bo-ke-da-jian-bu-shu-ji-lu/">
+                <a href="/Coming-blog/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/13.jpg" class="responsive-img" alt="github pages 个人博客搭建部署记录">
+                        <img src="/Coming-blog/medias/featureimages/7.jpg" class="responsive-img" alt="01-活跃主机发现技术">
                         
-                        <span class="card-title">github pages 个人博客搭建部署记录</span>
+                        <span class="card-title">01-活跃主机发现技术</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录参考路线，维护命令以及个性化修改
+                            Nmap-活跃主机发现技术
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/Github/" class="post-category">
-                                    Github
+                            <a href="/Coming-blog/categories/Kali/" class="post-category">
+                                    Kali
                                 </a>
                             
                             
@@ -979,12 +962,8 @@ to_json <span class="token comment"># json，返回 tokenizer 实例的配置信
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/git/">
-                        <span class="chip bg-color">git</span>
-                    </a>
-                    
-                    <a href="/Coming-blog/tags/github/">
-                        <span class="chip bg-color">github</span>
+                    <a href="/Coming-blog/tags/nmap/">
+                        <span class="chip bg-color">nmap</span>
                     </a>
                     
                 </div>
