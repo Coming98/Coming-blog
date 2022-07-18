@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>03-服务检测技术</title>
+      <link href="/Coming-blog/2022/07/18/03-fu-wu-jian-ce-ji-zhu/"/>
+      <url>/Coming-blog/2022/07/18/03-fu-wu-jian-ce-ji-zhu/</url>
+      
+        <content type="html"><![CDATA[<h1 id="操作系统检测"><a class="markdownIt-Anchor" href="#操作系统检测"></a> 操作系统检测</h1><p>没有一种工具可以提供绝对准确的远程操作系统信息：</p><ul><li>检查的细节包括初始序列号（ISN）、TCO选项、IP标识符（ID）数字时间戳、显示拥塞通知（ECN）、窗口大小等</li><li>每个操作系统对于这些探针都会做出不同的响应</li><li>通过 <code>-O</code> 参数进行检测</li></ul><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171122383.png" alt="" /></p><p>提供额外选项如下:</p><ul><li><code>--osscan-limit</code>: 只对满足 &quot;同时具有状态为 open 和 closed 的端口&quot; 条件的主机进行操作系统检测</li><li><code>--osscan-guess</code>: 猜测认为最接近目标的匹配操作系统类型</li><li><code>--max-retries</code>: 对操作系统检测尝试的次数, 默认为 5</li></ul><h2 id="操作系统指纹"><a class="markdownIt-Anchor" href="#操作系统指纹"></a> 操作系统指纹</h2><p>操作系统指纹: 每一种类型的操作系统都有自己的特征, 通过向一台计算机发送特定格式的探针（数据包）来查看目标主机的响应数据，这一过程就是操作系统指纹分析的过程</p><ul><li>精心构造：窗口大小、窗口字段、分片标识、时间戳、序号以及其他一些细节，例如 TTL 等</li><li>nmap-os-db 中存储这些操作系统独特的特征</li></ul><h1 id="服务发现"><a class="markdownIt-Anchor" href="#服务发现"></a> 服务发现</h1><p>需要进行精确的服务发现, 而不是根据开放端口常用的服务绑定信息来推断</p><ul><li>使用 <code>-sV</code> 参数: 端口扫描 + 服务识别 + 版本识别</li><li><code>-A</code> 参数: 同时打开操作系统探测和服务发现</li><li>辅助 <code>--allports</code>: 不为版本探测排除任何端口</li><li>辅助 <code>--version-intensity N</code>：设定扫描的强度(<code>[0, 9]</code>, 默认是 7)<ul><li><code>--version-light</code>: 轻量级模式, 扫描强度为 2, 速度块</li><li><code>--version-all</code>: 扫描强度为 9, 保证对每个端口尝试所有探测报文</li><li><code>--version-trace</code>: 跟踪版本扫描活动, 使 nmap 打印出关于正在进行的扫描的详细调试信息(是用<code>--packet-trace</code> 所得到的信息的子集)</li></ul></li><li><code>-sR</code>: 对所有被发现开放的 TCP/UDP 端口执行 SunRPC 程序 NULL 命令，试图确定它们是否 RPC 端口，如果是，可以确定是什么程序和版本号</li></ul><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171145951.png" alt="" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Kali </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nmap </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>02-端口扫描技术</title>
       <link href="/Coming-blog/2022/07/17/02-duan-kou-sao-miao-ji-zhu/"/>
       <url>/Coming-blog/2022/07/17/02-duan-kou-sao-miao-ji-zhu/</url>
