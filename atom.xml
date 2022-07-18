@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-07-18T04:19:44.272Z</updated>
+  <updated>2022-07-18T08:20:42.184Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,64 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>03-Android-Activity</title>
+    <link href="https://coming98.github.io/2022/07/18/03-android-activity/"/>
+    <id>https://coming98.github.io/2022/07/18/03-android-activity/</id>
+    <published>2022-07-18T16:16:45.000Z</published>
+    <updated>2022-07-18T08:20:42.184Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;activity&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#activity&quot;&gt;&lt;/a&gt; Activity&lt;/h1&gt;
+&lt;p&gt;Activity：一种可以包含用户界面的组件，主要用于和用户进行交互&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
+    
+    
+    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>02-Kotlin-Advanced</title>
+    <link href="https://coming98.github.io/2022/07/18/02-kotlin-advanced/"/>
+    <id>https://coming98.github.io/2022/07/18/02-kotlin-advanced/</id>
+    <published>2022-07-18T16:16:36.000Z</published>
+    <updated>2022-07-18T08:20:42.184Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;标准函数&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#标准函数&quot;&gt;&lt;/a&gt; 标准函数&lt;/h1&gt;
+&lt;h2 id=&quot;let&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#let&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
+    
+    
+    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>04-Zenmap</title>
     <link href="https://coming98.github.io/2022/07/18/04-zenmap/"/>
     <id>https://coming98.github.io/2022/07/18/04-zenmap/</id>
     <published>2022-07-18T12:17:34.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -48,7 +101,7 @@
     <link href="https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/</id>
     <published>2022-07-18T09:50:58.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -73,7 +126,7 @@
     <link href="https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/</id>
     <published>2022-07-17T11:09:59.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -100,7 +153,7 @@
     <link href="https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/</id>
     <published>2022-07-15T13:07:04.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -127,7 +180,7 @@
     <link href="https://coming98.github.io/2022/07/14/02-kotlin/"/>
     <id>https://coming98.github.io/2022/07/14/02-kotlin/</id>
     <published>2022-07-14T10:46:25.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -155,7 +208,7 @@
     <link href="https://coming98.github.io/2022/07/14/01-android-basic/"/>
     <id>https://coming98.github.io/2022/07/14/01-android-basic/</id>
     <published>2022-07-14T10:46:17.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -183,7 +236,7 @@
     <link href="https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/"/>
     <id>https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/</id>
     <published>2022-07-04T21:59:53.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -209,7 +262,7 @@
     <link href="https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/"/>
     <id>https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/</id>
     <published>2022-07-04T21:59:44.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -235,7 +288,7 @@
     <link href="https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/"/>
     <id>https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/</id>
     <published>2022-07-03T10:56:15.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.184Z</updated>
     
     
       
@@ -261,7 +314,7 @@
     <link href="https://coming98.github.io/2022/02/06/pubsub/"/>
     <id>https://coming98.github.io/2022/02/06/pubsub/</id>
     <published>2022-02-06T19:35:37.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -289,7 +342,7 @@
     <link href="https://coming98.github.io/2021/12/06/udp-and-udp-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/udp-and-udp-protocol/</id>
     <published>2021-12-06T13:41:54.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -315,7 +368,7 @@
     <link href="https://coming98.github.io/2021/12/06/bgp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/bgp-protocol-and-security/</id>
     <published>2021-12-06T13:19:52.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -343,7 +396,7 @@
     <link href="https://coming98.github.io/2021/12/06/ospf-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</id>
     <published>2021-12-06T11:22:25.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -369,7 +422,7 @@
     <link href="https://coming98.github.io/2021/12/06/rip-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/rip-protocol-and-security/</id>
     <published>2021-12-06T10:45:21.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -395,7 +448,7 @@
     <link href="https://coming98.github.io/2021/12/06/overview-of-routing-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/overview-of-routing-protocol/</id>
     <published>2021-12-06T10:43:40.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -420,7 +473,7 @@
     <link href="https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/dhcp-protocol-and-security/</id>
     <published>2021-12-06T09:22:48.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -446,7 +499,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</id>
     <published>2021-12-05T21:40:49.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -472,7 +525,7 @@
     <link href="https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</id>
     <published>2021-12-05T19:12:45.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
+    <updated>2022-07-18T08:20:42.188Z</updated>
     
     
       
@@ -481,58 +534,6 @@
         
     <summary type="html">&lt;h1 id=&quot;ip-协议&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#ip-协议&quot;&gt;&lt;/a&gt; IP 协议&lt;/h1&gt;
 &lt;p&gt;来到了网络层协议安全，简单介绍下 IP</summary>
-        
-      
-    
-    
-    
-    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
-    
-    
-    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ICMP Protocol and Security</title>
-    <link href="https://coming98.github.io/2021/12/05/icmp-protocol-and-security/"/>
-    <id>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</id>
-    <published>2021-12-05T19:11:02.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;icmp&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#icmp&quot;&gt;&lt;/a&gt; ICMP&lt;/h1&gt;
-&lt;p&gt;Internet Control Message Protocol，Internet</summary>
-        
-      
-    
-    
-    
-    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
-    
-    
-    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VLAN and VLAN Security</title>
-    <link href="https://coming98.github.io/2021/12/05/vlan-and-vlan-security/"/>
-    <id>https://coming98.github.io/2021/12/05/vlan-and-vlan-security/</id>
-    <published>2021-12-05T14:54:03.000Z</published>
-    <updated>2022-07-18T04:19:44.272Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;vlan&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#vlan&quot;&gt;&lt;/a&gt; VLAN&lt;/h1&gt;
-&lt;p&gt;VLAN 即虚拟局域网，通过端口与 VLAN</summary>
         
       
     
