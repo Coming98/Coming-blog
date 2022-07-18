@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>04-Zenmap</title>
+      <link href="/Coming-blog/2022/07/18/04-zenmap/"/>
+      <url>/Coming-blog/2022/07/18/04-zenmap/</url>
+      
+        <content type="html"><![CDATA[<h1 id="zenmap"><a class="markdownIt-Anchor" href="#zenmap"></a> Zenmap</h1><p>Zenmap 是一个可以应用在多种平台上，而且用户操作性极为友好的 Nmap 图形化界面</p><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207181102041.png" alt="" /></p><h1 id="traceroute"><a class="markdownIt-Anchor" href="#traceroute"></a> TraceRoute</h1><p>获取主机与目标服务器之间的路由信息</p><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207181216738.png" alt="" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Kali </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nmap </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>03-服务检测技术</title>
       <link href="/Coming-blog/2022/07/18/03-fu-wu-jian-ce-ji-zhu/"/>
       <url>/Coming-blog/2022/07/18/03-fu-wu-jian-ce-ji-zhu/</url>
