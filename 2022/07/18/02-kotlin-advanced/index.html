@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    857
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -579,6 +579,30 @@ builder<span class="token punctuation">.</span><span class="token function">appe
 <blockquote>
 <p>其原理还是以顶层方法的文件名创建一个 Java 类, 将其中的方法写为 Java 的静态方法</p>
 </blockquote>
+<h1 id="延迟初始化"><a class="markdownIt-Anchor" href="#延迟初始化"></a> 延迟初始化</h1>
+<p>比如一个全局变量需要到访问某一个 Activity 时才能被初始化, 如果提前定义在类中, 就需要定义为 null, 后续的操作全都要考虑判空处理, 十分不方便, 因此引入了 lateinit 关键字进行全局初始化; 但相反, 所有的判空逻辑检查实际上就交给代码编写者了, 如果粗心还是容易出现初始化前进行使用的错误~</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> MainActivity <span class="token operator">:</span> <span class="token function">AppCompatActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> View<span class="token punctuation">.</span><span class="token function">OnClickListener</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">lateinit</span> <span class="token keyword">var</span> adapter<span class="token operator">:</span> MsgAdapter
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token operator">:</span> Bundle<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token operator">..</span><span class="token punctuation">.</span>
+        adapter <span class="token operator">=</span> <span class="token function">MsgAdapter</span><span class="token punctuation">(</span>msgList<span class="token punctuation">)</span>
+        <span class="token operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onClick</span><span class="token punctuation">(</span>v<span class="token operator">:</span> View<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token operator">..</span><span class="token punctuation">.</span>
+        adapter<span class="token punctuation">.</span><span class="token function">notifyItemInserted</span><span class="token punctuation">(</span>msgList<span class="token punctuation">.</span>size <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果初始化的操作能够重复触发也是一种重复消耗, 因此可以使用 <code>::ValueName.isInitialized</code> 来判断变量 <code>ValueName</code> 是否完成初始化工作了</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token operator">..</span><span class="token punctuation">.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token operator">::</span>adapter<span class="token punctuation">.</span>isInitialized<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    adapter <span class="token operator">=</span> <span class="token function">MsgAdapter</span><span class="token punctuation">(</span>msgList<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">..</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="密封类"><a class="markdownIt-Anchor" href="#密封类"></a> 密封类</h1>
+<p>当在 when 语句中传入一个密封类变量作为条件时，Kotlin 编译器会自动检查该密封类有哪些子类，并强制要求你将每一个子类所对应
+的条件全部处理。这样就可以保证，即使没有编写 else 条件，也不可能会出现漏写条件分支的情况。</p>
 
                 
             </div>
@@ -1130,7 +1154,7 @@ builder<span class="token punctuation">.</span><span class="token function">appe
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">96.4k</span>&nbsp;字
+                class="white-color">99.3k</span>&nbsp;字
             
             
             
