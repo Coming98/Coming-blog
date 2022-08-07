@@ -11,16 +11,20 @@ tags:
 # Android 系统架构
 
 四层架构：
-- Linux 内核层：为 Android 设备的各种硬件提供了底层的驱动，如显示驱动、音频驱动、照相机驱动、蓝牙驱动、Wi-Fi驱动、电源管理等
-- 系统运行库层：
-  - 通过一些 C/C++ 库为 Android 系统提供了主要的特性支持，如SQLite 库提供了数据库的支持，OpenGL|ES 库提供了 3D 绘图的支持，Webkit 库提供了浏览器内核的支持等
-  - 还提供了 Android 运行时库:
-    - 允许开发者使用 Java 语言来编写 Android 应用
-    - Dalvik 虚拟机（5.0 系统之后改为 ART 运行环境），它使得每一个 Android 应用都能运行在独立的进程中，并且拥有一个自己的虚拟机实例
-- 应用框架层: 提供了构建应用程序时可能用到的各种 API
+- Linux 内核层：为 Android 设备的各种硬件提供了底层的驱动，如驱动、电源管理等
+- 硬件抽象层: Hardware Abstraction Layer, HAL, 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能
+  - HAL 包含多个库模块，其中每个模块都为特定类型的硬件组件实现一个界面，例如相机或蓝牙模块
+  - 当框架 API 要求访问设备硬件时，Android 系统将为该硬件组件加载库模块
+- Android Runtime
+  - Android 5.0（API 级别 21）或更高版本的设备，每个应用都在其自己的进程中运行，并且有其自己的 Android Runtime (ART) 实例
+- Native Layer: C/C++ Libraries, 
+  - 许多核心 Android 系统组件和服务（例如 ART 和 HAL）构建自原生代码，需要以 C 和 C++ 编写的原生库
+  - Android 平台提供 Java 框架 API 以向应用显示其中部分原生库的功能
+- Java layer:
+  - 通过以 Java 语言编写的 API 使用 Android OS 的整个功能集
 - 应用层: 手机上的应用程序
 
-![](https://raw.githubusercontent.com/Coming98/pictures/main/202207131425262.png)
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208050902709.png)
 
 # Android 系统四大组件
 

@@ -105,3 +105,38 @@ println(stringBuilder.toString())
 1. 添加 @JvmStatic 注解：只能加在单例类或 companion object 中的方法上
 2. 顶层方法: 没有定义在任何类中的方法( package ); 就比如新建一个 tools.kt, 直接定义方法, 这些方法都会被编译为静态方法; 并且所有的顶层方法都可以在任何位置被直接调用，不用管包名路径，也不用创建实例
 > 其原理还是以顶层方法的文件名创建一个 Java 类, 将其中的方法写为 Java 的静态方法
+
+# 延迟初始化
+
+比如一个全局变量需要到访问某一个 Activity 时才能被初始化, 如果提前定义在类中, 就需要定义为 null, 后续的操作全都要考虑判空处理, 十分不方便, 因此引入了 lateinit 关键字进行全局初始化; 但相反, 所有的判空逻辑检查实际上就交给代码编写者了, 如果粗心还是容易出现初始化前进行使用的错误~
+
+```kotlin
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var adapter: MsgAdapter
+    override fun onCreate(savedInstanceState: Bundle?) {
+        ...
+        adapter = MsgAdapter(msgList)
+        ...
+    }
+    override fun onClick(v: View?) {
+        ...
+        adapter.notifyItemInserted(msgList.size - 1)
+        ...
+    }
+}
+```
+
+如果初始化的操作能够重复触发也是一种重复消耗, 因此可以使用 `::ValueName.isInitialized` 来判断变量 `ValueName` 是否完成初始化工作了
+
+```kotlin
+...
+if (!::adapter.isInitialized) {
+    adapter = MsgAdapter(msgList)
+}
+...
+```
+
+# 密封类
+
+当在 when 语句中传入一个密封类变量作为条件时，Kotlin 编译器会自动检查该密封类有哪些子类，并强制要求你将每一个子类所对应
+的条件全部处理。这样就可以保证，即使没有编写 else 条件，也不可能会出现漏写条件分支的情况。

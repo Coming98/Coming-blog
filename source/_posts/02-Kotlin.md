@@ -178,6 +178,18 @@ fun main() {
 }
 ```
 
+## repeat
+
+允许传入一个 n 值, 会把 Lambda 表达式中的内容执行 n 遍:
+
+```kotlin
+        repeat(2) {
+            fruitList.add(Fruit("Apple", R.drawable.apple_pic))
+            fruitList.add(Fruit("Banana", R.drawable.banana_pic))
+            // 重复加载数据
+        }
+```
+
 # 类
 
 - 实例化时取消了 `new` 关键字
