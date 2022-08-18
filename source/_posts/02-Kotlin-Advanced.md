@@ -96,7 +96,7 @@ println(stringBuilder.toString())
 
 # 静态方法
 
-又叫作类方法，指的就是那种不需要创建实例就能调用的方法; Korlin 中将由静态方法组成的工具类用单例类实现(`object` 关键词进行修饰)
+又叫作类方法，指的就是那种不需要创建实例就能调用的方法; Kotlin 中将由静态方法组成的工具类用单例类实现(`object` 关键词进行修饰)
 
 但是如果在非工具类中定义静态方法, 这时候就需要 `companion object` 块进行定义了
 > 但是其机理是会在类的内部产生一个伴生类, 伴生类是一个单例类, 具有块中定义的方法
@@ -140,3 +140,64 @@ if (!::adapter.isInitialized) {
 
 当在 when 语句中传入一个密封类变量作为条件时，Kotlin 编译器会自动检查该密封类有哪些子类，并强制要求你将每一个子类所对应
 的条件全部处理。这样就可以保证，即使没有编写 else 条件，也不可能会出现漏写条件分支的情况。
+
+
+# 扩展函数
+
+扩展函数表示即使在不修改某个类的源码的情况下，仍然可以打开这个类，向该类添加新的函数
+
+- 定义扩展函数的语法结构
+
+```kotlin
+fun ClassName.methodName(param1: Int, param2: Int): Int {
+    return 0
+}
+```
+
+- 建议向哪个类中添加扩展函数，就定义一个同名的 Kotlin 文件; 或定义在任何一个现有类当中的
+- 扩展函数自动拥有目标类的实例上下文, 通过 this 关键字进行访问
+
+```kotlin
+fun String.lettersCount(): Int {
+    var count = 0
+    for (char in this) {
+        if (char.isLetter()) {
+            count++
+        }
+    }
+    return count
+}
+```
+
+# 运算符重载
+
+Kotlin 的运算符重载使用 `operator` 关键字允许我们让任意两个对象进行运算操作:
+
+## Quick Start
+
+在指定函数的前面加上 operator 关键字，就可以实现运算符重载的功能了
+- 指定函数: plus(), minus(), 
+
+```kotlin
+class A {
+    operator fun plus(b: B): C {
+        // 处理相加的逻辑
+        return this + b
+    }
+}
+
+class Money(val value: Int) {
+    operator fun plus(money: Money): Money {
+        val sum = value + money.value
+        return Money(sum)
+    }
+    operator fun plus(newValue: Int): Money {
+        val sum = value + newValue
+        return Money(sum)
+    }
+}
+```
+
+## 调用对照表
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208181927672.png)
