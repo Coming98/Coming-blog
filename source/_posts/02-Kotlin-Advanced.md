@@ -201,3 +201,76 @@ class Money(val value: Int) {
 ## 调用对照表
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202208181927672.png)
+
+# 高阶函数
+
+如果一个函数接收另一个函数作为参数，或者返回值的类型是另一个函数，那么该函数就称为高阶函数
+- 函数类型: `(String, Int) -> Unit`, 左侧为参数类型的声明, 右侧为返回值类型的声明, Unit 表示没有返回值
+- 传递函数参数时采用函数引用的方式进行传递: `::func` 或者直接传递 lambda 表达式
+
+```kotlin
+val result1 = num1AndNum2(num1, num2) { n1, n2 ->
+    n1 + n2
+}
+val result2 = num1AndNum2(num1, num2) { n1, n2 ->
+    n1 - n2
+}
+```
+
+## 高阶函数实现上下文共享
+
+类似于内置的 apply 函数
+- 在函数类型的前面加上 ClassName. 表示这个函数类型是定义在哪个类当中的, 调用 build 时传入的 lambda 表达式将会自动拥有 StringBuilder 的上下文
+
+```kotlin
+fun StringBuilder.build(block: StringBuilder.() -> Unit): StringBuilder {
+    block()
+    return this
+}
+```
+
+## 高阶函数: Kotlin - Java 
+
+Kotlin 的高阶函数编译为 Java 字节码文件后, 实际上使用的是 Function 接口中的 invoke() 函数实现的, 而传入的 lambda 表达式都会由一个匿名类实现, 这样就会导致较大的系统开销
+
+```java
+public static int num1AndNum2(int num1, int num2, Function operation) {
+    int result = (int) operation.invoke(num1, num2);
+    return result;
+}
+public static void main() {
+    int num1 = 100;
+    int num2 = 80;
+    int result = num1AndNum2(num1, num2, new Function() {
+        @Override
+        public Integer invoke(Integer n1, Integer n2) {
+            return n1 + n2;
+        }
+    });
+}
+```
+
+# 内联函数
+
+针对高阶函数底层的开销较大, Kotlin 引入了内联函数, 使用 `inline` 关键字进行修饰, 在编译时 Kotlin 编译器会将内联函数中的代码在编译的时候自动替换到调用它的地方，这样也就不存在运行时的开销了
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208191254781.png)
+
+针对多个函数参数时, 如果不希望某个函数参数被 inline 则可在前面加上 `noinline` 进行修饰
+
+```kotlin
+inline fun inlineTest(block1: () -> Unit, noinline block2: () -> Unit) { }
+```
+
+## 内联的局限[略]
+
+内联函数类型的参数在编译的时候会被进行代码替换，因此它没有真正的参数属性，只允许传递给另外一个内联函数，这也是它最大的局限性
+
+非内联的函数类型参数可以自由地传递给其他任何函数，因为它就是一个真实的参数
+
+内联函数实现了替换, 因此可以实现局部的返回与终止; 而非内联函数则重是在局部中止自身的函数体, 并不能实现高阶函数的局部返回与终止
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208191541532.png)
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208191541886.png)
+
