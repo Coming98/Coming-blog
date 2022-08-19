@@ -1,5 +1,5 @@
 ---
-title: 06-broadcast
+title: 06-Broadcast
 mathjax: false
 date: 2022-08-19 15:47:24
 summary: Android 中的广播机制
