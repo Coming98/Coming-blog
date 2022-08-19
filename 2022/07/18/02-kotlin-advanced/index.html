@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    8 分
                 </div>
                 
 
@@ -650,6 +650,54 @@ builder<span class="token punctuation">.</span><span class="token function">appe
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="调用对照表"><a class="markdownIt-Anchor" href="#调用对照表"></a> 调用对照表</h2>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208181927672.png" alt="" /></p>
+<h1 id="高阶函数"><a class="markdownIt-Anchor" href="#高阶函数"></a> 高阶函数</h1>
+<p>如果一个函数接收另一个函数作为参数，或者返回值的类型是另一个函数，那么该函数就称为高阶函数</p>
+<ul>
+<li>函数类型: <code>(String, Int) -&gt; Unit</code>, 左侧为参数类型的声明, 右侧为返回值类型的声明, Unit 表示没有返回值</li>
+<li>传递函数参数时采用函数引用的方式进行传递: <code>::func</code> 或者直接传递 lambda 表达式</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> result1 <span class="token operator">=</span> <span class="token function">num1AndNum2</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> n1<span class="token punctuation">,</span> n2 <span class="token operator">-></span>
+    n1 <span class="token operator">+</span> n2
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">val</span> result2 <span class="token operator">=</span> <span class="token function">num1AndNum2</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> n1<span class="token punctuation">,</span> n2 <span class="token operator">-></span>
+    n1 <span class="token operator">-</span> n2
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="高阶函数实现上下文共享"><a class="markdownIt-Anchor" href="#高阶函数实现上下文共享"></a> 高阶函数实现上下文共享</h2>
+<p>类似于内置的 apply 函数</p>
+<ul>
+<li>在函数类型的前面加上 ClassName. 表示这个函数类型是定义在哪个类当中的, 调用 build 时传入的 lambda 表达式将会自动拥有 StringBuilder 的上下文</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> StringBuilder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>block<span class="token operator">:</span> StringBuilder<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span><span class="token operator">:</span> StringBuilder <span class="token punctuation">&#123;</span>
+    <span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="高阶函数-kotlin-java"><a class="markdownIt-Anchor" href="#高阶函数-kotlin-java"></a> 高阶函数: Kotlin - Java</h2>
+<p>Kotlin 的高阶函数编译为 Java 字节码文件后, 实际上使用的是 Function 接口中的 invoke() 函数实现的, 而传入的 lambda 表达式都会由一个匿名类实现, 这样就会导致较大的系统开销</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">num1AndNum2</span><span class="token punctuation">(</span><span class="token keyword">int</span> num1<span class="token punctuation">,</span> <span class="token keyword">int</span> num2<span class="token punctuation">,</span> <span class="token class-name">Function</span> operation<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> operation<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> num1 <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> num2 <span class="token operator">=</span> <span class="token number">80</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token function">num1AndNum2</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> n1<span class="token punctuation">,</span> <span class="token class-name">Integer</span> n2<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> n1 <span class="token operator">+</span> n2<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="内联函数"><a class="markdownIt-Anchor" href="#内联函数"></a> 内联函数</h1>
+<p>针对高阶函数底层的开销较大, Kotlin 引入了内联函数, 使用 <code>inline</code> 关键字进行修饰, 在编译时 Kotlin 编译器会将内联函数中的代码在编译的时候自动替换到调用它的地方，这样也就不存在运行时的开销了</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191254781.png" alt="" /></p>
+<p>针对多个函数参数时, 如果不希望某个函数参数被 inline 则可在前面加上 <code>noinline</code> 进行修饰</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">inline</span> <span class="token keyword">fun</span> <span class="token function">inlineTest</span><span class="token punctuation">(</span>block1<span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">,</span> <span class="token keyword">noinline</span> block2<span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="内联的局限略"><a class="markdownIt-Anchor" href="#内联的局限略"></a> 内联的局限[略]</h2>
+<p>内联函数类型的参数在编译的时候会被进行代码替换，因此它没有真正的参数属性，只允许传递给另外一个内联函数，这也是它最大的局限性</p>
+<p>非内联的函数类型参数可以自由地传递给其他任何函数，因为它就是一个真实的参数</p>
+<p>内联函数实现了替换, 因此可以实现局部的返回与终止; 而非内联函数则重是在局部中止自身的函数体, 并不能实现高阶函数的局部返回与终止</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191541532.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191541886.png" alt="" /></p>
 
                 
             </div>
@@ -1201,7 +1249,7 @@ builder<span class="token punctuation">.</span><span class="token function">appe
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">101.1k</span>&nbsp;字
+                class="white-color">103.5k</span>&nbsp;字
             
             
             
