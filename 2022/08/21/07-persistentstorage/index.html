@@ -1,0 +1,1577 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="07-PersistentStorage, 编程,博客,魔方,棋牌,生活">
+    <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>07-PersistentStorage | Coming is here</title>
+    <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/Coming-blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/Coming-blog/css/my.css">
+
+    <script src="/Coming-blog/libs/jquery/jquery.min.js"></script>
+	
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/Coming-blog/atom.xml" title="Coming is here" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/Coming-blog/" class="waves-effect waves-light">
+                    
+                    <img src="/Coming-blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Coming is here</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Coming-blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Coming-blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Coming-blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Coming-blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Coming-blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Coming-blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/Coming-blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/Coming-blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Coming is here</div>
+        <div class="logo-desc">
+            
+            Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Coming-blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Coming-blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Coming-blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Coming-blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Coming-blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Coming-blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/Coming-blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">07-PersistentStorage</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/Coming-blog/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/Coming-blog/tags/Android/">
+                                <span class="chip bg-color">Android</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/Coming-blog/categories/Android-Dev/" class="post-category">
+                                Android Dev.
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-08-21
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    9 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/Coming-blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="persistence"><a class="markdownIt-Anchor" href="#persistence"></a> Persistence</h1>
+<p>Types: 文件存储, SharedPerferences 存储, 数据库存储</p>
+<h1 id="文件存储"><a class="markdownIt-Anchor" href="#文件存储"></a> 文件存储</h1>
+<p>不对存储的内容进行任何格式化处理，所有数据都是原封不动地保存到文件当中的，因而它比较适合存储一些简单的文本数据或二进制数据</p>
+<h2 id="save"><a class="markdownIt-Anchor" href="#save"></a> Save</h2>
+<p>主要通过 Context 类中的 openFileOutput 方法实现, 返回一个 FileOutputStream 对象</p>
+<ul>
+<li>openFileOutput 第一个参数为指定的文件名, 不可以包含路径, 因为所有的文件都默认存储到 <code>/data/data/&lt;package name&gt;/files/</code> 目录下</li>
+<li>openFileOutput 第二个参数是文件的操作模式, MODE_PRIVATE 表示覆盖写; MODE_APPEND 表示追加</li>
+<li>FileOutputStream 对象可以使用 Java 流的方式将数据写入文件中</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">private</span> <span class="token keyword">fun</span> <span class="token function">save</span><span class="token punctuation">(</span>inputText<span class="token operator">:</span> String<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> output <span class="token operator">=</span> <span class="token function">openFileOutput</span><span class="token punctuation">(</span><span class="token string">"jcData"</span><span class="token punctuation">,</span> Context<span class="token punctuation">.</span>MODE_PRIVATE<span class="token punctuation">)</span>
+        <span class="token keyword">val</span> writer <span class="token operator">=</span> <span class="token function">BufferedWriter</span><span class="token punctuation">(</span><span class="token function">OutputStreamWriter</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        writer<span class="token punctuation">.</span><span class="token function">use</span> <span class="token punctuation">&#123;</span>
+            it<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>inputText<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> IOException<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="load"><a class="markdownIt-Anchor" href="#load"></a> Load</h2>
+<p>通过 Context 类中提供的 openFileInput 方法, 指定文件名即可读取, 返回 FileInputStream 对象</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">private</span> <span class="token keyword">fun</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> content <span class="token operator">=</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> input <span class="token operator">=</span> <span class="token function">openFileInput</span><span class="token punctuation">(</span><span class="token string">"jcData"</span><span class="token punctuation">)</span>
+        <span class="token keyword">val</span> reader <span class="token operator">=</span> <span class="token function">BufferedReader</span><span class="token punctuation">(</span><span class="token function">InputStreamReader</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        reader<span class="token punctuation">.</span><span class="token function">use</span> <span class="token punctuation">&#123;</span>
+            reader<span class="token punctuation">.</span><span class="token function">forEachLine</span> <span class="token punctuation">&#123;</span>
+                content<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> IOException<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> content<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="sharedpreferences"><a class="markdownIt-Anchor" href="#sharedpreferences"></a> SharedPreferences</h1>
+<p>使用键值对的方式来存储数据, 支持多种不同的数据类型存储</p>
+<h2 id="获取-sharedpreferences-对象"><a class="markdownIt-Anchor" href="#获取-sharedpreferences-对象"></a> 获取 SharedPreferences 对象</h2>
+<p><code>Context.getSharedPreferences(filename, MODE)</code></p>
+<ul>
+<li>第一个参数为文件名称, 存储路径固定为 <code>/data/data/&lt;package ame&gt;/shared_prefs/</code></li>
+<li>第二个参数为操作模式, 目前仅支持 MODE_PRIVATE, 表示只有当前的应用程序才可以对这个 SharedPreferences 文件进行读写</li>
+</ul>
+<p><code>Activity.getPreferences(MODE)</code></p>
+<ul>
+<li>自动将当前 Activity 的类名作为文件名</li>
+</ul>
+<h2 id="save-2"><a class="markdownIt-Anchor" href="#save-2"></a> Save</h2>
+<ol>
+<li>获取 Editor 对象: <code>SharedPreferences.edit()</code></li>
+<li>向 Editor 对象中添加数据: <code>putBoolean(), putString(), ...</code></li>
+<li>调用 apply() 方法实现操作提交</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> editor <span class="token operator">=</span> <span class="token function">getSharedPreferences</span><span class="token punctuation">(</span><span class="token string">"jcData"</span><span class="token punctuation">,</span> Context<span class="token punctuation">.</span>MODE_PRIVATE<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">edit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+editor<span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"Coming"</span><span class="token punctuation">)</span>
+editor<span class="token punctuation">.</span><span class="token function">putBoolean</span><span class="token punctuation">(</span><span class="token string">"married"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+editor<span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span>
+editor<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用高级函数进行 API 优化</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 扩展函数添加 open 方法 接收函数类型为 SharedPreferences.Editor</span>
+<span class="token keyword">fun</span> SharedPreferences<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>block<span class="token operator">:</span> SharedPreferences<span class="token punctuation">.</span>Editor<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// open 函数拥有 SharedPreferences 方法的上下文, 可以直接调用 edit 方法</span>
+    <span class="token keyword">val</span> editor <span class="token operator">=</span> <span class="token function">edit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    editor<span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    editor<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">getSharedPreferences</span><span class="token punctuation">(</span><span class="token string">"jcData"</span><span class="token punctuation">,</span> Context<span class="token punctuation">.</span>MODE_PRIVATE<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">open</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">putString</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"CJC"</span><span class="token punctuation">)</span>
+    <span class="token function">putBoolean</span><span class="token punctuation">(</span><span class="token string">"married"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token function">putInt</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="load-2"><a class="markdownIt-Anchor" href="#load-2"></a> Load</h2>
+<p>通过 SharedPreferences 对象的 getXX 方法获取目标值</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> prefs <span class="token operator">=</span> <span class="token function">getSharedPreferences</span><span class="token punctuation">(</span><span class="token string">"jcData"</span><span class="token punctuation">,</span> Context<span class="token punctuation">.</span>MODE_PRIVATE<span class="token punctuation">)</span>
+<span class="token keyword">val</span> name <span class="token operator">=</span> prefs<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">val</span> married <span class="token operator">=</span> prefs<span class="token punctuation">.</span><span class="token function">getBoolean</span><span class="token punctuation">(</span><span class="token string">"married"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token keyword">val</span> age <span class="token operator">=</span> prefs<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="sqlite"><a class="markdownIt-Anchor" href="#sqlite"></a> SQLite</h1>
+<p>Android 系统内置的数据库, 轻量级的关系型数据库，运算速度快，占用资源少，通常只需要几百KB的内存就足够了</p>
+<p>数据类型: integer 整型，real 浮点型，text 文本类型，blob 二进制类型</p>
+<p>关键字: primary key, autoincrement</p>
+<h2 id="sqliteopenhelper"><a class="markdownIt-Anchor" href="#sqliteopenhelper"></a> SQLiteOpenHelper</h2>
+<p>是一个抽象类, 拥有两个抽象方法 <code>onCreate()</code> 与 <code>onUpgrade()</code> 用于实现创建和升级数据库的逻辑; 拥有两个实例方法 <code>getReadableDatabase()</code> 和 <code>getWritableDatabase()</code></p>
+<ul>
+<li>当数据库不可写入的时候（如磁盘空间已满），getReadableDatabase() 方法返回的对象将以只读的方式打开数据库，而 getWritableDatabase() 方法则将出现异常</li>
+<li>构造方法参数列表
+<ul>
+<li>Context, 数据库名, null(允许我们在查询数据的时候返回一个自定义的 Cursor), 当前数据库的版本号(Int)</li>
+</ul>
+</li>
+<li>数据库的文件统一存放在 <code>/data/data/&lt;package name&gt;/databases/</code></li>
+</ul>
+<h2 id="创建和升级数据库"><a class="markdownIt-Anchor" href="#创建和升级数据库"></a> 创建和升级数据库</h2>
+<p>主要完成数据库中表的创建, 后续可能根据业务情况额外增加表, 这时候需要利用升级功能实现增加</p>
+<ol>
+<li>建立并维护项目自身的 DatabaseHelper 类：版本变化时会执行 onUpgrade 从而实现热更新, 用 if 判断每一次升级改动, 使得低版本用户支持跨版本升级</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> <span class="token function">JCDatabaseHelper</span><span class="token punctuation">(</span><span class="token keyword">val</span> context<span class="token operator">:</span> Context<span class="token punctuation">,</span> name<span class="token operator">:</span> String<span class="token punctuation">,</span> version<span class="token operator">:</span> Int<span class="token punctuation">)</span><span class="token operator">:</span> 
+        <span class="token function">SQLiteOpenHelper</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> name<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> version<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">val</span> createBook <span class="token operator">=</span> <span class="token string">"create table Book ("</span> <span class="token operator">+</span>
+            <span class="token string">" id integer primary key autoincrement,"</span> <span class="token operator">+</span>
+            <span class="token string">"author text,"</span> <span class="token operator">+</span>
+            <span class="token string">"price real,"</span> <span class="token operator">+</span>
+            <span class="token string">"pages integer,"</span> <span class="token operator">+</span>
+            <span class="token string">"name text)"</span>
+
+
+    <span class="token keyword">private</span> <span class="token keyword">val</span> createCategory <span class="token operator">=</span> <span class="token string">"create table Category (\n"</span> <span class="token operator">+</span>
+            <span class="token string">"    id integer primary key autoincrement,\n"</span> <span class="token operator">+</span>
+            <span class="token string">"    category_name text,\n"</span> <span class="token operator">+</span>
+            <span class="token string">"    category_code integer\n"</span> <span class="token operator">+</span>
+            <span class="token string">")"</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>db<span class="token operator">:</span> SQLiteDatabase<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        db<span class="token punctuation">.</span><span class="token function">execSQL</span><span class="token punctuation">(</span>createBook<span class="token punctuation">)</span>
+        db<span class="token punctuation">.</span><span class="token function">execSQL</span><span class="token punctuation">(</span>createCategory<span class="token punctuation">)</span>
+        Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token string">"Create succeeded"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onUpgrade</span><span class="token punctuation">(</span>db<span class="token operator">:</span> SQLiteDatabase<span class="token punctuation">,</span> oldVersion<span class="token operator">:</span> Int<span class="token punctuation">,</span> newVersion<span class="token operator">:</span> Int<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token string">"Upgrade Success: <span class="token interpolation variable">$oldVersion</span> -> <span class="token interpolation variable">$newVersion</span>"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>oldVersion <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            db<span class="token punctuation">.</span><span class="token function">execSQL</span><span class="token punctuation">(</span>createCategory<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>oldVersion <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            db<span class="token punctuation">.</span><span class="token function">execSQL</span><span class="token punctuation">(</span><span class="token string">"alter table Book add column category_id integer"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>在 Activity 中触发数据库的创建/更新, 生成 DatabaseHelper 的实例对象, 并获取数据库 <code>writableDatabase/readableDatabase</code></li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> MainActivity <span class="token operator">:</span> <span class="token function">AppCompatActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> View<span class="token punctuation">.</span><span class="token function">OnClickListener</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">lateinit</span> <span class="token keyword">var</span> dbHelper<span class="token operator">:</span> JCDatabaseHelper
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token operator">:</span> Bundle<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span>
+        <span class="token function">setContentView</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>activity_main<span class="token punctuation">)</span>
+
+        dbHelper <span class="token operator">=</span> <span class="token function">JCDatabaseHelper</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"BookStore.db"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">val</span> button_createdb <span class="token operator">=</span> findViewById<span class="token operator">&lt;</span>Button<span class="token operator">></span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>button_createdb<span class="token punctuation">)</span>
+        button_createdb<span class="token punctuation">.</span><span class="token function">setOnClickListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onClick</span><span class="token punctuation">(</span>v<span class="token operator">:</span> View<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">when</span><span class="token punctuation">(</span>v<span class="token operator">?</span><span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>button_createdb <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+                dbHelper<span class="token punctuation">.</span>writableDatabase
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="crud"><a class="markdownIt-Anchor" href="#crud"></a> CRUD</h2>
+<p>SQLite 将 <code>Create 添加, Retrieve 查询, Update 更新, Delete 删除</code> 封装好了, 借助 SQLiteDatabase 对象即可轻松完成操作</p>
+<h2 id="create-insert"><a class="markdownIt-Anchor" href="#create-insert"></a> Create - insert</h2>
+<ol>
+<li>通过按钮点击获取输入数据并用 <code>ContentValues()</code> 封装</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>button_add <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">val</span> name <span class="token operator">=</span> edit_name<span class="token punctuation">.</span><span class="token function">checkBlack</span><span class="token punctuation">(</span><span class="token string">"书名不能为空"</span><span class="token punctuation">)</span> <span class="token operator">?:</span> <span class="token keyword">return</span>
+    <span class="token keyword">val</span> author <span class="token operator">=</span> edit_author<span class="token punctuation">.</span><span class="token function">checkBlack</span><span class="token punctuation">(</span><span class="token string">"作者不能为空"</span><span class="token punctuation">)</span> <span class="token operator">?:</span> <span class="token keyword">return</span>
+    <span class="token keyword">val</span> pages <span class="token operator">=</span> <span class="token punctuation">(</span>edit_pages<span class="token punctuation">.</span><span class="token function">checkBlack</span><span class="token punctuation">(</span><span class="token string">"页数不能为空"</span><span class="token punctuation">)</span> <span class="token operator">?:</span> <span class="token keyword">return</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> price <span class="token operator">=</span> <span class="token punctuation">(</span>edit_price<span class="token punctuation">.</span><span class="token function">checkBlack</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span> <span class="token operator">?:</span> <span class="token string">"99999"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toFloat</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+    <span class="token keyword">val</span> db <span class="token operator">=</span> dbHelper<span class="token punctuation">.</span>writableDatabase
+    <span class="token keyword">val</span> values <span class="token operator">=</span> <span class="token function">ContentValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">,</span> author<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">,</span> pages<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    db<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token string">"Book"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> values<span class="token punctuation">)</span>
+
+    Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"Add Success!"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    edit_name<span class="token punctuation">.</span>text<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    edit_author<span class="token punctuation">.</span>text<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    edit_pages<span class="token punctuation">.</span>text<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    edit_price<span class="token punctuation">.</span>text<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>判空可以使用扩展方法优雅实现</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> EditText<span class="token punctuation">.</span><span class="token function">checkBlack</span><span class="token punctuation">(</span>message<span class="token operator">:</span> String<span class="token punctuation">)</span><span class="token operator">:</span> String<span class="token operator">?</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> text <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>text<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>text<span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">showError</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> text
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">fun</span> <span class="token function">showError</span><span class="token punctuation">(</span>message<span class="token operator">:</span> String<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> message<span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>数据库的相关操作现在推荐放到 DatabaseHelper 类中进行实现</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">addBook</span><span class="token punctuation">(</span>name<span class="token operator">:</span> String<span class="token punctuation">,</span> author<span class="token operator">:</span> String<span class="token punctuation">,</span> pages<span class="token operator">:</span> Int<span class="token punctuation">,</span> price<span class="token operator">:</span> Float<span class="token punctuation">)</span><span class="token operator">:</span> Boolean <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> db <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>writableDatabase
+    <span class="token keyword">val</span> values <span class="token operator">=</span> <span class="token function">ContentValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">,</span> author<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">,</span> pages<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token operator">!</span>db<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token string">"Book"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> values<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1L</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="retrieve-rawquery"><a class="markdownIt-Anchor" href="#retrieve-rawquery"></a> Retrieve - rawQuery</h2>
+<p>SQLite 对查询的封装较为详尽也复杂, 因此推荐使用原生 SQL 语法, 使用 rawQuery 执行</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">findAllBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> ArrayList<span class="token operator">&lt;</span>Book<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> booklist <span class="token operator">=</span> ArrayList<span class="token operator">&lt;</span>Book<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">val</span> query <span class="token operator">=</span> <span class="token string">"select * from Book"</span>
+    <span class="token keyword">val</span> db <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>writableDatabase
+    <span class="token keyword">val</span> cursor <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">rawQuery</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">moveToFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">do</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">val</span> id <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">val</span> name <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">val</span> author <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">val</span> pages <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">val</span> price <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getDouble</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            booklist<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">Book</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> author<span class="token punctuation">,</span> pages<span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">while</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">moveToNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    cursor<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> booklist
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>rawQuery 的第二个参数是用于为查询语句 query 填充数据</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">findBookByID</span><span class="token punctuation">(</span>book_id<span class="token operator">:</span> Int<span class="token punctuation">)</span><span class="token operator">:</span> Book <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">val</span> db <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>writableDatabase
+    <span class="token keyword">val</span> query <span class="token operator">=</span> <span class="token string">"select * from Book where id=?"</span>
+    <span class="token keyword">val</span> cursor <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">rawQuery</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token function">arrayOf</span><span class="token punctuation">(</span>book_id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    cursor<span class="token punctuation">.</span><span class="token function">moveToFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> name <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> author <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> pages <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> price <span class="token operator">=</span> cursor<span class="token punctuation">.</span><span class="token function">getDouble</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span><span class="token function">getColumnIndexOrThrow</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token function">Book</span><span class="token punctuation">(</span>book_id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> author<span class="token punctuation">,</span> pages<span class="token punctuation">,</span> price<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="update-updateexecsql"><a class="markdownIt-Anchor" href="#update-updateexecsql"></a> Update - update/execSQL</h2>
+<p>可以使用封装好的 update 方法或直接使用 execSQL 方法执行原生的 SQL 语句</p>
+<p>update 方法参数为: 表名, 要更新的键值封装, where 语句的约束信息, 占位符内容</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">updateBookById</span><span class="token punctuation">(</span>book<span class="token operator">:</span> Book<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> db <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>writableDatabase
+    <span class="token keyword">val</span> values <span class="token operator">=</span> <span class="token function">ContentValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> book<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">,</span> book<span class="token punctuation">.</span>author<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">,</span> book<span class="token punctuation">.</span>pages<span class="token punctuation">)</span>
+        <span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">,</span> book<span class="token punctuation">.</span>price<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+    db<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token string">"Book"</span><span class="token punctuation">,</span> values<span class="token punctuation">,</span> <span class="token string">"id = ?"</span><span class="token punctuation">,</span> <span class="token function">arrayOf</span><span class="token punctuation">(</span>book<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="contentvalues-高阶封装"><a class="markdownIt-Anchor" href="#contentvalues-高阶封装"></a> ContentValues 高阶封装</h3>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 接收 Pair 参数; vararg 关键字表示接收的是可变参数列表, 即允许传入 0-n 个 Pair 参数</span>
+<span class="token keyword">fun</span> <span class="token function">cvOf</span><span class="token punctuation">(</span><span class="token keyword">vararg</span> pairs<span class="token operator">:</span> Pair<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Any<span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">ContentValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>pair <span class="token keyword">in</span> pairs<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> key <span class="token operator">=</span> pair<span class="token punctuation">.</span>first
+        <span class="token keyword">val</span> value <span class="token operator">=</span> pair<span class="token punctuation">.</span>second
+        <span class="token keyword">when</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// Smart Cast 功能 如果进入了 Int 分支则会自动转型, 不必手动向下转型了</span>
+            <span class="token keyword">is</span> Int <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> Long <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> Short <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> Float <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> Double <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> Boolean <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> String <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> Byte <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">is</span> ByteArray <span class="token operator">-></span> <span class="token function">put</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            <span class="token keyword">null</span> <span class="token operator">-></span> <span class="token function">putNull</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在真正传值时能显著减少代码量</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> values <span class="token operator">=</span> <span class="token function">cvOf</span><span class="token punctuation">(</span><span class="token string">"name"</span> <span class="token keyword">to</span> book<span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token string">"author"</span> <span class="token keyword">to</span> book<span class="token punctuation">.</span>author<span class="token punctuation">,</span> <span class="token string">"pages"</span> <span class="token keyword">to</span> book<span class="token punctuation">.</span>pages<span class="token punctuation">,</span> <span class="token string">"price"</span> <span class="token keyword">to</span> book<span class="token punctuation">.</span>price<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="delete-deleteexecsql"><a class="markdownIt-Anchor" href="#delete-deleteexecsql"></a> Delete - delete/execSQL</h2>
+<p>与 update 基本一致, 连方法的使用也基本一致</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">deleteBookById</span><span class="token punctuation">(</span>book_id<span class="token operator">:</span> Int<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> db <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>writableDatabase
+    db<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">"Book"</span><span class="token punctuation">,</span> <span class="token string">"id = ?"</span><span class="token punctuation">,</span> <span class="token function">arrayOf</span><span class="token punctuation">(</span>book_id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h2>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">db<span class="token punctuation">.</span><span class="token function">beginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 开启事务</span>
+<span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// SQL 处理</span>
+    db<span class="token punctuation">.</span><span class="token function">setTransactionSuccessful</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 事务执行完毕且成功</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+    db<span class="token punctuation">.</span><span class="token function">endTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 结束事务</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/Coming-blog/about" rel="external nofollow noreferrer">Coming98</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://Coming98.github.io/Coming-blog/2022/08/21/07-persistentstorage/">https://Coming98.github.io/Coming-blog/2022/08/21/07-persistentstorage/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/Coming-blog/about" target="_blank">Coming98</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/Coming-blog/tags/Android/">
+                                    <span class="chip bg-color">Android</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/Coming-blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/Coming-blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/Coming-blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81MzM2OC8yOTg0Mg==">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/Coming-blog/2022/08/21/07-persistentstorage/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/Coming-blog/medias/featureimages/10.jpg" class="responsive-img" alt="07-PersistentStorage">
+                        
+                        <span class="card-title">07-PersistentStorage</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Android 数据持久化技术
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/Coming-blog/categories/Android-Dev/" class="post-category">
+                                    Android Dev.
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Coming-blog/tags/Android/">
+                        <span class="chip bg-color">Android</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/Coming-blog/2022/08/19/06-broadcast/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/Coming-blog/medias/featureimages/22.jpg" class="responsive-img" alt="06-Broadcast">
+                        
+                        <span class="card-title">06-Broadcast</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Android 中的广播机制
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/Coming-blog/categories/Android-Dev/" class="post-category">
+                                    Android Dev.
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Coming-blog/tags/Android/">
+                        <span class="chip bg-color">Android</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/Coming-blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/Coming-blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/Coming-blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/Coming-blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/Coming-blog/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('2'),
+            headingSelector: 'h1, h2, h3'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/Coming-blog/libs/aplayer/APlayer.min.css">
+<script src="/Coming-blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="2277641632"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/Coming-blog/about" target="_blank">Coming98</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">105.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Coming98" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:jcqueue@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/Coming-blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/Coming-blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/Coming-blog/libs/materialize/materialize.min.js"></script>
+    <script src="/Coming-blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/Coming-blog/libs/aos/aos.js"></script>
+    <script src="/Coming-blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/Coming-blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/Coming-blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/Coming-blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/Coming-blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

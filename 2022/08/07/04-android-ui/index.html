@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
 
@@ -611,6 +611,8 @@
 <p>方法：</p>
 <ul>
 <li>获取内容: <code>edit_username.text.toString()</code></li>
+<li>设置内容: <code>edit_username.setText(String)</code></li>
+<li>设置光标位置: <code>edit_username.setSelection(Int)</code></li>
 </ul>
 <h2 id="imageview"><a class="markdownIt-Anchor" href="#imageview"></a> ImageView</h2>
 <ul>
@@ -1017,6 +1019,30 @@ viewHolder<span class="token punctuation">.</span>fruitImage<span class="token p
     Log<span class="token punctuation">.</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token string">"TEMP"</span><span class="token punctuation">,</span> <span class="token string">"<span class="token interpolation variable">$position</span>"</span><span class="token punctuation">)</span>
     Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>context<span class="token punctuation">,</span> <span class="token string">"You clicked Image"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="滑动事件"><a class="markdownIt-Anchor" href="#滑动事件"></a> 滑动事件</h2>
+<p>这里以滑动删除事件为例进行简单介绍</p>
+<ol>
+<li>首先要建立自己的类, 继承 <code>ItemTouchHelper.XXCallback</code> 这些回调方法, 并实现回调处理, 其中 onSwiped 就是滑动的检测; 两个参数分别为拖动的方向(一般实现两个组件间位置交互)与滑动(一般实现目标组件的交互)的方向, 0 表示不可拖动或滑动, 具体方向由 ItemTouchHelper 中的静态属性分配</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> <span class="token function">BookItemTouchHelperCallback</span><span class="token punctuation">(</span><span class="token keyword">var</span> adapter<span class="token operator">:</span> RecyclerBookAdapter<span class="token punctuation">)</span><span class="token operator">:</span> ItemTouchHelper<span class="token punctuation">.</span><span class="token function">SimpleCallback</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> ItemTouchHelper<span class="token punctuation">.</span>LEFT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onMove</span><span class="token punctuation">(</span>
+        recyclerView<span class="token operator">:</span> RecyclerView<span class="token punctuation">,</span>
+        viewHolder<span class="token operator">:</span> RecyclerView<span class="token punctuation">.</span>ViewHolder<span class="token punctuation">,</span>
+        target<span class="token operator">:</span> RecyclerView<span class="token punctuation">.</span>ViewHolder
+    <span class="token punctuation">)</span><span class="token operator">:</span> Boolean <span class="token punctuation">&#123;</span>
+        <span class="token function">TODO</span><span class="token punctuation">(</span><span class="token string">"Not yet implemented"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onSwiped</span><span class="token punctuation">(</span>viewHolder<span class="token operator">:</span> RecyclerView<span class="token punctuation">.</span>ViewHolder<span class="token punctuation">,</span> direction<span class="token operator">:</span> Int<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> pos <span class="token operator">=</span> viewHolder<span class="token punctuation">.</span>adapterPosition
+        adapter<span class="token punctuation">.</span><span class="token function">deleteItem</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>然后借助回调方法的实例创建 <code>ItemTouchHelper</code> 实例, 并绑定到目标 <code>RecyclerView</code> 上</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> itemTouchHelper <span class="token operator">=</span> <span class="token function">ItemTouchHelper</span><span class="token punctuation">(</span><span class="token function">BookItemTouchHelperCallback</span><span class="token punctuation">(</span>adapter<span class="token punctuation">)</span><span class="token punctuation">)</span>
+itemTouchHelper<span class="token punctuation">.</span><span class="token function">attachToRecyclerView</span><span class="token punctuation">(</span>recycler<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1567,7 +1593,7 @@ viewHolder<span class="token punctuation">.</span>fruitImage<span class="token p
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.5k</span>&nbsp;字
+                class="white-color">105.8k</span>&nbsp;字
             
             
             
