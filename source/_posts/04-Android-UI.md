@@ -142,6 +142,8 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
 方法：
 - 获取内容: `edit_username.text.toString()`
+- 设置内容: `edit_username.setText(String)`
+- 设置光标位置: `edit_username.setSelection(Int)`
 
 ## ImageView
 
@@ -618,4 +620,34 @@ viewHolder.fruitImage.setOnClickListener {
     Log.d("TEMP", "$position")
     Toast.makeText(parent.context, "You clicked Image", Toast.LENGTH_SHORT).show()
 }
+```
+
+## 滑动事件
+
+这里以滑动删除事件为例进行简单介绍
+
+1. 首先要建立自己的类, 继承 `ItemTouchHelper.XXCallback` 这些回调方法, 并实现回调处理, 其中 onSwiped 就是滑动的检测; 两个参数分别为拖动的方向(一般实现两个组件间位置交互)与滑动(一般实现目标组件的交互)的方向, 0 表示不可拖动或滑动, 具体方向由 ItemTouchHelper 中的静态属性分配
+
+```kotlin
+class BookItemTouchHelperCallback(var adapter: RecyclerBookAdapter): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+    override fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+    ): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        var pos = viewHolder.adapterPosition
+        adapter.deleteItem(pos)
+    }
+}
+```
+
+2. 然后借助回调方法的实例创建 `ItemTouchHelper` 实例, 并绑定到目标 `RecyclerView` 上
+
+```kotlin
+val itemTouchHelper = ItemTouchHelper(BookItemTouchHelperCallback(adapter))
+itemTouchHelper.attachToRecyclerView(recycler)
 ```

@@ -265,6 +265,35 @@ button_back2main.setOnClickListener {
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202207162141011.png)
 
+## 活动间传递复杂数据
+
+针对自定义对象或自定义对象的列表, 需要截止 `Serializable` 接口添加其序列化与反序列化方法
+
+1. 在类的定义中声明对 `Serializable` 接口的实现
+
+```kotlin
+class Book(...): Serializable {
+}
+```
+
+2. 传递时进行序列化
+
+```kotlin
+fun actionStart(context: Context, bookList: ArrayList<Book>) {
+    val intent = Intent(context, BookInfosActivity::class.java).apply {
+        putExtra("bookList", bookList as Serializable)
+    }
+    context.startActivity(intent)
+}
+```
+
+3. 接受时反序列化
+
+```kotlin
+val booklist = intent.getSerializableExtra("bookList") as ArrayList<Book>
+```
+
+
 # 生命周期
 
 Android 中的 Activity 是可以层叠的：每启动一个新的 Activity，就会覆盖在原 Activity 之上，然后点击 Back 键会销毁最上面的 Activity，下面的一个 Activity 就会重新显示出来
@@ -453,3 +482,15 @@ open class BaseActivity : AppCompatActivity() {
 两个活动由不同的开发者开发, 那么相互调用时可能因为不熟悉参数命名导致 intent 无法传参, 因此建议开发活动时, 在活动中声明创建该活动的意图的接口
 - 这属于活动类的方法, 因此用静态修饰
 - Kotlin 提供了 `companion object` 语法结构, 其中的方法都可以使用类似于 java 静态方法的形式调用
+
+
+```kotlin
+companion object {
+    fun actionStart(context: Context, username: String) {
+        val intent = Intent(context, MainActivity::class.java).apply {
+            putExtra("username", username)
+        }
+        context.startActivity(intent)
+    }
+}
+```
