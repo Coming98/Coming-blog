@@ -274,3 +274,67 @@ inline fun inlineTest(block1: () -> Unit, noinline block2: () -> Unit) { }
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202208191541886.png)
 
+# 委托
+
+委托是一种设计模式, 指操作对象自己不会去处理某段逻辑，而是会把工作委托给另外一个辅助对象去处理
+- 意义所在: 让大部分的方法实现调用辅助对象中的方法，少部分的方法实现由自己来重写，甚至加入一些自己独有的方法
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208220907140.png)
+
+## 类委托
+
+通过委托创建新类时使用 `by` 关键字指定委托对象, 就会自动将元对象的方法继承过来, 从而实现对目标对象的继承与封装
+
+```kotlin
+class MySet<T>(val helperSet: HashSet<T>) : Set<T> by helperSet {
+    fun helloWorld() = println("Hello World")
+    override fun isEmpty() = false
+}
+```
+
+## 属性委托
+
+同类委托类似, 将一个属性（字段）的具体实现委托给另一个类去完成, 依旧使用 `by` 关键字指定委托实例
+- 当使用属性 p 的时候会自动调用实例的 getValue() 方法, 赋值属性 p 则调用 setValue() 方法
+- 因此类中需要提前准备好接口实现 value, getValue, setValue
+- getValue 与 setValue 中的第一个参数是接收使用属性委托的类的实例, 第二个参数 KProperty<*> 是 Kotlin 中的一个属性操作类, 用于获取各种属性相关值
+
+```kotlin
+class MyClass {
+    var p by Delegate()
+}
+
+class Delegate {
+    var propValue: Any? = null
+    operator fun getValue(myClass: MyClass, prop: KProperty<*>): Any? {
+        return propValue
+    }
+    operator fun setValue(myClass: MyClass, prop: KProperty<*>, value: Any?) {
+        propValue = value
+    }
+}
+```
+
+# lazy 函数
+
+懒加载技术使得变量的初始化代码在变量被首次调用时 `by lazy{}` 代码块中的代码才会执行, 本质就是属性委托, lazy 是 Kotlin 中的高阶函数, 用于快速创建并返回一个 Delegate 对象
+
+```kotlin
+val p by lazy { ... }
+```
+
+动手实现高阶 lazy 高阶函数
+
+```kotlin
+class Later<T>(val block: () -> T) {
+    var value: Any? = null
+    operator fun getValue(any: Any?, prop: KProperty<*>): T {
+        if (value == null) {
+            value = block()
+        }
+        return value as T
+    }
+}
+// 通过 Later.kt 中定义的顶层函数进行使用
+fun <T> later(block: () -> T) = Later(block)
+```

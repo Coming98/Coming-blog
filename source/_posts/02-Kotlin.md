@@ -403,6 +403,25 @@ fun main() {
 }
 ```
 
+## 泛型类
+
+```kotlin
+class MyClass<T> {
+    fun func(param: T): T {
+        return param
+    }
+}
+```
+
+## 泛型函数
+
+```kotlin
+fun <T> method(param: T): T {
+    return param
+}
+method<Int>(123)
+```
+
 # Lambda 编程
 
 Lambda 就是一小段可以作为参数传递的代码
