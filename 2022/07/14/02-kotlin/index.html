@@ -835,6 +835,17 @@ singleton<span class="token punctuation">.</span><span class="token function">si
     Singoton<span class="token punctuation">.</span><span class="token function">SingotonTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// Kotlin 会先创建 Singoton 的实例然后在调用(并且保证全局只有一个实例)</span>
     <span class="token function">println</span><span class="token punctuation">(</span>Singoton<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="泛型类"><a class="markdownIt-Anchor" href="#泛型类"></a> 泛型类</h2>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> MyClass<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">fun</span> <span class="token function">func</span><span class="token punctuation">(</span>param<span class="token operator">:</span> T<span class="token punctuation">)</span><span class="token operator">:</span> T <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> param
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="泛型函数"><a class="markdownIt-Anchor" href="#泛型函数"></a> 泛型函数</h2>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">method</span><span class="token punctuation">(</span>param<span class="token operator">:</span> T<span class="token punctuation">)</span><span class="token operator">:</span> T <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> param
+<span class="token punctuation">&#125;</span>
+method<span class="token operator">&lt;</span>Int<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="lambda-编程"><a class="markdownIt-Anchor" href="#lambda-编程"></a> Lambda 编程</h1>
 <p>Lambda 就是一小段可以作为参数传递的代码</p>
 <p>语法结构: <code>&#123;参数名1: 参数类型, 参数名2: 参数类型 -&gt; 函数体&#125;</code></p>
@@ -1521,7 +1532,7 @@ singleton<span class="token punctuation">.</span><span class="token function">si
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">105.8k</span>&nbsp;字
+                class="white-color">107.9k</span>&nbsp;字
             
             
             

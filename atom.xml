@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-08-21T01:58:46.868Z</updated>
+  <updated>2022-08-22T03:35:57.544Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>08-Content Provider</title>
+    <link href="https://coming98.github.io/2022/08/22/08-content-provider/"/>
+    <id>https://coming98.github.io/2022/08/22/08-content-provider/</id>
+    <published>2022-08-22T11:32:55.000Z</published>
+    <updated>2022-08-22T03:35:57.544Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;contentprovider&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#contentprovider&quot;&gt;&lt;/a&gt; ContentProvider&lt;/h1&gt;
+&lt;p&gt;实现跨程序数据共享,</summary>
+        
+      
+    
+    
+    
+    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
+    
+    
+    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>07-PersistentStorage</title>
     <link href="https://coming98.github.io/2022/08/21/07-persistentstorage/"/>
     <id>https://coming98.github.io/2022/08/21/07-persistentstorage/</id>
     <published>2022-08-21T09:56:09.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.544Z</updated>
     
     
       
@@ -47,7 +73,7 @@
     <link href="https://coming98.github.io/2022/08/19/06-broadcast/"/>
     <id>https://coming98.github.io/2022/08/19/06-broadcast/</id>
     <published>2022-08-19T15:47:24.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.544Z</updated>
     
     
       
@@ -72,7 +98,7 @@
     <link href="https://coming98.github.io/2022/08/18/05-fragment/"/>
     <id>https://coming98.github.io/2022/08/18/05-fragment/</id>
     <published>2022-08-18T21:01:01.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -98,7 +124,7 @@
     <link href="https://coming98.github.io/2022/08/07/04-android-ui/"/>
     <id>https://coming98.github.io/2022/08/07/04-android-ui/</id>
     <published>2022-08-07T19:50:04.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -124,7 +150,7 @@
     <link href="https://coming98.github.io/2022/07/18/03-android-activity/"/>
     <id>https://coming98.github.io/2022/07/18/03-android-activity/</id>
     <published>2022-07-18T16:16:45.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -151,7 +177,7 @@
     <link href="https://coming98.github.io/2022/07/18/02-kotlin-advanced/"/>
     <id>https://coming98.github.io/2022/07/18/02-kotlin-advanced/</id>
     <published>2022-07-18T16:16:36.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -177,7 +203,7 @@
     <link href="https://coming98.github.io/2022/07/18/04-zenmap/"/>
     <id>https://coming98.github.io/2022/07/18/04-zenmap/</id>
     <published>2022-07-18T12:17:34.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -204,7 +230,7 @@
     <link href="https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/</id>
     <published>2022-07-18T09:50:58.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -229,7 +255,7 @@
     <link href="https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/</id>
     <published>2022-07-17T11:09:59.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -256,7 +282,7 @@
     <link href="https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/</id>
     <published>2022-07-15T13:07:04.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -283,7 +309,7 @@
     <link href="https://coming98.github.io/2022/07/14/02-kotlin/"/>
     <id>https://coming98.github.io/2022/07/14/02-kotlin/</id>
     <published>2022-07-14T10:46:25.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -311,7 +337,7 @@
     <link href="https://coming98.github.io/2022/07/14/01-android-basic/"/>
     <id>https://coming98.github.io/2022/07/14/01-android-basic/</id>
     <published>2022-07-14T10:46:17.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -339,7 +365,7 @@
     <link href="https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/"/>
     <id>https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/</id>
     <published>2022-07-04T21:59:53.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -365,7 +391,7 @@
     <link href="https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/"/>
     <id>https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/</id>
     <published>2022-07-04T21:59:44.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -391,7 +417,7 @@
     <link href="https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/"/>
     <id>https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/</id>
     <published>2022-07-03T10:56:15.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.540Z</updated>
     
     
       
@@ -417,7 +443,7 @@
     <link href="https://coming98.github.io/2022/02/06/pubsub/"/>
     <id>https://coming98.github.io/2022/02/06/pubsub/</id>
     <published>2022-02-06T19:35:37.000Z</published>
-    <updated>2022-08-21T01:58:46.872Z</updated>
+    <updated>2022-08-22T03:35:57.544Z</updated>
     
     
       
@@ -445,7 +471,7 @@
     <link href="https://coming98.github.io/2021/12/06/udp-and-udp-protocol/"/>
     <id>https://coming98.github.io/2021/12/06/udp-and-udp-protocol/</id>
     <published>2021-12-06T13:41:54.000Z</published>
-    <updated>2022-08-21T01:58:46.872Z</updated>
+    <updated>2022-08-22T03:35:57.544Z</updated>
     
     
       
@@ -471,7 +497,7 @@
     <link href="https://coming98.github.io/2021/12/06/bgp-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/bgp-protocol-and-security/</id>
     <published>2021-12-06T13:19:52.000Z</published>
-    <updated>2022-08-21T01:58:46.868Z</updated>
+    <updated>2022-08-22T03:35:57.544Z</updated>
     
     
       
@@ -499,7 +525,7 @@
     <link href="https://coming98.github.io/2021/12/06/ospf-protocol-and-security/"/>
     <id>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</id>
     <published>2021-12-06T11:22:25.000Z</published>
-    <updated>2022-08-21T01:58:46.872Z</updated>
+    <updated>2022-08-22T03:35:57.544Z</updated>
     
     
       
@@ -508,32 +534,6 @@
         
     <summary type="html">&lt;h1 id=&quot;ospf&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#ospf&quot;&gt;&lt;/a&gt; OSPF&lt;/h1&gt;
 &lt;p&gt;Open Shorted Path First，开放最短路径优先，是 IETF</summary>
-        
-      
-    
-    
-    
-    <category term="Protocol Security" scheme="https://coming98.github.io/categories/Protocol-Security/"/>
-    
-    
-    <category term="security" scheme="https://coming98.github.io/tags/security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RIP Protocol and Security</title>
-    <link href="https://coming98.github.io/2021/12/06/rip-protocol-and-security/"/>
-    <id>https://coming98.github.io/2021/12/06/rip-protocol-and-security/</id>
-    <published>2021-12-06T10:45:21.000Z</published>
-    <updated>2022-08-21T01:58:46.872Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;rip&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#rip&quot;&gt;&lt;/a&gt; RIP&lt;/h1&gt;
-&lt;p&gt;RIP，Routing Information Protocol，路由信息协议，是一种距离矢量路由协议，基于 UDP 传输，端口号</summary>
         
       
     
