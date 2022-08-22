@@ -338,3 +338,33 @@ class Later<T>(val block: () -> T) {
 // 通过 Later.kt 中定义的顶层函数进行使用
 fun <T> later(block: () -> T) = Later(block)
 ```
+
+# infix
+
+使用 infix 关键字能够创建类似 `contentProviderOf("name" to "Coming")` 这样的 A to B 的用法, 实质为 `A.to(B)` 的语法糖
+
+约束条件: infix 函数必须为某个类的成员函数, 不支持顶层函数; infix 函数必须接收且只能接收一个参数
+
+```kotlin
+// 使用 infix 对 String 建立扩展函数 beginsWith
+infix fun String.beginsWith(prefix: String) = startsWith(prefix)
+// infix 函数额外支持下方调用方式
+if ("Hello Kotlin" beginsWith "Hello") {}
+// 等价于
+if ("Hello Kotlin".startsWith("Hello")) {}
+```
+
+Example2: 判断集合中是否有某个元素
+
+```kotlin
+infix fun <T> Collection<T>.has(element: T) = contains(element)
+
+val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")
+if (list has "Banana") {}
+```
+
+Example3: infix to 函数的源码
+
+```kotlin
+public infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
+```
