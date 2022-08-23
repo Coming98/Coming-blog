@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    3.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    13 分
                 </div>
                 
 
@@ -761,6 +761,43 @@ builder<span class="token punctuation">.</span><span class="token function">appe
 <span class="token keyword">if</span> <span class="token punctuation">(</span>list has <span class="token string">"Banana"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Example3: infix to 函数的源码</p>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">public</span> <span class="token keyword">infix</span> <span class="token keyword">fun</span> <span class="token operator">&lt;</span>A<span class="token punctuation">,</span> B<span class="token operator">></span> A<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>that<span class="token operator">:</span> B<span class="token punctuation">)</span><span class="token operator">:</span> Pair<span class="token operator">&lt;</span>A<span class="token punctuation">,</span> B<span class="token operator">></span> <span class="token operator">=</span> <span class="token function">Pair</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> that<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="advanced-generic"><a class="markdownIt-Anchor" href="#advanced-generic"></a> Advanced Generic</h1>
+<h2 id="泛型实化"><a class="markdownIt-Anchor" href="#泛型实化"></a> 泛型实化</h2>
+<p>类型擦除机制: 泛型对于类型的约束只在编译时期存在，运行的时候 JVM 是识别不出来我们在代码中指定的泛型类型的; 即运行时类型已经被擦除了</p>
+<ul>
+<li>例如，我们创建了一个 <code>List&lt;String&gt;</code> 集合，虽然在编译时期只能向集合中添加字符串类型的元素，但是在运行时期 JVM 并不能知道它本来只打算包含哪种类型的元素，只能识别出来它是个List</li>
+</ul>
+<p>泛型实化: 借助 Kotlin 的内联函数替换的功能, 从而保留了函数体内的泛型</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208231403755.png" alt="" /></p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 声明泛型的地方加上 reified 关键字表示该泛型要进行实化</span>
+<span class="token keyword">inline</span> <span class="token keyword">fun</span> <span class="token operator">&lt;</span><span class="token keyword">reified</span> T<span class="token operator">></span> <span class="token function">getGenericType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 函数体内甚至可以通过泛型获取其在执行时的真正类型</span>
+<span class="token keyword">inline</span> <span class="token keyword">fun</span> <span class="token operator">&lt;</span><span class="token keyword">reified</span> T<span class="token operator">></span> <span class="token function">getGenericType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> T<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="application"><a class="markdownIt-Anchor" href="#application"></a> Application</h3>
+<p>优化 startActivity:</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">inline</span> <span class="token keyword">fun</span> <span class="token operator">&lt;</span><span class="token keyword">reified</span> T<span class="token operator">></span> <span class="token function">startActivity</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">,</span> block<span class="token operator">:</span> Intent<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> intent <span class="token operator">=</span> <span class="token function">Intent</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> T<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">)</span>
+    <span class="token comment">// 添加参数等信息</span>
+    intent<span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    context<span class="token punctuation">.</span><span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// Application</span>
+startActivity<span class="token operator">&lt;</span>TestActivity<span class="token operator">></span><span class="token punctuation">(</span>context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"param1"</span><span class="token punctuation">,</span> <span class="token string">"data"</span><span class="token punctuation">)</span>
+    <span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"param2"</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="泛型的协变hard-todo"><a class="markdownIt-Anchor" href="#泛型的协变hard-todo"></a> 泛型的协变[HARD, TODO]</h2>
+<p>假如定义了一个 <code>MyClass&lt;T&gt;</code> 的泛型类，其中 A 是 B 的子类型，同时 <code>MyClass&lt;A&gt;</code>又是 <code>MyClass&lt;B&gt;</code> 的子类型，那么我们就可以称 MyClass 在 T 这个泛型上是协变的</p>
+<ul>
+<li>前提: 一个泛型类在其泛型类型的数据上是只读的话. 要实现这一点，则需要让 MyClass<T> 类中的所有方法都不能接收 T 类型的参数。换句话说，T 只能出现在 out 位置上，而不能出现在 in 位置上</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208231508585.png" alt="" /></p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> SimpleData<span class="token operator">&lt;</span><span class="token keyword">out</span> T<span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">val</span> <span class="token keyword">data</span><span class="token operator">:</span> T<span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">fun</span> <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> T<span class="token operator">?</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">data</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1311,7 +1348,7 @@ builder<span class="token punctuation">.</span><span class="token function">appe
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">109.6k</span>&nbsp;字
+                class="white-color">111.8k</span>&nbsp;字
             
             
             
