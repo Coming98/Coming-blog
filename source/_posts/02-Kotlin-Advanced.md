@@ -368,3 +368,55 @@ Example3: infix to 函数的源码
 ```kotlin
 public infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
 ```
+
+# Advanced Generic
+
+## 泛型实化
+
+类型擦除机制: 泛型对于类型的约束只在编译时期存在，运行的时候 JVM 是识别不出来我们在代码中指定的泛型类型的; 即运行时类型已经被擦除了
+- 例如，我们创建了一个 `List<String>` 集合，虽然在编译时期只能向集合中添加字符串类型的元素，但是在运行时期 JVM 并不能知道它本来只打算包含哪种类型的元素，只能识别出来它是个List
+
+泛型实化: 借助 Kotlin 的内联函数替换的功能, 从而保留了函数体内的泛型
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208231403755.png)
+
+```kotlin
+// 声明泛型的地方加上 reified 关键字表示该泛型要进行实化
+inline fun <reified T> getGenericType() {}
+
+// 函数体内甚至可以通过泛型获取其在执行时的真正类型
+inline fun <reified T> getGenericType() = T::class.java
+```
+
+### Application
+
+优化 startActivity:
+
+```kotlin
+inline fun <reified T> startActivity(context: Context, block: Intent.() -> Unit) {
+    val intent = Intent(context, T::class.java)
+    // 添加参数等信息
+    intent.block()
+    context.startActivity(intent)
+}
+// Application
+startActivity<TestActivity>(context) {
+    putExtra("param1", "data")
+    putExtra("param2", 123)
+}
+```
+
+## 泛型的协变[HARD, TODO]
+
+假如定义了一个 `MyClass<T>` 的泛型类，其中 A 是 B 的子类型，同时 `MyClass<A>`又是 `MyClass<B>` 的子类型，那么我们就可以称 MyClass 在 T 这个泛型上是协变的
+- 前提: 一个泛型类在其泛型类型的数据上是只读的话. 要实现这一点，则需要让 MyClass<T> 类中的所有方法都不能接收 T 类型的参数。换句话说，T 只能出现在 out 位置上，而不能出现在 in 位置上
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202208231508585.png)
+
+```kotlin
+class SimpleData<out T>(val data: T?) {
+    fun get(): T? {
+        return data
+    }
+}
+```
