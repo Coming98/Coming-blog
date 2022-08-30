@@ -376,12 +376,12 @@ public infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
 类型擦除机制: 泛型对于类型的约束只在编译时期存在，运行的时候 JVM 是识别不出来我们在代码中指定的泛型类型的; 即运行时类型已经被擦除了
 - 例如，我们创建了一个 `List<String>` 集合，虽然在编译时期只能向集合中添加字符串类型的元素，但是在运行时期 JVM 并不能知道它本来只打算包含哪种类型的元素，只能识别出来它是个List
 
-泛型实化: 借助 Kotlin 的内联函数替换的功能, 从而保留了函数体内的泛型
+泛型实化: 借助 Kotlin 的内联函数替换的功能, 从而保留了函数体内的泛型, 甚至支持在函数体中操作泛型
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202208231403755.png)
 
 ```kotlin
-// 声明泛型的地方加上 reified 关键字表示该泛型要进行实化
+// 内联函数 + 声明泛型的地方加上 reified 关键字表示该泛型要进行实化
 inline fun <reified T> getGenericType() {}
 
 // 函数体内甚至可以通过泛型获取其在执行时的真正类型
@@ -420,3 +420,182 @@ class SimpleData<out T>(val data: T?) {
     }
 }
 ```
+
+# 协程
+
+协程可以理解为轻量级的线程, 普通的线程需要依靠操作系统的调度实现线程间的切换, 使用协程可以仅在编程语言的层面就能实现不同协程之间的切换，从而大大提升了并发编程的运行效率
+- 在单线程模式下模拟多线程编程的效果，代码执行时的挂起与恢复完全是由编程语言来控制的，和操作系统无关
+
+## Quick Start
+
+1. 引入依赖
+
+```shell
+implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
+```
+
+2. 使用 `GlobalScope.launch` 创建顶层协程作用域: 这种协程当应用程序运行结束时也会跟着一起结束
+
+```kotlin
+val job = GlobalScope.launch {
+    println("codes run in coroutine scope")
+    for(i in 0..100 step 2) {
+        println("index = $i")
+    }
+}
+job.cancel() // 手动取消协程
+```
+
+## 阻塞
+
+常见的又 `Thread.sleep(millis)` 与 `delay(millis)`
+- delay: 是一个非阻塞式的挂起函数，它只会挂起当前协程，并不会影响其他协程的运行 (只能在协程的作用域或其他挂起函数中调)
+- sleep: 会阻塞当前的线程，这样运行在该线程下的所有协程都会被阻塞
+
+## runBlocking 协程
+
+GlobalScope.launch 创建的协程会随着应用程序的结束而结束, 这在离线测试时十分不友好, 因此封装了 runBlocking.launch 其可以保证在协程作用域内的所有代码和子协程没有全部执行完之前一直阻塞当前线程
+
+Tips: runBlocking 函数通常只应该在测试环境下使用，在正式环境中使用容易产生一些性能上的问题
+
+### 创建多个子协程
+
+如果外层作用域的协程结束了，该作用域下的所有子协程也会一同结束
+
+```kotlin
+runBlocking {
+    launch {
+        println("launch1")
+        delay(1000)
+        println("launch1 finished")
+    }
+    launch {
+        println("launch2")
+        delay(1000)
+        println("launch2 finished")
+    }
+}
+```
+
+## 对协程操作的封装
+
+如果想要将协程中执行的任务封装为函数, 但是如何拥有其协程作用域呢？可以使用 `suspend` 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用
+
+```kotlin
+suspend fun printDot() {
+    repeat(100) {
+        print(".")
+        delay(100)
+    }
+}
+```
+
+但是如何真正的实现协程作用域的共享呢, 需要借助 `coroutineScope` 函数进行显示的声明
+- coroutineScopre() 也是一个挂起函数, 可以在任何挂起函数中或协程作用域中调用
+- 其可以继承外部的协程的作用域并创建一个子协程，借助这个特性，我们就可以给任意挂起函数提供协程作用域了
+- 其可以保证其作用域内的所有代码和子协程在全部执行完之前，外部的协程会一直被挂起
+- 和 runBlocking 不同的是 coroutineScope 函数只会阻塞当前协程，既不影响其他协程，也不影响任何线程，因此是不会造成任何性能上的问题的: 涉及的是子协程, 不用关注外部线程
+- 而 runBlocking 函数由于会挂起外部线程，如果你恰好又在主线程中当中调用它的话，那么就有可能会导致界面卡死的情况，所以不太推荐在实际项目中使
+用: 涉及的是顶层协程, 需要阻塞线程以保存活
+
+```kotlin
+suspend fun printDot() = coroutineScope {
+    launch {
+        println(".")
+        delay(1000)
+    }
+}
+```
+
+## 推荐的协程实践
+
+主要就是方便多个子协程的维护
+
+```kotlin
+val job = Job()
+val scope = CoroutineScope(job)
+scope.launch {
+    for (i in 1..100 step 2) {
+        delay(50)
+        println("index = $i")
+    }
+}
+scope.launch {
+    for (i in 0..100 step 2) {
+        delay(50)
+        println("index = $i")
+    }
+}
+// 销毁的时候调用
+// job.cancel() // 调用一次 cancel 方法即可取消目标 scope 中的所有协程, 维护起来更加方便
+```
+
+## 协程的回调
+
+### async/await
+
+使用 `async` 关键字获取目标协程的返回值, 该关键字必须在协程作用域中使用, 其原理是创建一个新的子协程, 并返回一个 Deferred 对象, 通过执行该对象的 `await()` 方法获取执行结果
+- 调用了 async 函数之后，代码块中的代码就会立刻开始执行
+- 当调用 await() 方法时，如果代码块中的代码还没执行完，那么 await() 方法会将当前协程阻塞住，直到可以获得 async 函数的执行结果
+- 因此选择何时调用 await 的时机很重要
+
+```kotlin
+GlobalScope.launch {
+    getCoroutineRet()
+}
+
+//--------------------------------------//
+
+suspend fun getCoroutineRet() {
+    val job = Job()
+    val scope = CoroutineScope(job)
+    val ret = scope.async {
+        var ret = 0
+        for(i in 0..100 step 2) {
+            ret += i
+            delay(50)
+        }
+        ret
+    }.await()
+    println("$ret")
+}
+```
+
+使用 runBlocking 时更加简便, 因为有一个全局的协程作用域
+
+```kotlin
+runBlocking {
+    val result = async {
+        5 + 5
+    }.await()
+    println(result)
+}
+```
+
+### withContext
+
+可以理解成 async 函数的一种简化版写法
+- 调用 withContext() 函数之后，会立即执行代码块中的代码，同时将外部协程挂起
+- 当代码块中的代码全部执行完之后，会将最后一行的执行结果作为 withContext() 函数的返回值返回
+- Dispatchers.Default 是 withContext 强制要求的线程参数, 数给协程指定一个具体的运行线程
+  - Dispatchers.Default 表示会使用一种默认低并发的线程策略，当你要执行的代码属于计算密集型任务时，开启过高的并发反而可能会影响任务的运行效率，此时就可以使用 Dispatchers.Default
+  - Dispatchers.IO 表示会使用一种较高并发的线程策略，当你要执行的代码大多数时间是在阻塞和等待中，比如说执行网络请求时，为了能够支持更高的并发数量，此时就可以使用 Dispatchers.IO
+  - Dispatchers.Main 则表示不会开启子线程，而是在 Android 主线程中执行代码，但是这个值只能在 Android 项目中使用，纯 Kotlin 程序使用这种类型的线程参数会出现错误
+
+
+```kotlin
+runBlocking {
+    val result = withContext(Dispatchers.Default) {
+        5 + 5
+    }
+    println(result)
+}
+```
+
+## 使用协程优化传统回调
+
+借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化, 该函数必须在协程作用域或挂起函数中才能调用，它接收一个 Lambda 表达式参数，主要作用是将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码
+
+Lambda 表达式的参数列表上会传入一个 Continuation 参数，调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行
+
