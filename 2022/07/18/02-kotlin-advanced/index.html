@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.2k
+                    5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    19 分
                 </div>
                 
 
@@ -767,9 +767,9 @@ builder<span class="token punctuation">.</span><span class="token function">appe
 <ul>
 <li>例如，我们创建了一个 <code>List&lt;String&gt;</code> 集合，虽然在编译时期只能向集合中添加字符串类型的元素，但是在运行时期 JVM 并不能知道它本来只打算包含哪种类型的元素，只能识别出来它是个List</li>
 </ul>
-<p>泛型实化: 借助 Kotlin 的内联函数替换的功能, 从而保留了函数体内的泛型</p>
+<p>泛型实化: 借助 Kotlin 的内联函数替换的功能, 从而保留了函数体内的泛型, 甚至支持在函数体中操作泛型</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208231403755.png" alt="" /></p>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 声明泛型的地方加上 reified 关键字表示该泛型要进行实化</span>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 内联函数 + 声明泛型的地方加上 reified 关键字表示该泛型要进行实化</span>
 <span class="token keyword">inline</span> <span class="token keyword">fun</span> <span class="token operator">&lt;</span><span class="token keyword">reified</span> T<span class="token operator">></span> <span class="token function">getGenericType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
 <span class="token comment">// 函数体内甚至可以通过泛型获取其在执行时的真正类型</span>
@@ -798,6 +798,148 @@ startActivity<span class="token operator">&lt;</span>TestActivity<span class="to
         <span class="token keyword">return</span> <span class="token keyword">data</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="协程"><a class="markdownIt-Anchor" href="#协程"></a> 协程</h1>
+<p>协程可以理解为轻量级的线程, 普通的线程需要依靠操作系统的调度实现线程间的切换, 使用协程可以仅在编程语言的层面就能实现不同协程之间的切换，从而大大提升了并发编程的运行效率</p>
+<ul>
+<li>在单线程模式下模拟多线程编程的效果，代码执行时的挂起与恢复完全是由编程语言来控制的，和操作系统无关</li>
+</ul>
+<h2 id="quick-start-2"><a class="markdownIt-Anchor" href="#quick-start-2"></a> Quick Start</h2>
+<ol>
+<li>引入依赖</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1&quot;
+implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>使用 <code>GlobalScope.launch</code> 创建顶层协程作用域: 这种协程当应用程序运行结束时也会跟着一起结束</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> job <span class="token operator">=</span> GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"codes run in coroutine scope"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token keyword">in</span> <span class="token number">0</span><span class="token operator">..</span><span class="token number">100</span> step <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"index = <span class="token interpolation variable">$i</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+job<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 手动取消协程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="阻塞"><a class="markdownIt-Anchor" href="#阻塞"></a> 阻塞</h2>
+<p>常见的又 <code>Thread.sleep(millis)</code> 与 <code>delay(millis)</code></p>
+<ul>
+<li>delay: 是一个非阻塞式的挂起函数，它只会挂起当前协程，并不会影响其他协程的运行 (只能在协程的作用域或其他挂起函数中调)</li>
+<li>sleep: 会阻塞当前的线程，这样运行在该线程下的所有协程都会被阻塞</li>
+</ul>
+<h2 id="runblocking-协程"><a class="markdownIt-Anchor" href="#runblocking-协程"></a> runBlocking 协程</h2>
+<p>GlobalScope.launch 创建的协程会随着应用程序的结束而结束, 这在离线测试时十分不友好, 因此封装了 runBlocking.launch 其可以保证在协程作用域内的所有代码和子协程没有全部执行完之前一直阻塞当前线程</p>
+<p>Tips: runBlocking 函数通常只应该在测试环境下使用，在正式环境中使用容易产生一些性能上的问题</p>
+<h3 id="创建多个子协程"><a class="markdownIt-Anchor" href="#创建多个子协程"></a> 创建多个子协程</h3>
+<p>如果外层作用域的协程结束了，该作用域下的所有子协程也会一同结束</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">runBlocking <span class="token punctuation">&#123;</span>
+    launch <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"launch1"</span><span class="token punctuation">)</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"launch1 finished"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    launch <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"launch2"</span><span class="token punctuation">)</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"launch2 finished"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="对协程操作的封装"><a class="markdownIt-Anchor" href="#对协程操作的封装"></a> 对协程操作的封装</h2>
+<p>如果想要将协程中执行的任务封装为函数, 但是如何拥有其协程作用域呢？可以使用 <code>suspend</code> 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">printDot</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是如何真正的实现协程作用域的共享呢, 需要借助 <code>coroutineScope</code> 函数进行显示的声明</p>
+<ul>
+<li>coroutineScopre() 也是一个挂起函数, 可以在任何挂起函数中或协程作用域中调用</li>
+<li>其可以继承外部的协程的作用域并创建一个子协程，借助这个特性，我们就可以给任意挂起函数提供协程作用域了</li>
+<li>其可以保证其作用域内的所有代码和子协程在全部执行完之前，外部的协程会一直被挂起</li>
+<li>和 runBlocking 不同的是 coroutineScope 函数只会阻塞当前协程，既不影响其他协程，也不影响任何线程，因此是不会造成任何性能上的问题的: 涉及的是子协程, 不用关注外部线程</li>
+<li>而 runBlocking 函数由于会挂起外部线程，如果你恰好又在主线程中当中调用它的话，那么就有可能会导致界面卡死的情况，所以不太推荐在实际项目中使
+用: 涉及的是顶层协程, 需要阻塞线程以保存活</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">printDot</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> coroutineScope <span class="token punctuation">&#123;</span>
+    launch <span class="token punctuation">&#123;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="推荐的协程实践"><a class="markdownIt-Anchor" href="#推荐的协程实践"></a> 推荐的协程实践</h2>
+<p>主要就是方便多个子协程的维护</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> job <span class="token operator">=</span> <span class="token function">Job</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">val</span> scope <span class="token operator">=</span> <span class="token function">CoroutineScope</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token keyword">in</span> <span class="token number">1</span><span class="token operator">..</span><span class="token number">100</span> step <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"index = <span class="token interpolation variable">$i</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+scope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token keyword">in</span> <span class="token number">0</span><span class="token operator">..</span><span class="token number">100</span> step <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"index = <span class="token interpolation variable">$i</span>"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 销毁的时候调用</span>
+<span class="token comment">// job.cancel() // 调用一次 cancel 方法即可取消目标 scope 中的所有协程, 维护起来更加方便</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="协程的回调"><a class="markdownIt-Anchor" href="#协程的回调"></a> 协程的回调</h2>
+<h3 id="asyncawait"><a class="markdownIt-Anchor" href="#asyncawait"></a> async/await</h3>
+<p>使用 <code>async</code> 关键字获取目标协程的返回值, 该关键字必须在协程作用域中使用, 其原理是创建一个新的子协程, 并返回一个 Deferred 对象, 通过执行该对象的 <code>await()</code> 方法获取执行结果</p>
+<ul>
+<li>调用了 async 函数之后，代码块中的代码就会立刻开始执行</li>
+<li>当调用 await() 方法时，如果代码块中的代码还没执行完，那么 await() 方法会将当前协程阻塞住，直到可以获得 async 函数的执行结果</li>
+<li>因此选择何时调用 await 的时机很重要</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">GlobalScope<span class="token punctuation">.</span><span class="token function">launch</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">getCoroutineRet</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//--------------------------------------//</span>
+
+<span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">getCoroutineRet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> job <span class="token operator">=</span> <span class="token function">Job</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> scope <span class="token operator">=</span> <span class="token function">CoroutineScope</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+    <span class="token keyword">val</span> ret <span class="token operator">=</span> scope<span class="token punctuation">.</span><span class="token function">async</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> ret <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token keyword">in</span> <span class="token number">0</span><span class="token operator">..</span><span class="token number">100</span> step <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            ret <span class="token operator">+=</span> i
+            <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+        ret
+    <span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation variable">$ret</span>"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用 runBlocking 时更加简便, 因为有一个全局的协程作用域</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">runBlocking <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> result <span class="token operator">=</span> async <span class="token punctuation">&#123;</span>
+        <span class="token number">5</span> <span class="token operator">+</span> <span class="token number">5</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="withcontext"><a class="markdownIt-Anchor" href="#withcontext"></a> withContext</h3>
+<p>可以理解成 async 函数的一种简化版写法</p>
+<ul>
+<li>调用 withContext() 函数之后，会立即执行代码块中的代码，同时将外部协程挂起</li>
+<li>当代码块中的代码全部执行完之后，会将最后一行的执行结果作为 withContext() 函数的返回值返回</li>
+<li>Dispatchers.Default 是 withContext 强制要求的线程参数, 数给协程指定一个具体的运行线程
+<ul>
+<li>Dispatchers.Default 表示会使用一种默认低并发的线程策略，当你要执行的代码属于计算密集型任务时，开启过高的并发反而可能会影响任务的运行效率，此时就可以使用 Dispatchers.Default</li>
+<li><a target="_blank" rel="noopener" href="http://Dispatchers.IO">Dispatchers.IO</a> 表示会使用一种较高并发的线程策略，当你要执行的代码大多数时间是在阻塞和等待中，比如说执行网络请求时，为了能够支持更高的并发数量，此时就可以使用 <a target="_blank" rel="noopener" href="http://Dispatchers.IO">Dispatchers.IO</a></li>
+<li>Dispatchers.Main 则表示不会开启子线程，而是在 Android 主线程中执行代码，但是这个值只能在 Android 项目中使用，纯 Kotlin 程序使用这种类型的线程参数会出现错误</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">runBlocking <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> result <span class="token operator">=</span> <span class="token function">withContext</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>Default<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token number">5</span> <span class="token operator">+</span> <span class="token number">5</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="使用协程优化传统回调"><a class="markdownIt-Anchor" href="#使用协程优化传统回调"></a> 使用协程优化传统回调</h2>
+<p>借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化, 该函数必须在协程作用域或挂起函数中才能调用，它接收一个 Lambda 表达式参数，主要作用是将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码</p>
+<p>Lambda 表达式的参数列表上会传入一个 Continuation 参数，调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行</p>
+
                 
             </div>
             <hr/>
@@ -1348,7 +1490,7 @@ startActivity<span class="token operator">&lt;</span>TestActivity<span class="to
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">111.8k</span>&nbsp;字
+                class="white-color">115.8k</span>&nbsp;字
             
             
             
