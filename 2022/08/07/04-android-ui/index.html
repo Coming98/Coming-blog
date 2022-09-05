@@ -467,7 +467,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    3.7k
                 </div>
                 
 
@@ -603,6 +603,18 @@
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onOptionsItemSelected</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="图标和位置"><a class="markdownIt-Anchor" href="#图标和位置"></a> 图标和位置</h3>
+<p>在布局文件中通过 icon 属性指定菜单选项的图标, 通过 showAsAction 属性指定菜单选项的展示位置</p>
+<ul>
+<li>always: 表示永远显示在 Toolbar 中, 空间不够则不显示</li>
+<li>ifRoom: 表示优先显示在 Toolbar 中, 空间不够显示在菜单中</li>
+<li>never: 表示只显示在菜单中</li>
+</ul>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span>
+    <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@+id/backup<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@drawable/ic_backup<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Backup<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">app:</span>showAsAction</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>always<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="edittext"><a class="markdownIt-Anchor" href="#edittext"></a> EditText</h2>
 <ul>
 <li>提示内容: <code>:hint=&quot;Type something here&quot;</code></li>
@@ -1593,7 +1605,7 @@ itemTouchHelper<span class="token punctuation">.</span><span class="token functi
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">115.8k</span>&nbsp;字
+                class="white-color">118.8k</span>&nbsp;字
             
             
             

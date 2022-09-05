@@ -467,7 +467,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    3.4k
                 </div>
                 
 
@@ -554,11 +554,7 @@
 <span class="token punctuation">&#125;</span>
 <span class="token comment">// 取反</span>
 <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token operator">!</span><span class="token keyword">is</span> String<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="函数"><a class="markdownIt-Anchor" href="#函数"></a> 函数</h1>
-<ul>
-<li>支持默认参数</li>
-<li></li>
-</ul>
+<h1 id="逻辑"><a class="markdownIt-Anchor" href="#逻辑"></a> 逻辑</h1>
 <h2 id="if"><a class="markdownIt-Anchor" href="#if"></a> if</h2>
 <p>Kotlin 中的 if 语句存在返回值, 值为条件中最后一行代码的返回值</p>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">JCMax2</span><span class="token punctuation">(</span>a<span class="token operator">:</span> Int<span class="token punctuation">,</span> b<span class="token operator">:</span> Int<span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">&#123;</span>
@@ -647,6 +643,13 @@
     fruitList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">Fruit</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">,</span> R<span class="token punctuation">.</span>drawable<span class="token punctuation">.</span>banana_pic<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token comment">// 重复加载数据</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="函数"><a class="markdownIt-Anchor" href="#函数"></a> 函数</h1>
+<ul>
+<li>支持默认参数</li>
+<li>vararg 表示接收任意多个参数: <code>fun max(vararg nums: Int): Int &#123;...&#125;</code></li>
+<li>泛型: <code>fun &lt;T: Comparable&lt;T&gt;&gt; max(vararg nums: T): T &#123;...&#125;</code> 指定泛型 T 是可比较类型的子类型, 即可对求最大值指定泛型了</li>
+<li></li>
+</ul>
 <h1 id="类"><a class="markdownIt-Anchor" href="#类"></a> 类</h1>
 <ul>
 <li>实例化时取消了 <code>new</code> 关键字</li>
@@ -1532,7 +1535,7 @@ method<span class="token operator">&lt;</span>Int<span class="token operator">><
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">115.8k</span>&nbsp;字
+                class="white-color">118.8k</span>&nbsp;字
             
             
             

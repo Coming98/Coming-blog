@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5k
+                    5.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    20 分
                 </div>
                 
 
@@ -624,6 +624,35 @@ builder<span class="token punctuation">.</span><span class="token function">appe
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> count
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="扩展函数优化-toast"><a class="markdownIt-Anchor" href="#扩展函数优化-toast"></a> 扩展函数优化 Toast</h2>
+<p>对 Sting 与 Int 进行扩展, 快速 Toast 提示</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> String<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">,</span> duration<span class="token operator">:</span> Int <span class="token operator">=</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> duration<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">fun</span> Int<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> duration<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// Exec</span>
+<span class="token string">"Success!"</span><span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+<span class="token comment">// 甚至可以将提示信息资源话</span>
+R<span class="token punctuation">.</span>string<span class="token punctuation">.</span>process_success_info<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_LONG<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="扩展函数优化-snackbar"><a class="markdownIt-Anchor" href="#扩展函数优化-snackbar"></a> 扩展函数优化 Snackbar</h2>
+<p>Snackbar 是扩展版的 Toast, 能够根据指定的 View 向上查询 Context 并给出可交互的提示信息, 因此选择对 View 进行扩展, 优化 Snackbar 的调用</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// block 表示其类型可以是函数也可以是 null, 默认值为 null</span>
+<span class="token keyword">fun</span> View<span class="token punctuation">.</span><span class="token function">showSnackbar</span><span class="token punctuation">(</span>text<span class="token operator">:</span> String<span class="token punctuation">,</span> actionText<span class="token operator">:</span> String<span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">,</span> 
+                    duration<span class="token operator">:</span> Int <span class="token operator">=</span> Snackbar<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">,</span> block<span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span><span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> snackbar <span class="token operator">=</span> Snackbar<span class="token punctuation">.</span><span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> text<span class="token punctuation">,</span> duration<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>actionText <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> block <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        snackbar<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>actionText<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    snackbar<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// Exec</span>
+view<span class="token punctuation">.</span><span class="token function">showSnackbar</span><span class="token punctuation">(</span><span class="token string">"Delete Success!"</span><span class="token punctuation">,</span> <span class="token string">"UNDO"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"Undo Success!"</span><span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="运算符重载"><a class="markdownIt-Anchor" href="#运算符重载"></a> 运算符重载</h1>
 <p>Kotlin 的运算符重载使用 <code>operator</code> 关键字允许我们让任意两个对象进行运算操作:</p>
 <h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
@@ -1490,7 +1519,7 @@ scope<span class="token punctuation">.</span><span class="token function">launch
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">115.8k</span>&nbsp;字
+                class="white-color">118.8k</span>&nbsp;字
             
             
             
