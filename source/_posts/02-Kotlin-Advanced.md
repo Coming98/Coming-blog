@@ -169,6 +169,45 @@ fun String.lettersCount(): Int {
 }
 ```
 
+## 扩展函数优化 Toast
+
+对 Sting 与 Int 进行扩展, 快速 Toast 提示
+
+```kotlin
+fun String.showToast(context: Context, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(context, this, duration).show()
+}
+fun Int.showToast(context: Context) {
+    Toast.makeText(context, this, duration).show()
+}
+// Exec
+"Success!".showToast(this)
+// 甚至可以将提示信息资源话
+R.string.process_success_info.showToast(this, Toast.LENGTH_LONG)
+```
+
+## 扩展函数优化 Snackbar
+
+Snackbar 是扩展版的 Toast, 能够根据指定的 View 向上查询 Context 并给出可交互的提示信息, 因此选择对 View 进行扩展, 优化 Snackbar 的调用
+
+```kotlin
+// block 表示其类型可以是函数也可以是 null, 默认值为 null
+fun View.showSnackbar(text: String, actionText: String? = null, 
+                    duration: Int = Snackbar.LENGTH_SHORT, block: (() -> Unit)? = null) {
+    val snackbar = Snackbar.make(this, text, duration)
+    if (actionText != null && block != null) {
+        snackbar.setAction(actionText) {
+            block()
+        }
+    }
+    snackbar.show()
+}
+// Exec
+view.showSnackbar("Delete Success!", "UNDO") {
+    "Undo Success!".showToast(this)
+}
+```
+
 # 运算符重载
 
 Kotlin 的运算符重载使用 `operator` 关键字允许我们让任意两个对象进行运算操作:

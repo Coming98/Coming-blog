@@ -134,6 +134,21 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 }
 ```
 
+### 图标和位置
+
+在布局文件中通过 icon 属性指定菜单选项的图标, 通过 showAsAction 属性指定菜单选项的展示位置
+- always: 表示永远显示在 Toolbar 中, 空间不够则不显示
+- ifRoom: 表示优先显示在 Toolbar 中, 空间不够显示在菜单中
+- never: 表示只显示在菜单中
+
+```xml
+<item
+    android:id="@+id/backup"
+    android:icon="@drawable/ic_backup"
+    android:title="Backup"
+    app:showAsAction="always" />
+```
+
 ## EditText
 
 - 提示内容: `:hint="Type something here"`

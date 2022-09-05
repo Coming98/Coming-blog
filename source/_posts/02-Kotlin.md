@@ -74,10 +74,8 @@ if (obj !is String) return null
 ```
 
 
-# 函数
 
-- 支持默认参数
-- 
+# 逻辑
 
 ## if
 
@@ -189,6 +187,13 @@ fun main() {
             // 重复加载数据
         }
 ```
+
+# 函数
+
+- 支持默认参数
+- vararg 表示接收任意多个参数: `fun max(vararg nums: Int): Int {...}`
+- 泛型: `fun <T: Comparable<T>> max(vararg nums: T): T {...}` 指定泛型 T 是可比较类型的子类型, 即可对求最大值指定泛型了
+- 
 
 # 类
 
