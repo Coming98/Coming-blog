@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.5k
+                    4.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    19 分
                 </div>
                 
 
@@ -704,7 +704,12 @@ button_back2main<span class="token punctuation">.</span><span class="token funct
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207162141011.png" alt="" /></p>
 <h2 id="活动间传递复杂数据"><a class="markdownIt-Anchor" href="#活动间传递复杂数据"></a> 活动间传递复杂数据</h2>
-<p>针对自定义对象或自定义对象的列表, 需要截止 <code>Serializable</code> 接口添加其序列化与反序列化方法</p>
+<h3 id="serializable"><a class="markdownIt-Anchor" href="#serializable"></a> Serializable</h3>
+<p>针对自定义对象或自定义对象的列表, 需要借助 <code>Serializable</code> 接口添加其序列化与反序列化方法</p>
+<ul>
+<li>序列化后的对象可以在网络上进行传输，也可以存储到本地</li>
+<li>至于序列化的方法非常简单，只需要让一个类去实现 Serializable 这个接口就可以了</li>
+</ul>
 <ol>
 <li>在类的定义中声明对 <code>Serializable</code> 接口的实现</li>
 </ol>
@@ -713,16 +718,71 @@ button_back2main<span class="token punctuation">.</span><span class="token funct
 <ol start="2">
 <li>传递时进行序列化</li>
 </ol>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">actionStart</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">,</span> bookList<span class="token operator">:</span> ArrayList<span class="token operator">&lt;</span>Book<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">actionStart</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">,</span> bookList<span class="token operator">:</span> ArrayList<span class="token operator">&lt;</span>Book<span class="token operator">></span><span class="token punctuation">,</span> book<span class="token operator">:</span> Book<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">val</span> intent <span class="token operator">=</span> <span class="token function">Intent</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> BookInfosActivity<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
-        <span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"bookList"</span><span class="token punctuation">,</span> bookList <span class="token keyword">as</span> Serializable<span class="token punctuation">)</span>
+        <span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"bookList"</span><span class="token punctuation">,</span> bookList <span class="token keyword">as</span> Serializable<span class="token punctuation">)</span> 
+        <span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"book"</span><span class="token punctuation">,</span> book<span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
     context<span class="token punctuation">.</span><span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="3">
 <li>接受时反序列化</li>
 </ol>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> booklist <span class="token operator">=</span> intent<span class="token punctuation">.</span><span class="token function">getSerializableExtra</span><span class="token punctuation">(</span><span class="token string">"bookList"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> ArrayList<span class="token operator">&lt;</span>Book<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> booklist <span class="token operator">=</span> intent<span class="token punctuation">.</span><span class="token function">getSerializableExtra</span><span class="token punctuation">(</span><span class="token string">"bookList"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> ArrayList<span class="token operator">&lt;</span>Book<span class="token operator">></span>
+<span class="token keyword">val</span> book <span class="token operator">=</span> intent<span class="token punctuation">.</span><span class="token function">getSerializableExtra</span><span class="token punctuation">(</span><span class="token string">"book"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Book<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="parcelable"><a class="markdownIt-Anchor" href="#parcelable"></a> Parcelable</h3>
+<p>Parcelable 方式的实现原理是将一个完整的对象进行分解，使得分解后的每一部分都是 Intent 所支持的数据类型，这样就能实现传递对象的功能了</p>
+<ul>
+<li>简单实现</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token annotation builtin">@Parcelize</span>
+<span class="token keyword">class</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token keyword">var</span> name<span class="token operator">:</span> String<span class="token punctuation">,</span> <span class="token keyword">var</span> age<span class="token operator">:</span> Int<span class="token punctuation">)</span> <span class="token operator">:</span> Parcelable
+
+<span class="token keyword">val</span> person <span class="token operator">=</span> intent<span class="token punctuation">.</span><span class="token function">getParcelableExtra</span><span class="token punctuation">(</span><span class="token string">"person_data"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Person<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>细节处理</li>
+</ul>
+<ol>
+<li>实现 Parcelable 接口, 重写 describeContents() 和 writeToParcel() 这两个方法</li>
+</ol>
+<ul>
+<li>describeContents() 方法直接返回 0 就可以</li>
+<li>writeToParcel() 方法需要调用 Parcel 的 writeXxx() 方法，将 Person 类中的字段一一写出</li>
+</ul>
+<ol start="2">
+<li>须在 Person 类中提供一个名为 CREATOR 的匿名类实现; 创建了 Parcelable.Creator 接口的一个实现，并将泛型指定为 Person; 接着需要重写 createFromParcel() 和 newArray() 这两个方法</li>
+</ol>
+<ul>
+<li>在 createFromParcel() 要创建一个 Person 对象进行返回，并读取刚才写出的 name 和 age 字段</li>
+<li>newArray() 方法需要调用 arrayOfNulls() 方法，并使用参数中传入的 size 作为数组大小，创建一个空的 Person 数组即可</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> Person <span class="token operator">:</span> Parcelable <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token keyword">var</span> age <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">writeToParcel</span><span class="token punctuation">(</span>parcel<span class="token operator">:</span> Parcel<span class="token punctuation">,</span> flags<span class="token operator">:</span> Int<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        parcel<span class="token punctuation">.</span><span class="token function">writeString</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token comment">// 写出name</span>
+        parcel<span class="token punctuation">.</span><span class="token function">writeInt</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token comment">// 写出age</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">describeContents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Int <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">companion</span> <span class="token keyword">object</span> CREATOR <span class="token operator">:</span> Parcelable<span class="token punctuation">.</span>Creator<span class="token operator">&lt;</span>Person<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">createFromParcel</span><span class="token punctuation">(</span>parcel<span class="token operator">:</span> Parcel<span class="token punctuation">)</span><span class="token operator">:</span> Person <span class="token punctuation">&#123;</span>
+            <span class="token keyword">val</span> person <span class="token operator">=</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token comment">// 顺序一致</span>
+            person<span class="token punctuation">.</span>name <span class="token operator">=</span> parcel<span class="token punctuation">.</span><span class="token function">readString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?:</span> <span class="token string">""</span> <span class="token comment">// 读取name</span>
+            person<span class="token punctuation">.</span>age <span class="token operator">=</span> parcel<span class="token punctuation">.</span><span class="token function">readInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 读取age</span>
+            <span class="token keyword">return</span> person
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">newArray</span><span class="token punctuation">(</span>size<span class="token operator">:</span> Int<span class="token punctuation">)</span><span class="token operator">:</span> Array<span class="token operator">&lt;</span>Person<span class="token operator">?</span><span class="token operator">></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token function">arrayOfNulls</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>获取数据</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> person <span class="token operator">=</span> intent<span class="token punctuation">.</span><span class="token function">getParcelableExtra</span><span class="token punctuation">(</span><span class="token string">"person_data"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Person<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h1 id="生命周期"><a class="markdownIt-Anchor" href="#生命周期"></a> 生命周期</h1>
 <p>Android 中的 Activity 是可以层叠的：每启动一个新的 Activity，就会覆盖在原 Activity 之上，然后点击 Back 键会销毁最上面的 Activity，下面的一个 Activity 就会重新显示出来</p>
 <p>Android 使用任务（Task）来管理活动的：一个任务就是一组存放在栈里的 Activity 的集合，这个栈也被称作返回栈（Back Stack）</p>
@@ -906,6 +966,80 @@ button_back2main<span class="token punctuation">.</span><span class="token funct
         context<span class="token punctuation">.</span><span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="context"><a class="markdownIt-Anchor" href="#context"></a> Context</h1>
+<p>Context 使用的场景非常多: Toast, 启动 Activity, 发送广播, 操作数据库, 通知....</p>
+<h2 id="全局-context"><a class="markdownIt-Anchor" href="#全局-context"></a> 全局 Context</h2>
+<p>Android 提供 Application 类，每当应用程序启动的时候，系统就会自动将这个类进行初始化</p>
+<p>而我们可以定制一个自己的 Application 类，以便于管理程序内一些全局的状态信息，比如全局 Context</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> MyApplication <span class="token operator">:</span> <span class="token function">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 将 Context 设置成静态变量很容易会产生内存泄漏的问题所以这是一种有风险的做法</span>
+    <span class="token comment">// 但是由于这里获取的不是 Activity 或 Service 中的 Context</span>
+    <span class="token comment">// 而是 Application 中的 Context 它全局只会存在一份实例</span>
+    <span class="token comment">// 并且在整个应用程序的生命周期内都不会回收，因此是不存在内存泄漏风险的</span>
+    <span class="token comment">// 因此可以忽略警告</span>
+    <span class="token annotation builtin">@SuppressLint</span><span class="token punctuation">(</span><span class="token string">"StaticFieldLeak"</span><span class="token punctuation">)</span>
+    <span class="token keyword">companion</span> <span class="token keyword">object</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">lateinit</span> <span class="token keyword">var</span> context<span class="token operator">:</span> Context
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        context <span class="token operator">=</span> applicationContext
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>并且在 Manifest 中修改初始化的 Application 类</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">&lt;application
+    android:name&#x3D;&quot;.MyApplication&quot;&gt;
+&lt;&#x2F;application&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h1 id="深色主题"><a class="markdownIt-Anchor" href="#深色主题"></a> 深色主题</h1>
+<p>Android 10.0 及以上系统的手机，都可以在 Settings→Display→Dark theme 中对深色主题进行开启和关闭</p>
+<h2 id="force-dark"><a class="markdownIt-Anchor" href="#force-dark"></a> Force Dark</h2>
+<p>能让应用程序快速适配深色主题，并且几乎不用编写额外代码的方式</p>
+<ul>
+<li>分析浅色主题应用下的每一层 View，并且在这些 View 绘制到屏幕之前，自动将它们的颜色转换成更加适合深色主题的颜色</li>
+<li>因此开发者只需要配置好浅色主题的颜色分布即可</li>
+<li>但是不保证美观, 前期可以使用其快速上线, 最后还是建议精心手动配置</li>
+</ul>
+<h3 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h3>
+<p>在 res 目录下新建 values-29 目录, 并在 values-29 目录下创建一个 styles.xml 文件</p>
+<p>Tips: 这个属性是从 API 29，也就是 Android 10.0 系统开始才有的，之前的系统无法指定这个属性</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token operator">&lt;</span>resources<span class="token operator">></span>
+    <span class="token operator">&lt;</span>style name<span class="token operator">=</span><span class="token string">"AppTheme"</span> parent<span class="token operator">=</span><span class="token string">"Theme.AppCompat.Light.NoActionBar"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>item name<span class="token operator">=</span><span class="token string">"colorPrimary"</span><span class="token operator">></span><span class="token label symbol">@color</span><span class="token operator">/</span>colorPrimary<span class="token operator">&lt;</span><span class="token operator">/</span>item<span class="token operator">></span>
+        <span class="token operator">&lt;</span>item name<span class="token operator">=</span><span class="token string">"colorPrimaryDark"</span><span class="token operator">></span><span class="token label symbol">@color</span><span class="token operator">/</span>colorPrimaryDark<span class="token operator">&lt;</span><span class="token operator">/</span>item<span class="token operator">></span>
+        <span class="token operator">&lt;</span>item name<span class="token operator">=</span><span class="token string">"colorAccent"</span><span class="token operator">></span><span class="token label symbol">@color</span><span class="token operator">/</span>colorAccent<span class="token operator">&lt;</span><span class="token operator">/</span>item<span class="token operator">></span>
+        <span class="token comment">// 表明允许系统使用 Force Dark 将应用强制转换成深色主题</span>
+        <span class="token operator">&lt;</span>item name<span class="token operator">=</span><span class="token string">"android:forceDarkAllowed"</span><span class="token operator">></span><span class="token boolean">true</span><span class="token operator">&lt;</span><span class="token operator">/</span>item<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>resources<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="manual-configuration"><a class="markdownIt-Anchor" href="#manual-configuration"></a> Manual Configuration</h2>
+<p>类似的 Theme.AppCompat.Light.NoActionBar 就是浅色主题，而 Theme.AppCompat.NoActionBar 就是深色主题</p>
+<h3 id="quick-start-2"><a class="markdownIt-Anchor" href="#quick-start-2"></a> Quick Start</h3>
+<ol>
+<li>定位到 values/style.xml 中, 使用 DayNight 下的主题表明用户在系统设置中开启深色主题时，应用程序会自动使用深色主题，反之则会使用浅色主题</li>
+</ol>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resources</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- Base application theme. --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>AppTheme<span class="token punctuation">"</span></span> <span class="token attr-name">parent</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Theme.AppCompat.DayNight.NoActionBar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token comment">&lt;!-- Customize your theme here. --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>colorPrimary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/colorPrimary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>colorPrimaryDark<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/colorPrimaryDark<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>colorAccent<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/colorAccent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+    ...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resources</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>
+<p>如果涉及到静态编码的颜色值, DayNight 主题是不能对这些颜色进行动态转换, 需要额外创建一个 values-night 目录配置深色主题下的静态颜色值</p>
+</li>
+<li>
+<p>代码中获取当前的主题状态</p>
+</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">isDarkTheme</span><span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">)</span><span class="token operator">:</span> Boolean <span class="token punctuation">&#123;</span>
+    <span class="token comment">// AND 表示按位与</span>
+    <span class="token keyword">val</span> flag <span class="token operator">=</span> context<span class="token punctuation">.</span>resources<span class="token punctuation">.</span>configuration<span class="token punctuation">.</span>uiMode <span class="token operator">and</span> Configuration<span class="token punctuation">.</span>UI_MODE_NIGHT_MASK
+    <span class="token keyword">return</span> flag <span class="token operator">==</span> Configuration<span class="token punctuation">.</span>UI_MODE_NIGHT_YES
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1456,7 +1590,7 @@ button_back2main<span class="token punctuation">.</span><span class="token funct
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">122.8k</span>&nbsp;字
+                class="white-color">124.4k</span>&nbsp;字
             
             
             
