@@ -467,7 +467,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.7k
+                    3.6k
                 </div>
                 
 
@@ -619,6 +619,7 @@
 <ul>
 <li>提示内容: <code>:hint=&quot;Type something here&quot;</code></li>
 <li>最大行数: <code>:maxLines=&quot;1&quot;</code> 超过最大行数会滚动显示（组件不会拉伸）</li>
+<li>内容过滤模板: <code>:inputType</code> 常用的有 <code>text, textPassword, number</code></li>
 </ul>
 <p>方法：</p>
 <ul>
@@ -931,16 +932,12 @@ list_main<span class="token punctuation">.</span><span class="token function">se
 <p>(Why) ListView 在性能, 扩展性等方面存在限制, 因此 Android 提供了更强大的 RecycleView 替代并增强了 ListView(不删除是为了向下适应老版本)</p>
 <h2 id="quick-start-2"><a class="markdownIt-Anchor" href="#quick-start-2"></a> Quick Start</h2>
 <ol>
-<li>打开 <code>app/build.gradle</code> 文件，在 <code>dependencies</code> 闭包中添加如下内容
-<ul>
-<li>Google 将 RecyclerView 控件定义在了 AndroidX 当中，需要在项目的 build.gradle 中添加 RecyclerView 库的依赖</li>
-</ul>
+<li>
+<p>准备好数据项的布局</p>
 </li>
-</ol>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">implementation fileTree(dir: 'libs', include: ['*.jar'])
-implementation 'androidx.recyclerview:recyclerview:1.2.1'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ol start="2">
-<li>创建 Adapter 类：实现 ViewHoder 的声明与定义, 子项的赋值等基本功能</li>
+<li>
+<p>创建 Adapter 类：实现 ViewHoder 的声明与定义, 子项的赋值等基本功能</p>
+</li>
 </ol>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">
 <span class="token keyword">class</span> <span class="token function">RecyclerFruitAdapter</span><span class="token punctuation">(</span><span class="token keyword">val</span> fruitList<span class="token operator">:</span> List<span class="token operator">&lt;</span>Fruit<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">:</span> RecyclerView<span class="token punctuation">.</span>Adapter<span class="token operator">&lt;</span>RecyclerFruitAdapter<span class="token punctuation">.</span>ViewHolder<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1605,7 +1602,7 @@ itemTouchHelper<span class="token punctuation">.</span><span class="token functi
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">118.8k</span>&nbsp;字
+                class="white-color">122.8k</span>&nbsp;字
             
             
             

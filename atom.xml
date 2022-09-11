@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-09-05T10:38:41.228Z</updated>
+  <updated>2022-09-11T06:21:53.904Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>13-Jetpack</title>
+    <link href="https://coming98.github.io/2022/09/11/13-jetpack/"/>
+    <id>https://coming98.github.io/2022/09/11/13-jetpack/</id>
+    <published>2022-09-11T14:19:44.000Z</published>
+    <updated>2022-09-11T06:21:53.904Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;hr /&gt;
+&lt;h1 id=&quot;jetpack&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#jetpack&quot;&gt;&lt;/a&gt; Jetpack&lt;/h1&gt;
+&lt;p&gt;Jetpack</summary>
+        
+      
+    
+    
+    
+    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
+    
+    
+    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>12-Material Design</title>
     <link href="https://coming98.github.io/2022/09/05/12-material-design/"/>
     <id>https://coming98.github.io/2022/09/05/12-material-design/</id>
     <published>2022-09-05T18:35:34.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -47,7 +74,7 @@
     <link href="https://coming98.github.io/2022/08/30/11-web/"/>
     <id>https://coming98.github.io/2022/08/30/11-web/</id>
     <published>2022-08-30T14:03:35.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -74,7 +101,7 @@
     <link href="https://coming98.github.io/2022/08/23/10-service/"/>
     <id>https://coming98.github.io/2022/08/23/10-service/</id>
     <published>2022-08-23T15:18:22.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -101,7 +128,7 @@
     <link href="https://coming98.github.io/2022/08/22/09-multimedia/"/>
     <id>https://coming98.github.io/2022/08/22/09-multimedia/</id>
     <published>2022-08-22T17:40:39.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -127,7 +154,7 @@
     <link href="https://coming98.github.io/2022/08/22/08-content-provider/"/>
     <id>https://coming98.github.io/2022/08/22/08-content-provider/</id>
     <published>2022-08-22T11:32:55.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -153,7 +180,7 @@
     <link href="https://coming98.github.io/2022/08/21/07-persistentstorage/"/>
     <id>https://coming98.github.io/2022/08/21/07-persistentstorage/</id>
     <published>2022-08-21T09:56:09.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -179,7 +206,7 @@
     <link href="https://coming98.github.io/2022/08/19/06-broadcast/"/>
     <id>https://coming98.github.io/2022/08/19/06-broadcast/</id>
     <published>2022-08-19T15:47:24.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -204,7 +231,7 @@
     <link href="https://coming98.github.io/2022/08/18/05-fragment/"/>
     <id>https://coming98.github.io/2022/08/18/05-fragment/</id>
     <published>2022-08-18T21:01:01.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -230,7 +257,7 @@
     <link href="https://coming98.github.io/2022/08/07/04-android-ui/"/>
     <id>https://coming98.github.io/2022/08/07/04-android-ui/</id>
     <published>2022-08-07T19:50:04.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -256,7 +283,7 @@
     <link href="https://coming98.github.io/2022/07/18/03-android-activity/"/>
     <id>https://coming98.github.io/2022/07/18/03-android-activity/</id>
     <published>2022-07-18T16:16:45.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -283,7 +310,7 @@
     <link href="https://coming98.github.io/2022/07/18/02-kotlin-advanced/"/>
     <id>https://coming98.github.io/2022/07/18/02-kotlin-advanced/</id>
     <published>2022-07-18T16:16:36.000Z</published>
-    <updated>2022-09-05T10:38:41.224Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -309,7 +336,7 @@
     <link href="https://coming98.github.io/2022/07/18/04-zenmap/"/>
     <id>https://coming98.github.io/2022/07/18/04-zenmap/</id>
     <published>2022-07-18T12:17:34.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -336,7 +363,7 @@
     <link href="https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/</id>
     <published>2022-07-18T09:50:58.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -361,7 +388,7 @@
     <link href="https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/</id>
     <published>2022-07-17T11:09:59.000Z</published>
-    <updated>2022-09-05T10:38:41.224Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -388,7 +415,7 @@
     <link href="https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/"/>
     <id>https://coming98.github.io/2022/07/15/01-huo-yue-zhu-ji-fa-xian-ji-zhu/</id>
     <published>2022-07-15T13:07:04.000Z</published>
-    <updated>2022-09-05T10:38:41.224Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -415,7 +442,7 @@
     <link href="https://coming98.github.io/2022/07/14/02-kotlin/"/>
     <id>https://coming98.github.io/2022/07/14/02-kotlin/</id>
     <published>2022-07-14T10:46:25.000Z</published>
-    <updated>2022-09-05T10:38:41.224Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -443,7 +470,7 @@
     <link href="https://coming98.github.io/2022/07/14/01-android-basic/"/>
     <id>https://coming98.github.io/2022/07/14/01-android-basic/</id>
     <published>2022-07-14T10:46:17.000Z</published>
-    <updated>2022-09-05T10:38:41.224Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -471,7 +498,7 @@
     <link href="https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/"/>
     <id>https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/</id>
     <published>2022-07-04T21:59:53.000Z</published>
-    <updated>2022-09-05T10:38:41.228Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -497,7 +524,7 @@
     <link href="https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/"/>
     <id>https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/</id>
     <published>2022-07-04T21:59:44.000Z</published>
-    <updated>2022-09-05T10:38:41.224Z</updated>
+    <updated>2022-09-11T06:21:53.904Z</updated>
     
     
       
@@ -506,32 +533,6 @@
         
     <summary type="html">&lt;h1 id=&quot;类型声明&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#类型声明&quot;&gt;&lt;/a&gt; 类型声明&lt;/h1&gt;
 &lt;p&gt;使用 &lt;code&gt;:&lt;/code&gt; + &lt;code&gt;类型&lt;/code&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="TypeScript" scheme="https://coming98.github.io/categories/TypeScript/"/>
-    
-    
-    <category term="typescript-basic" scheme="https://coming98.github.io/tags/typescript-basic/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>01-TS的基本配置与使用</title>
-    <link href="https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/"/>
-    <id>https://coming98.github.io/2022/07/03/01-ts-de-ji-ben-pei-zhi-yu-shi-yong/</id>
-    <published>2022-07-03T10:56:15.000Z</published>
-    <updated>2022-09-05T10:38:41.224Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;typescript&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#typescript&quot;&gt;&lt;/a&gt; TypeScript&lt;/h1&gt;
-&lt;p&gt;Backdrop：JS 没有表达不同代码单元之间关系的能力，因此引申出来 TS, 目标是成为</summary>
         
       
     

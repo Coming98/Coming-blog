@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.2k
+                    5.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    22 分
                 </div>
                 
 
@@ -968,6 +968,83 @@ scope<span class="token punctuation">.</span><span class="token function">launch
 <h2 id="使用协程优化传统回调"><a class="markdownIt-Anchor" href="#使用协程优化传统回调"></a> 使用协程优化传统回调</h2>
 <p>借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化, 该函数必须在协程作用域或挂起函数中才能调用，它接收一个 Lambda 表达式参数，主要作用是将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码</p>
 <p>Lambda 表达式的参数列表上会传入一个 Continuation 参数，调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行</p>
+<h1 id="dsl"><a class="markdownIt-Anchor" href="#dsl"></a> DSL</h1>
+<p>DSL 是领域特定语言（Domain Specific Language）通过它我们可以编写出一些看似脱离其原始语法结构的代码，从而构建出一种专有的语法结构</p>
+<p>例如构造一个能够生成 table, tr, td 标签的语法结构</p>
+<ol>
+<li>首先定义底层单元结构 td</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> Td <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> content <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token keyword">fun</span> <span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"\n\t\t&lt;td><span class="token interpolation variable">$content</span>&lt;/td>"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>逐层向上, 定义 tr 的结构, 实现对子 td 的封装维护</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> Tr <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">val</span> children <span class="token operator">=</span> ArrayList<span class="token operator">&lt;</span>Td<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">fun</span> <span class="token function">td</span><span class="token punctuation">(</span>block<span class="token operator">:</span> Td<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> String<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> td <span class="token operator">=</span> <span class="token function">Td</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        td<span class="token punctuation">.</span>content <span class="token operator">=</span> td<span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        children<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>td<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">fun</span> <span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> builder <span class="token operator">=</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        builder<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\n\t&lt;tr>"</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>childTag <span class="token keyword">in</span> children<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            builder<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>childTag<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+        builder<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\n\t&lt;/tr>"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>继续向上, 定义 table 的结构, 实现对子 tr 的封装维护</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> Table <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">val</span> children <span class="token operator">=</span> ArrayList<span class="token operator">&lt;</span>Tr<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">fun</span> <span class="token function">tr</span><span class="token punctuation">(</span>block<span class="token operator">:</span> Tr<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> tr <span class="token operator">=</span> <span class="token function">Tr</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        tr<span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        children<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>tr<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">fun</span> <span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> builder <span class="token operator">=</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        builder<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;table>"</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>childTag <span class="token keyword">in</span> children<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            builder<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>childTag<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+        builder<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\n&lt;/table>"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="4">
+<li>实现顶层结构的封装</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">table</span><span class="token punctuation">(</span>block<span class="token operator">:</span> Table<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> table <span class="token operator">=</span> <span class="token function">Table</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    table<span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> table<span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="5">
+<li>构建 table</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> html <span class="token operator">=</span> table <span class="token punctuation">&#123;</span>
+        tr <span class="token punctuation">&#123;</span>
+            td <span class="token punctuation">&#123;</span> <span class="token string">"Apple"</span> <span class="token punctuation">&#125;</span>
+            td <span class="token punctuation">&#123;</span> <span class="token string">"Grape"</span> <span class="token punctuation">&#125;</span>
+            td <span class="token punctuation">&#123;</span> <span class="token string">"Orange"</span> <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        tr <span class="token punctuation">&#123;</span>
+            td <span class="token punctuation">&#123;</span> <span class="token string">"Pear"</span> <span class="token punctuation">&#125;</span>
+            td <span class="token punctuation">&#123;</span> <span class="token string">"Banana"</span> <span class="token punctuation">&#125;</span>
+            td <span class="token punctuation">&#123;</span> <span class="token string">"Watermelon"</span> <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202209111418343.png" alt="" /></p>
 
                 
             </div>
@@ -1519,7 +1596,7 @@ scope<span class="token punctuation">.</span><span class="token function">launch
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">118.8k</span>&nbsp;字
+                class="white-color">122.8k</span>&nbsp;字
             
             
             
