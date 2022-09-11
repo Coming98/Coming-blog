@@ -153,6 +153,7 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
 - 提示内容: `:hint="Type something here"`
 - 最大行数: `:maxLines="1"` 超过最大行数会滚动显示（组件不会拉伸）
+- 内容过滤模板: `:inputType` 常用的有 `text, textPassword, number`
   
 
 方法：
@@ -163,7 +164,6 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 ## ImageView
 
 - 设定图片源: `:src="@drawable/image_demo_1"`
-
 
 - 修改图片源: `.setImageResource(R.drawable.image_demo_2)`
 
@@ -519,13 +519,7 @@ list_main.setOnItemClickListener { _, _, i, _ ->
 
 ## Quick Start
 
-1. 打开 `app/build.gradle` 文件，在 `dependencies` 闭包中添加如下内容
-   - Google 将 RecyclerView 控件定义在了 AndroidX 当中，需要在项目的 build.gradle 中添加 RecyclerView 库的依赖
-
-```xml
-implementation fileTree(dir: 'libs', include: ['*.jar'])
-implementation 'androidx.recyclerview:recyclerview:1.2.1'
-```
+1. 准备好数据项的布局
 
 2. 创建 Adapter 类：实现 ViewHoder 的声明与定义, 子项的赋值等基本功能
 

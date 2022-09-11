@@ -638,3 +638,92 @@ runBlocking {
 
 Lambda 表达式的参数列表上会传入一个 Continuation 参数，调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行
 
+# DSL
+
+DSL 是领域特定语言（Domain Specific Language）通过它我们可以编写出一些看似脱离其原始语法结构的代码，从而构建出一种专有的语法结构
+
+例如构造一个能够生成 table, tr, td 标签的语法结构
+
+1. 首先定义底层单元结构 td
+
+```kotlin
+class Td {
+    var content = ""
+    fun html() = "\n\t\t<td>$content</td>"
+}
+```
+
+2. 逐层向上, 定义 tr 的结构, 实现对子 td 的封装维护
+
+```kotlin
+class Tr {
+    private val children = ArrayList<Td>()
+    fun td(block: Td.() -> String) {
+        val td = Td()
+        td.content = td.block()
+        children.add(td)
+    }
+    fun html(): String {
+        val builder = StringBuilder()
+        builder.append("\n\t<tr>")
+        for (childTag in children) {
+            builder.append(childTag.html())
+        }
+        builder.append("\n\t</tr>")
+        return builder.toString()
+    }
+}
+```
+
+3. 继续向上, 定义 table 的结构, 实现对子 tr 的封装维护
+
+```kotlin
+class Table {
+    private val children = ArrayList<Tr>()
+    fun tr(block: Tr.() -> Unit) {
+        val tr = Tr()
+        tr.block()
+        children.add(tr)
+    }
+    fun html(): String {
+        val builder = StringBuilder()
+        builder.append("<table>")
+        for (childTag in children) {
+            builder.append(childTag.html())
+        }
+        builder.append("\n</table>")
+        return builder.toString()
+    }
+}
+```
+
+4. 实现顶层结构的封装
+
+```kotlin
+fun table(block: Table.() -> Unit): String {
+    val table = Table()
+    table.block()
+    return table.html()
+}
+```
+
+5. 构建 table
+
+```kotlin
+fun main() {
+    val html = table {
+        tr {
+            td { "Apple" }
+            td { "Grape" }
+            td { "Orange" }
+        }
+        tr {
+            td { "Pear" }
+            td { "Banana" }
+            td { "Watermelon" }
+        }
+    }
+    println(html)
+}
+```
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202209111418343.png)

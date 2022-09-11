@@ -363,6 +363,16 @@ floatingActionButton.setOnClickListener{ view ->
 </com.google.android.material.card.MaterialCardView>
 ```
 
+使用合适的布局去布局多个卡片
+
+```kotlin
+val layoutManager = GridLayoutManager(this, 2)
+val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+recyclerView.layoutManager = layoutManager
+val adapter = FruitAdapter(this, fruitList)
+recyclerView.adapter = adapter
+```
+
 ## AppBarLayout
 
 解决父布局遮挡 Toolbar 问题
