@@ -727,3 +727,16 @@ fun main() {
 }
 ```
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202209111418343.png)
+
+# Java2Kotlin
+
+- 借助 Android Studio: 将 Java 代码粘贴到 Android Studio 的 Kotlin 文件中, 会自动识别并提示转换
+- 导航栏中的 Code → Convert Java File to Kotlin File
+
+# Kotlin2Java
+
+Kotlin 拥有许多 Java 中并不存在的特性，因此很难执行一键转换
+
+但是可以先将 Kotlin 代码转换成 Kotlin 字节码，然后通过反编译的方式将它还原成 Java 代码；这种反编译出来的代码可能无法像正常编写的 Java 代码那样直接运行，但是非常有利于帮助我们理解诸多 Kotlin 特性背后的实现原理
+- 导航栏中的 Tools→Kotlin→Show Kotlin Bytecode 
+- 点击窗口左上角的 Decompile 按钮，就可以将这些 Kotlin 字节码反编译成 Java 代码

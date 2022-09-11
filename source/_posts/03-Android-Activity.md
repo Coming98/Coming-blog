@@ -267,7 +267,11 @@ button_back2main.setOnClickListener {
 
 ## 活动间传递复杂数据
 
-针对自定义对象或自定义对象的列表, 需要截止 `Serializable` 接口添加其序列化与反序列化方法
+### Serializable
+
+针对自定义对象或自定义对象的列表, 需要借助 `Serializable` 接口添加其序列化与反序列化方法
+- 序列化后的对象可以在网络上进行传输，也可以存储到本地
+- 至于序列化的方法非常简单，只需要让一个类去实现 Serializable 这个接口就可以了
 
 1. 在类的定义中声明对 `Serializable` 接口的实现
 
@@ -279,9 +283,10 @@ class Book(...): Serializable {
 2. 传递时进行序列化
 
 ```kotlin
-fun actionStart(context: Context, bookList: ArrayList<Book>) {
+fun actionStart(context: Context, bookList: ArrayList<Book>, book: Book) {
     val intent = Intent(context, BookInfosActivity::class.java).apply {
-        putExtra("bookList", bookList as Serializable)
+        putExtra("bookList", bookList as Serializable) 
+        putExtra("book", book)
     }
     context.startActivity(intent)
 }
@@ -291,7 +296,64 @@ fun actionStart(context: Context, bookList: ArrayList<Book>) {
 
 ```kotlin
 val booklist = intent.getSerializableExtra("bookList") as ArrayList<Book>
+val book = intent.getSerializableExtra("book") as Book
 ```
+
+### Parcelable
+
+Parcelable 方式的实现原理是将一个完整的对象进行分解，使得分解后的每一部分都是 Intent 所支持的数据类型，这样就能实现传递对象的功能了
+
+- 简单实现
+
+```kotlin
+@Parcelize
+class Person(var name: String, var age: Int) : Parcelable
+
+val person = intent.getParcelableExtra("person_data") as Person
+```
+
+- 细节处理
+
+1. 实现 Parcelable 接口, 重写 describeContents() 和 writeToParcel() 这两个方法
+- describeContents() 方法直接返回 0 就可以
+- writeToParcel() 方法需要调用 Parcel 的 writeXxx() 方法，将 Person 类中的字段一一写出
+
+2. 须在 Person 类中提供一个名为 CREATOR 的匿名类实现; 创建了 Parcelable.Creator 接口的一个实现，并将泛型指定为 Person; 接着需要重写 createFromParcel() 和 newArray() 这两个方法
+- 在 createFromParcel() 要创建一个 Person 对象进行返回，并读取刚才写出的 name 和 age 字段
+- newArray() 方法需要调用 arrayOfNulls() 方法，并使用参数中传入的 size 作为数组大小，创建一个空的 Person 数组即可
+
+```kotlin
+class Person : Parcelable {
+    var name = ""
+    var age = 0
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name) // 写出name
+        parcel.writeInt(age) // 写出age
+    }
+    override fun describeContents(): Int {
+        return 0
+    }
+    companion object CREATOR : Parcelable.Creator<Person> {
+        override fun createFromParcel(parcel: Parcel): Person {
+            val person = Person()
+            // 顺序一致
+            person.name = parcel.readString() ?: "" // 读取name
+            person.age = parcel.readInt() // 读取age
+            return person
+        }
+        override fun newArray(size: Int): Array<Person?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+```
+
+3. 获取数据
+
+```kotlin
+val person = intent.getParcelableExtra("person_data") as Person
+```
+
 
 
 # 生命周期
@@ -492,5 +554,103 @@ companion object {
         }
         context.startActivity(intent)
     }
+}
+```
+
+# Context
+
+Context 使用的场景非常多: Toast, 启动 Activity, 发送广播, 操作数据库, 通知....
+
+## 全局 Context
+
+Android 提供 Application 类，每当应用程序启动的时候，系统就会自动将这个类进行初始化
+
+而我们可以定制一个自己的 Application 类，以便于管理程序内一些全局的状态信息，比如全局 Context
+
+```kotlin
+class MyApplication : Application() {
+    // 将 Context 设置成静态变量很容易会产生内存泄漏的问题所以这是一种有风险的做法
+    // 但是由于这里获取的不是 Activity 或 Service 中的 Context
+    // 而是 Application 中的 Context 它全局只会存在一份实例
+    // 并且在整个应用程序的生命周期内都不会回收，因此是不存在内存泄漏风险的
+    // 因此可以忽略警告
+    @SuppressLint("StaticFieldLeak")
+    companion object {
+        lateinit var context: Context
+    }
+    override fun onCreate() {
+        super.onCreate()
+        context = applicationContext
+    }
+}
+```
+
+并且在 Manifest 中修改初始化的 Application 类
+
+```shell
+<application
+    android:name=".MyApplication">
+</application>
+```
+
+# 深色主题
+
+Android 10.0 及以上系统的手机，都可以在 Settings→Display→Dark theme 中对深色主题进行开启和关闭
+
+## Force Dark
+
+能让应用程序快速适配深色主题，并且几乎不用编写额外代码的方式
+- 分析浅色主题应用下的每一层 View，并且在这些 View 绘制到屏幕之前，自动将它们的颜色转换成更加适合深色主题的颜色
+- 因此开发者只需要配置好浅色主题的颜色分布即可
+- 但是不保证美观, 前期可以使用其快速上线, 最后还是建议精心手动配置
+
+### Quick Start
+
+在 res 目录下新建 values-29 目录, 并在 values-29 目录下创建一个 styles.xml 文件
+
+Tips: 这个属性是从 API 29，也就是 Android 10.0 系统开始才有的，之前的系统无法指定这个属性
+
+```kotlin
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        // 表明允许系统使用 Force Dark 将应用强制转换成深色主题
+        <item name="android:forceDarkAllowed">true</item>
+    </style>
+</resources>
+```
+
+## Manual Configuration
+
+类似的 Theme.AppCompat.Light.NoActionBar 就是浅色主题，而 Theme.AppCompat.NoActionBar 就是深色主题
+
+### Quick Start
+
+1. 定位到 values/style.xml 中, 使用 DayNight 下的主题表明用户在系统设置中开启深色主题时，应用程序会自动使用深色主题，反之则会使用浅色主题
+
+```xml
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    ...
+</resources>
+```
+
+2. 如果涉及到静态编码的颜色值, DayNight 主题是不能对这些颜色进行动态转换, 需要额外创建一个 values-night 目录配置深色主题下的静态颜色值
+
+3. 代码中获取当前的主题状态 
+
+```kotlin
+fun isDarkTheme(context: Context): Boolean {
+    // AND 表示按位与
+    val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+    return flag == Configuration.UI_MODE_NIGHT_YES
 }
 ```

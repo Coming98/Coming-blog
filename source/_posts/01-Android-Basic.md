@@ -153,3 +153,47 @@ Gradle 是项目构建工具，基于 Groovy 的领域特定语言（DSL）来�
 参数一般两个: tag + msg
 - tag: 一般传入当前的类名就好，主要用于对打印信息进行过滤
 - msg: 具体内容
+
+## 定制自己的日志工具
+
+Targets
+- 当程序处于开发阶段时就让日志打印出来，当程序上线之后就把日志屏蔽掉
+
+```kotlin
+object LogUtil {
+    private const val VERBOSE = 1
+    private const val DEBUG = 2
+    private const val INFO = 3
+    private const val WARN = 4
+    private const val ERROR = 5
+    // 开发阶段将 level 手动指定成 VERBOSE
+    // 项目正式上线的时候将 level 指定成 ERROR 就可以了
+    private var level = VERBOSE
+
+    fun v(tag: String, msg: String) {
+        if (level <= VERBOSE) {
+            Log.v(tag, msg)
+        }
+    }
+    fun d(tag: String, msg: String) {
+        if (level <= DEBUG) {
+            Log.d(tag, msg)
+        }
+    }
+    fun i(tag: String, msg: String) {
+        if (level <= INFO) {
+            Log.i(tag, msg)
+        }
+    }
+    fun w(tag: String, msg: String) {
+        if (level <= WARN) {
+            Log.w(tag, msg)
+        }
+    }
+    fun e(tag: String, msg: String) {
+        if (level <= ERROR) {
+            Log.e(tag, msg)
+        }
+    }
+}
+```
