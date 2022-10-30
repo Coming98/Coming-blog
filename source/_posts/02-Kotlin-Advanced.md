@@ -488,7 +488,7 @@ job.cancel() // 手动取消协程
 
 ## 阻塞
 
-常见的又 `Thread.sleep(millis)` 与 `delay(millis)`
+常见的有 `Thread.sleep(millis)` 与 `delay(millis)`
 - delay: 是一个非阻塞式的挂起函数，它只会挂起当前协程，并不会影响其他协程的运行 (只能在协程的作用域或其他挂起函数中调)
 - sleep: 会阻塞当前的线程，这样运行在该线程下的所有协程都会被阻塞
 
@@ -519,7 +519,7 @@ runBlocking {
 
 ## 对协程操作的封装
 
-如果想要将协程中执行的任务封装为函数, 但是如何拥有其协程作用域呢？可以使用 `suspend` 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用
+如果想要将协程中执行的任务封装为函数, 但是如何**拥有其协程作用域**呢？可以使用 `suspend` 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用
 
 ```kotlin
 suspend fun printDot() {
@@ -530,9 +530,9 @@ suspend fun printDot() {
 }
 ```
 
-但是如何真正的实现协程作用域的共享呢, 需要借助 `coroutineScope` 函数进行显示的声明
+但是如何**真正的实现协程作用域的共享**呢, 需要借助 `coroutineScope` 函数进行显示的声明
 - coroutineScopre() 也是一个挂起函数, 可以在任何挂起函数中或协程作用域中调用
-- 其可以继承外部的协程的作用域并创建一个子协程，借助这个特性，我们就可以给任意挂起函数提供协程作用域了
+- **其可以继承外部的协程的作用域并创建一个子协程**，借助这个特性，我们就可以给任意挂起函数提供协程作用域了
 - 其可以保证其作用域内的所有代码和子协程在全部执行完之前，外部的协程会一直被挂起
 - 和 runBlocking 不同的是 coroutineScope 函数只会阻塞当前协程，既不影响其他协程，也不影响任何线程，因此是不会造成任何性能上的问题的: 涉及的是子协程, 不用关注外部线程
 - 而 runBlocking 函数由于会挂起外部线程，如果你恰好又在主线程中当中调用它的话，那么就有可能会导致界面卡死的情况，所以不太推荐在实际项目中使
@@ -634,9 +634,35 @@ runBlocking {
 
 ## 使用协程优化传统回调
 
-借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化, 该函数必须在协程作用域或挂起函数中才能调用，它接收一个 Lambda 表达式参数，主要作用是将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码
+借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化：
+- 必须在协程作用域或挂起函数中调用
+- 接收一个 Lambda 表达式参数：将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码
+  - Lambda 表达式的参数列表上会传入一个 Continuation 参数, 调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行
 
-Lambda 表达式的参数列表上会传入一个 Continuation 参数，调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行
+```kotlin
+suspend fun request(address: String): String {
+    // suspendCoroutine -> 当前协程就会被立刻挂起，而 Lambda 表达式中的代码则会在普通线程中执行
+    return suspendCoroutine { continuation ->
+        HttpUtil.sendHttpRequest(address, object : HttpCallbackListener {
+            override fun onFinish(response: String) {
+                continuation.resume(response)
+            }
+            override fun onError(e: Exception) {
+                continuation.resumeWithException(e)
+            }
+        })
+    }
+}
+// 不用再手动处理回调 - 唯一的约束就是必须定义为挂起函数, 只能再协程作用域或其它挂起函数中调用
+suspend fun getBaiduResponse() {
+    try {
+        val response = request("https://www.baidu.com/")
+        // 对服务器响应的数据进行处理 <- continuation.resume(response)
+    } catch (e: Exception) {
+        // 对异常情况进行处理 <- continuation.resumeWithException(e)
+    }
+}
+```
 
 # DSL
 

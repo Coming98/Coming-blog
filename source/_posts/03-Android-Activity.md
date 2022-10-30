@@ -574,8 +574,8 @@ class MyApplication : Application() {
     // 而是 Application 中的 Context 它全局只会存在一份实例
     // 并且在整个应用程序的生命周期内都不会回收，因此是不存在内存泄漏风险的
     // 因此可以忽略警告
-    @SuppressLint("StaticFieldLeak")
     companion object {
+        @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
     }
     override fun onCreate() {

@@ -50,7 +50,6 @@ ActionBar 的配置来源于主题文件: `res/values/themes.xml`
 - navigationBarColor:
 
 ```xml
-<COde>
 <!--        标题文字-->
     <item name="android:textColorPrimary">@color/colorAccent</item>
 <!--        背景色-->
@@ -61,7 +60,6 @@ ActionBar 的配置来源于主题文件: `res/values/themes.xml`
     <item name="colorPrimary">@color/colorPrimary</item>
 <!--        状态栏-->
     <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-</Code>
 ```
 
 ## Quick Start
@@ -107,6 +105,11 @@ setSupportActionBar(toolbar)
 DrawerLayout 布局中允许放入两个直接子控件：
 1. 主屏幕中显示的内容
 2. 滑动菜单中显示的内容
+   - 滑动菜单内容必须指定 layout_gravity 属性, 用于指明滑出的方向
+
+- drawerLayout.isDrawerOpen(GravityCompat.START): 根据指定的滑出动作判断是否已经滑出
+- drawerLayout.openDrawer(GravityCompat.START): 使其滑出
+- drawerLayout.closeDrawer(GravityCompat.START): 使其关闭
 
 ```xml
 <androidx.drawerlayout.widget.DrawerLayout
@@ -263,7 +266,6 @@ Tips:
     android:layout_margin="16dp"
     android:src="@drawable/ic_done"
     android:elevation="8dp"/>
-
 ```
 
 2. 添加点击事件
@@ -426,14 +428,32 @@ recyclerView.adapter = adapter
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 ```
 
-2. 刷新事件的逻辑处理
+2. 初始化
 
 ```kotlin
-swipeRefresh = findViewById(R.id.swipeRefresh)
-// 设置下拉进度条颜色
-swipeRefresh.setColorSchemeResources(R.color.colorPrimary)
+val swipeRefresh: SwipeRefreshLayout by lazy {
+    val sr: SwipeRefreshLayout = findViewById(R.id.swipeRefresh)
+    sr.setColorSchemeResources(R.color.blue)
+    sr
+}
+```
+
+3. 刷新事件处理
+
+```kotlin
 swipeRefresh.setOnRefreshListener {
-    refreshFruits(adapter)
+    refreshFruits(adapter) // 事件处理
+}
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202210282033235.png)
+
+4. 刷新动画关闭
+
+```kotlin
+// 事件处理的回调中关闭刷新动画
+if(todoItemSwipeRefresh.isRefreshing) {
+    todoItemSwipeRefresh.isRefreshing = false
 }
 ```
 

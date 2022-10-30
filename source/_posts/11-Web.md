@@ -434,6 +434,7 @@ object HttpUtil {
         val request = Request.Builder()
             .url(address)
             .build()
+        // OkHttp 在 enqueue() 方法的内部已经帮我们开好子线程了，然后会在子线程中执行 HTTP 请求，并将最终的请求结果回调到 okhttp3.Callback 当中
         client.newCall(request).enqueue(callbackListener)
     }
 }
@@ -478,6 +479,7 @@ buttonGetBookData.setOnClickListener {
         .build()
     val appService = retrofit.create(BookService::class.java)
     appService.getBookData().enqueue(object : Callback<List<Book>> {
+
         override fun onResponse(call: Call<List<Book>>, response: Response<List<Book>>) {
             // 自动的多线程操作
             // 当发起请求的时候，Retrofit 会自动在内部开启子线程，当数据回调到 Callback 中之后，Retrofit 又会自动切换回主线
@@ -498,7 +500,7 @@ buttonGetBookData.setOnClickListener {
 }
 ```
 
-5. 按照之前步骤配置 HTTP 明文请求 + AndroidManifest 中配置网络权限
+1. 按照之前步骤配置 HTTP 明文请求 + AndroidManifest 中配置网络权限
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -551,11 +553,13 @@ Service 的动态代理对象是能通用的, 因此依旧可以通过创建一�
 
 ```kotlin
 object ServiceCreator {
-private const val BASE_URL = "http://10.0.2.2/"
-private val retrofit = Retrofit.Builder()
-.baseUrl(BASE_URL)
-.addConverterFactory(GsonConverterFactory.create())
-.build()
-fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
+    private const val BASE_URL = "http://10.0.2.2/"
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
+
+    inline fun <reified T> create(): T = create(T::class.java)
 }
 ```

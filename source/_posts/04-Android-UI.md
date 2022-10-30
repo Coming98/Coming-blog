@@ -149,6 +149,67 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
     app:showAsAction="always" />
 ```
 
+## PopupMenu
+
+自定义弹出的 Menu 菜单
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202210282053584.png)
+
+1. 准备 Menu 的资源文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_info_by_day"
+        android:icon="@drawable/ic_meteor_64"
+        android:title="星迹" />
+    <item
+        android:id="@+id/menu_export_db"
+        android:icon="@drawable/ic_db_export_64"
+        android:title="导出数据" />
+    <item
+        android:id="@+id/menu_import_db"
+        android:icon="@drawable/ic_db_import_64"
+        android:title="导入数据" />
+</menu>
+```
+
+2. 初始化: 初始化时指定其弹出的位置（通过一个 view 对象指定）如果空间足够，它会显示在锚定 View 下方，否则显示在其上方
+
+```kotlin
+val popupMenu by lazy {
+    val menu = PopupMenu(this, toolbarFragment.viewShowMenu) // 指定其弹出的位置
+    menu.menuInflater.inflate(R.menu.main_config, menu.menu)
+    menu
+}
+```
+
+3. 配置点击事件: 返回 True 表示点击事件被消耗
+
+```kotlin
+popupMenu.setOnMenuItemClickListener {
+    when(it.itemId) {
+        R.id.menu_info_by_day -> {
+            TodoItemInfoByDayActivity.onActionStart(this)
+            true
+        }
+        else -> {
+            true
+        }
+    }
+}
+```
+
+4. 配置点击显示 Menu: 使用 MenuPopupHelper 进一步封装, 是为了在每一个 Menu 项中显示 Icon `setForceShowIcon(true)`
+
+```kotlin
+val menu = MenuPopupHelper(this,
+    (popupMenu.getMenu() as MenuBuilder), toolbarFragment.viewShowMenu)
+menu.setForceShowIcon(true)
+menu.show()
+```
+
 ## EditText
 
 - 提示内容: `:hint="Type something here"`
@@ -160,6 +221,8 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 - 获取内容: `edit_username.text.toString()`
 - 设置内容: `edit_username.setText(String)`
 - 设置光标位置: `edit_username.setSelection(Int)`
+- 请求 Focus: `requestFocus()`
+- 全选: `selectAll()`
 
 ## ImageView
 
@@ -562,7 +625,7 @@ val adapter = RecyclerFruitAdapter(fruitList)
 recyclerView.adapter = adapter
 ```
 
-## 扩展
+## 扩展布局
 
 ### 水平排列
 
@@ -615,19 +678,19 @@ recyclerView.layoutManager = layoutManager
 
 ## 点击事件
 
-Recycler 为了更精细的控制, 讲点击事件的绑定精细到了每一个子项, 在生成子项布局时进行定义
+Recycler 为了更精细的控制, 将点击事件的绑定精细到了每一个子项, 在生成子项布局 `onCreateViewHolder` 时进行定义
 
 ```kotlin
 // itemView 表示最外层的布局
-viewHolder.itemView.setOnClickListener {
-    val position = viewHolder.bindingAdapterPosition
-    Log.d("TEMP", "$position")
-    Toast.makeText(parent.context, "You clicked view", Toast.LENGTH_SHORT).show()
-}
-viewHolder.fruitImage.setOnClickListener {
-    val position = viewHolder.bindingAdapterPosition
-    Log.d("TEMP", "$position")
-    Toast.makeText(parent.context, "You clicked Image", Toast.LENGTH_SHORT).show()
+override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    val view = LayoutInflater.from(parent.context).inflate(R.layout.todoitem_card, parent, false)
+    val holder = ViewHolder(view)
+    holder.itemView.setOnClickListener {
+        val position = holder.adapterPosition
+        val todoItem = todoItemList[position]
+        startTodoItemInfo(todoItem.id, todoItem.name)
+    }
+    return holder
 }
 ```
 
@@ -660,3 +723,35 @@ class BookItemTouchHelperCallback(var adapter: RecyclerBookAdapter): ItemTouchHe
 val itemTouchHelper = ItemTouchHelper(BookItemTouchHelperCallback(adapter))
 itemTouchHelper.attachToRecyclerView(recycler)
 ```
+
+# Android 图标
+
+应用程序的图标应该被分为两层：前景层和背景层
+- 前景层用来展示应用图标的 Logo: 
+- Mask 层: 在图标的前景层和背景层之间, 手机厂商负责定义
+- 背景层用来衬托应用图标的 Logo: 只允许定义颜色和纹理，不能定义形状
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202209181547481.png)
+
+1. res 目录处右击 new/Image_Asssert
+2. 修改前景的 Logo 图片与背景色
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202209181604700.png)
+
+# Android 签名文件
+
+## Android Studio 生成
+
+1. Build/Generate Singed Bundle/APK
+- Android App Bundle 文件是用于上架 Google Play 商店的
+- APK for Android
+
+2. 填入 keystore 文件的路径和密码
+3. Create New...
+- Validity 是 keystore 文件的有效时长，单位是年
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202209181614822.png)
+
+## Gradle 生成 [Ignore]
+
+1. 编辑 app/build.gradle 文件

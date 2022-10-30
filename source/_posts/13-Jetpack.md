@@ -7,12 +7,23 @@ categories: Android Dev.
 tags:
   - Android
 ---
----
 # Jetpack
 
 Jetpack 是一个开发组件工具集，它的主要目的是帮助我们编写出更加简洁的代码，并简化我们的开发过程
 
 全家桶: 基础, 架构, 行为, 界面; 这里我们主要介绍 Jetpack 架构
+
+# MMVM
+
+MMVM, Model-View-ViewModel, Model 是数据模型部分；View 是界面展示部分；ViewModel 可以理解成一个连接数据模型和界面展示的桥梁，从而实现让业务逻辑和界面展示分离的程序结构设计
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202209121229074.png)
+
+- UI 控制层: Activity, Fragment, 布局文件等与界面相关的东西
+- ViewModel: 层用于持有和 UI 元素相关的数据，以保证这些数据在屏幕旋转时不会丢失; 提供接口给 UI 控制层调用以及和仓库层进行通信
+- 仓库: 判断调用方请求的数据应该是从本地数据源中获取还是从网络数据源中获取，并将获取到的数据返回给调用方
+  - 本地数据源: 数据库、SharedPreferences 等持久化技术
+  - 网络数据源: 使用 Retrofit 访问服务器提供的 Webservice 接口来实现
 
 # ViewModel
 
@@ -24,7 +35,7 @@ ViewModel 是专门用于存放与界面相关的数据的
 
 ## Quick Start
 
-1. 推荐给每一个 Activity 和 Fragment 都创建一个对应的 ViewModel
+1. 推荐给每一个 Activity 和 Fragment 都创建一个对应的 ViewModel, 里面存储用于展示的信息
 
 ```kotlin
 class MainViewModel: ViewModel() {
@@ -35,8 +46,7 @@ class MainViewModel: ViewModel() {
 2. 在对应的 Activity 或 Fragment 中创建对应的 viewModel 实例
 
 ```kotlin
-// pattern: ViewModelProvider(<Activity/Fragment实例>).get(<ViewModel>::class.java)
-viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
 ```
 
 3. 逻辑操作
@@ -235,36 +245,87 @@ val username: LiveData<String> = Transformations.map(userLiveData) {
 
 然而在实际的项目中，不可能一直是这种理想情况，很有可能 ViewModel 中的某个 LiveData 对象是调用另外的方法获取的
 
-1. 通过外部单例类的方法获取一个 User 对象
+## Quick Start
+
+1. 通过数据库获取所有的 TodoItem
 
 ```kotlin
-fun getUser(userId: String): LiveData<User> {
-    val liveData = MutableLiveData<User>()
-    liveData.value = User(userId, userId, 0)
-    return liveData
+fun refreshTodoItemByCategory(todoCategoryId: Long) = fire(Dispatchers.IO) {
+    if(todoCategoryId == -1L) {
+        val todoItemList = todoDatabase.todoItemDao().getAllTodoItem()
+        Result.success(Pair("星海", todoItemList))
+    } else {
+        // 获取类别名词 - 用于标题栏展示
+        coroutineScope {
+            val todoCategory_ = async {
+                todoDatabase.todoCategoryDao().getTodoCategoryById(todoCategoryId)
+            }
+            val todoItemList_ = async {
+                todoDatabase.todoItemDao().getTodoItemsByCategoryId(todoCategoryId)
+            }
+            val todoCategoryName: String = todoCategory_.await().name
+            val todoItemList = todoItemList_.await()
+            Result.success(Pair(todoCategoryName, todoItemList))
+        }
+    }
+}
+// fire: 统一的入口函数中进行封装, 使得只要进行一次 try catch 处理就行了
+// 自动开启线程处理, 根据成功或失败返回相应的 Result 对象
+private fun <T> fire(
+    context: CoroutineContext,
+    block: suspend () -> Result<T>
+) = liveData<Result<T>>(context){
+    val result = try {
+        block()
+    } catch (e: Exception) {
+        Result.failure<T>(e)
+    }
+    emit(result)
 }
 ```
 
-2. 因为是通过 userId 生成 liveData 每次返回的都是一个新的 liveData 实例, 导致 Activity 中无法观察到数据的变化; switchMap 就是应用在此场景, 如果 ViewModel 中的某个 LiveData 对象是调用另外的方法获取的，那么我们就可以借助 switchMap() 方法，将这个 LiveData 对象转换成另外一个可观察的 LiveData 对象
+2. 维护内部观察者, 触发数据库操作, 并返回 LiveData 对象
 
 ```kotlin
-// 维护并用来观察 userId 的数据变化
-private val userIdLiveData = MutableLiveData<String>()
+// 维护 TodoCategoryId, 如果其变化则触发数据库 refreshTodoItemByCategory 操作
+private val refreshTodoItemByCategoryObs = MutableLiveData<Long>()
 
-val user: LiveData<User> = Transformations.switchMap(userIdLiveData) {
-    // 转换函数中返回一个 LiveData 对象
-    userId -> Repository.getUser(userId)
+val refreshTodoItemByCategoryResult = Transformations.switchMap(refreshTodoItemByCategoryObs) { todoCategoryId ->
+    // 返回 Result 对象, 交由外部 refreshTodoItemByCategoryResult 的 Observer 进行处理
+    Repository.refreshTodoItemByCategory(todoCategoryId)
 }
 
-fun getUser(userId: String) {
-    userIdLiveData.value = userId
+// 提供给外部的事件调用接口, 使得监听数据产生变化, 进而触发数据库操作
+fun refreshTodoItemByCategory(todoCategoryId: Long) {
+    refreshTodoItemByCategoryObs.value = todoCategoryId
 }
 ```
 
-整体流程:
-1. 外部调用 MainViewModel 的 getUser() 方法来获取用户数据时，并不会发起任何请求或者函数调用，只会将传入的 userId 值设置到 userIdLiveData 当中
-2. userIdLiveData 的数据发生变化，那么观察 userIdLiveData的switchMap() 方法就会执行，并且调用我们编写的转换函数。然后在转换函数中调用 Repository.getUser() 方法获取真正的用户数据
-3. switchMap() 方法会将 Repository.getUser() 方法返回的 LiveData 对象转换成一个可观察的 LiveData 对象，对于 Activity 而言，只要去观察这个 LiveData 对象就可以了
+3. 维护外部观察者, 对数据库返回的数据加工处理
+
+```kotlin
+viewModel.refreshTodoItemByCategoryResult.observe(this, Observer { result ->
+    val pairResult = result.getOrNull()
+    if(pairResult != null) {
+        val todoCategoryName = pairResult.first
+        val todoItemList = pairResult.second
+
+        viewModel.todoItemList.clear()
+        viewModel.todoItemList.addAll(todoItemList)
+        adapter_todoitem.notifyDataSetChanged()
+
+        toolbarFragment.refreshToolbarName(todoCategoryName, viewModel.todoCategoryId == -1L)
+
+        if(todoItemSwipeRefresh.isRefreshing) {
+            todoItemSwipeRefresh.isRefreshing = false
+        }
+
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+    }
+})
+```
 
 Tips: 如果外部生成的 LiveData 实例没有相关属性可供监听, 那么只需要监听一个空属性即可
 

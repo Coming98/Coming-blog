@@ -8,11 +8,11 @@ tags:
   - Android
 ---
 
-# Persistence 
+# Overview
 
 Types: 文件存储, SharedPerferences 存储, 数据库存储
 
-# 文件存储
+# 通过文件存储
 
 不对存储的内容进行任何格式化处理，所有数据都是原封不动地保存到文件当中的，因而它比较适合存储一些简单的文本数据或二进制数据
 
