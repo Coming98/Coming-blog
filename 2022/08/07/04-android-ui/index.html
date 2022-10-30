@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    4.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    18 分
                 </div>
                 
 
@@ -615,6 +615,56 @@
     <span class="token attr-name"><span class="token namespace">android:</span>icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@drawable/ic_backup<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">android:</span>title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Backup<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">app:</span>showAsAction</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>always<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="popupmenu"><a class="markdownIt-Anchor" href="#popupmenu"></a> PopupMenu</h2>
+<p>自定义弹出的 Menu 菜单</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202210282053584.png" alt="" /></p>
+<ol>
+<li>准备 Menu 的资源文件</li>
+</ol>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>android</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res/android<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span>
+        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@+id/menu_info_by_day<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@drawable/ic_meteor_64<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>星迹<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span>
+        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@+id/menu_export_db<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@drawable/ic_db_export_64<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>导出数据<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span>
+        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@+id/menu_import_db<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@drawable/ic_db_import_64<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>导入数据<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>初始化: 初始化时指定其弹出的位置（通过一个 view 对象指定）如果空间足够，它会显示在锚定 View 下方，否则显示在其上方</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> popupMenu <span class="token keyword">by</span> lazy <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> menu <span class="token operator">=</span> <span class="token function">PopupMenu</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> toolbarFragment<span class="token punctuation">.</span>viewShowMenu<span class="token punctuation">)</span> <span class="token comment">// 指定其弹出的位置</span>
+    menu<span class="token punctuation">.</span>menuInflater<span class="token punctuation">.</span><span class="token function">inflate</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>menu<span class="token punctuation">.</span>main_config<span class="token punctuation">,</span> menu<span class="token punctuation">.</span>menu<span class="token punctuation">)</span>
+    menu
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>配置点击事件: 返回 True 表示点击事件被消耗</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">popupMenu<span class="token punctuation">.</span><span class="token function">setOnMenuItemClickListener</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">when</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>itemId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>menu_info_by_day <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            TodoItemInfoByDayActivity<span class="token punctuation">.</span><span class="token function">onActionStart</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+            <span class="token boolean">true</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token boolean">true</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="4">
+<li>配置点击显示 Menu: 使用 MenuPopupHelper 进一步封装, 是为了在每一个 Menu 项中显示 Icon <code>setForceShowIcon(true)</code></li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> menu <span class="token operator">=</span> <span class="token function">MenuPopupHelper</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>popupMenu<span class="token punctuation">.</span><span class="token function">getMenu</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> MenuBuilder<span class="token punctuation">)</span><span class="token punctuation">,</span> toolbarFragment<span class="token punctuation">.</span>viewShowMenu<span class="token punctuation">)</span>
+menu<span class="token punctuation">.</span><span class="token function">setForceShowIcon</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+menu<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="edittext"><a class="markdownIt-Anchor" href="#edittext"></a> EditText</h2>
 <ul>
 <li>提示内容: <code>:hint=&quot;Type something here&quot;</code></li>
@@ -626,6 +676,8 @@
 <li>获取内容: <code>edit_username.text.toString()</code></li>
 <li>设置内容: <code>edit_username.setText(String)</code></li>
 <li>设置光标位置: <code>edit_username.setSelection(Int)</code></li>
+<li>请求 Focus: <code>requestFocus()</code></li>
+<li>全选: <code>selectAll()</code></li>
 </ul>
 <h2 id="imageview"><a class="markdownIt-Anchor" href="#imageview"></a> ImageView</h2>
 <ul>
@@ -973,7 +1025,7 @@ list_main<span class="token punctuation">.</span><span class="token function">se
 recyclerView<span class="token punctuation">.</span>layoutManager <span class="token operator">=</span> layoutManager
 <span class="token keyword">val</span> adapter <span class="token operator">=</span> <span class="token function">RecyclerFruitAdapter</span><span class="token punctuation">(</span>fruitList<span class="token punctuation">)</span>
 recyclerView<span class="token punctuation">.</span>adapter <span class="token operator">=</span> adapter<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="扩展"><a class="markdownIt-Anchor" href="#扩展"></a> 扩展</h2>
+<h2 id="扩展布局"><a class="markdownIt-Anchor" href="#扩展布局"></a> 扩展布局</h2>
 <h3 id="水平排列"><a class="markdownIt-Anchor" href="#水平排列"></a> 水平排列</h3>
 <ol>
 <li>首先设置好数据子项的布局，至少水平排列时不能占一满行</li>
@@ -1016,17 +1068,17 @@ recyclerView<span class="token punctuation">.</span>layoutManager <span class="t
 <span class="token keyword">val</span> layoutManager <span class="token operator">=</span> <span class="token function">StaggeredGridLayoutManager</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> StaggeredGridLayoutManager<span class="token punctuation">.</span>VERTICAL<span class="token punctuation">)</span>
 recyclerView<span class="token punctuation">.</span>layoutManager <span class="token operator">=</span> layoutManager<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="点击事件-2"><a class="markdownIt-Anchor" href="#点击事件-2"></a> 点击事件</h2>
-<p>Recycler 为了更精细的控制, 讲点击事件的绑定精细到了每一个子项, 在生成子项布局时进行定义</p>
+<p>Recycler 为了更精细的控制, 将点击事件的绑定精细到了每一个子项, 在生成子项布局 <code>onCreateViewHolder</code> 时进行定义</p>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// itemView 表示最外层的布局</span>
-viewHolder<span class="token punctuation">.</span>itemView<span class="token punctuation">.</span><span class="token function">setOnClickListener</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">val</span> position <span class="token operator">=</span> viewHolder<span class="token punctuation">.</span>bindingAdapterPosition
-    Log<span class="token punctuation">.</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token string">"TEMP"</span><span class="token punctuation">,</span> <span class="token string">"<span class="token interpolation variable">$position</span>"</span><span class="token punctuation">)</span>
-    Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>context<span class="token punctuation">,</span> <span class="token string">"You clicked view"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-viewHolder<span class="token punctuation">.</span>fruitImage<span class="token punctuation">.</span><span class="token function">setOnClickListener</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">val</span> position <span class="token operator">=</span> viewHolder<span class="token punctuation">.</span>bindingAdapterPosition
-    Log<span class="token punctuation">.</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token string">"TEMP"</span><span class="token punctuation">,</span> <span class="token string">"<span class="token interpolation variable">$position</span>"</span><span class="token punctuation">)</span>
-    Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>context<span class="token punctuation">,</span> <span class="token string">"You clicked Image"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreateViewHolder</span><span class="token punctuation">(</span>parent<span class="token operator">:</span> ViewGroup<span class="token punctuation">,</span> viewType<span class="token operator">:</span> Int<span class="token punctuation">)</span><span class="token operator">:</span> ViewHolder <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> view <span class="token operator">=</span> LayoutInflater<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>context<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">inflate</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>todoitem_card<span class="token punctuation">,</span> parent<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token keyword">val</span> holder <span class="token operator">=</span> <span class="token function">ViewHolder</span><span class="token punctuation">(</span>view<span class="token punctuation">)</span>
+    holder<span class="token punctuation">.</span>itemView<span class="token punctuation">.</span><span class="token function">setOnClickListener</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> position <span class="token operator">=</span> holder<span class="token punctuation">.</span>adapterPosition
+        <span class="token keyword">val</span> todoItem <span class="token operator">=</span> todoItemList<span class="token punctuation">[</span>position<span class="token punctuation">]</span>
+        <span class="token function">startTodoItemInfo</span><span class="token punctuation">(</span>todoItem<span class="token punctuation">.</span>id<span class="token punctuation">,</span> todoItem<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> holder
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="滑动事件"><a class="markdownIt-Anchor" href="#滑动事件"></a> 滑动事件</h2>
 <p>这里以滑动删除事件为例进行简单介绍</p>
@@ -1052,6 +1104,41 @@ viewHolder<span class="token punctuation">.</span>fruitImage<span class="token p
 </ol>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> itemTouchHelper <span class="token operator">=</span> <span class="token function">ItemTouchHelper</span><span class="token punctuation">(</span><span class="token function">BookItemTouchHelperCallback</span><span class="token punctuation">(</span>adapter<span class="token punctuation">)</span><span class="token punctuation">)</span>
 itemTouchHelper<span class="token punctuation">.</span><span class="token function">attachToRecyclerView</span><span class="token punctuation">(</span>recycler<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="android-图标"><a class="markdownIt-Anchor" href="#android-图标"></a> Android 图标</h1>
+<p>应用程序的图标应该被分为两层：前景层和背景层</p>
+<ul>
+<li>前景层用来展示应用图标的 Logo:</li>
+<li>Mask 层: 在图标的前景层和背景层之间, 手机厂商负责定义</li>
+<li>背景层用来衬托应用图标的 Logo: 只允许定义颜色和纹理，不能定义形状</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202209181547481.png" alt="" /></p>
+<ol>
+<li>res 目录处右击 new/Image_Asssert</li>
+<li>修改前景的 Logo 图片与背景色</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202209181604700.png" alt="" /></p>
+<h1 id="android-签名文件"><a class="markdownIt-Anchor" href="#android-签名文件"></a> Android 签名文件</h1>
+<h2 id="android-studio-生成"><a class="markdownIt-Anchor" href="#android-studio-生成"></a> Android Studio 生成</h2>
+<ol>
+<li>Build/Generate Singed Bundle/APK</li>
+</ol>
+<ul>
+<li>Android App Bundle 文件是用于上架 Google Play 商店的</li>
+<li>APK for Android</li>
+</ul>
+<ol start="2">
+<li>填入 keystore 文件的路径和密码</li>
+<li>Create New...</li>
+</ol>
+<ul>
+<li>Validity 是 keystore 文件的有效时长，单位是年</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202209181614822.png" alt="" /></p>
+<h2 id="gradle-生成-ignore"><a class="markdownIt-Anchor" href="#gradle-生成-ignore"></a> Gradle 生成 [Ignore]</h2>
+<ol>
+<li>编辑 app/build.gradle 文件</li>
+</ol>
+
                 
             </div>
             <hr/>
@@ -1602,7 +1689,7 @@ itemTouchHelper<span class="token punctuation">.</span><span class="token functi
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">124.4k</span>&nbsp;字
+                class="white-color">125.4k</span>&nbsp;字
             
             
             

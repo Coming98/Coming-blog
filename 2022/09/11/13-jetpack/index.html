@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    3.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    16 分
                 </div>
                 
 
@@ -497,10 +497,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr />
-<h1 id="jetpack"><a class="markdownIt-Anchor" href="#jetpack"></a> Jetpack</h1>
+                <h1 id="jetpack"><a class="markdownIt-Anchor" href="#jetpack"></a> Jetpack</h1>
 <p>Jetpack 是一个开发组件工具集，它的主要目的是帮助我们编写出更加简洁的代码，并简化我们的开发过程</p>
 <p>全家桶: 基础, 架构, 行为, 界面; 这里我们主要介绍 Jetpack 架构</p>
+<h1 id="mmvm"><a class="markdownIt-Anchor" href="#mmvm"></a> MMVM</h1>
+<p>MMVM, Model-View-ViewModel, Model 是数据模型部分；View 是界面展示部分；ViewModel 可以理解成一个连接数据模型和界面展示的桥梁，从而实现让业务逻辑和界面展示分离的程序结构设计</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202209121229074.png" alt="" /></p>
+<ul>
+<li>UI 控制层: Activity, Fragment, 布局文件等与界面相关的东西</li>
+<li>ViewModel: 层用于持有和 UI 元素相关的数据，以保证这些数据在屏幕旋转时不会丢失; 提供接口给 UI 控制层调用以及和仓库层进行通信</li>
+<li>仓库: 判断调用方请求的数据应该是从本地数据源中获取还是从网络数据源中获取，并将获取到的数据返回给调用方
+<ul>
+<li>本地数据源: 数据库、SharedPreferences 等持久化技术</li>
+<li>网络数据源: 使用 Retrofit 访问服务器提供的 Webservice 接口来实现</li>
+</ul>
+</li>
+</ul>
 <h1 id="viewmodel"><a class="markdownIt-Anchor" href="#viewmodel"></a> ViewModel</h1>
 <p>Motivation: 传统 Activity 既要负责逻辑处理又要负责 UI 展示, 甚至还得处理网络回调</p>
 <p>ViewModel 是专门用于存放与界面相关的数据的</p>
@@ -510,7 +522,7 @@
 </ul>
 <h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
 <ol>
-<li>推荐给每一个 Activity 和 Fragment 都创建一个对应的 ViewModel</li>
+<li>推荐给每一个 Activity 和 Fragment 都创建一个对应的 ViewModel, 里面存储用于展示的信息</li>
 </ol>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">class</span> MainViewModel<span class="token operator">:</span> <span class="token function">ViewModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">var</span> counter <span class="token operator">=</span> <span class="token number">0</span>
@@ -518,8 +530,7 @@
 <ol start="2">
 <li>在对应的 Activity 或 Fragment 中创建对应的 viewModel 实例</li>
 </ol>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// pattern: ViewModelProvider(&lt;Activity/Fragment实例>).get(&lt;ViewModel>::class.java)</span>
-viewModel <span class="token operator">=</span> <span class="token function">ViewModelProvider</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>MainViewModel<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> viewModel <span class="token keyword">by</span> lazy <span class="token punctuation">&#123;</span> <span class="token function">ViewModelProvider</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>MainViewModel<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ol start="3">
 <li>逻辑操作</li>
 </ol>
@@ -666,34 +677,81 @@ viewModel<span class="token punctuation">.</span>counter<span class="token punct
 <h2 id="switchmap"><a class="markdownIt-Anchor" href="#switchmap"></a> switchMap</h2>
 <p>前面我们所学的所有内容都有一个前提：LiveData 对象的实例都是在 ViewModel 中创建的</p>
 <p>然而在实际的项目中，不可能一直是这种理想情况，很有可能 ViewModel 中的某个 LiveData 对象是调用另外的方法获取的</p>
+<h2 id="quick-start-4"><a class="markdownIt-Anchor" href="#quick-start-4"></a> Quick Start</h2>
 <ol>
-<li>通过外部单例类的方法获取一个 User 对象</li>
+<li>通过数据库获取所有的 TodoItem</li>
 </ol>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">getUser</span><span class="token punctuation">(</span>userId<span class="token operator">:</span> String<span class="token punctuation">)</span><span class="token operator">:</span> LiveData<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">val</span> liveData <span class="token operator">=</span> MutableLiveData<span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    liveData<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token function">User</span><span class="token punctuation">(</span>userId<span class="token punctuation">,</span> userId<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> liveData
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">refreshTodoItemByCategory</span><span class="token punctuation">(</span>todoCategoryId<span class="token operator">:</span> Long<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">fire</span><span class="token punctuation">(</span>Dispatchers<span class="token punctuation">.</span>IO<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>todoCategoryId <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1L</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> todoItemList <span class="token operator">=</span> todoDatabase<span class="token punctuation">.</span><span class="token function">todoItemDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAllTodoItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token function">Pair</span><span class="token punctuation">(</span><span class="token string">"星海"</span><span class="token punctuation">,</span> todoItemList<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 获取类别名词 - 用于标题栏展示</span>
+        coroutineScope <span class="token punctuation">&#123;</span>
+            <span class="token keyword">val</span> todoCategory_ <span class="token operator">=</span> async <span class="token punctuation">&#123;</span>
+                todoDatabase<span class="token punctuation">.</span><span class="token function">todoCategoryDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTodoCategoryById</span><span class="token punctuation">(</span>todoCategoryId<span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">val</span> todoItemList_ <span class="token operator">=</span> async <span class="token punctuation">&#123;</span>
+                todoDatabase<span class="token punctuation">.</span><span class="token function">todoItemDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTodoItemsByCategoryId</span><span class="token punctuation">(</span>todoCategoryId<span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">val</span> todoCategoryName<span class="token operator">:</span> String <span class="token operator">=</span> todoCategory_<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name
+            <span class="token keyword">val</span> todoItemList <span class="token operator">=</span> todoItemList_<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token function">Pair</span><span class="token punctuation">(</span>todoCategoryName<span class="token punctuation">,</span> todoItemList<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// fire: 统一的入口函数中进行封装, 使得只要进行一次 try catch 处理就行了</span>
+<span class="token comment">// 自动开启线程处理, 根据成功或失败返回相应的 Result 对象</span>
+<span class="token keyword">private</span> <span class="token keyword">fun</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">fire</span><span class="token punctuation">(</span>
+    context<span class="token operator">:</span> CoroutineContext<span class="token punctuation">,</span>
+    block<span class="token operator">:</span> <span class="token keyword">suspend</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Result<span class="token operator">&lt;</span>T<span class="token operator">></span>
+<span class="token punctuation">)</span> <span class="token operator">=</span> liveData<span class="token operator">&lt;</span>Result<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">></span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> result <span class="token operator">=</span> <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Result<span class="token punctuation">.</span>failure<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">emit</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="2">
-<li>因为是通过 userId 生成 liveData 每次返回的都是一个新的 liveData 实例, 导致 Activity 中无法观察到数据的变化; switchMap 就是应用在此场景, 如果 ViewModel 中的某个 LiveData 对象是调用另外的方法获取的，那么我们就可以借助 switchMap() 方法，将这个 LiveData 对象转换成另外一个可观察的 LiveData 对象</li>
+<li>维护内部观察者, 触发数据库操作, 并返回 LiveData 对象</li>
 </ol>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 维护并用来观察 userId 的数据变化</span>
-<span class="token keyword">private</span> <span class="token keyword">val</span> userIdLiveData <span class="token operator">=</span> MutableLiveData<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 维护 TodoCategoryId, 如果其变化则触发数据库 refreshTodoItemByCategory 操作</span>
+<span class="token keyword">private</span> <span class="token keyword">val</span> refreshTodoItemByCategoryObs <span class="token operator">=</span> MutableLiveData<span class="token operator">&lt;</span>Long<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-<span class="token keyword">val</span> user<span class="token operator">:</span> LiveData<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token operator">=</span> Transformations<span class="token punctuation">.</span><span class="token function">switchMap</span><span class="token punctuation">(</span>userIdLiveData<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 转换函数中返回一个 LiveData 对象</span>
-    userId <span class="token operator">-></span> Repository<span class="token punctuation">.</span><span class="token function">getUser</span><span class="token punctuation">(</span>userId<span class="token punctuation">)</span>
+<span class="token keyword">val</span> refreshTodoItemByCategoryResult <span class="token operator">=</span> Transformations<span class="token punctuation">.</span><span class="token function">switchMap</span><span class="token punctuation">(</span>refreshTodoItemByCategoryObs<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> todoCategoryId <span class="token operator">-></span>
+    <span class="token comment">// 返回 Result 对象, 交由外部 refreshTodoItemByCategoryResult 的 Observer 进行处理</span>
+    Repository<span class="token punctuation">.</span><span class="token function">refreshTodoItemByCategory</span><span class="token punctuation">(</span>todoCategoryId<span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span>
 
-<span class="token keyword">fun</span> <span class="token function">getUser</span><span class="token punctuation">(</span>userId<span class="token operator">:</span> String<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    userIdLiveData<span class="token punctuation">.</span>value <span class="token operator">=</span> userId
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>整体流程:</p>
-<ol>
-<li>外部调用 MainViewModel 的 getUser() 方法来获取用户数据时，并不会发起任何请求或者函数调用，只会将传入的 userId 值设置到 userIdLiveData 当中</li>
-<li>userIdLiveData 的数据发生变化，那么观察 userIdLiveData的switchMap() 方法就会执行，并且调用我们编写的转换函数。然后在转换函数中调用 Repository.getUser() 方法获取真正的用户数据</li>
-<li>switchMap() 方法会将 Repository.getUser() 方法返回的 LiveData 对象转换成一个可观察的 LiveData 对象，对于 Activity 而言，只要去观察这个 LiveData 对象就可以了</li>
+<span class="token comment">// 提供给外部的事件调用接口, 使得监听数据产生变化, 进而触发数据库操作</span>
+<span class="token keyword">fun</span> <span class="token function">refreshTodoItemByCategory</span><span class="token punctuation">(</span>todoCategoryId<span class="token operator">:</span> Long<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    refreshTodoItemByCategoryObs<span class="token punctuation">.</span>value <span class="token operator">=</span> todoCategoryId
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>维护外部观察者, 对数据库返回的数据加工处理</li>
 </ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">viewModel<span class="token punctuation">.</span>refreshTodoItemByCategoryResult<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> Observer <span class="token punctuation">&#123;</span> result <span class="token operator">-></span>
+    <span class="token keyword">val</span> pairResult <span class="token operator">=</span> result<span class="token punctuation">.</span><span class="token function">getOrNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pairResult <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> todoCategoryName <span class="token operator">=</span> pairResult<span class="token punctuation">.</span>first
+        <span class="token keyword">val</span> todoItemList <span class="token operator">=</span> pairResult<span class="token punctuation">.</span>second
+
+        viewModel<span class="token punctuation">.</span>todoItemList<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        viewModel<span class="token punctuation">.</span>todoItemList<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>todoItemList<span class="token punctuation">)</span>
+        adapter_todoitem<span class="token punctuation">.</span><span class="token function">notifyDataSetChanged</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        toolbarFragment<span class="token punctuation">.</span><span class="token function">refreshToolbarName</span><span class="token punctuation">(</span>todoCategoryName<span class="token punctuation">,</span> viewModel<span class="token punctuation">.</span>todoCategoryId <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1L</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span><span class="token punctuation">(</span>todoItemSwipeRefresh<span class="token punctuation">.</span>isRefreshing<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            todoItemSwipeRefresh<span class="token punctuation">.</span>isRefreshing <span class="token operator">=</span> <span class="token boolean">false</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span><span class="token punctuation">(</span>drawerLayout<span class="token punctuation">.</span><span class="token function">isDrawerOpen</span><span class="token punctuation">(</span>GravityCompat<span class="token punctuation">.</span>START<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            drawerLayout<span class="token punctuation">.</span><span class="token function">closeDrawer</span><span class="token punctuation">(</span>GravityCompat<span class="token punctuation">.</span>START<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Tips: 如果外部生成的 LiveData 实例没有相关属性可供监听, 那么只需要监听一个空属性即可</p>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">private</span> <span class="token keyword">val</span> refreshLiveData <span class="token operator">=</span> MutableLiveData<span class="token operator">&lt;</span>Any<span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">val</span> refreshResult <span class="token operator">=</span> Transformations<span class="token punctuation">.</span><span class="token function">switchMap</span><span class="token punctuation">(</span>refreshLiveData<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -793,7 +851,7 @@ dependencies <span class="token punctuation">&#123;</span>
 <ul>
 <li>但是为了减少电量消耗，进行了一些优化，因此不能保证准时执行；比如将触发时间临近的几个任务放在一起执行，这样可以大幅度地减少 CPU 被唤醒的次数，从而有效延长电池的使用时间</li>
 </ul>
-<h2 id="quick-start-4"><a class="markdownIt-Anchor" href="#quick-start-4"></a> Quick Start</h2>
+<h2 id="quick-start-5"><a class="markdownIt-Anchor" href="#quick-start-5"></a> Quick Start</h2>
 <ol>
 <li>添加相关依赖: <code>implementation &quot;androidx.work:work-runtime:2.7.1&quot;</code></li>
 <li>定义一个后台任务，并实现具体的任务逻辑</li>
@@ -1435,7 +1493,7 @@ WorkManager<span class="token punctuation">.</span><span class="token function">
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">124.4k</span>&nbsp;字
+                class="white-color">125.4k</span>&nbsp;字
             
             
             

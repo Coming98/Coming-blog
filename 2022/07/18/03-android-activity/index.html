@@ -977,8 +977,8 @@ button_back2main<span class="token punctuation">.</span><span class="token funct
     <span class="token comment">// 而是 Application 中的 Context 它全局只会存在一份实例</span>
     <span class="token comment">// 并且在整个应用程序的生命周期内都不会回收，因此是不存在内存泄漏风险的</span>
     <span class="token comment">// 因此可以忽略警告</span>
-    <span class="token annotation builtin">@SuppressLint</span><span class="token punctuation">(</span><span class="token string">"StaticFieldLeak"</span><span class="token punctuation">)</span>
     <span class="token keyword">companion</span> <span class="token keyword">object</span> <span class="token punctuation">&#123;</span>
+        <span class="token annotation builtin">@SuppressLint</span><span class="token punctuation">(</span><span class="token string">"StaticFieldLeak"</span><span class="token punctuation">)</span>
         <span class="token keyword">lateinit</span> <span class="token keyword">var</span> context<span class="token operator">:</span> Context
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1590,7 +1590,7 @@ button_back2main<span class="token punctuation">.</span><span class="token funct
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">124.4k</span>&nbsp;字
+                class="white-color">125.4k</span>&nbsp;字
             
             
             

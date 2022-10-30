@@ -467,7 +467,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.7k
+                    5.8k
                 </div>
                 
 
@@ -849,7 +849,7 @@ implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1&quot
 <span class="token punctuation">&#125;</span>
 job<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 手动取消协程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="阻塞"><a class="markdownIt-Anchor" href="#阻塞"></a> 阻塞</h2>
-<p>常见的又 <code>Thread.sleep(millis)</code> 与 <code>delay(millis)</code></p>
+<p>常见的有 <code>Thread.sleep(millis)</code> 与 <code>delay(millis)</code></p>
 <ul>
 <li>delay: 是一个非阻塞式的挂起函数，它只会挂起当前协程，并不会影响其他协程的运行 (只能在协程的作用域或其他挂起函数中调)</li>
 <li>sleep: 会阻塞当前的线程，这样运行在该线程下的所有协程都会被阻塞</li>
@@ -872,17 +872,17 @@ job<span class="token punctuation">.</span><span class="token function">cancel</
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="对协程操作的封装"><a class="markdownIt-Anchor" href="#对协程操作的封装"></a> 对协程操作的封装</h2>
-<p>如果想要将协程中执行的任务封装为函数, 但是如何拥有其协程作用域呢？可以使用 <code>suspend</code> 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用</p>
+<p>如果想要将协程中执行的任务封装为函数, 但是如何<strong>拥有其协程作用域</strong>呢？可以使用 <code>suspend</code> 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用</p>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">printDot</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span>
         <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>但是如何真正的实现协程作用域的共享呢, 需要借助 <code>coroutineScope</code> 函数进行显示的声明</p>
+<p>但是如何<strong>真正的实现协程作用域的共享</strong>呢, 需要借助 <code>coroutineScope</code> 函数进行显示的声明</p>
 <ul>
 <li>coroutineScopre() 也是一个挂起函数, 可以在任何挂起函数中或协程作用域中调用</li>
-<li>其可以继承外部的协程的作用域并创建一个子协程，借助这个特性，我们就可以给任意挂起函数提供协程作用域了</li>
+<li><strong>其可以继承外部的协程的作用域并创建一个子协程</strong>，借助这个特性，我们就可以给任意挂起函数提供协程作用域了</li>
 <li>其可以保证其作用域内的所有代码和子协程在全部执行完之前，外部的协程会一直被挂起</li>
 <li>和 runBlocking 不同的是 coroutineScope 函数只会阻塞当前协程，既不影响其他协程，也不影响任何线程，因此是不会造成任何性能上的问题的: 涉及的是子协程, 不用关注外部线程</li>
 <li>而 runBlocking 函数由于会挂起外部线程，如果你恰好又在主线程中当中调用它的话，那么就有可能会导致界面卡死的情况，所以不太推荐在实际项目中使
@@ -966,8 +966,37 @@ scope<span class="token punctuation">.</span><span class="token function">launch
     <span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="使用协程优化传统回调"><a class="markdownIt-Anchor" href="#使用协程优化传统回调"></a> 使用协程优化传统回调</h2>
-<p>借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化, 该函数必须在协程作用域或挂起函数中才能调用，它接收一个 Lambda 表达式参数，主要作用是将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码</p>
-<p>Lambda 表达式的参数列表上会传入一个 Continuation 参数，调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行</p>
+<p>借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化：</p>
+<ul>
+<li>必须在协程作用域或挂起函数中调用</li>
+<li>接收一个 Lambda 表达式参数：将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码
+<ul>
+<li>Lambda 表达式的参数列表上会传入一个 Continuation 参数, 调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">request</span><span class="token punctuation">(</span>address<span class="token operator">:</span> String<span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+    <span class="token comment">// suspendCoroutine -> 当前协程就会被立刻挂起，而 Lambda 表达式中的代码则会在普通线程中执行</span>
+    <span class="token keyword">return</span> suspendCoroutine <span class="token punctuation">&#123;</span> continuation <span class="token operator">-></span>
+        HttpUtil<span class="token punctuation">.</span><span class="token function">sendHttpRequest</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> <span class="token keyword">object</span> <span class="token operator">:</span> HttpCallbackListener <span class="token punctuation">&#123;</span>
+            <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onFinish</span><span class="token punctuation">(</span>response<span class="token operator">:</span> String<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onError</span><span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                continuation<span class="token punctuation">.</span><span class="token function">resumeWithException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 不用再手动处理回调 - 唯一的约束就是必须定义为挂起函数, 只能再协程作用域或其它挂起函数中调用</span>
+<span class="token keyword">suspend</span> <span class="token keyword">fun</span> <span class="token function">getBaiduResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">val</span> response <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">"https://www.baidu.com/"</span><span class="token punctuation">)</span>
+        <span class="token comment">// 对服务器响应的数据进行处理 &lt;- continuation.resume(response)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token operator">:</span> Exception<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 对异常情况进行处理 &lt;- continuation.resumeWithException(e)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="dsl"><a class="markdownIt-Anchor" href="#dsl"></a> DSL</h1>
 <p>DSL 是领域特定语言（Domain Specific Language）通过它我们可以编写出一些看似脱离其原始语法结构的代码，从而构建出一种专有的语法结构</p>
 <p>例如构造一个能够生成 table, tr, td 标签的语法结构</p>
@@ -1608,7 +1637,7 @@ scope<span class="token punctuation">.</span><span class="token function">launch
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">124.4k</span>&nbsp;字
+                class="white-color">125.4k</span>&nbsp;字
             
             
             

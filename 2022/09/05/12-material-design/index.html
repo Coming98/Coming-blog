@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    13 分
                 </div>
                 
 
@@ -531,8 +531,7 @@
 <li>windowBackgroud:</li>
 <li>navigationBarColor:</li>
 </ul>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>COde</span><span class="token punctuation">></span></span>
-<span class="token comment">&lt;!--        标题文字--></span>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--        标题文字--></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>android:textColorPrimary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/colorAccent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span>
 <span class="token comment">&lt;!--        背景色--></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>android:windowBackground<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/teal_700<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span>
@@ -541,8 +540,7 @@
 <span class="token comment">&lt;!--        标题栏--></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>colorPrimary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/colorPrimary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span>
 <span class="token comment">&lt;!--        状态栏--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>colorPrimaryVariant<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/colorPrimaryDark<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Code</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>item</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>colorPrimaryVariant<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>@color/colorPrimaryDark<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>item</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
 <ol>
 <li>编写布局文件: 新增 app 命名空间, 使得 Material 能够兼容老系统</li>
@@ -577,8 +575,17 @@
 <p>DrawerLayout 布局中允许放入两个直接子控件：</p>
 <ol>
 <li>主屏幕中显示的内容</li>
-<li>滑动菜单中显示的内容</li>
+<li>滑动菜单中显示的内容
+<ul>
+<li>滑动菜单内容必须指定 layout_gravity 属性, 用于指明滑出的方向</li>
+</ul>
+</li>
 </ol>
+<ul>
+<li>drawerLayout.isDrawerOpen(GravityCompat.START): 根据指定的滑出动作判断是否已经滑出</li>
+<li>drawerLayout.openDrawer(GravityCompat.START): 使其滑出</li>
+<li>drawerLayout.closeDrawer(GravityCompat.START): 使其关闭</li>
+</ul>
 <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>androidx.drawerlayout.widget.DrawerLayout</span>
     <span class="token attr-name"><span class="token namespace">xmlns:</span>android</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res/android<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">xmlns:</span>app</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res-auto<span class="token punctuation">"</span></span>
@@ -715,8 +722,7 @@ navView<span class="token punctuation">.</span><span class="token function">setN
     <span class="token attr-name"><span class="token namespace">android:</span>layout_gravity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bottom|end<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">android:</span>layout_margin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>16dp<span class="token punctuation">"</span></span>
     <span class="token attr-name"><span class="token namespace">android:</span>src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@drawable/ic_done<span class="token punctuation">"</span></span>
-    <span class="token attr-name"><span class="token namespace">android:</span>elevation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>8dp<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token attr-name"><span class="token namespace">android:</span>elevation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>8dp<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="2">
 <li>添加点击事件</li>
 </ol>
@@ -846,14 +852,27 @@ recyclerView<span class="token punctuation">.</span>adapter <span class="token o
         <span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>androidx.swiperefreshlayout.widget.SwipeRefreshLayout</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="2">
-<li>刷新事件的逻辑处理</li>
+<li>初始化</li>
 </ol>
-<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">swipeRefresh <span class="token operator">=</span> <span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>swipeRefresh<span class="token punctuation">)</span>
-<span class="token comment">// 设置下拉进度条颜色</span>
-swipeRefresh<span class="token punctuation">.</span><span class="token function">setColorSchemeResources</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>color<span class="token punctuation">.</span>colorPrimary<span class="token punctuation">)</span>
-swipeRefresh<span class="token punctuation">.</span><span class="token function">setOnRefreshListener</span> <span class="token punctuation">&#123;</span>
-    <span class="token function">refreshFruits</span><span class="token punctuation">(</span>adapter<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> swipeRefresh<span class="token operator">:</span> SwipeRefreshLayout <span class="token keyword">by</span> lazy <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> sr<span class="token operator">:</span> SwipeRefreshLayout <span class="token operator">=</span> <span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>swipeRefresh<span class="token punctuation">)</span>
+    sr<span class="token punctuation">.</span><span class="token function">setColorSchemeResources</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>color<span class="token punctuation">.</span>blue<span class="token punctuation">)</span>
+    sr
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>刷新事件处理</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">swipeRefresh<span class="token punctuation">.</span><span class="token function">setOnRefreshListener</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">refreshFruits</span><span class="token punctuation">(</span>adapter<span class="token punctuation">)</span> <span class="token comment">// 事件处理</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202210282033235.png" alt="" /></p>
+<ol start="4">
+<li>刷新动画关闭</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">// 事件处理的回调中关闭刷新动画</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>todoItemSwipeRefresh<span class="token punctuation">.</span>isRefreshing<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    todoItemSwipeRefresh<span class="token punctuation">.</span>isRefreshing <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="可折叠式标题栏"><a class="markdownIt-Anchor" href="#可折叠式标题栏"></a> 可折叠式标题栏</h1>
 <p>CollapsingToolbarLayout 是基于 Toolbar 的布局, 能够让 Toolbar 的效果变得更加丰富, 但是使用其的基础很高, 需要作为 AppBarLayout 的子布局(解决标题栏遮挡问题), 而 AppBarLayout 又是 CoordinateLayout 的子布局(监听子组件实现处理)</p>
 <h2 id="quickstart"><a class="markdownIt-Anchor" href="#quickstart"></a> QuickStart</h2>
@@ -1464,7 +1483,7 @@ swipeRefresh<span class="token punctuation">.</span><span class="token function"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">124.4k</span>&nbsp;字
+                class="white-color">125.4k</span>&nbsp;字
             
             
             
