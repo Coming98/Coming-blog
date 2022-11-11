@@ -467,7 +467,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.6k
                 </div>
                 
 
@@ -585,6 +585,46 @@
     <span class="token comment">// 提交事务</span>
     transaction<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="带有参数的-fragment"><a class="markdownIt-Anchor" href="#带有参数的-fragment"></a> 带有参数的 Fragment</h2>
+<p>Fragment 显示的内容可能需要其父 Activity 告知, 因此初始化时需要配置相应的参数</p>
+<ol>
+<li>xml 中用 FrameLayout 为 Fragment 占位</li>
+</ol>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FrameLayout</span>
+    <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@+id/toolbar_fragment<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>Activity 中选择适当的时机<a href="#%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0-fragment">动态加载</a>该 Fragment</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> toolbarFragment <span class="token operator">=</span> <span class="token function">ToolbarFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 标题栏左右两侧的图标以及中间的标题名</span>
+<span class="token keyword">val</span> bundle <span class="token operator">=</span> <span class="token function">Bundle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">putString</span><span class="token punctuation">(</span><span class="token string">"toolbarName"</span><span class="token punctuation">,</span> toolbarNmae<span class="token punctuation">)</span>
+    toolbarLeft<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span> <span class="token function">putInt</span><span class="token punctuation">(</span><span class="token string">"toolbarLeft"</span><span class="token punctuation">,</span> it<span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
+    toolbarRight<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">let</span> <span class="token punctuation">&#123;</span> <span class="token function">putInt</span><span class="token punctuation">(</span><span class="token string">"toolbarRight"</span><span class="token punctuation">,</span> it<span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+toolbarFragment<span class="token punctuation">.</span>arguments <span class="token operator">=</span> bundle
+
+<span class="token keyword">val</span> fragmentManager <span class="token operator">=</span> supportFragmentManager
+<span class="token keyword">val</span> transaction <span class="token operator">=</span> fragmentManager<span class="token punctuation">.</span><span class="token function">beginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+transaction<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>toolbar_fragment<span class="token punctuation">,</span> toolbarFragment<span class="token punctuation">)</span>
+transaction<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">return</span> toolbarFragment<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>Fragment 中在 onCreateView 中接收参数进行处理</li>
+</ol>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">onCreateView</span><span class="token punctuation">(</span>inflater<span class="token operator">:</span> LayoutInflater<span class="token punctuation">,</span> container<span class="token operator">:</span> ViewGroup<span class="token operator">?</span><span class="token punctuation">,</span> savedInstanceState<span class="token operator">:</span> Bundle<span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">:</span> View <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> view<span class="token operator">:</span> View <span class="token operator">=</span> inflater<span class="token punctuation">.</span><span class="token function">inflate</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>toolbar_fragment<span class="token punctuation">,</span> container<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token comment">// 省略 findViewByID ...</span>
+    <span class="token comment">// Bundle.getArguments()</span>
+    toolbarName<span class="token punctuation">.</span>text <span class="token operator">=</span> arguments<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"toolbarName"</span><span class="token punctuation">)</span> 
+    <span class="token comment">// ....</span>
+    <span class="token keyword">return</span> view
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="与主-activity-的交互"><a class="markdownIt-Anchor" href="#与主-activity-的交互"></a> 与主 Activity 的交互</h2>
 <p>类似于父组件管理多个子组件, 主要通过 <code>supportFragmentManager</code> 实现</p>
 <ul>
@@ -1229,7 +1269,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">125.4k</span>&nbsp;字
+                class="white-color">127.9k</span>&nbsp;字
             
             
             

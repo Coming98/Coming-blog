@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    12 分
                 </div>
                 
 
@@ -803,6 +803,35 @@ output<span class="token punctuation">.</span><span class="token function">write
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> retJsonData<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="gson-处理复杂数据"><a class="markdownIt-Anchor" href="#gson-处理复杂数据"></a> GSON 处理复杂数据</h2>
+<p>如果是时间等复杂对象的需要手动配置针对目标对象的 Serializer 与 Deseralizer</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> todoGson <span class="token operator">=</span> <span class="token function">GsonBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDateTime<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">,</span> <span class="token comment">// 对 LocalDateTime 添加 Serializer</span>
+        <span class="token keyword">object</span> <span class="token operator">:</span> JsonSerializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">serialize</span><span class="token punctuation">(</span>
+                src<span class="token operator">:</span> LocalDateTime<span class="token operator">?</span><span class="token punctuation">,</span>
+                typeOfSrc<span class="token operator">:</span> Type<span class="token operator">?</span><span class="token punctuation">,</span>
+                context<span class="token operator">:</span> JsonSerializationContext<span class="token operator">?</span>
+            <span class="token punctuation">)</span><span class="token operator">:</span> JsonElement <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token function">JsonPrimitive</span><span class="token punctuation">(</span>src<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">toLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// toLong 是我对 LocalDateTime 添加的方法, 转为了 millsSecond</span>
+            <span class="token punctuation">&#125;</span>
+
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">registerTypeAdapter</span><span class="token punctuation">(</span>LocalDateTime<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">,</span> <span class="token comment">// 对 LocalDateTime 添加 Deserializer</span>
+        <span class="token keyword">object</span> <span class="token operator">:</span> JsonDeserializer<span class="token operator">&lt;</span>LocalDateTime<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">override</span> <span class="token keyword">fun</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>
+            json<span class="token operator">:</span> JsonElement<span class="token operator">?</span><span class="token punctuation">,</span>
+            typeOfT<span class="token operator">:</span> Type<span class="token operator">?</span><span class="token punctuation">,</span>
+            context<span class="token operator">:</span> JsonDeserializationContext<span class="token operator">?</span>
+        <span class="token punctuation">)</span><span class="token operator">:</span> LocalDateTime <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> json<span class="token operator">!!</span><span class="token punctuation">.</span>asJsonPrimitive<span class="token punctuation">.</span>asString<span class="token punctuation">.</span><span class="token function">toLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocalDateTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 获取 json 存储的 long 格式数据，转为 LocalDatetime</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">serializeNulls</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// to Json</span>
+<span class="token keyword">val</span> dbJson <span class="token operator">=</span> todoGson<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>dbInJson<span class="token punctuation">)</span>
+<span class="token comment">// back to obj</span>
+<span class="token keyword">val</span> dbInJson <span class="token operator">=</span> todoGson<span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>dbJson<span class="token punctuation">,</span> DBInJson<span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">.</span>java<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="网络请求的封装"><a class="markdownIt-Anchor" href="#网络请求的封装"></a> 网络请求的封装</h1>
 <p>新建一个工具类对网络请求进行封装, 但是因为是多线程任务, 要再事件完成或失败时进行相应的回调处理, 因此需要定义相关的回调接口, 或实现相关库提供的回调接口</p>
 <p>相关的回调接口</p>
@@ -1494,7 +1523,7 @@ implementation <span class="token string">'com.squareup.retrofit2:converter-gson
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">125.4k</span>&nbsp;字
+                class="white-color">127.9k</span>&nbsp;字
             
             
             

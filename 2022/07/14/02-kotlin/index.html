@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    16 分
                 </div>
                 
 
@@ -985,6 +985,78 @@ method<span class="token operator">&lt;</span>Int<span class="token operator">><
         it<span class="token punctuation">.</span><span class="token function">doHomework</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="常用工具类"><a class="markdownIt-Anchor" href="#常用工具类"></a> 常用工具类</h1>
+<h2 id="localdatetime"><a class="markdownIt-Anchor" href="#localdatetime"></a> LocalDateTime</h2>
+<h3 id="格式化输出"><a class="markdownIt-Anchor" href="#格式化输出"></a> 格式化输出</h3>
+<ul>
+<li>日期时间格式</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token comment">/**
+ * 输出日期时间格式
+ *      dateSplit = "-", timeSplit = ":", minTime = "min": 2022-10-31 16:52
+ *      dateSplit = "chinese", timeSplit = "chinese", minTime = "min": 2022年10月31日 16时52分
+ */</span>
+<span class="token keyword">fun</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">dateTimeFormatter</span><span class="token punctuation">(</span>dateSplit<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token string">"-"</span><span class="token punctuation">,</span> timeSplit<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token string">":"</span><span class="token punctuation">,</span> minTime<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token string">"min"</span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> datePattern<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>dateSplit <span class="token operator">==</span> <span class="token string">"chinese"</span><span class="token punctuation">)</span> <span class="token string">"yyyy年MM月dd日"</span> <span class="token keyword">else</span> <span class="token string">"yyyy<span class="token interpolation"><span class="token delimiter variable">$&#123;</span>dateSplit<span class="token delimiter variable">&#125;</span></span>MM<span class="token interpolation"><span class="token delimiter variable">$&#123;</span>dateSplit<span class="token delimiter variable">&#125;</span></span>dd"</span>
+    <span class="token keyword">val</span> timePattern<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>timeSplit <span class="token operator">==</span> <span class="token string">"chinese"</span><span class="token punctuation">)</span> <span class="token string">"HH时mm分ss秒"</span> <span class="token keyword">else</span> <span class="token string">"HH<span class="token interpolation"><span class="token delimiter variable">$&#123;</span>timeSplit<span class="token delimiter variable">&#125;</span></span>mm<span class="token interpolation"><span class="token delimiter variable">$&#123;</span>timeSplit<span class="token delimiter variable">&#125;</span></span>ss"</span>
+    <span class="token keyword">val</span> datetimeFormatter<span class="token operator">:</span> DateTimeFormatter <span class="token operator">=</span> DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>datePattern <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> timePattern<span class="token punctuation">)</span>
+    <span class="token keyword">var</span> cutIndex<span class="token operator">:</span> Int <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">when</span> <span class="token punctuation">(</span>minTime<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"hour"</span> <span class="token operator">-></span> cutIndex <span class="token operator">=</span> <span class="token number">6</span>
+        <span class="token string">"min"</span> <span class="token operator">-></span> cutIndex <span class="token operator">=</span> <span class="token number">3</span>
+        <span class="token keyword">else</span> <span class="token operator">-></span> cutIndex <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">val</span> dateTimeString <span class="token operator">=</span> datetimeFormatter<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> dateTimeString<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> dateTimeString<span class="token punctuation">.</span>length <span class="token operator">-</span> cutIndex<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202210312029662.png" alt="" /></p>
+<ul>
+<li>日期格式</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">dateFormatter</span><span class="token punctuation">(</span>dateSplit<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token string">"-"</span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dateTimeFormatter</span><span class="token punctuation">(</span>dateSplit <span class="token operator">=</span> dateSplit<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间格式</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">timeFormatter</span><span class="token punctuation">(</span>timeSplit<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token string">":"</span><span class="token punctuation">,</span> minTime<span class="token operator">:</span> String <span class="token operator">=</span> <span class="token string">"min"</span><span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dateTimeFormatter</span><span class="token punctuation">(</span>timeSplit <span class="token operator">=</span> timeSplit<span class="token punctuation">,</span> minTime <span class="token operator">=</span> minTime<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202210312042687.png" alt="" /></p>
+<h3 id="类型转换"><a class="markdownIt-Anchor" href="#类型转换"></a> 类型转换</h3>
+<ul>
+<li>LocalDateTime 2 Long</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">toLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Long <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toInstant</span><span class="token punctuation">(</span>ZoneOffset<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"+8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEpochMilli</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>Long 2 LocalDateTime: 损失了毫秒的精度</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> Long<span class="token punctuation">.</span><span class="token function">toLocalDateTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> LocalDateTime <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">ofEpochSecond</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">/</span><span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> ZoneOffset<span class="token punctuation">.</span><span class="token function">ofHours</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202210312114079.png" alt="" /></p>
+<h3 id="计算距离"><a class="markdownIt-Anchor" href="#计算距离"></a> 计算距离</h3>
+<ul>
+<li>两个 LocalDateTime 之间的秒级距离</li>
+</ul>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> LocalDateTime<span class="token punctuation">.</span><span class="token function">distence</span><span class="token punctuation">(</span>targetLocalDateTime<span class="token operator">:</span> LocalDateTime<span class="token punctuation">)</span><span class="token operator">:</span> Long <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> targetLocalDateTime<span class="token punctuation">.</span><span class="token function">toLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202210312116316.png" alt="" /></p>
+<h2 id="float"><a class="markdownIt-Anchor" href="#float"></a> Float</h2>
+<h3 id="格式化输出-2"><a class="markdownIt-Anchor" href="#格式化输出-2"></a> 格式化输出</h3>
+<p>保留小数点后 n 位的同时, 如果小数点后 n 位为 0 则转为整数</p>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> Float<span class="token punctuation">.</span><span class="token function">toTypedString</span><span class="token punctuation">(</span>keepLength<span class="token operator">:</span> Int<span class="token punctuation">)</span><span class="token operator">:</span> String <span class="token punctuation">&#123;</span>
+    <span class="token keyword">val</span> checkValue <span class="token operator">=</span> <span class="token number">10.0</span><span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>keepLength<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">// 后 keepLength 位为 0 转为整数</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">*</span> checkValue<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> checkValue <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%.<span class="token interpolation"><span class="token delimiter variable">$&#123;</span>keepLength<span class="token delimiter variable">&#125;</span></span>f"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1535,7 +1607,7 @@ method<span class="token operator">&lt;</span>Int<span class="token operator">><
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">125.4k</span>&nbsp;字
+                class="white-color">127.9k</span>&nbsp;字
             
             
             
