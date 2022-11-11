@@ -385,6 +385,40 @@ private fun parseJsonWithGSON(jsonData: String): String {
 }
 ```
 
+## GSON 处理复杂数据
+
+如果是时间等复杂对象的需要手动配置针对目标对象的 Serializer 与 Deseralizer
+
+```kotlin
+val todoGson = GsonBuilder()
+    .registerTypeAdapter(LocalDateTime::class.java, // 对 LocalDateTime 添加 Serializer
+        object : JsonSerializer<LocalDateTime> {
+            override fun serialize(
+                src: LocalDateTime?,
+                typeOfSrc: Type?,
+                context: JsonSerializationContext?
+            ): JsonElement {
+                return JsonPrimitive(src?.toLong()) // toLong 是我对 LocalDateTime 添加的方法, 转为了 millsSecond
+            }
+
+        }
+    ).registerTypeAdapter(LocalDateTime::class.java, // 对 LocalDateTime 添加 Deserializer
+        object : JsonDeserializer<LocalDateTime> {
+        override fun deserialize(
+            json: JsonElement?,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): LocalDateTime {
+            return json!!.asJsonPrimitive.asString.toLong().toLocalDateTime() // 获取 json 存储的 long 格式数据，转为 LocalDatetime
+        }
+    }).serializeNulls().create()
+
+// to Json
+val dbJson = todoGson.toJson(dbInJson)
+// back to obj
+val dbInJson = todoGson.fromJson(dbJson, DBInJson::class.java)
+```
+
 # 网络请求的封装
 
 新建一个工具类对网络请求进行封装, 但是因为是多线程任务, 要再事件完成或失败时进行相应的回调处理, 因此需要定义相关的回调接口, 或实现相关库提供的回调接口

@@ -594,3 +594,102 @@ fun doStudy(study: Study?) {
     }
 }
 ```
+
+# 常用工具类
+
+## LocalDateTime
+
+### 格式化输出
+
+- 日期时间格式
+
+```kotlin
+/**
+ * 输出日期时间格式
+ *      dateSplit = "-", timeSplit = ":", minTime = "min": 2022-10-31 16:52
+ *      dateSplit = "chinese", timeSplit = "chinese", minTime = "min": 2022年10月31日 16时52分
+ */
+fun LocalDateTime.dateTimeFormatter(dateSplit: String = "-", timeSplit: String = ":", minTime: String = "min"): String {
+    val datePattern: String = if (dateSplit == "chinese") "yyyy年MM月dd日" else "yyyy${dateSplit}MM${dateSplit}dd"
+    val timePattern: String = if (timeSplit == "chinese") "HH时mm分ss秒" else "HH${timeSplit}mm${timeSplit}ss"
+    val datetimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern(datePattern + " " + timePattern)
+    var cutIndex: Int = 0
+    when (minTime) {
+        "hour" -> cutIndex = 6
+        "min" -> cutIndex = 3
+        else -> cutIndex = 0
+    }
+    val dateTimeString = datetimeFormatter.format(this).toString()
+    return dateTimeString.substring(0, dateTimeString.length - cutIndex)
+}
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202210312029662.png)
+
+- 日期格式
+
+```kotlin
+fun LocalDateTime.dateFormatter(dateSplit: String = "-"): String {
+    return this.dateTimeFormatter(dateSplit = dateSplit).split(" ").first()
+}
+```
+
+- 时间格式
+
+```kotlin
+fun LocalDateTime.timeFormatter(timeSplit: String = ":", minTime: String = "min"): String {
+    return this.dateTimeFormatter(timeSplit = timeSplit, minTime = minTime).split(" ").last()
+}
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202210312042687.png)
+
+### 类型转换
+
+- LocalDateTime 2 Long
+
+```kotlin
+fun LocalDateTime.toLong(): Long {
+    return this.toInstant(ZoneOffset.of("+8")).toEpochMilli()
+}
+```
+
+- Long 2 LocalDateTime: 损失了毫秒的精度
+
+```kotlin
+fun Long.toLocalDateTime(): LocalDateTime {
+    return LocalDateTime.ofEpochSecond(this/1000, 0, ZoneOffset.ofHours(8))
+}
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202210312114079.png)
+
+### 计算距离
+
+- 两个 LocalDateTime 之间的秒级距离
+
+```kotlin
+fun LocalDateTime.distence(targetLocalDateTime: LocalDateTime): Long {
+    return abs(this.toLong() - targetLocalDateTime.toLong()) / 1000
+}
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202210312116316.png)
+
+## Float
+
+### 格式化输出
+
+保留小数点后 n 位的同时, 如果小数点后 n 位为 0 则转为整数
+
+```kotlin
+fun Float.toTypedString(keepLength: Int): String {
+    val checkValue = 10.0.pow(keepLength).toInt()
+    // 后 keepLength 位为 0 转为整数
+    if((this * checkValue).toInt() % checkValue == 0) {
+        return this.toInt().toString()
+    } else {
+        return String.format("%.${keepLength}f", this)
+    }
+}
+```

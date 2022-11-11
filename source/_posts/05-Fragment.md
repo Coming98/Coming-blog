@@ -109,6 +109,54 @@ private fun replaceFragment(fragment: Fragment) {
 }
 ```
 
+## 带有参数的 Fragment
+
+Fragment 显示的内容可能需要其父 Activity 告知, 因此初始化时需要配置相应的参数
+
+1. xml 中用 FrameLayout 为 Fragment 占位
+
+```xml
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/toolbar_fragment"
+    />
+```
+
+2. Activity 中选择适当的时机[动态加载](#动态添加-fragment)该 Fragment
+
+```kotlin
+val toolbarFragment = ToolbarFragment()
+
+// 标题栏左右两侧的图标以及中间的标题名
+val bundle = Bundle().apply {
+    putString("toolbarName", toolbarNmae)
+    toolbarLeft?.let { putInt("toolbarLeft", it) }
+    toolbarRight?.let { putInt("toolbarRight", it) }
+}
+toolbarFragment.arguments = bundle
+
+val fragmentManager = supportFragmentManager
+val transaction = fragmentManager.beginTransaction()
+transaction.replace(R.id.toolbar_fragment, toolbarFragment)
+transaction.commit()
+
+return toolbarFragment
+```
+
+3. Fragment 中在 onCreateView 中接收参数进行处理
+
+```kotlin
+override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    val view: View = inflater.inflate(R.layout.toolbar_fragment, container, false)
+    // 省略 findViewByID ...
+    // Bundle.getArguments()
+    toolbarName.text = arguments?.getString("toolbarName") 
+    // ....
+    return view
+}
+```
+
 ## 与主 Activity 的交互
 
 类似于父组件管理多个子组件, 主要通过 `supportFragmentManager` 实现
