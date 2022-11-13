@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    11 分
                 </div>
                 
 
@@ -514,7 +514,7 @@ Pass</p>
 <li>表明有一些优化对你设计的系统是没有帮助的, 只有少数优化会针对你的系统</li>
 <li>在 LLVM 中, 如果你想了解特定的优化器, 是不需要知道整个系统是如何工作的。你只需选择一个优化器并使用它, 无须担心其他依赖它的组件</li>
 </ul>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h2 id="1-quick-start"><a class="markdownIt-Anchor" href="#1-quick-start"></a> 1 Quick Start</h2>
 <ol>
 <li>原始文件 <code>01testfile.ll</code></li>
 </ol>
@@ -582,7 +582,7 @@ Pass</p>
 <li>为不同平台（主机与目标机器不同）编译代码则称为交叉编译, cross-compiler</li>
 </ul>
 <h1 id="cmd-quick-start"><a class="markdownIt-Anchor" href="#cmd-quick-start"></a> CMD Quick Start</h1>
-<h2 id="c-to-llvm-ir"><a class="markdownIt-Anchor" href="#c-to-llvm-ir"></a> C to LLVM IR</h2>
+<h2 id="2-c-to-llvm-ir"><a class="markdownIt-Anchor" href="#2-c-to-llvm-ir"></a> 2 C to LLVM IR</h2>
 <p>简要流程: 使用 clang 前端将 C 转为 IR</p>
 <ul>
 <li>词法分析: 将 C 语言源码分解成 token 流, 每个 token 可表示标识符、字面量、运算符等</li>
@@ -663,7 +663,7 @@ Pass</p>
 
 <span class="token variable">!0</span> <span class="token punctuation">=</span> <span class="token punctuation">!</span><span class="token punctuation">&#123;</span><span class="token type class-name">i32</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">!</span><span class="token string">"wchar_size"</span><span class="token punctuation">,</span> <span class="token type class-name">i32</span> <span class="token number">4</span><span class="token punctuation">&#125;</span>
 <span class="token variable">!1</span> <span class="token punctuation">=</span> <span class="token punctuation">!</span><span class="token punctuation">&#123;</span><span class="token punctuation">!</span><span class="token string">"clang version 8.0.1-svn363027-1~exp1~20190611211629.77 (branches/release_80)"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="llvm-ir-to-bitcode"><a class="markdownIt-Anchor" href="#llvm-ir-to-bitcode"></a> LLVM IR to Bitcode</h2>
+<h2 id="3-llvm-ir-to-bitcode"><a class="markdownIt-Anchor" href="#3-llvm-ir-to-bitcode"></a> 3 LLVM IR to bitcode</h2>
 <p>LLVM Bitecode, 也称为字节码 (bytecode), 由两部分组成:</p>
 <ul>
 <li>位流, bitstream, 可类比字节流</li>
@@ -684,15 +684,121 @@ Pass</p>
     <span class="token keyword">ret</span> <span class="token type class-name">i32</span> <span class="token variable">%1</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="2">
-<li>使用 <code>llvm-as</code> 将 LLVM IR 转为 Bitcode 格式</li>
+<li>使用 <code>llvm-as</code> 将 LLVM IR 转为 bitcode 格式</li>
 </ol>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">llvm-as-8 03test.ll -o 03test.bc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ol start="3">
 <li>使用 <code>hexdump</code> 工具查看 bitcode 二进制文件</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211111208934.png" alt="" /></p>
-<h2 id="llvm-bitcode-to-binary"><a class="markdownIt-Anchor" href="#llvm-bitcode-to-binary"></a> LLVM bitcode to Binary</h2>
-<p>将 LLVM bitcode 文件转换为目标机器的汇编码</p>
+<h2 id="4-llvm-bitcode-to-asm"><a class="markdownIt-Anchor" href="#4-llvm-bitcode-to-asm"></a> 4 LLVM bitcode to ASM</h2>
+<p>将 LLVM bitcode 文件转换为目标平台的汇编代码</p>
+<ol>
+<li>
+<p>使用 <a href="#llvm-ir-to-bitcode">上一个实验的输出 03test.bc</a> 作为本实验的输入</p>
+</li>
+<li>
+<p>使用 <code>llc</code> 实现 bitcode2asm</p>
+</li>
+</ol>
+<ul>
+<li>输入格式支持 <code>.bc</code> 与 <code>.ll</code></li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 默认的适配架构由本机决定
+llc-8 03test.bc -o 04test.s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121219558.png" alt="" /></p>
+<ol>
+<li>查看汇编文件, 汇编的格式为 AT&amp;T 格式</li>
+</ol>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">        .text
+        .file   &quot;03test.ll&quot;
+        .globl  mult                    # -- Begin function mult
+        .p2align        4, 0x90
+        .type   mult,@function
+mult:                                   # @mult
+        .cfi_startproc
+# %bb.0:
+        movl    %edi, %eax
+        imull   %esi, %eax
+        retq
+.Lfunc_end0:
+        .size   mult, .Lfunc_end0-mult
+        .cfi_endproc
+                                        # -- End function
+
+        .section        &quot;.note.GNU-stack&quot;,&quot;&quot;,@progbits<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="4">
+<li>或者使用 <code>clang</code> 实现 bitcode2asm</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">clang-8 -S 03test.bc -o 04test_clang.s -fomit-frame-pointer
+# fomit-fram-pointer 开启消除函数栈帧顶指针功能, clang 默认是关闭此选项的, llc 默认是开启的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121228155.png" alt="" /></p>
+<h3 id="指定架构"><a class="markdownIt-Anchor" href="#指定架构"></a> 指定架构</h3>
+<p>可以使用 -march 执行具体的 CPU 架构</p>
+<p>特别的, x86 架构有两种汇编风格, <code>AT&amp;T</code> 与 <code>intel</code>, 这个需要通过 <code>-x86-asm-syntax=[att|intel]</code> 来指定</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">llc-8 -march&#x3D;x86-64 -x86-asm-syntax&#x3D;intel 03test.bc -o 04test_intel.s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121509150.png" alt="" /></p>
+<p>通过 <code>llc --version</code> 可以查看 <code>-march</code> 参数可选的值</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">LLVM (http:&#x2F;&#x2F;llvm.org&#x2F;):
+  LLVM version 8.0.1
+
+  Optimized build.
+  Default target: x86_64-pc-linux-gnu
+  Host CPU: (unknown)
+
+  Registered Targets:
+    aarch64    - AArch64 (little endian)
+    aarch64_be - AArch64 (big endian)
+    amdgcn     - AMD GCN GPUs
+    arm        - ARM
+    arm64      - ARM64 (little endian)
+    armeb      - ARM (big endian)
+    avr        - Atmel AVR Microcontroller
+    bpf        - BPF (host endian)
+    bpfeb      - BPF (big endian)
+    bpfel      - BPF (little endian)
+    hexagon    - Hexagon
+    lanai      - Lanai
+    mips       - MIPS (32-bit big endian)
+    mips64     - MIPS (64-bit big endian)
+    mips64el   - MIPS (64-bit little endian)
+    mipsel     - MIPS (32-bit little endian)
+    msp430     - MSP430 [experimental]
+    nvptx      - NVIDIA PTX 32-bit
+    nvptx64    - NVIDIA PTX 64-bit
+    ppc32      - PowerPC 32
+    ppc64      - PowerPC 64
+    ppc64le    - PowerPC 64 LE
+    r600       - AMD GPUs HD2XXX-HD6XXX
+    sparc      - Sparc
+    sparcel    - Sparc LE
+    sparcv9    - Sparc V9
+    systemz    - SystemZ
+    thumb      - Thumb
+    thumbeb    - Thumb (big endian)
+    wasm32     - WebAssembly 32-bit
+    wasm64     - WebAssembly 64-bit
+    x86        - 32-bit X86: Pentium-Pro and above
+    x86-64     - 64-bit X86: EM64T and AMD64
+    xcore      - XCore<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="6-llvm-bitcode-to-llvm-汇编码"><a class="markdownIt-Anchor" href="#6-llvm-bitcode-to-llvm-汇编码"></a> 6 LLVM bitcode to LLVM 汇编码</h2>
+<p>使用 <code>llvm-dis</code> (LLVM 反汇编器) 实现 LLVM bitcode (.bc) 转回 LLVM IR (.ll)</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">llvm-dis-8 03test.bc -o 05test.ll<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121514660.png" alt="" /></p>
+<h2 id="5-ir-transform"><a class="markdownIt-Anchor" href="#5-ir-transform"></a> 5 IR Transform</h2>
+<p>主要利用 <code>opt</code> 工具实现 IR 形式的转化与代码的优化</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">opt-8 -mem2reg -S 02multiply.ll -o 06multiply.-mem2reg.ll<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>-mem2reg</code>: 主要优化内存访问, 将局部变量从内存提升到寄存器</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121535088.png" alt="" /></p>
+<p>如上图所示, 这里按照书中的步骤执行会发现 <code>-mem2reg</code> 并没有任何效果, 这是<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46513801/llvm-opt-mem2reg-has-no-effect">因为</a> clang 将 c 转为 ll 时默认的优化级别时 O0, 这个级别会为生成汇编码中的每个函数添加一个属性 <code>optnone</code> 显示的阻断后续的优化 pass</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121538419.png" alt="" /></p>
+<p>为了避免这个问题, 需要在 clang 转换时添加属性 <code>-Xclang -disable-O0-optnone</code> 将 &quot;封印解除&quot; 就可以单独进行 <code>-mem2reg</code> 的优化并看到效果了</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">clang-8 -emit-llvm -S 06multiply.c -Xclang -disable-O0-optnone -o 06multiply.ll
+opt-8 -mem2reg -S 06multiply.ll -o 06multiply.-mem2reg.ll
+cat 06multiply.-mem2reg.ll<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121543787.png" alt="" /></p>
 <h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1>
 <ul>
 <li>[llvm-cookbook]</li>
@@ -1250,7 +1356,7 @@ Pass</p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">127.9k</span>&nbsp;字
+                class="white-color">128.6k</span>&nbsp;字
             
             
             
