@@ -8,7 +8,6 @@ summary: LLVM 初识以及简单的命令链
 categories: Compiler
 ---
 
-
 # LLVM
 
 编译器: 把人类可读的高级语言映射到机器执行码
@@ -31,7 +30,7 @@ Pass
 - 表明有一些优化对你设计的系统是没有帮助的, 只有少数优化会针对你的系统
 - 在 LLVM 中, 如果你想了解特定的优化器, 是不需要知道整个系统是如何工作的。你只需选择一个优化器并使用它, 无须担心其他依赖它的组件
 
-## Quick Start
+## 1 Quick Start
 
 1. 原始文件 `01testfile.ll`
 
@@ -119,7 +118,7 @@ LLVM 代码生成器（code generator）也采用了模块的设计理念:
 
 # CMD Quick Start
 
-## C to LLVM IR
+## 2 C to LLVM IR
 
 简要流程: 使用 clang 前端将 C 转为 IR
 - 词法分析: 将 C 语言源码分解成 token 流, 每个 token 可表示标识符、字面量、运算符等
@@ -214,7 +213,7 @@ attributes #0 = { noinline nounwind optnone "correctly-rounded-divide-sqrt-fp-ma
 !1 = !{!"clang version 8.0.1-svn363027-1~exp1~20190611211629.77 (branches/release_80)"}
 ```
 
-## LLVM IR to Bitcode
+## 3 LLVM IR to bitcode
 
 LLVM Bitecode, 也称为字节码 (bytecode), 由两部分组成:
 - 位流, bitstream, 可类比字节流
@@ -237,7 +236,7 @@ define i32 @mult(i32 %a, i32 %b) #0 {
 }
 ```
 
-2. 使用 `llvm-as` 将 LLVM IR 转为 Bitcode 格式
+2. 使用 `llvm-as` 将 LLVM IR 转为 bitcode 格式
 
 ```shell
 llvm-as-8 03test.ll -o 03test.bc
@@ -247,9 +246,147 @@ llvm-as-8 03test.ll -o 03test.bc
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202211111208934.png)
 
-## LLVM bitcode to Binary
+## 4 LLVM bitcode to ASM
 
-将 LLVM bitcode 文件转换为目标机器的汇编码
+将 LLVM bitcode 文件转换为目标平台的汇编代码
+
+1. 使用 [上一个实验的输出 03test.bc](#llvm-ir-to-bitcode) 作为本实验的输入
+
+2. 使用 `llc` 实现 bitcode2asm
+- 输入格式支持 `.bc` 与 `.ll`
+```shell
+# 默认的适配架构由本机决定
+llc-8 03test.bc -o 04test.s
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121219558.png)
+
+1. 查看汇编文件, 汇编的格式为 AT&T 格式
+
+```asm
+        .text
+        .file   "03test.ll"
+        .globl  mult                    # -- Begin function mult
+        .p2align        4, 0x90
+        .type   mult,@function
+mult:                                   # @mult
+        .cfi_startproc
+# %bb.0:
+        movl    %edi, %eax
+        imull   %esi, %eax
+        retq
+.Lfunc_end0:
+        .size   mult, .Lfunc_end0-mult
+        .cfi_endproc
+                                        # -- End function
+
+        .section        ".note.GNU-stack","",@progbits
+```
+
+4. 或者使用 `clang` 实现 bitcode2asm
+
+```shell
+clang-8 -S 03test.bc -o 04test_clang.s -fomit-frame-pointer
+# fomit-fram-pointer 开启消除函数栈帧顶指针功能, clang 默认是关闭此选项的, llc 默认是开启的
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121228155.png)
+
+### 指定架构
+
+可以使用 -march 执行具体的 CPU 架构
+
+特别的, x86 架构有两种汇编风格, `AT&T` 与 `intel`, 这个需要通过 `-x86-asm-syntax=[att|intel]` 来指定
+
+```shell
+llc-8 -march=x86-64 -x86-asm-syntax=intel 03test.bc -o 04test_intel.s
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121509150.png)
+
+通过 `llc --version` 可以查看 `-march` 参数可选的值
+
+```shell
+LLVM (http://llvm.org/):
+  LLVM version 8.0.1
+
+  Optimized build.
+  Default target: x86_64-pc-linux-gnu
+  Host CPU: (unknown)
+
+  Registered Targets:
+    aarch64    - AArch64 (little endian)
+    aarch64_be - AArch64 (big endian)
+    amdgcn     - AMD GCN GPUs
+    arm        - ARM
+    arm64      - ARM64 (little endian)
+    armeb      - ARM (big endian)
+    avr        - Atmel AVR Microcontroller
+    bpf        - BPF (host endian)
+    bpfeb      - BPF (big endian)
+    bpfel      - BPF (little endian)
+    hexagon    - Hexagon
+    lanai      - Lanai
+    mips       - MIPS (32-bit big endian)
+    mips64     - MIPS (64-bit big endian)
+    mips64el   - MIPS (64-bit little endian)
+    mipsel     - MIPS (32-bit little endian)
+    msp430     - MSP430 [experimental]
+    nvptx      - NVIDIA PTX 32-bit
+    nvptx64    - NVIDIA PTX 64-bit
+    ppc32      - PowerPC 32
+    ppc64      - PowerPC 64
+    ppc64le    - PowerPC 64 LE
+    r600       - AMD GPUs HD2XXX-HD6XXX
+    sparc      - Sparc
+    sparcel    - Sparc LE
+    sparcv9    - Sparc V9
+    systemz    - SystemZ
+    thumb      - Thumb
+    thumbeb    - Thumb (big endian)
+    wasm32     - WebAssembly 32-bit
+    wasm64     - WebAssembly 64-bit
+    x86        - 32-bit X86: Pentium-Pro and above
+    x86-64     - 64-bit X86: EM64T and AMD64
+    xcore      - XCore
+```
+
+## 6 LLVM bitcode to LLVM 汇编码
+
+使用 `llvm-dis` (LLVM 反汇编器) 实现 LLVM bitcode (.bc) 转回 LLVM IR (.ll)
+
+```shell
+llvm-dis-8 03test.bc -o 05test.ll
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121514660.png)
+
+## 5 IR Transform
+
+主要利用 `opt` 工具实现 IR 形式的转化与代码的优化
+
+```shell
+opt-8 -mem2reg -S 02multiply.ll -o 06multiply.-mem2reg.ll
+```
+
+- `-mem2reg`: 主要优化内存访问, 将局部变量从内存提升到寄存器
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121535088.png)
+
+如上图所示, 这里按照书中的步骤执行会发现 `-mem2reg` 并没有任何效果, 这是[因为](https://stackoverflow.com/questions/46513801/llvm-opt-mem2reg-has-no-effect) clang 将 c 转为 ll 时默认的优化级别时 O0, 这个级别会为生成汇编码中的每个函数添加一个属性 `optnone` 显示的阻断后续的优化 pass
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121538419.png)
+
+为了避免这个问题, 需要在 clang 转换时添加属性 `-Xclang -disable-O0-optnone` 将 "封印解除" 就可以单独进行 `-mem2reg` 的优化并看到效果了
+
+```shell
+clang-8 -emit-llvm -S 06multiply.c -Xclang -disable-O0-optnone -o 06multiply.ll
+opt-8 -mem2reg -S 06multiply.ll -o 06multiply.-mem2reg.ll
+cat 06multiply.-mem2reg.ll
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121543787.png)
+
 
 # Refs
 
