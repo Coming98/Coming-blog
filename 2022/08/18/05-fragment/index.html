@@ -474,7 +474,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -583,8 +583,9 @@
     <span class="token comment">// 使用 replace()方法向容器内替换 Fragment，需要传入容器的id和待添加的 Fragment 实例</span>
     transaction<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>rightLayout<span class="token punctuation">,</span> fragment<span class="token punctuation">)</span>
     <span class="token comment">// 提交事务</span>
-    transaction<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    transaction<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 并行处理</span>
+    <span class="token comment">// transaction.commitNow() // 立即执行，避免其它引用冲突</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="带有参数的-fragment"><a class="markdownIt-Anchor" href="#带有参数的-fragment"></a> 带有参数的 Fragment</h2>
 <p>Fragment 显示的内容可能需要其父 Activity 告知, 因此初始化时需要配置相应的参数</p>
 <ol>
@@ -1269,7 +1270,7 @@ transaction<span class="token punctuation">.</span><span class="token function">
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">128.6k</span>&nbsp;字
+                class="white-color">133.4k</span>&nbsp;字
             
             
             

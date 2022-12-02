@@ -512,11 +512,8 @@
 <h2 id="加密算法"><a class="markdownIt-Anchor" href="#加密算法"></a> 加密算法</h2>
 <p>对称加密算法：加密密钥与解密密钥相同；由于对称加密的运算速度快，所以 IPSec 使用对称加密算法来加密数据；Example ：DES，3DES，AES</p>
 <p>非对称加密算法：加密密钥与解密密钥不同；由于非对称加密的运算速度慢，所以主要用来交换秘钥和身份认证；Example ：RSA，DH</p>
-<blockquote>
-<p>RSA 公钥算法常用于加密，签名与身份认证</p>
-</blockquote>
 <h3 id="dh"><a class="markdownIt-Anchor" href="#dh"></a> DH</h3>
-<p>Diffie-Hellman 密钥交换算法，用于在非安全通道上安全的建立共享秘钥</p>
+<p>Diffie-Hellman 密钥交换算法</p>
 <p>1、主机1，产生一个很大的数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> 一个素数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 和一个整数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span>，计算得到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><msup><mi>g</mi><mi>a</mi></msup><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><mi>p</mi></mrow><annotation encoding="application/x-tex">A=g^a \mod p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.858832em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span></span></span></span></p>
 <blockquote>
 <p>公钥：A，私钥：a</p>
@@ -563,7 +560,7 @@
 <p>传输模式适用于两台主机之间的数据保护；隧道模式适宜于在站点间建立安全 VPN 隧道：保护多台主机</p>
 <h1 id="ah"><a class="markdownIt-Anchor" href="#ah"></a> AH</h1>
 <p>AH 协议：Authentication Header，认证头协议，协议号：51</p>
-<p>提的服务如下：数据完整性服务（哈希校验），数据源身份认证（共享秘钥），防止数据重放攻击（AH 头中序列号字段）</p>
+<p>提的服务如下：数据完整性服务（哈希校验），数据源身份认证（共享秘钥），防止数据重放攻击（ESP 头中序列号字段），数据机密性服务（加密）</p>
 <blockquote>
 <p>提供报头验证工能，但是不能提供数据加密工能，使得数据可以读取但是无法修改</p>
 </blockquote>
@@ -757,7 +754,7 @@ SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥<span ari
 <p>A：一个 IKE 下可以承载多个 IPSec（quick 模式），使得 IKE 可以复用；第一个 SA 作用与 IKE 保证了通道安全；随后的 IPSec SA 使得 IKE 可以复用；</p>
 <h2 id="demo-分析"><a class="markdownIt-Anchor" href="#demo-分析"></a> Demo 分析</h2>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202172856.png" alt="Demo 分析" /></p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211203091232.png" alt="Demo 分析2" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211014134933959.png" alt="image-20211014134933959" /></p>
 <p>1、数据传输</p>
 <p>2、到 SPD 中查找安全策略：发现源地址为 <code>1.25</code> 目的地址为 <code>2.34</code> 的需要使用安全策略</p>
 <p>3、需要建立相应的 IKE SA（安全关联）：查找策略表中是否存在 SA</p>
@@ -1324,7 +1321,7 @@ SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥<span ari
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">128.6k</span>&nbsp;字
+                class="white-color">133.4k</span>&nbsp;字
             
             
             

@@ -690,7 +690,7 @@
 <h2 id="3-主机扫描"><a class="markdownIt-Anchor" href="#3-主机扫描"></a> 3 主机扫描</h2>
 <p>A 先使用 nmap 扫描一下本局域网，可以扫出网关 192.168.1.1，用户机 192.168.1.109</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sP 192.168.1.0&#x2F;24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925195305365.png" alt="image-20210925195305365" /></p>
+<p><img src="C:%5CUsers%5CButterflier%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210925195305365.png" alt="image-20210925195305365" /></p>
 <h2 id="4-开始攻击"><a class="markdownIt-Anchor" href="#4-开始攻击"></a> 4 开始攻击</h2>
 <p>使用 arpspoof 命令开始 ARP 欺骗</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># arpspoof -i eth0 -t 目标ip 主机ip（路由器）
@@ -710,7 +710,7 @@ arpspoof -i eth0 -t 192.168.1.109 192.168.1.1 # 将 109 发往 网关的包监�
 </blockquote>
 <p>执行下方命令，开启流量转发，再次开启 ARP 双向欺骗后，这时 User B 是正常上网状态：</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">echo 1 | sudo tee &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925203541401.png" alt="image-20210925203541401" style="zoom:50%;" />
+<img src="C:\Users\Butterflier\AppData\Roaming\Typora\typora-user-images\image-20210925203541401.png" alt="image-20210925203541401" style="zoom:50%;" />
 <img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210925203527816.png" alt="image-20210925203527816" style="zoom:50%;" />
 <h2 id="6-流量嗅探"><a class="markdownIt-Anchor" href="#6-流量嗅探"></a> 6 流量嗅探</h2>
 <p>我们拦截了请求与响应包，应当得查看一眼里面有没有什么重要信息吧~</p>
@@ -1272,7 +1272,7 @@ arpspoof -i eth0 -t 192.168.1.109 192.168.1.1 # 将 109 发往 网关的包监�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">128.6k</span>&nbsp;字
+                class="white-color">133.4k</span>&nbsp;字
             
             
             

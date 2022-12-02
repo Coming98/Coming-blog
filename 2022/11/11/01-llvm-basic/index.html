@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    13 分
                 </div>
                 
 
@@ -781,11 +781,11 @@ mult:                                   # @mult
     x86        - 32-bit X86: Pentium-Pro and above
     x86-64     - 64-bit X86: EM64T and AMD64
     xcore      - XCore<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="6-llvm-bitcode-to-llvm-汇编码"><a class="markdownIt-Anchor" href="#6-llvm-bitcode-to-llvm-汇编码"></a> 6 LLVM bitcode to LLVM 汇编码</h2>
+<h2 id="5-llvm-bitcode-to-llvm-汇编码"><a class="markdownIt-Anchor" href="#5-llvm-bitcode-to-llvm-汇编码"></a> 5 LLVM bitcode to LLVM 汇编码</h2>
 <p>使用 <code>llvm-dis</code> (LLVM 反汇编器) 实现 LLVM bitcode (.bc) 转回 LLVM IR (.ll)</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">llvm-dis-8 03test.bc -o 05test.ll<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121514660.png" alt="" /></p>
-<h2 id="5-ir-transform"><a class="markdownIt-Anchor" href="#5-ir-transform"></a> 5 IR Transform</h2>
+<h2 id="6-ir-transform"><a class="markdownIt-Anchor" href="#6-ir-transform"></a> 6 IR Transform</h2>
 <p>主要利用 <code>opt</code> 工具实现 IR 形式的转化与代码的优化</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">opt-8 -mem2reg -S 02multiply.ll -o 06multiply.-mem2reg.ll<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
@@ -799,6 +799,72 @@ mult:                                   # @mult
 opt-8 -mem2reg -S 06multiply.ll -o 06multiply.-mem2reg.ll
 cat 06multiply.-mem2reg.ll<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121543787.png" alt="" /></p>
+<h2 id="7-链接-llvm-bitcode"><a class="markdownIt-Anchor" href="#7-链接-llvm-bitcode"></a> 7 链接 LLVM bitcode</h2>
+<p>llvm-link 的功能和传统的链接器一致: 如果一个函数或者变量在一个文件中被引用, 却在另一个文件中定义, 那么链接器就会解析这个文件中引用的符号, 只不过其针对的是 llvm bitcode 文件而非 object</p>
+<ol>
+<li>准备如下两个文件, 准备进行连接</li>
+</ol>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 07test1.c</span>
+<span class="token keyword">int</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    a <span class="token operator">=</span> a <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 07test2.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">extern</span> <span class="token keyword">int</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    num <span class="token operator">=</span> <span class="token function">func</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"number is %d\n"</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> num<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>将 C 转为 LLVM bitcode (位流文件格式): c -&gt; ll -&gt; bc</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">clang-8 -emit-llvm -S 07test1.c -o 07test1.ll
+clang-8 -emit-llvm -S 07test2.c -o 07test2.ll
+llvm-as-8 07test1.ll -o 07test1.bc
+llvm-as-8 07test2.ll -o 07test2.bc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此时 test2.bc 引用了 test1.bc 文件中的 func 函数</p>
+<ol start="3">
+<li>使用 <code>llvm-link</code> 命令链接两个 LLVM bitcode 文件</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">llvm-link-8 07test1.bc 07test2.bc -o 07test_linked.bc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="4">
+<li>可以使用 <code>—S</code> 参数, 让 <code>llvm-link</code> 直接输出 LLVM IR 文件</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">llvm-link-8 -S 07test1.bc 07test2.bc -o 07test_linked.ll<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211140951540.png" alt="" /></p>
+<h2 id="8-执行-llvm-bitcode"><a class="markdownIt-Anchor" href="#8-执行-llvm-bitcode"></a> 8 执行 LLVM bitcode</h2>
+<p>使用 <code>lli</code> 工具以 LLVM bitcode 为输入, 使用即时编译器 (JIT) 实现 LLVM bitcode 的执行</p>
+<ul>
+<li>如果当前的架构不存在 JIT 编译器，会用解释器执行</li>
+</ul>
+<ol>
+<li><code>lli 07test_linked.bc</code> 即可执行</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211140953616.png" alt="" /></p>
+<h2 id="9-c-与-clang"><a class="markdownIt-Anchor" href="#9-c-与-clang"></a> 9 C 与 Clang</h2>
+<p>Clang 能够作为预处理器、编译器驱动、前端以及代码生成器使用，它的输出取决于你指定的参数</p>
+<ol>
+<li>使用 <code>clang</code> 将 C 转为可执行文件</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">clang-8 09test.c -o 09test.out<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141005188.png" alt="" /></p>
+<ol start="2">
+<li>添加 <code>-S -emit-llvm</code> 选项, 将 C 转为 LLVM 汇编码</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">clang-8 09test.c -S -emit-llvm -o 09test.ll<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>-S</code>: 表示 Only run preprocess and compilation steps
+<code>-emit-llvm</code>: 表示 Use the LLVM representation for assembler and object files</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141008765.png" alt="" /></p>
+<ol start="3">
+<li>仅添加 <code>-S</code> 选项, 就能实现 C 转为汇编码</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">clang-8 09test.c -S -o -<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>-o -</code>: 将结果再标准输出中输出</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141013679.png" alt="" /></p>
 <h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1>
 <ul>
 <li>[llvm-cookbook]</li>
@@ -1356,7 +1422,7 @@ cat 06multiply.-mem2reg.ll<span aria-hidden="true" class="line-numbers-rows"><sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">128.6k</span>&nbsp;字
+                class="white-color">133.4k</span>&nbsp;字
             
             
             

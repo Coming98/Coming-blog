@@ -703,6 +703,7 @@ menu<span class="token punctuation">.</span><span class="token function">show</s
 </ul>
 <h2 id="alertdialog"><a class="markdownIt-Anchor" href="#alertdialog"></a> AlertDialog</h2>
 <p>在当前界面弹出一个对话框, 置于所有界面元素之上(屏蔽其他控件的交互能力)</p>
+<h3 id="二次确认"><a class="markdownIt-Anchor" href="#二次确认"></a> 二次确认</h3>
 <pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin">R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>button_change_image <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">val</span> environment <span class="token operator">=</span> <span class="token keyword">this</span>
     AlertDialog<span class="token punctuation">.</span><span class="token function">Builder</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
@@ -720,6 +721,18 @@ menu<span class="token punctuation">.</span><span class="token function">show</s
     <span class="token punctuation">&#125;</span>
 
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="列表选择"><a class="markdownIt-Anchor" href="#列表选择"></a> 列表选择</h3>
+<pre class="line-numbers language-kotlin" data-language="kotlin"><code class="language-kotlin"><span class="token keyword">val</span> todoCategoryItems <span class="token operator">=</span> viewModel<span class="token punctuation">.</span>todoCategoryList<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">&#123;</span> it<span class="token punctuation">.</span>name <span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">toTypedArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">val</span> alertBuilder<span class="token operator">:</span> AlertDialog<span class="token punctuation">.</span>Builder <span class="token operator">=</span> AlertDialog<span class="token punctuation">.</span><span class="token function">Builder</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"时间规划集"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setItems</span><span class="token punctuation">(</span>todoCategoryItems<span class="token punctuation">,</span> DialogInterface<span class="token punctuation">.</span><span class="token function">OnClickListener</span> <span class="token punctuation">&#123;</span> dialog<span class="token punctuation">,</span> which <span class="token operator">-></span>
+        insertTodoitmeCategory<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>todoCategoryItems<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>which<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        dialog<span class="token punctuation">.</span><span class="token function">dismiss</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211091917520.jpg" alt="" /></p>
 <h2 id="progressdialogold"><a class="markdownIt-Anchor" href="#progressdialogold"></a> ProgressDialog【OLD】</h2>
 <p>功能：弹出的对话框中显示一个进度条，缓解用户等待的焦躁。</p>
 <p>构建方法：与AlertDialog类似</p>
@@ -1689,7 +1702,7 @@ itemTouchHelper<span class="token punctuation">.</span><span class="token functi
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">128.6k</span>&nbsp;字
+                class="white-color">133.4k</span>&nbsp;字
             
             
             

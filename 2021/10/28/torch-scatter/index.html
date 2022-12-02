@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    711
+                    4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    19 分
                 </div>
                 
 
@@ -501,7 +501,473 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="scatter"><a class="markdownIt-Anchor" href="#scatter"></a> scatter</h1>
+                <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
+<p><code>var.item()</code> - 如果张量 var 中只有一个元素，使用该方法取出该元素</p>
+<h1 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h1>
+<p><code>tensor.size</code> - shapes</p>
+<h1 id="tensor的拼接"><a class="markdownIt-Anchor" href="#tensor的拼接"></a> tensor的拼接</h1>
+<p>tensor的拼接操作经常用到、特地将其整理如下</p>
+<ul>
+<li>cat - dim=all</li>
+<li>stack - dim=new_dim</li>
+<li>dstack - dim=2</li>
+<li>hstack - dim=1</li>
+<li>vstack- dim=0</li>
+</ul>
+<h2 id="cat"><a class="markdownIt-Anchor" href="#cat"></a> cat</h2>
+<p><strong>功能</strong>：将给定的 tensors 在给定的维度上拼接</p>
+<p><strong>注意</strong>：除了拼接的维度其余维度大小应一致</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>
+<p>tensors - 多个tensor组成的元组（序列）</p>
+</li>
+<li>
+<p>dim - 想要拼接的维度</p>
+</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+y_1 <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+y_2 <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y_1<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y_2<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<hr />
+<h2 id="stack"><a class="markdownIt-Anchor" href="#stack"></a> stack</h2>
+<p><strong>功能</strong>：将给定的 tensors 在新的维度进行拼接</p>
+<p><strong>注意</strong>：每一个 tensor 的大小都应一致</p>
+<p><strong>参数</strong>：tensors</p>
+<ul>
+<li>dim - 所要插入的维度，最小为 0 ，最大为输入数据的维度值</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> torch<span class="token punctuation">.</span>stack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+d <span class="token operator">=</span> torch<span class="token punctuation">.</span>stack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+e <span class="token operator">=</span> torch<span class="token punctuation">.</span>stack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+f <span class="token operator">=</span> torch<span class="token punctuation">.</span>stack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+d<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+e<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+f<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<hr />
+<h2 id="dstack"><a class="markdownIt-Anchor" href="#dstack"></a> dstack</h2>
+<p><strong>功能</strong>：将给定的 tensors 沿着深度（depth）方向 (dim=2) 叠加</p>
+<p>注意：其余维度大小一致</p>
+<p><strong>参数</strong>：tensors</p>
+<p><strong>Test 1</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> torch<span class="token punctuation">.</span>dstack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output 1</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>Test 2 如果输入数据小于三维呢？</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> torch<span class="token punctuation">.</span>dstack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output 2 会扩增维度</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<hr />
+<h2 id="hstack"><a class="markdownIt-Anchor" href="#hstack"></a> hstack</h2>
+<p><strong>功能</strong>：将给定的 tensors 沿着水平（horizontal）方向 (dim=1) 叠加</p>
+<p><strong>注意</strong>：其余维度大小一致</p>
+<p><strong>参数</strong>：tensors</p>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> torch<span class="token punctuation">.</span>hstack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+d <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+d<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<hr />
+<h2 id="vstack"><a class="markdownIt-Anchor" href="#vstack"></a> vstack</h2>
+<p><strong>功能</strong>：将给定的 tensors 沿着竖直（vertical）方向 (dim=0) 叠加</p>
+<p><strong>注意</strong>：其余维度大小一致</p>
+<p><strong>参数</strong>：tensors</p>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> torch<span class="token punctuation">.</span>vstack<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+d <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+d<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="tensor的切分"><a class="markdownIt-Anchor" href="#tensor的切分"></a> tensor的切分</h1>
+<p>数据的预处理以及数据集的构建会经常使用到tensor的切分操作，现整理如下：</p>
+<ul>
+<li>chunk</li>
+<li>split</li>
+<li>numpy中的切片(slice)操作</li>
+<li>unbind</li>
+</ul>
+<hr />
+<h2 id="chunk"><a class="markdownIt-Anchor" href="#chunk"></a> chunk</h2>
+<p><strong>功能</strong>：输入数据与想要切分的块数 chunks ，将数据尽可能 (如果数据个数与块数能整除的话) 平均的切分为 chunks 块</p>
+<p><strong>注意</strong>：没有进行数据的拷贝</p>
+<p><strong>参数</strong></p>
+<ul>
+<li>input - tensor</li>
+<li>chunks - 切分的块数</li>
+<li>dim - int - 切分的维度</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">x &#x3D; torch.randn(33, 16)
+y &#x3D; torch.chunk(x, 4, dim&#x3D;0)
+y_1 &#x3D; torch.chunk(x, 2, dim&#x3D;1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 尽可能平均的切分为了四块</span>
+y<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+y_1<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">33</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			  torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">33</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr />
+<h2 id="split"><a class="markdownIt-Anchor" href="#split"></a> split</h2>
+<p><strong>功能</strong>：</p>
+<ul>
+<li>可以输入整型数据 size 表示将数据尽可能 按照大小 size 进行分割，自行计算分割的块数</li>
+<li>可以输入序列数据 list 将数据分割为 len(list) 块，每块的大小对应于list中的值</li>
+</ul>
+<p><strong>注意</strong>：没有对输入数据进行拷贝</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>input - tensor</li>
+<li>split_size_or_sections - int or (ints) - 详见功能介绍</li>
+<li>dim - int - 切分的维度</li>
+</ul>
+<p><strong>Test 1 输入整型数据</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token comment"># 在维度 1 上进行切分，使得每一块大小尽可能为 2</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>split<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output 1</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> <span class="token punctuation">(</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+     tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+     tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             <span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 最后剩余 - 无法按照size大小进行分配</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>Test 2 输入为整型序列</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token comment"># 在维度 0 上进行切分，目标切分为 2 块，第一块维度大小为 1，第二块维度大小为 1</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>split<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-pyhon" data-language="pyhon"><code class="language-pyhon">a &#x3D; tensor([[0, 1, 2, 3, 4],
+            [5, 6, 7, 8, 9]])
+b &#x3D; (tensor([[0, 1, 2, 3, 4]]), 
+     tensor([[5, 6, 7, 8, 9]]))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<hr />
+<h2 id="slice"><a class="markdownIt-Anchor" href="#slice"></a> slice</h2>
+<p><strong>功能</strong>：torch支持numpy中对数据的切片操作</p>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">x &#x3D; torch.randn(3, 2)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">0.2893</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.1715</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">0.2477</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2.7052</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">0.2827</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.2669</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1.1715</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2.7052</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.2669</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">0.2893</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.1715</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2.7052</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.2669</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr />
+<h2 id="unbind"><a class="markdownIt-Anchor" href="#unbind"></a> unbind</h2>
+<p><strong>功能</strong>：删除tensor的一个维度，返回各个子块组成的 tuple</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>input - tensor</li>
+<li>dim - int - 想要删除的维度</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>unbind<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python"># a
+tensor([[[ 2, -5, -5,  4],
+         [ 4, -4,  4, -5],
+         [-4, -4,  1, -4]],
+
+        [[ 1, -2,  2, -4],
+         [-2, -3, -2,  1],
+         [ 1, -2,  2, -2]]])
+# b
+tensor([[ 2, -5, -5,  4],
+        [ 1, -2,  2, -4]])
+tensor([[ 4, -4,  4, -5],
+        [-2, -3, -2,  1]])
+tensor([[-4, -4,  1, -4],
+        [ 1, -2,  2, -2]])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr />
+<h1 id="tensor的索引"><a class="markdownIt-Anchor" href="#tensor的索引"></a> tensor的索引</h1>
+<p>根据索引获取数据中特定位置的值</p>
+<ul>
+<li>gather</li>
+<li>index_select</li>
+<li>masked_select</li>
+<li>narrow</li>
+<li>nonzero</li>
+<li>where</li>
+<li>take</li>
+</ul>
+<hr />
+<h2 id="gather"><a class="markdownIt-Anchor" href="#gather"></a> gather</h2>
+<p><strong>功能</strong>：沿指定的维度收集值</p>
+<p><strong>注意</strong>：除了指定的维度、其余维度都遍历一遍</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>input - tensor</li>
+<li>dim - int - 收集的维度</li>
+<li>index - LongTensor - 要收集的元素的索引，维度数和 input 一致</li>
+<li>sparse_grad - bool - 如果 input 为 sparse tensor 那么设定为 true</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>u</mi><mi>t</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>=</mo><mi>i</mi><mi>n</mi><mi>p</mi><mi>u</mi><mi>t</mi><mo stretchy="false">[</mo><mtext> </mtext><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mtext> </mtext><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mtext> </mtext><mi>w</mi><mi>i</mi><mi>t</mi><mi>h</mi><mtext> </mtext><mi>d</mi><mi>i</mi><mi>m</mi><mo>=</mo><mn>0</mn><mspace linebreak="newline"></mspace><mi>o</mi><mi>u</mi><mi>t</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>=</mo><mi>i</mi><mi>n</mi><mi>p</mi><mi>u</mi><mi>t</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mtext> </mtext><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mtext> </mtext><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mtext> </mtext><mi>w</mi><mi>i</mi><mi>t</mi><mi>h</mi><mtext> </mtext><mi>d</mi><mi>i</mi><mi>m</mi><mo>=</mo><mn>1</mn><mspace linebreak="newline"></mspace><mi>o</mi><mi>u</mi><mi>t</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>=</mo><mi>i</mi><mi>n</mi><mi>p</mi><mi>u</mi><mi>t</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mtext> </mtext><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mtext> </mtext><mo stretchy="false">]</mo><mtext> </mtext><mi>w</mi><mi>i</mi><mi>t</mi><mi>h</mi><mtext> </mtext><mi>d</mi><mi>i</mi><mi>m</mi><mo>=</mo><mn>2</mn><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">out[i][j][k] = input[\ index[i][j][k]\ ][j][k]\ with\ dim=0 \\
+out[i][j][k] = input[i][\ index[i][j][k]\ ][k]\ with\ dim=1 \\
+out[i][j][k] = input[i][j][\ index[i][j][k]\ ]\ with\ dim=2 \\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">t</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">p</span><span class="mord mathdefault">u</span><span class="mord mathdefault">t</span><span class="mopen">[</span><span class="mspace"> </span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace"> </span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mspace"> </span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">t</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">p</span><span class="mord mathdefault">u</span><span class="mord mathdefault">t</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mspace"> </span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace"> </span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mspace"> </span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">t</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">p</span><span class="mord mathdefault">u</span><span class="mord mathdefault">t</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mspace"> </span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace"> </span><span class="mclose">]</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mspace"> </span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span><span class="mspace newline"></span></span></span></span></p>
+<p>**Test 1 **</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>gather<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 确定维度后线性索引即可</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="index_select"><a class="markdownIt-Anchor" href="#index_select"></a> index_select</h2>
+<p><strong>功能</strong>：在指定的维度上根据索引取值</p>
+<p><strong>注意</strong>：进行了拷贝</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>input - tensor</li>
+<li>dim - int</li>
+<li>index - LongTensor - 一维 tensor 指定索引</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>index_select<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="masked_select"><a class="markdownIt-Anchor" href="#masked_select"></a> masked_select</h2>
+<p><strong>功能</strong>：根据 booltensor 进行索引，将索引到的值以一维 tensor 的形式返回</p>
+<p><strong>注意</strong>：boolTensor 支持广播</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>input - tensor</li>
+<li>mask - boolTensor</li>
+</ul>
+<p><strong>Test 1</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token comment"># ge - great_equal</span>
+mask <span class="token operator">=</span> a<span class="token punctuation">.</span>ge<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span> 
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>masked_select<span class="token punctuation">(</span>a<span class="token punctuation">,</span> mask<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token boolean">True</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span> <span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token boolean">True</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+tensor<span class="token punctuation">(</span><span class="token punctuation">[</span> <span class="token number">6</span><span class="token punctuation">,</span>  <span class="token number">7</span><span class="token punctuation">,</span>  <span class="token number">8</span><span class="token punctuation">,</span>  <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>Test 2 广播测试</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>masked_select<span class="token punctuation">(</span>a<span class="token punctuation">,</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">True</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 可以广播</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Output 2</p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">a &#x3D; tensor([[ 0,  1,  2,  3],
+            [ 4,  5,  6,  7],
+            [ 8,  9, 10, 11]])
+b &#x3D; tensor([0, 1, 2, 3])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="narrow"><a class="markdownIt-Anchor" href="#narrow"></a> narrow</h2>
+<p><strong>功能</strong>：类似于 numpy中的切片操作，针对某一维度进行索引，（连续）取值</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>
+<p>input - tensor</p>
+</li>
+<li>
+<p>dim - int - 所要操作的维度</p>
+</li>
+<li>
+<p>start - int - 开始的索引</p>
+</li>
+<li>
+<p>length - 保留长度</p>
+</li>
+</ul>
+<p><strong>简单理解：</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">torch<span class="token punctuation">.</span>narrow<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> start<span class="token punctuation">,</span> length<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span>start<span class="token punctuation">:</span>start<span class="token operator">+</span>length<span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>narrow<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+z <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             <span class="token punctuation">[</span> <span class="token number">3</span><span class="token punctuation">,</span>  <span class="token number">4</span><span class="token punctuation">,</span>  <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ 
+            <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token number">6</span><span class="token punctuation">,</span>  <span class="token number">7</span><span class="token punctuation">,</span>  <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             <span class="token punctuation">[</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             <span class="token punctuation">[</span> <span class="token number">4</span><span class="token punctuation">,</span>  <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+            <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token number">7</span><span class="token punctuation">,</span>  <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+z <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token number">1</span><span class="token punctuation">,</span>  <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             <span class="token punctuation">[</span> <span class="token number">4</span><span class="token punctuation">,</span>  <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+            <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token number">7</span><span class="token punctuation">,</span>  <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+             <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="nonzero"><a class="markdownIt-Anchor" href="#nonzero"></a> nonzero</h2>
+<p><strong>功能</strong>：找出给定 tensor 中非零元素的索引</p>
+<p><strong>注意</strong>：as_tuple 参数与输出样式有关</p>
+<ul>
+<li>True - 返回一个二维 tensor，每一行表示一个非零值的索引</li>
+<li>False - 返回 n 个大小为 z 的一维 tensor - n 表示输入数据的维度 - z表示非零元素的个数</li>
+</ul>
+<p><strong>参数</strong></p>
+<ul>
+<li>input - tensor</li>
+<li>as_tuple - default (False)</li>
+</ul>
+<p><strong>Test 1</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+i_2D <span class="token operator">=</span> torch<span class="token punctuation">.</span>nonzero<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+i_1D <span class="token operator">=</span> torch<span class="token punctuation">.</span>nonzero<span class="token punctuation">(</span>a<span class="token punctuation">,</span> as_tuple<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output 1</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+i_2D <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+               <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+i_1D <span class="token operator">=</span> <span class="token punctuation">(</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>扩展</strong>：</p>
+<p>结合 torch 中类似 numpy 的 bool索引，我们可以构造条件索引的形式</p>
+<ul>
+<li>通过条件语句生成 bool tensor</li>
+<li>True为1，False为0，即nonzero会找到所有Ture值的索引（条件筛选出来的元素）</li>
+</ul>
+<p><strong>Test 2 利用条件语句实现逆 nonzero</strong></p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">a &#x3D; torch.randint(0, 2, (3, 3))
+bool_tensor &#x3D; (a &#x3D;&#x3D; 0)
+index_nonzero &#x3D; torch.nonzero(bool_type)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output 2</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># a</span>
+tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment"># bool_tensor</span>
+tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment"># index_nonzero</span>
+tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>Test 3 如何合并多个条件呢</strong></p>
+<p>利用集合操作即可</p>
+<ul>
+<li>
+<p>根据原子条件分别生成多个 booltensor</p>
+</li>
+<li>
+<p>根据需求采用交或并等的方式合并多个 booltensor</p>
+</li>
+</ul>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">a &#x3D; torch.randint(0, 8, (2, 5)) # 1 &lt; a &lt; 4: a &#x3D; 2 or 3
+bool_tensor_1 &#x3D; a &gt; 1
+bool_tensor_2 &#x3D; a &lt; 4
+bool_tensor &#x3D; bool_tensor_1 &amp; bool_tensor_2 # 交集
+index &#x3D; torch.nonzero(bool_tensor)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output 3</p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python"># a
+tensor([[1, 4, 2, 6, 0],
+        [5, 3, 1, 2, 6]])
+# bool tensor 1
+tensor([[False,  True,  True,  True, False],
+        [ True,  True, False,  True,  True]])
+# bool tensor 2
+tensor([[ True, False,  True, False,  True],
+        [False,  True,  True,  True, False]])
+# bool tensor
+tensor([[False, False,  True, False, False],
+        [False,  True, False,  True, False]])
+# index
+tensor([[0, 2],
+        [1, 1],
+        [1, 3]])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="where"><a class="markdownIt-Anchor" href="#where"></a> where</h2>
+<p><strong>功能 1</strong>：根据 booltensor 返回目标值的索引</p>
+<p><strong>简单理解</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">torch<span class="token punctuation">.</span>where<span class="token punctuation">(</span>condition<span class="token punctuation">)</span> <span class="token operator">==</span> torch<span class="token punctuation">.</span>nonzero<span class="token punctuation">(</span>condition<span class="token punctuation">,</span> as_tuple<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>参数</strong>：condition - booltensor</p>
+<p><strong>Test 1</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>where<span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token number">1.2484</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.4649</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span> <span class="token number">1.7428</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.3610</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span> <span class="token number">0.3865</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.1223</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> <span class="token punctuation">(</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>功能 2</strong>：根据 booltensor 定位到目标值，选择性进行 值替换</p>
+<p><strong>注意</strong>：支持广播</p>
+<p><strong>简单理解</strong></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>u</mi><msub><mi>t</mi><mi>i</mi></msub><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>x</mi><mi>i</mi></msub><mtext> </mtext></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi><mtext> </mtext><mi>c</mi><mi>o</mi><mi>n</mi><mi>d</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>o</mi><msub><mi>n</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>y</mi><mi>i</mi></msub><mtext> </mtext></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>o</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>r</mi><mi>w</mi><mi>i</mi><mi>s</mi><mi>e</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">out_i = 
+\begin{cases}
+x_i \ &amp;if\ condition_i \\
+y_i \ &amp;otherwise
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"> </span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"> </span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace"> </span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord mathdefault">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>condition - booltensor</li>
+<li>x - tensor</li>
+<li>y - tensor</li>
+</ul>
+<p><strong>Test 2 大于0不变 小于等于0改变</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+z <span class="token operator">=</span> torch<span class="token punctuation">.</span>where<span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+z_1 <span class="token operator">=</span> torch<span class="token punctuation">.</span>where<span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 
+                                          <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 
+                                          <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 支持广播</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1.9040</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.3891</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span> <span class="token number">1.0645</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.0039</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">0.1270</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0.2566</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+z <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1.0000</span><span class="token punctuation">,</span> <span class="token number">1.0000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">1.0645</span><span class="token punctuation">,</span> <span class="token number">1.0000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">1.0000</span><span class="token punctuation">,</span> <span class="token number">1.0000</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment"># z_1</span>
+tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1.0000</span><span class="token punctuation">,</span> <span class="token number">1.0000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">1.0645</span><span class="token punctuation">,</span> <span class="token number">2.0000</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">3.0000</span><span class="token punctuation">,</span> <span class="token number">3.0000</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="take"><a class="markdownIt-Anchor" href="#take"></a> take</h2>
+<p><strong>功能</strong>：根据一维索引进行取值，返回一维tensor （内部将输入的tensor铺平后进行索引）</p>
+<p><strong>功能</strong>：根据一维索引进行取值，返回一维tensor （内部将输入的tensor铺平后进行索引）</p>
+<p><strong>注意</strong>：进行了数据拷贝</p>
+<p><strong>参数</strong></p>
+<ul>
+<li>input</li>
+<li>indices - 一维索引</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+indices <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>take<span class="token punctuation">(</span>x<span class="token punctuation">,</span> indices<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+indices <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="tensor-的填充"><a class="markdownIt-Anchor" href="#tensor-的填充"></a> tensor 的填充</h1>
+<p>ref：<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor.scatter_">https://pytorch.org/docs/stable/tensors.html#torch.Tensor.scatter_</a></p>
+<h2 id="scatter"><a class="markdownIt-Anchor" href="#scatter"></a> scatter</h2>
 <p>scatter 是撒播的意思，希望能先入为主的理解一下这个函数的功能，就是往目标矩阵撒一些数值进去，往哪撒（dim？index？）与撒什么值（src）将由我们输入的参数决定</p>
 <p>官方一些的说明：将 src 中数据根据 index 中的索引按照 dim 的方向填进 input 中</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">tensor<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>dim<span class="token punctuation">,</span> index<span class="token punctuation">,</span> src<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -517,7 +983,7 @@ self<span class="token punctuation">[</span>i<span class="token punctuation">]</
 <p>为了保证索引对应 index 索引张量的维度应与 src 张量的维度一致，但是 shape 可以不一致</p>
 </blockquote>
 <p>让我们以一个二维的情形为例：</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028195119040.png" alt="image-20211028195119040" /></p>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028195119040.png" alt="image-20211028195119040" /></p>
 <p>从 index 出发，因为 dim = 1，所以我们能够得知目标填充索引为 (0, 3)</p>
 <blockquote>
 <p>可以认为先从 (i = 0, j=0) 找到了 index 和 value 的值（3, 9），又因为 dim = 1，因此 index 的值将作用于列索引所以得到最终索引为 (i=0, j=3)</p>
@@ -527,8 +993,7 @@ self<span class="token punctuation">[</span>i<span class="token punctuation">]</
 <p>我们对 index 进行遍历时，dim 影响的那一个维度会由 index 内部的值决定，其余维度索引保持一致</p>
 </blockquote>
 <p>那我们看 value 中的 5，它的行索引是 1，因此它必然撒到 dest 中的第一行（dim=1），但是撒在第几列将由 index 决定，index 说撒在第 4 列，done！</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028195554262.png" alt="image-20211028195554262" /></p>
-<h1 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h1>
+<p><img src="https://gitee.com/Butterflier/pictures/raw/master/image-20211028195554262.png" alt="image-20211028195554262" /></p>
 <p><strong>Example： Lable 转 one-hot</strong></p>
 <p>Label 通常是一维的 <code>shape=(N,)</code>，而模型的 output 通常是 softmax 之后的二维结果
 <code>shape=(N, dim)</code>，因此将 label 变为 二维的 one-hot 形式非常常见</p>
@@ -549,7 +1014,137 @@ torch<span class="token punctuation">.</span>zeros<span class="token punctuation
 <p>label 即是我们要索引的列，我们需要完成对 label 的遍历</p>
 <p>1、第一个值为 <code>6</code> 告知第一行第 <code>6</code> 列</p>
 <p>1、第二个值为 <code>0</code> 告知第二行第 <code>0</code> 列</p>
-<p>….</p>
+<p>..</p>
+<h1 id="tensor的变换"><a class="markdownIt-Anchor" href="#tensor的变换"></a> tensor的变换</h1>
+<ul>
+<li>movedim</li>
+<li>reshape</li>
+<li>view</li>
+<li>squeeze</li>
+<li>unsqueeze</li>
+<li>t</li>
+<li>transpose</li>
+</ul>
+<h2 id="movedim"><a class="markdownIt-Anchor" href="#movedim"></a> movedim</h2>
+<p><strong>功能</strong>：进行（多个）维度的移动</p>
+<p><strong>注意</strong>：其余维度保持原有不变，并按照原顺序依次落位</p>
+<p><strong>参数</strong></p>
+<ul>
+<li>input</li>
+<li>source - int or tuple - 维度移动前的索引</li>
+<li>destination - int or tuple - 维度移动后的索引</li>
+</ul>
+<p><strong>Test 1 其余维度保持原有不变，并按照原顺序依次落位</strong></p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">a &#x3D; torch.randn(2, 3, 4, 5)
+b &#x3D; torch.movedim(a, 0, 3)
+c &#x3D; torch.movedim(a, 0, 2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+c <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>Test 2 输入为tuple</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>movedim<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="reshape"><a class="markdownIt-Anchor" href="#reshape"></a> reshape</h2>
+<p><strong>功能</strong>：改变输入 tensor 的维度分配</p>
+<p><strong>注意</strong>：应默认该函数不会对源数据进行拷贝</p>
+<p><strong>参数</strong></p>
+<ul>
+<li>input</li>
+<li>shape - int of tuple - 其余维度确定的情况下，可以使用 -1 用于推算某一维度的大小</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="view"><a class="markdownIt-Anchor" href="#view"></a> view</h2>
+<h2 id="squeeze"><a class="markdownIt-Anchor" href="#squeeze"></a> squeeze</h2>
+<p><strong>功能</strong>：默认移除 tensor 中维度大小为 1 的维度 - 给定 dim 后只考虑给定的 dim 是否移除</p>
+<p><strong>注意</strong>：输入 dim 必须为整型，不能为整型序列</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>input - tensor</li>
+<li>dim - default(None) - int</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+c <span class="token operator">=</span> torch<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>a<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+d <span class="token operator">=</span> torch<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>a<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="unsqueeze"><a class="markdownIt-Anchor" href="#unsqueeze"></a> unsqueeze</h2>
+<p><strong>功能</strong>：与 squeeze 方法想反，增加一个大小为1的维度</p>
+<p><strong>参数</strong></p>
+<ul>
+<li>input - tensor</li>
+<li>dim - int</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span>x<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+z <span class="token operator">=</span> torch<span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span>x<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">x <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+z <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="t"><a class="markdownIt-Anchor" href="#t"></a> t</h2>
+<p><strong>功能</strong>：对二维张量进行转置处理</p>
+<p><strong>注意</strong>：对于一维 tensor 返回的是它本身</p>
+<p><strong>参数</strong>：input - tensro</p>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+a_t <span class="token operator">=</span> torch<span class="token punctuation">.</span>t<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+b_t <span class="token operator">=</span> b<span class="token punctuation">.</span>t<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">  a <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+a_t <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  b <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b_t <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="transpose"><a class="markdownIt-Anchor" href="#transpose"></a> transpose</h2>
+<p><strong>功能</strong>：将给定的两个维度进行交换</p>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>input - tensor</li>
+<li>dim0 - int</li>
+<li>dim1 - int</li>
+</ul>
+<p><strong>Test</strong></p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">a &#x3D; torch.randn(2, 3, 4, 5)
+b &#x3D; torch.transpose(a, 1, 2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Output</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="与numpy转换"><a class="markdownIt-Anchor" href="#与numpy转换"></a> 与Numpy转换</h1>
+<p>Tips：Torch Tensor 与 Numpy array 共享底层的内存空间</p>
+<p>Tips：所有在 CPU 上的 tensor （except CharTensor）都可与 Numpy array 互转换</p>
+<p><code>to numpy</code>：<code>tensor.numpy()</code></p>
+<p><code>to tensor</code> ：<code>torch.from_numpy(array)</code></p>
+<h1 id="与设备交互"><a class="markdownIt-Anchor" href="#与设备交互"></a> 与设备交互</h1>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda"</span><span class="token punctuation">)</span>
+
+gpu_tensor <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones_like<span class="token punctuation">(</span>x<span class="token punctuation">,</span> device<span class="token operator">=</span>device<span class="token punctuation">)</span>
+gpu_tensor <span class="token operator">=</span> cpu_tensor<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+cpu_tensor <span class="token operator">=</span> gpu_tensor<span class="token punctuation">.</span>to<span class="token punctuation">(</span><span class="token string">"cpu"</span><span class="token punctuation">,</span> torch<span class="token punctuation">.</span>double<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="自动求导"><a class="markdownIt-Anchor" href="#自动求导"></a> 自动求导</h1>
+<p>定义变量时设定：<code>torch.tensor([1, 2, 3], requires_grad=True)</code></p>
+<p>后续更改设定：<code>tensor.requires_grad_(True)</code></p>
+<p>终止某Tensor在计算图中的追踪回溯：<code>tensor.detach()</code></p>
+<p>终止整个流程的反向传播：<code>with torch.no_grad():</code></p>
+<h2 id="相关属性"><a class="markdownIt-Anchor" href="#相关属性"></a> 相关属性</h2>
+<p><code>.grad_fn</code> - 代表引用了那个 Function 创建了该 Tensor，自定义则值为 None</p>
+<p><code>.grad</code> - 在该 Tensor 上的所有梯度将被累加进该属性</p>
+<h1 id="end"><a class="markdownIt-Anchor" href="#end"></a> END</h1>
 
                 
             </div>
@@ -1109,7 +1704,7 @@ torch<span class="token punctuation">.</span>zeros<span class="token punctuation
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">128.6k</span>&nbsp;字
+                class="white-color">133.4k</span>&nbsp;字
             
             
             
