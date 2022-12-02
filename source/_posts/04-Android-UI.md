@@ -245,6 +245,8 @@ menu.show()
 
 在当前界面弹出一个对话框, 置于所有界面元素之上(屏蔽其他控件的交互能力)
 
+### 二次确认
+
 ```kotlin
 R.id.button_change_image -> {
     val environment = this
@@ -264,6 +266,23 @@ R.id.button_change_image -> {
 
 }
 ```
+
+### 列表选择
+
+```kotlin
+val todoCategoryItems = viewModel.todoCategoryList.map { it.name }.toTypedArray()
+val alertBuilder: AlertDialog.Builder = AlertDialog.Builder(this).apply {
+    setTitle("时间规划集")
+    .setItems(todoCategoryItems, DialogInterface.OnClickListener { dialog, which ->
+        insertTodoitmeCategory.setText(todoCategoryItems.get(which))
+        dialog.dismiss()
+    })
+    create()
+    show()
+}
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211091917520.jpg)
 
 ## ProgressDialog【OLD】
 

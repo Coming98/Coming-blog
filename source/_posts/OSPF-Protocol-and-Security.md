@@ -7,6 +7,7 @@ categories: Protocol Security
 tags:
   - security
 ---
+
 # OSPF
 
 Open Shorted Path First，开放最短路径优先，是 IETF 开发的基于链路状态的自治系统内部路由协议，直接工作于 IP 层之上，IP 协议号为 89；以**组播**地址发送协议数据包

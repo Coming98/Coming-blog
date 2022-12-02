@@ -351,7 +351,7 @@ LLVM (http://llvm.org/):
     xcore      - XCore
 ```
 
-## 6 LLVM bitcode to LLVM 汇编码
+## 5 LLVM bitcode to LLVM 汇编码
 
 使用 `llvm-dis` (LLVM 反汇编器) 实现 LLVM bitcode (.bc) 转回 LLVM IR (.ll)
 
@@ -361,7 +361,7 @@ llvm-dis-8 03test.bc -o 05test.ll
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121514660.png)
 
-## 5 IR Transform
+## 6 IR Transform
 
 主要利用 `opt` 工具实现 IR 形式的转化与代码的优化
 
@@ -387,6 +387,96 @@ cat 06multiply.-mem2reg.ll
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202211121543787.png)
 
+## 7 链接 LLVM bitcode
+
+llvm-link 的功能和传统的链接器一致: 如果一个函数或者变量在一个文件中被引用, 却在另一个文件中定义, 那么链接器就会解析这个文件中引用的符号, 只不过其针对的是 llvm bitcode 文件而非 object
+
+1. 准备如下两个文件, 准备进行连接
+
+```cpp
+// 07test1.c
+int func(int a) {
+    a = a * 2;
+    return a;
+}
+
+// 07test2.c
+#include<stdio.h>
+extern int func(int a);
+int main() {
+    int num = 5;
+    num = func(num);
+    printf("number is %d\n", num);
+    return num;
+}
+```
+
+2. 将 C 转为 LLVM bitcode (位流文件格式): c -> ll -> bc
+
+```shell
+clang-8 -emit-llvm -S 07test1.c -o 07test1.ll
+clang-8 -emit-llvm -S 07test2.c -o 07test2.ll
+llvm-as-8 07test1.ll -o 07test1.bc
+llvm-as-8 07test2.ll -o 07test2.bc
+```
+
+此时 test2.bc 引用了 test1.bc 文件中的 func 函数
+
+3. 使用 `llvm-link` 命令链接两个 LLVM bitcode 文件
+
+```shell
+llvm-link-8 07test1.bc 07test2.bc -o 07test_linked.bc
+```
+
+4. 可以使用 `—S` 参数, 让 `llvm-link` 直接输出 LLVM IR 文件
+
+```shell
+llvm-link-8 -S 07test1.bc 07test2.bc -o 07test_linked.ll
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211140951540.png)
+
+## 8 执行 LLVM bitcode
+
+使用 `lli` 工具以 LLVM bitcode 为输入, 使用即时编译器 (JIT) 实现 LLVM bitcode 的执行
+- 如果当前的架构不存在 JIT 编译器，会用解释器执行
+
+1. `lli 07test_linked.bc` 即可执行
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211140953616.png)
+
+## 9 C 与 Clang
+
+Clang 能够作为预处理器、编译器驱动、前端以及代码生成器使用，它的输出取决于你指定的参数
+
+1. 使用 `clang` 将 C 转为可执行文件
+
+```shell
+clang-8 09test.c -o 09test.out
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211141005188.png)
+
+2. 添加 `-S -emit-llvm` 选项, 将 C 转为 LLVM 汇编码
+
+```shell
+clang-8 09test.c -S -emit-llvm -o 09test.ll
+```
+
+`-S`: 表示 Only run preprocess and compilation steps
+`-emit-llvm`: 表示 Use the LLVM representation for assembler and object files
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211141008765.png)
+
+3. 仅添加 `-S` 选项, 就能实现 C 转为汇编码
+
+```shell
+clang-8 09test.c -S -o -
+```
+
+`-o -`: 将结果再标准输出中输出
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202211141013679.png)
 
 # Refs
 

@@ -7,6 +7,7 @@ categories: Protocol Security
 tags:
   - security
 ---
+
 # IP 协议
 
 来到了网络层协议安全，简单介绍下 IP 协议的功能：在互联网络间进行寻址和分组转发；对设备进行逻辑编址；提供不可靠和无连接的数据包传送服务；
@@ -249,5 +250,3 @@ Application：结合其他 VPN 一起使用或在企业内网部署
 站点到站点 VPN：站点是固定的
 
 远程访问 VPN：IP 地址是不一样的
----
-后续详见 IPSec

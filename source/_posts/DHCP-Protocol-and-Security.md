@@ -7,6 +7,7 @@ categories: Protocol Security
 tags:
   - security
 ---
+
 # DHCP
 
 Dynamic Host Configuration Protocol，动态主机配置协议，提供动态 IP 配置，它增强了 BOOTP，并与 BOOTP 向后兼容

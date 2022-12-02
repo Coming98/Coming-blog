@@ -8,6 +8,7 @@ tags:
   - react
   - react components
 ---
+
 # React 路由
 
 ## SPA 
@@ -87,6 +88,130 @@ yarn add react-router-dom
 4、<App> 最外侧包裹 <BrowserRouter> - 基于浏览器路由 或 <HashRouter> - 基于锚点路由
 ```jsx
 ReactDOM.render(<BrowserRouter><App/></BrowserRouter>, document.getElementById('root'))
+```
+
+
+
+
+# 重定向与默认路由
+
+```jsx
+<HashRouter>
+    <Routes>
+        <Route path="/film" element={<Film></Film>} />
+        <Route path="/cinema" element={<Cinema></Cinema>} />
+    </Routes>
+</HashRouter>
+```
+
+## 使用 Navigate 组件实现重定向
+
+Navigate 为 React-router-dom 提供的
+
+```jsx
+<Route path="*" element={<Navigate to="/film"/>}/>
+```
+
+## 使用 Redirect 组件实现重定向
+
+Redirect 需要自行设计, 通常配合 useNavigate 使用
+
+```jsx
+<Route path="*" element={<Redirect to="/film" />} />
+function Redirect(props) {
+    const navigate = useNavigate()
+    useEffect(() => {
+        navigate(props.to, { replace: true })
+    })
+
+    return null
+}
+```
+
+## 默认匹配实现 404
+
+```jsx
+<Route path="*" element={<NotFound/>} />
+```
+
+# 嵌套路由
+
+1. 父组件中要使用 `<Outlet></Outlet>` 设置好路由容器
+
+```jsx
+function Film() {
+    return (
+        <div>
+            <h3> Film </h3>
+            <div style={{height: "200px", background: "cyan"}}> 大轮播 </div>
+            {/* 设置好路由容器, 这样多级路由不必分开, 方便管理 */}
+            <Outlet></Outlet>
+        </div>
+    )
+}
+```
+
+2. 路由组件中直接嵌套写即可
+
+```jsx
+<Routes>
+    <Route path="/film" element={<Film></Film>} >
+        <Route path="nowplaying" element={<Nowplaying/>}></Route>
+        <Route path="comingsoon" element={<Comingsoon/>}></Route>
+    </Route>
+    ...
+</Routes>
+```
+
+3. `index` 默认匹配到只提供了父路径没有提供子路径的情况; 404 的情况只需要在外侧作一层即可
+
+```jsx
+<Routes>
+    <Route path="/film" element={<Film></Film>} >
+        {/* 没有匹配到子路径时 */}
+        <Route index element={<Navigate to="/film/nowplaying"/>}></Route>
+        <Route path="nowplaying" element={<Nowplaying/>}></Route>
+        <Route path="comingsoon" element={<Comingsoon/>}></Route>
+    </Route>
+    ...
+</Routes>
+```
+
+# 导航
+
+## 声明式导航
+
+Link 与 NavLink
+
+```jsx
+<footer>
+    <ul>
+        <li> <NavLink to="/film" className={handleJcActive}> 电影 </NavLink> </li>
+        <li> <NavLink to="/cinema" className={handleJcActive}> 影院 </NavLink> </li>
+        <li> <NavLink to="/center" className={handleJcActive}> 我的 </NavLink> </li>
+    </ul>
+</footer>
+```
+
+默认情况下 NavLink 会给选中的组件添加 `active` 的 className, 但是容易重名, 因此我们可以使用其提供的 className 接口进行更改: 
+
+```jsx
+const handleJcActive = (props) => {
+    if(props.isActive) {
+        return 'jcActive'
+    } else {
+        return ''
+    }
+}
+```
+
+## 编程式导航
+
+```jsx
+const navigate = useNavigate()
+const hadleChangePage = (id) => {
+    navigate(`/detail?id=${id}`)
+}
 ```
 
 # 常用组件
@@ -258,7 +383,7 @@ V6 中没有这个概念了，下面就简单记录下历史吧...
 
 ## 二级路由
 
-![二级路由](https://raw.githubusercontent.com/Coming98/pictures/main/20211204213135.png)
+![二级路由](https://gitee.com/Butterflier/pictures/raw/master/20211204213135.png)
 
 # 参数传递
 
@@ -275,7 +400,7 @@ V6 中没有这个概念了，下面就简单记录下历史吧...
 ```
 
 
-2、匹配路由时定义好参数模式
+2、匹配路由时定义好参数模式 - 动态路由
 
 ```jsx
 <Route path="/paramsSend/:user/:pwd" element={<ParamsSend/>}/>
@@ -295,3 +420,112 @@ const params = useParams()
 优点：刷新页面，参数不丢失
 
 缺点：只能传字符串，传值过多url会变得很长，获取参数需要自定义hooks
+
+```jsx
+const [searchParams, setSearchParams] = useSearchParams()
+if(searchParams.has("username")){
+    const username = searchParams.get("username")
+}
+```
+
+# 动态路由
+
+涉及到用一个组件展示相同页面的不同内容, 这时候就需要动态路由进行匹配
+
+```jsx
+<Route path="/detail/:myid" element={<Detail/>}>
+```
+
+动态路由的参数获取就是 params 参数的获取形式
+
+# 路由拦截
+
+未登录的情况下, 多个页面的路由需要拦截并重定向到登陆界面
+
+一种实现方式就是自己写好状态判断函数, 然后在路由匹配后渲染时根据状态选择渲染
+
+```jsx
+<Route path="/center" element={isAuth() ? <Center/> : <Redirect to="/login"/>} />
+```
+
+但是这样没有和组件绑定, 导致其内容不会改变, 因此要用一个组件封装该逻辑, 再 `AuthComponent` 内部判断是否展示 `this.props.children`
+
+```jsx
+<Route path="/center" element={<AuthComponent>
+    <Center></Center>
+</AuthComponent>} />
+```
+
+# withRouter 讨论
+
+凡是被 <Route> 包裹的组件都会有一个 `history` 的属性, 但是这个属性不能自动传递给其子组件, 因此引入 `withRouter` 将这个属性传递给子组件
+
+但是现在有 `useNavigate` withRouter 再 v6 就不必要了
+
+如果要使用类组件那么就需要自行封装一个 withRouter 组件
+
+```jsx
+
+import { useNavigate } from 'react-router-dom'
+
+function withRouter(Component) {
+    const push = useNavigate()
+    return function(props) {
+        return <Component {...props} history={{push}}/>
+    }
+}
+```
+
+# 路由懒加载
+
+路由条目太多, 导致加载拥塞; 路由懒加载将实现按需加载路由
+
+```jsx
+const LazyLoad = (path) => {
+    const Comp = React.lazy(() => import(`../views/${path}`))
+    return (
+        <React.Suspense fallback={<> Loading... </>}>
+            <Comp/>
+        </React.Suspense>
+    )
+}
+```
+
+```jsx
+<Route path="/cinema" element={LazyLoad("Cinema")} />
+```
+
+# useRoutes 钩子配置路由
+
+```jsx
+export default function JCRouter() {
+    const element = useRoutes([
+        {
+            path: "/film",
+            element: LazyLoad("Film"),
+            children: [
+                {
+                    path: "",
+                    element: <Redirect to="/film/nowplaying"/>
+                },
+                {
+                    path: "nowplaying",
+                    element: LazyLoad("film/Nowplaying"),
+                },
+                {
+                    path: "comingsoon",
+                    element: LazyLoad("film/Comingsoon"),
+                },
+            ]
+        },
+        {
+            path: "/cinema",
+            element: LazyLoad("Cinema")
+        },
+    ])
+
+    return (
+        element
+    )
+}
+```

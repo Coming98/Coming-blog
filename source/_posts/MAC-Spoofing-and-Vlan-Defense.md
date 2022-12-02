@@ -156,3 +156,4 @@ b、PC2 使用 PC0 的 MAC 地址，ping PC1，可以看出到达 Switch 0 后�
 c、在检测下 PC0 能否与 PC1 正常通信：通信成功
 
 ![image-20211009173638696](https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009173638696.png)
+

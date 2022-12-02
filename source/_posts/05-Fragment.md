@@ -105,7 +105,8 @@ private fun replaceFragment(fragment: Fragment) {
     // 使用 replace()方法向容器内替换 Fragment，需要传入容器的id和待添加的 Fragment 实例
     transaction.replace(R.id.rightLayout, fragment)
     // 提交事务
-    transaction.commit()
+    transaction.commit() // 并行处理
+    // transaction.commitNow() // 立即执行，避免其它引用冲突
 }
 ```
 
