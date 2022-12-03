@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>01-django-init</title>
+      <link href="/Coming-blog/2022/12/03/01-django-init/"/>
+      <url>/Coming-blog/2022/12/03/01-django-init/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1><pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install django<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>主要关注两个文件夹：</p><ul><li><code>Scripts/django-admin.exe</code>: 脚手架, 自动化创建 django 项目</li><li><code>site-packages/django</code>: 源码文件, 引用使用</li></ul><h1 id="app"><a class="markdownIt-Anchor" href="#app"></a> APP</h1><p>TODO: 后续可以研究多 APP 项目</p><p>使用 APP 进行后台各功能的划分, 每个 APP 中可以拥有独立的表结构、函数、HTML 模板、CSS 等</p><ul><li>创建 APP: <code>python manage.py startapp appName</code></li></ul><h1 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h1><ol><li>创建项目: <code>django-admin startproject projectName</code></li></ol><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032256125.png" alt="" /></p><ul><li><code>manage.py</code>: 项目的管理，启动项目、创建 APP、数据管理</li><li><code>asgi.py</code> 与 <code>wsgi.py</code>: 接收网络请求, 不用更改</li><li><code>urls.py</code>: 管理 url 与 func 的对应关系</li><li><code>settings.py</code>: 项目的配置文件, 数据库管理、注册 APP</li></ul><ol start="2"><li>创建 APP: <code>python manage.py startapp appName</code></li></ol><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032307366.png" alt="" /></p><ul><li><code>models.py</code>: 对数据库的操作</li><li><code>view.py</code>: func 相关的定义</li></ul><ol start="3"><li>注册 APP: 在主项目中 <code>settings.py</code> 中的 <code>INSTALLED_APPS</code> 列表中注册; <code>appName.apps.AppConfigName</code></li></ol><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032314149.png" alt="" /></p><ol start="4"><li>编写 URL 与 视图函数的对应关系：在主项目中 <code>urls.py</code> 中的 <code>urlpatterns</code> 列表中编写; <code>path('url/', views.index)</code></li></ol><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> app <span class="token keyword">import</span> viewsurlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>    <span class="token comment"># path("admin/", admin.site.urls),</span>    path<span class="token punctuation">(</span><span class="token string">"index/"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span>    path<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>default<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="5"><li><p>编写函数体：在相关 <code>app</code> 下的 <code>views.py</code> 中</p></li><li><p>启动 APP: <code>python manage.py runserver [port]</code></p></li></ol><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032323367.png" alt="" /></p><h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1><ul><li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S44y1K7Hd/?vd_source=b982c5b9804c7552564e69b7b5d8a2e0">Bilibili</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Django </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> INIT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>01-Overview-of-Compilation-Principles</title>
       <link href="/Coming-blog/2022/12/03/01-overview-of-compilation-principles/"/>
       <url>/Coming-blog/2022/12/03/01-overview-of-compilation-principles/</url>
