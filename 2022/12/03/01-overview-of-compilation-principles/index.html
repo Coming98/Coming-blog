@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -507,16 +507,17 @@
 <li>不同的架构对应的不同的汇编指令集, x86 汇编, arm 汇编, mips 汇编</li>
 <li>不同的汇编指令集有不同的汇编语法, x86 汇编有 Intel 风格的 与 ATT 风格的, arm 汇编有自己语法, mips 也有自己的语法</li>
 <li>不同语法的汇编需要由不同的汇编器转换为机器能识别的机器指令</li>
+<li>中间语言的抽象程度与复杂程度介于高级语言和机器语言之间, 高级语言直接翻译为机器语言难度较大...</li>
 </ul>
 <ol start="3">
 <li>高级语言</li>
 </ol>
 <h2 id="翻译"><a class="markdownIt-Anchor" href="#翻译"></a> 翻译</h2>
-<p>是指能把某种语言的源程序，在不改变语义的条件下，转换成另一种语言程序一目标语言程序。</p>
+<p>是指能把某种语言的源程序，在不改变语义的条件下，转换成另一种语言程序一目标语言程序。编译程序就是一种翻译程序。</p>
 <p>实现过程：编译/解释</p>
 <ul>
 <li>编译：由高级语言转为低级语言</li>
-<li>解释：接受某高级语言的一个语句输入，进行解释并控制计算机执行，马上得到这句的执行结果，然后再接受下一句
+<li>解释：接受某高级语言的一个语句输入，进行解释并控制计算机执行，马上得到这句的执行结果（不产生目标程序），然后再接受下一句
 <ul>
 <li>Strength: 直观易懂，结构简单，易于实现人机对话</li>
 <li>Weakness: 效率低</li>
@@ -527,17 +528,27 @@
 <p>两阶段过程：编译 + 运行, source -&gt; exe
 三阶段过程：编译 + 汇编 + 运行, source -&gt; asm -&gt; exe</p>
 <p>不同的高级语言经过编译后最终得到的目标代码可能为 exe 也可能为 obj 文件(也是 01 代码组成的文件), 如果是 obj 文件还需要进行链接(link), 才能正常使用</p>
+<h2 id="编译程序分类"><a class="markdownIt-Anchor" href="#编译程序分类"></a> 编译程序分类</h2>
+<p>运行编译程序的机器称为宿主机, 运行目标语言程序的机器称为目标机</p>
+<ul>
+<li>诊断编译程序, Diagnostic Compiler, 辅助开发和调试, 发现错误</li>
+<li>优化编译程序, Optimizing Compiler, 侧重于提高目标代码的效率</li>
+<li>交叉编译程序, Cross Compiler, 编译程序产生不同于其宿主机的机器代码称为交叉编译程序</li>
+<li>可变目标编译程序, Retargetable Compiler, 针对目标机器平台生成目标代码</li>
+</ul>
 <h1 id="编译程序流程"><a class="markdownIt-Anchor" href="#编译程序流程"></a> 编译程序流程</h1>
 <ol>
 <li>词法分析：识别出一个个单词(token, 高级语言中有实在意义的最小语法单位), 各个单词按照类别分类讨论, 转换成统一的规格, 供语法分析使用</li>
 <li>语法分析：根据语言的语法规则(文法), 将单词符号组成各类的语法单位（短语、子句、过程、程序）</li>
-<li>语义分析和中间代码生成</li>
+<li>中间代码生成</li>
 <li>优化：</li>
 <li>目标代码生成：</li>
 </ol>
 <h2 id="词法分析"><a class="markdownIt-Anchor" href="#词法分析"></a> 词法分析</h2>
+<p>Target: 输入源程序，对构成源程序的字符串进行扫描和分解，识别出单词符号</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031105775.png" alt="" /></p>
 <h2 id="语法分析"><a class="markdownIt-Anchor" href="#语法分析"></a> 语法分析</h2>
+<p>Target: 在词法分析的基础上，根据语法规则把单词符号串分解成各类语法单位（语法范畴）</p>
 <p>推导与规约：derive 将规则展开 与 reduce 将短语规约为规则</p>
 <p>最右推导, 最左规约：只推导最右侧的符号 + 逆向规约过程</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031106655.png" alt="" /></p>
@@ -546,11 +557,11 @@
 <p>语法树：</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031117357.png" alt="" /></p>
 <h2 id="语义分析和中间代码生成"><a class="markdownIt-Anchor" href="#语义分析和中间代码生成"></a> 语义分析和中间代码生成</h2>
-<p>语义检查 + 中间代码翻译</p>
+<p>Target: 语义检查 + 中间代码翻译, 对各类语法单位按语言的语义进行初步翻译</p>
 <h3 id="四元式中间代码"><a class="markdownIt-Anchor" href="#四元式中间代码"></a> 四元式中间代码</h3>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031445486.png" alt="" /></p>
 <h2 id="优化"><a class="markdownIt-Anchor" href="#优化"></a> 优化</h2>
-<p>对前面产生的中间代码进行加工变换，以期在最后阶段能产生更为高效的目标代码</p>
+<p>Target: 对前面产生的中间代码进行加工变换，以期在最后阶段能产生更为高效的目标代码</p>
 <p>常见的优化有：</p>
 <ol>
 <li>公共子表达式的提取</li>
@@ -559,12 +570,12 @@
 <li>循环优化</li>
 </ol>
 <h2 id="目标代码生成"><a class="markdownIt-Anchor" href="#目标代码生成"></a> 目标代码生成</h2>
-<p>把经过优化的中间代码转化成特定机器上的低级语言代码</p>
+<p>Target: 把经过优化的中间代码转化成特定机器上的低级语言代码</p>
 <p>目标代码有多种形式：</p>
 <ul>
-<li>绝对指令代码：可立即执行的目标代码</li>
-<li>汇编指令代码：汇编语言程序，需要通过汇编程序汇编后才能运行</li>
-<li>可重定位指令代码：先将各目标模块连接起来，确定变量、常数在主存中的位置，装入主存后才能成为可以运行的绝对指令代码</li>
+<li>绝对指令代码：可<strong>立即执行</strong>的目标代码</li>
+<li>汇编指令代码：汇编语言程序，需要通过<strong>汇编</strong>程序汇编后才能运行</li>
+<li>可重定位指令代码：先将各目标模块<strong>链接</strong>起来，确定变量、常数在主存中的位置，装入主存后才能成为可以运行的绝对指令代码; 支持模块化的网络开发</li>
 </ul>
 <p>Tips: 不同机器的绝对指令代码是不同的, 如果要适配不同的机器生成绝对指令代码就需要多种编译程序, 效率较低; 因此选择将编译程序生成一种中间代码的形式（汇编指令代码，与硬件无关）后续适配的任务交给汇编或链接完成</p>
 <h1 id="表格与表格管理"><a class="markdownIt-Anchor" href="#表格与表格管理"></a> 表格与表格管理</h1>
@@ -1153,7 +1164,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137k</span>&nbsp;字
+                class="white-color">140.1k</span>&nbsp;字
             
             
             

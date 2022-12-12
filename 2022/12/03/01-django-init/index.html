@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    285
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -502,7 +502,8 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install django<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装 django: <code>pip install django</code></p>
+<p>验证 django 版本: <code>python -m django --version</code></p>
 <p>主要关注两个文件夹：</p>
 <ul>
 <li><code>Scripts/django-admin.exe</code>: 脚手架, 自动化创建 django 项目</li>
@@ -514,21 +515,42 @@
 <ul>
 <li>创建 APP: <code>python manage.py startapp appName</code></li>
 </ul>
+<p>The difference between a project and an app:</p>
+<ul>
+<li>An app is a web application that does something – e.g., a blog system, a database of public records or a small poll app</li>
+<li>A project is a collection of configuration and apps for a particular website.</li>
+<li>A project can contain multiple apps. An app can be in multiple projects.</li>
+</ul>
 <h1 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h1>
 <ol>
-<li>创建项目: <code>django-admin startproject projectName</code></li>
+<li>创建项目: <code>django-admin startproject projectName</code>; 项目名称后续可以任意更改(you can rename it to anything you like)</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032256125.png" alt="" /></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">mysite/
+    manage.py
+    mysite/
+        __init__.py
+        settings.py
+        urls.py
+        asgi.py
+        wsgi.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li><code>manage.py</code>: 项目的管理，启动项目、创建 APP、数据管理</li>
-<li><code>asgi.py</code> 与 <code>wsgi.py</code>: 接收网络请求, 不用更改</li>
-<li><code>urls.py</code>: 管理 url 与 func 的对应关系</li>
-<li><code>settings.py</code>: 项目的配置文件, 数据库管理、注册 APP</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/ref/django-admin/">manage.py</a>: 项目的管理，启动项目、创建 APP、数据管理</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/settings/">settings.py</a>: 项目的配置文件, 数据库管理、注册 APP</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/http/urls/">urls.py</a>: 管理 url 与 func 的对应关系</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/howto/deployment/asgi/">asgi.py</a> 与 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/">wsgi.py</a>: 接收网络请求, 不用更改</li>
 </ul>
 <ol start="2">
 <li>创建 APP: <code>python manage.py startapp appName</code></li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032307366.png" alt="" /></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">polls/
+    __init__.py
+    admin.py
+    apps.py
+    migrations/
+        __init__.py
+    models.py
+    tests.py
+    views.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><code>models.py</code>: 对数据库的操作</li>
 <li><code>view.py</code>: func 相关的定义</li>
@@ -536,26 +558,142 @@
 <ol start="3">
 <li>注册 APP: 在主项目中 <code>settings.py</code> 中的 <code>INSTALLED_APPS</code> 列表中注册; <code>appName.apps.AppConfigName</code></li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032314149.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071742844.png" alt="" /></p>
 <ol start="4">
-<li>编写 URL 与 视图函数的对应关系：在主项目中 <code>urls.py</code> 中的 <code>urlpatterns</code> 列表中编写; <code>path('url/', views.index)</code></li>
+<li>编写 URL 与 视图函数的对应关系：在 app 中 <code>urls.py</code>（自行新建） 中的 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/http/urls/">urlpatterns</a> 列表中编写</li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> app <span class="token keyword">import</span> views
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> views
 
 urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token comment"># path("admin/", admin.site.urls),</span>
-    path<span class="token punctuation">(</span><span class="token string">"index/"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    path<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>default<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>index<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"index"</span><span class="token punctuation">)</span>
 <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="5">
 <li>
 <p>编写函数体：在相关 <code>app</code> 下的 <code>views.py</code> 中</p>
 </li>
 <li>
-<p>启动 APP: <code>python manage.py runserver [port]</code></p>
+<p>在主项目中引入 app 的路由信息</p>
 </li>
 </ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path<span class="token punctuation">,</span> include
+
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    path<span class="token punctuation">(</span><span class="token string">"admin/"</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">"polls/"</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">"polls.urls"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>the path() function is passed four arguments, two required: route and view, and two optional: kwargs, and name
+<ul>
+<li>route: 待匹配的 URL pattern, 按照注册顺序从上到下匹配</li>
+<li>view: 匹配成功后调用的函数</li>
+<li>kwargs: 其它参数, 后续介绍...</li>
+<li>name: TODO, 还不大清楚其作用, Naming your URL lets you refer to it unambiguously from elsewhere in Django, especially from within templates. This powerful feature allows you to make global changes to the URL patterns of your project while only touching a single file.</li>
+</ul>
+</li>
+<li>The include() function allows referencing other URLconfs. Whenever Django encounters include(), it chops off whatever part of the URL matched up to that point and sends the remaining string to the included URLconf for further processing.</li>
+</ul>
+<ol start="7">
+<li>启动 APP: <code>python manage.py runserver [port]</code></li>
+</ol>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032323367.png" alt="" /></p>
+<blockquote>
+<p>don’t use this server in anything resembling a production environment. It’s intended only for use while developing.
+We’re in the business of making web frameworks, not web servers.</p>
+</blockquote>
+<h1 id="database"><a class="markdownIt-Anchor" href="#database"></a> Database</h1>
+<p>By default, the configuration uses SQLite which is included in Python.</p>
+<ul>
+<li>Want <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/install/#database-installation">other database</a>?</li>
+</ul>
+<p>其配置信息在 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 中进行配置</p>
+<ul>
+<li>ENGINE: 选择数据库引擎</li>
+<li>NAME: 设定数据库名称(地址)</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">DATABASES <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">"default"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"ENGINE"</span><span class="token punctuation">:</span> <span class="token string">"django.db.backends.sqlite3"</span><span class="token punctuation">,</span>
+        <span class="token string">"NAME"</span><span class="token punctuation">:</span> BASE_DIR <span class="token operator">/</span> <span class="token string">"db.sqlite3"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="models"><a class="markdownIt-Anchor" href="#models"></a> models</h2>
+<ol>
+<li>在 app 中的 <a target="_blank" rel="noopener" href="http://models.py">models.py</a> 中创建数据模型:</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Question</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    question_text <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">)</span>
+    pub_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span><span class="token string">"date published"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Choice</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    question <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>Question<span class="token punctuation">,</span> on_delete<span class="token operator">=</span>models<span class="token punctuation">.</span>CASCADE<span class="token punctuation">)</span>
+    choice_text <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">)</span>
+    votes <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>执行命令创建数据模型: <code>python manage.py makemigrations polls</code>; 每当数据模型更改时即可更新存储的 migration</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071747082.png" alt="" /></p>
+<p>Tips: migration 就像是一种中间数据, 可以转换为多种数据库的语句, 例如迁移到 SQL: <code>python manage.py sqlmigrate polls 0001</code></p>
+<ul>
+<li>Table names are automatically generated by combining the name of the app (polls) and the lowercase name of the model – question and choice. (You can override this behavior.)</li>
+<li>Primary keys (IDs) are added automatically. (You can override this, too.)</li>
+<li></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071749684.png" alt="" /></p>
+<ol start="3">
+<li>在数据库中创建模型和表: <code>python manage.py migrate</code></li>
+</ol>
+<h1 id="django-shell"><a class="markdownIt-Anchor" href="#django-shell"></a> Django Shell</h1>
+<p>使用 <code>python manage.py shell</code> 打开与当前项目的交互, 可以通过 django 内置的 API 进行功能测试</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071757229.png" alt="" /></p>
+<h2 id="database-api"><a class="markdownIt-Anchor" href="#database-api"></a> Database API</h2>
+<ol>
+<li>引入数据模型: <code>from polls.models import Choice, Question</code></li>
+<li>创建数据条目: <code>q = Question(question_text=&quot;What's new?&quot;, pub_date=timezone.now())</code></li>
+<li>将条目保存到数据库中: <code>q.save()</code></li>
+<li>将条目删除: <code>q.delete()</code></li>
+<li>根据数据模型查看/更改属性值(更改后要 save)</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071800325.png" alt="" /></p>
+<ol start="5">
+<li>查看表中的所有信息: <code>Question.objects.all()</code>; 如果要修改展示效果, 可以重写数据模型中的 <strong>str</strong> 方法</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> self<span class="token punctuation">.</span>question_text<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>重启一下 shell 即可看到效果</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071809453.png" alt="" /></p>
+<ol start="6">
+<li>表支持过滤与筛选:</li>
+</ol>
+<ul>
+<li><code>Question.objects.filter(id=1)</code></li>
+<li><code>Question.objects.filter(question_text__startswith='What')</code></li>
+<li><code>Question.objects.get(pub_date__year=timezone.now().year)</code></li>
+<li>通过主键筛选是较为常用的, 因此简化了改命令: <code>Question.objects.get(pk=1)</code></li>
+</ul>
+<ol start="7">
+<li>在 Django 中会自动为外键的对象创建一个集合, 用于存放目标数据条目, 例如 Question_id 是 Choice 的外键, 因此每一个 question 对象都会有一个 choice_set 属性</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071818369.png" alt="" /></p>
+<ol start="8">
+<li>为这个集合添加数据就能自动作用到 Choice 表中</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071821430.png" alt="" /></p>
+<h1 id="django-admin"><a class="markdownIt-Anchor" href="#django-admin"></a> Django Admin</h1>
+<ol>
+<li>创建可以访问管理网页的用户: <code>python manage.py createsuperuser</code></li>
+<li>启动服务, 进入 admin 界面</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071825556.png" alt="" /></p>
+<ol start="3">
+<li>默认只存在对用户组和用户的管理, 因此需要引入我们创建的数据模型的管理: 在 app 的 <a target="_blank" rel="noopener" href="http://admin.py">admin.py</a> 中实现引入</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> Question
+admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>register<span class="token punctuation">(</span>Question<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071829788.png" alt="" /></p>
+<p>Django 的 Admin 功能太舒服了...</p>
 <h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S44y1K7Hd/?vd_source=b982c5b9804c7552564e69b7b5d8a2e0">Bilibili</a></li>
@@ -839,7 +977,7 @@ urlpatterns <span class="token operator">=</span> <span class="token punctuation
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            四类语言的概念推导与语法树
+                            四种文法的概念推导与语法树
                         
                     </div>
                     <div class="publish-info">
@@ -1115,7 +1253,7 @@ urlpatterns <span class="token operator">=</span> <span class="token punctuation
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137k</span>&nbsp;字
+                class="white-color">140.1k</span>&nbsp;字
             
             
             
