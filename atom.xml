@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-12-12T08:49:09.568Z</updated>
+  <updated>2022-12-12T10:46:53.696Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,90 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>05-django-admin</title>
+    <link href="https://coming98.github.io/2022/12/12/05-django-admin/"/>
+    <id>https://coming98.github.io/2022/12/12/05-django-admin/</id>
+    <published>2022-12-12T18:43:13.000Z</published>
+    <updated>2022-12-12T10:46:53.696Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;admin&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#admin&quot;&gt;&lt;/a&gt; Admin&lt;/h1&gt;
+&lt;p&gt;Django 自动生成后台的功能十分方便&lt;/p&gt;
+&lt;h1 id=&quot;自定义后台表单&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
+    
+    
+    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>04-django-static</title>
+    <link href="https://coming98.github.io/2022/12/12/04-django-static/"/>
+    <id>https://coming98.github.io/2022/12/12/04-django-static/</id>
+    <published>2022-12-12T18:43:06.000Z</published>
+    <updated>2022-12-12T10:46:53.696Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;static-files&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#static-files&quot;&gt;&lt;/a&gt; Static Files&lt;/h1&gt;
+&lt;h2 id=&quot;quick-start&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
+    
+    
+    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>03-django-testing</title>
+    <link href="https://coming98.github.io/2022/12/12/03-django-testing/"/>
+    <id>https://coming98.github.io/2022/12/12/03-django-testing/</id>
+    <published>2022-12-12T18:42:54.000Z</published>
+    <updated>2022-12-12T10:46:53.696Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;automated-test&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#automated-test&quot;&gt;&lt;/a&gt; Automated Test&lt;/h1&gt;
+&lt;p&gt;Why I new</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
+    
+    
+    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>02-django-views</title>
     <link href="https://coming98.github.io/2022/12/12/02-django-views/"/>
     <id>https://coming98.github.io/2022/12/12/02-django-views/</id>
     <published>2022-12-12T16:45:07.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -48,7 +127,7 @@
     <link href="https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/</id>
     <published>2022-12-04T09:18:07.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -75,7 +154,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-django-init/"/>
     <id>https://coming98.github.io/2022/12/03/01-django-init/</id>
     <published>2022-12-03T23:25:47.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -104,7 +183,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/</id>
     <published>2022-12-03T15:50:56.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -129,7 +208,7 @@
     <link href="https://coming98.github.io/2022/11/11/01-llvm-basic/"/>
     <id>https://coming98.github.io/2022/11/11/01-llvm-basic/</id>
     <published>2022-11-11T22:58:36.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -156,7 +235,7 @@
     <link href="https://coming98.github.io/2022/09/11/13-jetpack/"/>
     <id>https://coming98.github.io/2022/09/11/13-jetpack/</id>
     <published>2022-09-11T14:19:44.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -182,7 +261,7 @@
     <link href="https://coming98.github.io/2022/09/05/12-material-design/"/>
     <id>https://coming98.github.io/2022/09/05/12-material-design/</id>
     <published>2022-09-05T18:35:34.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -208,7 +287,7 @@
     <link href="https://coming98.github.io/2022/08/30/11-web/"/>
     <id>https://coming98.github.io/2022/08/30/11-web/</id>
     <published>2022-08-30T14:03:35.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -235,7 +314,7 @@
     <link href="https://coming98.github.io/2022/08/23/10-service/"/>
     <id>https://coming98.github.io/2022/08/23/10-service/</id>
     <published>2022-08-23T15:18:22.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -262,7 +341,7 @@
     <link href="https://coming98.github.io/2022/08/22/09-multimedia/"/>
     <id>https://coming98.github.io/2022/08/22/09-multimedia/</id>
     <published>2022-08-22T17:40:39.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -288,7 +367,7 @@
     <link href="https://coming98.github.io/2022/08/22/08-content-provider/"/>
     <id>https://coming98.github.io/2022/08/22/08-content-provider/</id>
     <published>2022-08-22T11:32:55.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -314,7 +393,7 @@
     <link href="https://coming98.github.io/2022/08/21/07-persistentstorage/"/>
     <id>https://coming98.github.io/2022/08/21/07-persistentstorage/</id>
     <published>2022-08-21T09:56:09.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -341,7 +420,7 @@
     <link href="https://coming98.github.io/2022/08/19/06-broadcast/"/>
     <id>https://coming98.github.io/2022/08/19/06-broadcast/</id>
     <published>2022-08-19T15:47:24.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -366,7 +445,7 @@
     <link href="https://coming98.github.io/2022/08/18/05-fragment/"/>
     <id>https://coming98.github.io/2022/08/18/05-fragment/</id>
     <published>2022-08-18T21:01:01.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -392,7 +471,7 @@
     <link href="https://coming98.github.io/2022/08/07/04-android-ui/"/>
     <id>https://coming98.github.io/2022/08/07/04-android-ui/</id>
     <published>2022-08-07T19:50:04.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -418,7 +497,7 @@
     <link href="https://coming98.github.io/2022/07/18/03-android-activity/"/>
     <id>https://coming98.github.io/2022/07/18/03-android-activity/</id>
     <published>2022-07-18T16:16:45.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -445,7 +524,7 @@
     <link href="https://coming98.github.io/2022/07/18/02-kotlin-advanced/"/>
     <id>https://coming98.github.io/2022/07/18/02-kotlin-advanced/</id>
     <published>2022-07-18T16:16:36.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
+    <updated>2022-12-12T10:46:53.696Z</updated>
     
     
       
@@ -463,85 +542,6 @@
     
     
     <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>04-Zenmap</title>
-    <link href="https://coming98.github.io/2022/07/18/04-zenmap/"/>
-    <id>https://coming98.github.io/2022/07/18/04-zenmap/</id>
-    <published>2022-07-18T12:17:34.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;zenmap&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#zenmap&quot;&gt;&lt;/a&gt; Zenmap&lt;/h1&gt;
-&lt;p&gt;Zenmap 是一个可以应用在多种平台上，而且用户操作性极为友好的 Nmap 图形化界面&lt;/p&gt;
-&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="Kali" scheme="https://coming98.github.io/categories/Kali/"/>
-    
-    
-    <category term="nmap" scheme="https://coming98.github.io/tags/nmap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>03-服务检测技术</title>
-    <link href="https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/"/>
-    <id>https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/</id>
-    <published>2022-07-18T09:50:58.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;操作系统检测&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#操作系统检测&quot;&gt;&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="Kali" scheme="https://coming98.github.io/categories/Kali/"/>
-    
-    
-    <category term="nmap" scheme="https://coming98.github.io/tags/nmap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>02-端口扫描技术</title>
-    <link href="https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/"/>
-    <id>https://coming98.github.io/2022/07/17/02-duan-kou-sao-miao-ji-zhu/</id>
-    <published>2022-07-17T11:09:59.000Z</published>
-    <updated>2022-12-12T08:49:09.568Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;端口分类&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#端口分类&quot;&gt;&lt;/a&gt; 端口分类&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;公认端口, Well Known Port: 0 - 1024,</summary>
-        
-      
-    
-    
-    
-    <category term="Kali" scheme="https://coming98.github.io/categories/Kali/"/>
-    
-    
-    <category term="nmap" scheme="https://coming98.github.io/tags/nmap/"/>
     
   </entry>
   

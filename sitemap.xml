@@ -2,41 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</loc>
-    
-    <lastmod>2022-12-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</loc>
-    
-    <lastmod>2022-12-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/07/24/knn-yu-kdtree/</loc>
-    
-    <lastmod>2022-12-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/</loc>
-    
-    <lastmod>2022-12-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</loc>
-    
-    <lastmod>2022-12-12</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://coming98.github.io/2021/12/06/overview-of-routing-protocol/</loc>
     
     <lastmod>2022-12-12</lastmod>
@@ -136,20 +101,6 @@
   
   <url>
     <loc>https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/</loc>
-    
-    <lastmod>2022-12-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/12/02/ipsec/</loc>
-    
-    <lastmod>2022-12-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</loc>
     
     <lastmod>2022-12-12</lastmod>
     
@@ -296,6 +247,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/2022/12/12/03-django-testing/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/2022/07/18/03-fu-wu-jian-ce-ji-zhu/</loc>
     
     <lastmod>2022-12-12</lastmod>
@@ -310,7 +268,21 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/2022/12/12/04-django-static/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/2022/08/18/05-fragment/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2022/12/12/05-django-admin/</loc>
     
     <lastmod>2022-12-12</lastmod>
     
@@ -401,6 +373,41 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/2021/12/05/icmp-protocol-and-security/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/12/05/ipv4-protocol-and-security/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/07/24/knn-yu-kdtree/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/10/10/mac-spoofing-and-vlan-defense/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/12/06/ospf-protocol-and-security/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/2022/07/18/02-kotlin-advanced/</loc>
     
     <lastmod>2022-12-12</lastmod>
@@ -444,6 +451,20 @@
   
   <url>
     <loc>https://coming98.github.io/2022/09/11/13-jetpack/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/12/02/ipsec/</loc>
+    
+    <lastmod>2022-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/12/05/ipv6-protocol-and-security/</loc>
     
     <lastmod>2022-12-12</lastmod>
     
