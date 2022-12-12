@@ -2,7 +2,7 @@
 title: 02-Basic Knowledge of Compilation Principles
 mathjax: true
 date: 2022-12-04 09:18:07
-summary: 四类语言的概念推导与语法树
+summary: 四种文法的概念推导与语法树
 categories: Complier
 tags:
   - compilation principle
