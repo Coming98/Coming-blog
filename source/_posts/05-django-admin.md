@@ -11,6 +11,20 @@ tags:
 
 Django 自动生成后台的功能十分方便
 
+1. 创建可以访问管理网页的用户: `python manage.py createsuperuser`
+2. 启动服务, 进入 admin 界面
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202212071825556.png)
+
+3. 默认只存在对用户组和用户的管理, 因此需要引入我们创建的数据模型的管理: 在 app 的 admin.py 中实现引入
+
+```python
+from .models import Question
+admin.site.register(Question)
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202212071829788.png)
+
 # 自定义后台表单
 
 初始的后台可控数据十分少, 可以通过修改 APP 目录下的 admin.py 进行精细化控制
