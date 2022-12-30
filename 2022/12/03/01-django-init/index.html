@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    882
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    4 分
                 </div>
                 
 
@@ -603,48 +603,6 @@ urlpatterns <span class="token operator">=</span> <span class="token punctuation
 <p>don’t use this server in anything resembling a production environment. It’s intended only for use while developing.
 We’re in the business of making web frameworks, not web servers.</p>
 </blockquote>
-<h1 id="database"><a class="markdownIt-Anchor" href="#database"></a> Database</h1>
-<p>By default, the configuration uses SQLite which is included in Python.</p>
-<ul>
-<li>Want <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/install/#database-installation">other database</a>?</li>
-</ul>
-<p>其配置信息在 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 中进行配置</p>
-<ul>
-<li>ENGINE: 选择数据库引擎</li>
-<li>NAME: 设定数据库名称(地址)</li>
-</ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">DATABASES <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"default"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"ENGINE"</span><span class="token punctuation">:</span> <span class="token string">"django.db.backends.sqlite3"</span><span class="token punctuation">,</span>
-        <span class="token string">"NAME"</span><span class="token punctuation">:</span> BASE_DIR <span class="token operator">/</span> <span class="token string">"db.sqlite3"</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="models"><a class="markdownIt-Anchor" href="#models"></a> models</h2>
-<ol>
-<li>在 app 中的 <a target="_blank" rel="noopener" href="http://models.py">models.py</a> 中创建数据模型:</li>
-</ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Question</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    question_text <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">)</span>
-    pub_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span><span class="token string">"date published"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Choice</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    question <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>Question<span class="token punctuation">,</span> on_delete<span class="token operator">=</span>models<span class="token punctuation">.</span>CASCADE<span class="token punctuation">)</span>
-    choice_text <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">)</span>
-    votes <span class="token operator">=</span> models<span class="token punctuation">.</span>IntegerField<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="2">
-<li>执行命令创建数据模型: <code>python manage.py makemigrations polls</code>; 每当数据模型更改时即可更新存储的 migration</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071747082.png" alt="" /></p>
-<p>Tips: migration 就像是一种中间数据, 可以转换为多种数据库的语句, 例如迁移到 SQL: <code>python manage.py sqlmigrate polls 0001</code></p>
-<ul>
-<li>Table names are automatically generated by combining the name of the app (polls) and the lowercase name of the model – question and choice. (You can override this behavior.)</li>
-<li>Primary keys (IDs) are added automatically. (You can override this, too.)</li>
-<li></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071749684.png" alt="" /></p>
-<ol start="3">
-<li>在数据库中创建模型和表: <code>python manage.py migrate</code></li>
-</ol>
 <h1 id="django-shell"><a class="markdownIt-Anchor" href="#django-shell"></a> Django Shell</h1>
 <p>使用 <code>python manage.py shell</code> 打开与当前项目的交互, 可以通过 django 内置的 API 进行功能测试</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071757229.png" alt="" /></p>
@@ -681,19 +639,6 @@ We’re in the business of making web frameworks, not web servers.</p>
 <li>为这个集合添加数据就能自动作用到 Choice 表中</li>
 </ol>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071821430.png" alt="" /></p>
-<h1 id="django-admin"><a class="markdownIt-Anchor" href="#django-admin"></a> Django Admin</h1>
-<ol>
-<li>创建可以访问管理网页的用户: <code>python manage.py createsuperuser</code></li>
-<li>启动服务, 进入 admin 界面</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071825556.png" alt="" /></p>
-<ol start="3">
-<li>默认只存在对用户组和用户的管理, 因此需要引入我们创建的数据模型的管理: 在 app 的 <a target="_blank" rel="noopener" href="http://admin.py">admin.py</a> 中实现引入</li>
-</ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> Question
-admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>register<span class="token punctuation">(</span>Question<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071829788.png" alt="" /></p>
-<p>Django 的 Admin 功能太舒服了...</p>
 <h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S44y1K7Hd/?vd_source=b982c5b9804c7552564e69b7b5d8a2e0">Bilibili</a></li>
@@ -1253,7 +1198,7 @@ admin<span class="token punctuation">.</span>site<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">141k</span>&nbsp;字
+                class="white-color">141.9k</span>&nbsp;字
             
             
             

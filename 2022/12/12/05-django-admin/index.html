@@ -467,7 +467,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    599
+                    676
                 </div>
                 
 
@@ -499,6 +499,17 @@
             <div id="articleContent">
                 <h1 id="admin"><a class="markdownIt-Anchor" href="#admin"></a> Admin</h1>
 <p>Django 自动生成后台的功能十分方便</p>
+<ol>
+<li>创建可以访问管理网页的用户: <code>python manage.py createsuperuser</code></li>
+<li>启动服务, 进入 admin 界面</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071825556.png" alt="" /></p>
+<ol start="3">
+<li>默认只存在对用户组和用户的管理, 因此需要引入我们创建的数据模型的管理: 在 app 的 <a target="_blank" rel="noopener" href="http://admin.py">admin.py</a> 中实现引入</li>
+</ol>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> Question
+admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>register<span class="token punctuation">(</span>Question<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071829788.png" alt="" /></p>
 <h1 id="自定义后台表单"><a class="markdownIt-Anchor" href="#自定义后台表单"></a> 自定义后台表单</h1>
 <p>初始的后台可控数据十分少, 可以通过修改 APP 目录下的 <a target="_blank" rel="noopener" href="http://admin.py">admin.py</a> 进行精细化控制</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
@@ -852,30 +863,29 @@ admin<span class="token punctuation">.</span>site<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/Coming-blog/2022/12/12/05-django-admin/">
+                <a href="/Coming-blog/2022/12/30/06-django-request/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/3.jpg" class="responsive-img" alt="05-django-admin">
+                        <img src="/Coming-blog/medias/featureimages/4.jpg" class="responsive-img" alt="06-django-request">
                         
-                        <span class="card-title">05-django-admin</span>
+                        <span class="card-title">06-django-request</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            django 后台管理
+                            与请求相关的操作与规范
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-12-30
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -888,7 +898,6 @@ admin<span class="token punctuation">.</span>site<span class="token punctuation"
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1146,7 +1155,7 @@ admin<span class="token punctuation">.</span>site<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">141k</span>&nbsp;字
+                class="white-color">141.9k</span>&nbsp;字
             
             
             

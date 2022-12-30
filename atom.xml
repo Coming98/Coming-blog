@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-12-12T10:46:53.696Z</updated>
+  <updated>2022-12-30T10:26:47.629Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,119 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>09-django-ModelForm</title>
+    <link href="https://coming98.github.io/2022/12/30/09-django-modelform/"/>
+    <id>https://coming98.github.io/2022/12/30/09-django-modelform/</id>
+    <published>2022-12-30T18:21:59.000Z</published>
+    <updated>2022-12-30T10:26:47.629Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;modelform&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#modelform&quot;&gt;&lt;/a&gt; ModelForm&lt;/h1&gt;
+&lt;p&gt;借助 Model 的定义快速实现 CRUD 的逻辑任务&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
+    
+    
+    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>08-django-templates</title>
+    <link href="https://coming98.github.io/2022/12/30/08-django-templates/"/>
+    <id>https://coming98.github.io/2022/12/30/08-django-templates/</id>
+    <published>2022-12-30T18:21:52.000Z</published>
+    <updated>2022-12-30T10:26:47.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;templates&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#templates&quot;&gt;&lt;/a&gt; templates&lt;/h1&gt;
+&lt;p&gt;在所有 app 目录下的 templates 文件夹中寻找&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
+    
+    
+    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>07-django-orm</title>
+    <link href="https://coming98.github.io/2022/12/30/07-django-orm/"/>
+    <id>https://coming98.github.io/2022/12/30/07-django-orm/</id>
+    <published>2022-12-30T18:21:46.000Z</published>
+    <updated>2022-12-30T10:26:47.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;orm&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#orm&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
+    
+    
+    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>06-django-request</title>
+    <link href="https://coming98.github.io/2022/12/30/06-django-request/"/>
+    <id>https://coming98.github.io/2022/12/30/06-django-request/</id>
+    <published>2022-12-30T18:21:41.000Z</published>
+    <updated>2022-12-30T10:26:47.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;request&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#request&quot;&gt;&lt;/a&gt; Request&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;request.method: 获取请求方式&lt;/li&gt;
+&lt;li&gt;request.GET: 获取</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
+    
+    
+    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>05-django-admin</title>
     <link href="https://coming98.github.io/2022/12/12/05-django-admin/"/>
     <id>https://coming98.github.io/2022/12/12/05-django-admin/</id>
     <published>2022-12-12T18:43:13.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -30,7 +138,8 @@
         
     <summary type="html">&lt;h1 id=&quot;admin&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#admin&quot;&gt;&lt;/a&gt; Admin&lt;/h1&gt;
 &lt;p&gt;Django 自动生成后台的功能十分方便&lt;/p&gt;
-&lt;h1 id=&quot;自定义后台表单&quot;&gt;&lt;a</summary>
+&lt;ol&gt;
+&lt;li&gt;创建可以访问管理网页的用户: &lt;code&gt;python</summary>
         
       
     
@@ -48,7 +157,7 @@
     <link href="https://coming98.github.io/2022/12/12/04-django-static/"/>
     <id>https://coming98.github.io/2022/12/12/04-django-static/</id>
     <published>2022-12-12T18:43:06.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -74,7 +183,7 @@
     <link href="https://coming98.github.io/2022/12/12/03-django-testing/"/>
     <id>https://coming98.github.io/2022/12/12/03-django-testing/</id>
     <published>2022-12-12T18:42:54.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -100,7 +209,7 @@
     <link href="https://coming98.github.io/2022/12/12/02-django-views/"/>
     <id>https://coming98.github.io/2022/12/12/02-django-views/</id>
     <published>2022-12-12T16:45:07.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -127,7 +236,7 @@
     <link href="https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/</id>
     <published>2022-12-04T09:18:07.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -154,7 +263,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-django-init/"/>
     <id>https://coming98.github.io/2022/12/03/01-django-init/</id>
     <published>2022-12-03T23:25:47.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -183,7 +292,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/</id>
     <published>2022-12-03T15:50:56.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -208,7 +317,7 @@
     <link href="https://coming98.github.io/2022/11/11/01-llvm-basic/"/>
     <id>https://coming98.github.io/2022/11/11/01-llvm-basic/</id>
     <published>2022-11-11T22:58:36.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -235,7 +344,7 @@
     <link href="https://coming98.github.io/2022/09/11/13-jetpack/"/>
     <id>https://coming98.github.io/2022/09/11/13-jetpack/</id>
     <published>2022-09-11T14:19:44.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.629Z</updated>
     
     
       
@@ -261,7 +370,7 @@
     <link href="https://coming98.github.io/2022/09/05/12-material-design/"/>
     <id>https://coming98.github.io/2022/09/05/12-material-design/</id>
     <published>2022-09-05T18:35:34.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.629Z</updated>
     
     
       
@@ -287,7 +396,7 @@
     <link href="https://coming98.github.io/2022/08/30/11-web/"/>
     <id>https://coming98.github.io/2022/08/30/11-web/</id>
     <published>2022-08-30T14:03:35.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.629Z</updated>
     
     
       
@@ -314,7 +423,7 @@
     <link href="https://coming98.github.io/2022/08/23/10-service/"/>
     <id>https://coming98.github.io/2022/08/23/10-service/</id>
     <published>2022-08-23T15:18:22.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.629Z</updated>
     
     
       
@@ -341,7 +450,7 @@
     <link href="https://coming98.github.io/2022/08/22/09-multimedia/"/>
     <id>https://coming98.github.io/2022/08/22/09-multimedia/</id>
     <published>2022-08-22T17:40:39.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.629Z</updated>
     
     
       
@@ -367,7 +476,7 @@
     <link href="https://coming98.github.io/2022/08/22/08-content-provider/"/>
     <id>https://coming98.github.io/2022/08/22/08-content-provider/</id>
     <published>2022-08-22T11:32:55.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -393,7 +502,7 @@
     <link href="https://coming98.github.io/2022/08/21/07-persistentstorage/"/>
     <id>https://coming98.github.io/2022/08/21/07-persistentstorage/</id>
     <published>2022-08-21T09:56:09.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -420,7 +529,7 @@
     <link href="https://coming98.github.io/2022/08/19/06-broadcast/"/>
     <id>https://coming98.github.io/2022/08/19/06-broadcast/</id>
     <published>2022-08-19T15:47:24.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
+    <updated>2022-12-30T10:26:47.625Z</updated>
     
     
       
@@ -428,111 +537,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;broadcast-mechanism&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#broadcast-mechanism&quot;&gt;&lt;/a&gt; Broadcast</summary>
-        
-      
-    
-    
-    
-    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
-    
-    
-    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>05-Fragment</title>
-    <link href="https://coming98.github.io/2022/08/18/05-fragment/"/>
-    <id>https://coming98.github.io/2022/08/18/05-fragment/</id>
-    <published>2022-08-18T21:01:01.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;fragment&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#fragment&quot;&gt;&lt;/a&gt; Fragment&lt;/h1&gt;
-&lt;p&gt;一种可以嵌入在 Activity 当中的 UI</summary>
-        
-      
-    
-    
-    
-    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
-    
-    
-    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>04-Android-UI</title>
-    <link href="https://coming98.github.io/2022/08/07/04-android-ui/"/>
-    <id>https://coming98.github.io/2022/08/07/04-android-ui/</id>
-    <published>2022-08-07T19:50:04.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;控件基础知识&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#控件基础知识&quot;&gt;&lt;/a&gt; 控件基础知识&lt;/h1&gt;
-&lt;h2 id=&quot;宽度高度的取值&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
-    
-    
-    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>03-Android-Activity</title>
-    <link href="https://coming98.github.io/2022/07/18/03-android-activity/"/>
-    <id>https://coming98.github.io/2022/07/18/03-android-activity/</id>
-    <published>2022-07-18T16:16:45.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;activity&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#activity&quot;&gt;&lt;/a&gt; Activity&lt;/h1&gt;
-&lt;p&gt;Activity：一种可以包含用户界面的组件，主要用于和用户进行交互&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
-    
-    
-    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>02-Kotlin-Advanced</title>
-    <link href="https://coming98.github.io/2022/07/18/02-kotlin-advanced/"/>
-    <id>https://coming98.github.io/2022/07/18/02-kotlin-advanced/</id>
-    <published>2022-07-18T16:16:36.000Z</published>
-    <updated>2022-12-12T10:46:53.696Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;标准函数&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#标准函数&quot;&gt;&lt;/a&gt; 标准函数&lt;/h1&gt;
-&lt;h2 id=&quot;let&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#let&quot;&gt;&lt;/a&gt;</summary>
         
       
     

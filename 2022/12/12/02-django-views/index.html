@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    843
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    4 分
                 </div>
                 
 
@@ -511,20 +511,38 @@
 It can use a template system such as Django’s – or a third-party Python template system – or not.
 It can generate a PDF file, output XML, create a ZIP file on the fly, anything you want, using whatever Python libraries you want.</p>
 </blockquote>
-<h2 id="urlpatterns"><a class="markdownIt-Anchor" href="#urlpatterns"></a> urlpatterns</h2>
-<p>实现 url 与 view 的匹配:</p>
+<h1 id="urlpatterns"><a class="markdownIt-Anchor" href="#urlpatterns"></a> urlpatterns</h1>
+<p>位于 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 中, 实现 url 与 view 的匹配</p>
+<h2 id="父域"><a class="markdownIt-Anchor" href="#父域"></a> 父域</h2>
 <ul>
-<li>app_name 属性的设置用于外部引用时指明命名空间</li>
-<li>name 属性方便外部引用目标 url</li>
 <li>支持 APP 内的维护: 使用 include 在根 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 中导入即可</li>
 </ul>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path<span class="token punctuation">,</span> include
-path<span class="token punctuation">(</span><span class="token string">"polls/"</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">"polls.urls"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    path<span class="token punctuation">(</span><span class="token string">"admin/"</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">"oa/"</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">"OA.urls"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="子域"><a class="markdownIt-Anchor" href="#子域"></a> 子域</h2>
 <ul>
+<li>app 内部 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 需要完善: app_name, urlpatterns 属性</li>
+<li>app_name 属性的设置用于外部引用非硬编码 url 时指明命名空间</li>
+<li>name 属性方便外部引用目标 url</li>
 <li>支持占位符匹配:</li>
 </ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">path<span class="token punctuation">(</span><span class="token string">'&lt;int:question_id>/results/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>results<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'results'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="exception"><a class="markdownIt-Anchor" href="#exception"></a> Exception</h2>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path
+<span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> views
+
+app_name <span class="token operator">=</span> <span class="token string">"OA"</span>
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    path<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>welcome<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"index"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">"depart_list"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>depart_list<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"depart_list"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">"depart_list/add/"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>depart_add<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"depart_add"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">"depart_list/&lt;int:depart_id>/edit/"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>depart_edit<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"depart_edit"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">(</span><span class="token string">"depart_list/delete/"</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>depart_delete<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"depart_delete"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在 template 中引用时, 指定命名空间 <code>app_name</code></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;% url <span class="token punctuation">'</span>OA:depart_edit<span class="token punctuation">'</span> depart.id %&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="exception"><a class="markdownIt-Anchor" href="#exception"></a> Exception</h1>
 <p>view 处理时可以显示的 raise an exception, 最常见的就是 404...</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>http <span class="token keyword">import</span> Http404
 
@@ -535,7 +553,7 @@ path<span class="token punctuation">(</span><span class="token string">"polls/"<
         <span class="token keyword">raise</span> Http404<span class="token punctuation">(</span><span class="token string">"Question does not exist"</span><span class="token punctuation">)</span>
     <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'polls/detail.html'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'question'</span><span class="token punctuation">:</span> question<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212112306273.png" alt="" /></p>
-<h3 id="404-shortcuts"><a class="markdownIt-Anchor" href="#404-shortcuts"></a> 404 shortcuts</h3>
+<h2 id="404-shortcuts"><a class="markdownIt-Anchor" href="#404-shortcuts"></a> 404 shortcuts</h2>
 <p>It’s a very common idiom to use <code>get()</code> and raise <code>Http404</code> if the object doesn’t exist. 因此 django 也为此提供了更加简便的封装</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render<span class="token punctuation">,</span> get_object_or_404
 
@@ -543,18 +561,11 @@ path<span class="token punctuation">(</span><span class="token string">"polls/"<
     question <span class="token operator">=</span> get_object_or_404<span class="token punctuation">(</span>Question<span class="token punctuation">,</span> pk<span class="token operator">=</span>question_id<span class="token punctuation">)</span>
     <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'polls/detail.html'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'question'</span><span class="token punctuation">:</span> question<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212112309367.png" alt="" /></p>
-<h2 id="database-api"><a class="markdownIt-Anchor" href="#database-api"></a> Database API</h2>
-<p>在 Views 中当然也可以使用 Django 自身的 Database API 让数据库的操作更加简单</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> Question
-
-<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    latest_question_list <span class="token operator">=</span> Question<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'-pub_date'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span>
-    <span class="token keyword">pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="generic-views"><a class="markdownIt-Anchor" href="#generic-views"></a> Generic Views</h2>
+<h1 id="generic-views"><a class="markdownIt-Anchor" href="#generic-views"></a> Generic Views</h1>
 <p>Q: 有些 View 的功能十分普遍, 例如展示一个列表的数据, 或者展示一个 Object 的详细信息, 针对这类 View 其后台操作基本一致: 获取 object 然后渲染模板页面, 因此可以进一步进行封装</p>
 <p>A: Generic views abstract common patterns to the point where you don’t even need to write Python code to write an app. <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/class-based-views/">For more details...</a></p>
 <p>本质上就是缩减了后台与数据库交互的代码, 展示的模板代码基本上还是需要靠自己的..., 我原以为也能有一套默认的模板进行 generic 的展示</p>
-<h3 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h3>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
 <ol>
 <li>将能够优化的 View 封装为 generic 的子类</li>
 </ol>
@@ -584,7 +595,7 @@ path<span class="token punctuation">(</span><span class="token string">"polls/"<
     path<span class="token punctuation">(</span><span class="token string">'&lt;int:pk>/results/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>ResultsView<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'results'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     path<span class="token punctuation">(</span><span class="token string">'&lt;int:pk>/vote/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>vote<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'vote'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="listview"><a class="markdownIt-Anchor" href="#listview"></a> ListView</h3>
+<h2 id="listview"><a class="markdownIt-Anchor" href="#listview"></a> ListView</h2>
 <p>Display a list of objects</p>
 <ul>
 <li>通过 get_queryset 获取要展示的列表</li>
@@ -597,7 +608,7 @@ path<span class="token punctuation">(</span><span class="token string">"polls/"<
     <span class="token keyword">def</span> <span class="token function">get_queryset</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">"""Return the last five published questions."""</span>
         <span class="token keyword">return</span> Question<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'-pub_date'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="detailview"><a class="markdownIt-Anchor" href="#detailview"></a> DetailView</h3>
+<h2 id="detailview"><a class="markdownIt-Anchor" href="#detailview"></a> DetailView</h2>
 <p>Display a detail page for a particular type of object</p>
 <ul>
 <li>通过 model 属性确定要展示的 object</li>
@@ -606,142 +617,6 @@ path<span class="token punctuation">(</span><span class="token string">"polls/"<
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">DetailView</span><span class="token punctuation">(</span>generic<span class="token punctuation">.</span>DetailView<span class="token punctuation">)</span><span class="token punctuation">:</span>
     model <span class="token operator">=</span> Question
     template_name <span class="token operator">=</span> <span class="token string">'polls/detail.html'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h1 id="templates"><a class="markdownIt-Anchor" href="#templates"></a> templates</h1>
-<p>响应式响应模板文件: 在所有 app 目录下的 templates 文件夹中寻找</p>
-<ul>
-<li>寻找顺序按照 app 注册的先后</li>
-<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/templates/">For more details</a></li>
-</ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>template <span class="token keyword">import</span> loader
-<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> Question
-
-<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    latest_question_list <span class="token operator">=</span> Question<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'-pub_date'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span>
-
-    template <span class="token operator">=</span> loader<span class="token punctuation">.</span>get_template<span class="token punctuation">(</span><span class="token string">"polls/index.html"</span><span class="token punctuation">)</span>
-    context <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"latest_question_list"</span><span class="token punctuation">:</span> latest_question_list<span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span>template<span class="token punctuation">.</span>render<span class="token punctuation">(</span>context<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="快速渲染"><a class="markdownIt-Anchor" href="#快速渲染"></a> 快速渲染</h2>
-<p>使用 <code>django.shortcuts</code> 的 <code>render</code> 实现模板的快速渲染命令</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render
-
-<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    latest_question_list <span class="token operator">=</span> Question<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>order_by<span class="token punctuation">(</span><span class="token string">'-pub_date'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span>
-
-    context <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token string">"latest_question_list"</span><span class="token punctuation">:</span> latest_question_list<span class="token punctuation">&#125;</span>
-    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">"polls/index.html"</span><span class="token punctuation">,</span> context<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="根目录统一管理"><a class="markdownIt-Anchor" href="#根目录统一管理"></a> 根目录统一管理</h2>
-<p>在项目目录下的 <code>settings.py</code> 中 <code>TEMPLATES</code> 列表中的 <code>DIRS</code> 属性中可以配置搜索目录, 将项目根目录加入其中即可: <code>os.path.join(BASE_DIR, &quot;templates&quot;)</code></p>
-<ul>
-<li>如果根目录中没有找到, 则再去各个 APP 中寻找</li>
-</ul>
-<h2 id="静态文件引入"><a class="markdownIt-Anchor" href="#静态文件引入"></a> 静态文件引入</h2>
-<p>django 将静态文件放置再 <code>app</code> 下的 <code>static</code> 目录下统一管理(配置文件中管理), 内部用户再自行创建文件夹进行规整</p>
-<ul>
-<li>静态文件: 图片, CSS, js, plugin</li>
-<li>使用模板语言引入 static</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212052248658.png" alt="" /></p>
-<h2 id="避免硬编码-url"><a class="markdownIt-Anchor" href="#避免硬编码-url"></a> 避免硬编码 URL</h2>
-<p>在 urlpattern 中配置的 name 属性, 就可以用在模板语法中用于索引想要跳转的 url, 而不必再用拼接的形式, 如 <code>&lt;a href=&quot;/polls/&#123;&#123; question.id &#125;&#125;/&quot;&gt;</code></p>
-<p>模板标签为 <code>&#123;% url %&#125;</code> 以空格为分隔符, 第一个参数表示目标 url 的 name, 后续参数为参数列表</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;% url <span class="token punctuation">'</span>detail<span class="token punctuation">'</span> question.id %&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;&#123; question.question_text &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="指定-namespace"><a class="markdownIt-Anchor" href="#指定-namespace"></a> 指定 namespace</h3>
-<p>多个 APP 的项目中, url 的 name 可能冲突, 因此就要指定 namespace 为某个 APP</p>
-<ol>
-<li>在 app/urls.py 中添加 <code>app_name=&quot;app_name&quot;</code> 指明 namespace</li>
-<li>在引用目标 url 时添加 namespace</li>
-</ol>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;% url <span class="token punctuation">'</span>polls:detail<span class="token punctuation">'</span> question.id %&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="模板语法"><a class="markdownIt-Anchor" href="#模板语法"></a> 模板语法</h2>
-<ul>
-<li>变量值: <code>&#123;&#123; var &#125;&#125;</code></li>
-<li>数组索引: <code>&#123;&#123; arr.index &#125;&#125;</code></li>
-<li>字典属性: <code>&#123;&#123; dict.key &#125;&#125;</code></li>
-</ul>
-<h3 id="循环"><a class="markdownIt-Anchor" href="#循环"></a> 循环</h3>
-<ul>
-<li>数组循环:</li>
-</ul>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">&#123;% for item in arr %&#125;
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>&#123;&#123; item &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-&#123;% endfor %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>字典循环: 同 python, <code>dict.keys, dict.values, dict.items</code>, 就是不用加括号了</li>
-</ul>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">&#123;% for key, value in dict.items %&#125;
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>&#123;&#123; item &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-&#123;% endfor %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="条件"><a class="markdownIt-Anchor" href="#条件"></a> 条件</h3>
-<ul>
-<li>if [elif] else</li>
-</ul>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">&#123;% if name == "admin" %&#125;
-    pass
-&#123;% elif name == "user" %&#125;
-    pass
-&#123;% else %&#125;
-    pass
-&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="get-post"><a class="markdownIt-Anchor" href="#get-post"></a> GET &amp; POST</h1>
-<p>Whenever you create a form that alters data server-side, use method=&quot;post&quot;. This tip isn’t specific to Django; it’s good web development practice in general
-As the Python comment above points out, you should always return an HttpResponseRedirect after successfully dealing with POST data. This tip isn’t specific to Django; it’s good web development practice in general.</p>
-<ul>
-<li>也就是说 POST 请求通常用于实现对后台数据库数据的更改, 一旦更改完毕, 便通常以一个 redirect 的形式返回到目标页面, 以实现显示的 URL 更新</li>
-<li>但我觉得异步请求会更好一些..</li>
-</ul>
-<h2 id="post-request"><a class="markdownIt-Anchor" href="#post-request"></a> Post Request</h2>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;% url <span class="token punctuation">'</span>polls:vote<span class="token punctuation">'</span> question.id %&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    &#123;% comment %&#125; In short, all POST forms that are targeted at internal URLs should use the &#123;% csrf_token %&#125; template tag. &#123;% endcomment %&#125;
-    &#123;% csrf_token %&#125;
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>legend</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>&#123;&#123; question.question_text &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>legend</span><span class="token punctuation">></span></span>
-        &#123;% if error_message %&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>&#123;&#123; error_message &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>&#123;% endif %&#125;
-        &#123;% for choice in question.choice_set.all %&#125;
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>choice<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>choice&#123;&#123; forloop.counter &#125;&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; choice.id &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>choice&#123;&#123; forloop.counter &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;&#123; choice.choice_text &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
-        &#123;% endfor %&#125;
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Vote<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>通过 Form 实现 Post 请求:</p>
-<ul>
-<li>action 使用非硬编码 url, 方便后续根据需求更改 url</li>
-<li>input 标签中的 name 属性为 POST 的键名, value 属性为 POST 的键值</li>
-<li>label 标签的指向, 更人性化的选取</li>
-</ul>
-<h3 id="csrf-防止跨站请求伪造"><a class="markdownIt-Anchor" href="#csrf-防止跨站请求伪造"></a> csrf 防止跨站请求伪造</h3>
-<p>POST 请求时会自动传递 <code>csrfmiddlewaretoken</code> 这个参数, 生存期仅一次</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121308095.png" alt="" /></p>
-<p>如果使用其它工具直接重现请求: 如 Postman, 直接失败</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121310718.png" alt="" /></p>
-<h2 id="post-redirect"><a class="markdownIt-Anchor" href="#post-redirect"></a> Post Redirect</h2>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">vote</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> pk<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    question <span class="token operator">=</span> get_object_or_404<span class="token punctuation">(</span>Question<span class="token punctuation">,</span> pk<span class="token operator">=</span>pk<span class="token punctuation">)</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        selected_choice <span class="token operator">=</span> question<span class="token punctuation">.</span>choice_set<span class="token punctuation">.</span>get<span class="token punctuation">(</span>pk<span class="token operator">=</span>request<span class="token punctuation">.</span>POST<span class="token punctuation">[</span><span class="token string">'choice'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token keyword">except</span> <span class="token punctuation">(</span>KeyError<span class="token punctuation">,</span> Choice<span class="token punctuation">.</span>DoesNotExist<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'polls/detail.html'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
-            <span class="token string">'question'</span><span class="token punctuation">:</span> question<span class="token punctuation">,</span>
-            <span class="token string">'error_message'</span><span class="token punctuation">:</span> <span class="token string">"You didn't select a choice."</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        selected_choice<span class="token punctuation">.</span>votes <span class="token operator">+=</span> <span class="token number">1</span>
-        selected_choice<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token comment"># reverse function helps avoid having to hardcode a URL in the view function.</span>
-        <span class="token keyword">return</span> HttpResponseRedirect<span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'polls:results'</span><span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>question<span class="token punctuation">.</span><span class="token builtin">id</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>views 函数的参数名需要和 urlpattern 中配置的一致</li>
-<li>注意后台处理中数据库数据的 selected_choice 并没有添加互斥所, 多个用户同时请求更新这个数据时可能会出现错误, <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/ref/models/expressions/#avoiding-race-conditions-using-f">解决方案</a>后续更新...</li>
-<li>reverse 函数解决了目标 url 的硬编码问题</li>
-</ul>
-<h1 id="refs"><a class="markdownIt-Anchor" href="#refs"></a> Refs</h1>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S44y1K7Hd/?vd_source=b982c5b9804c7552564e69b7b5d8a2e0">Bilibili</a></li>
-</ul>
-
                 
             </div>
             <hr/>
@@ -1292,7 +1167,7 @@ As the Python comment above points out, you should always return an HttpResponse
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">141k</span>&nbsp;字
+                class="white-color">141.9k</span>&nbsp;字
             
             
             
