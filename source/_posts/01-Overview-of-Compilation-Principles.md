@@ -3,7 +3,7 @@ title: 01-Overview-of-Compilation-Principles
 mathjax: false
 date: 2022-12-03 15:50:56
 summary: 编译原理引论
-categories: Complier
+categories: Compiler
 tags:
   - compilation principle
 ---
