@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-12-31T11:02:08.164Z</updated>
+  <updated>2022-12-31T14:36:59.135Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -21,17 +21,15 @@
     <link href="https://coming98.github.io/2022/12/31/03-react-component-basic/"/>
     <id>https://coming98.github.io/2022/12/31/03-react-component-basic/</id>
     <published>2022-12-31T18:57:46.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;类的基础&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#类的基础&quot;&gt;&lt;/a&gt; 类的基础&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;JS 中继承关键字: &lt;code&gt;extends&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;react 引入了</summary>
+    <summary type="html">&lt;h1 id=&quot;类组件&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#类组件&quot;&gt;&lt;/a&gt; 类组件&lt;/h1&gt;
+&lt;h2 id=&quot;最基本的类组件&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#最基本的类组件&quot;&gt;&lt;/a&gt;</summary>
         
       
     
@@ -49,7 +47,7 @@
     <link href="https://coming98.github.io/2022/12/31/02-react-jsx/"/>
     <id>https://coming98.github.io/2022/12/31/02-react-jsx/</id>
     <published>2022-12-31T18:57:34.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -75,7 +73,7 @@
     <link href="https://coming98.github.io/2022/12/31/01-react-create-react-app/"/>
     <id>https://coming98.github.io/2022/12/31/01-react-create-react-app/</id>
     <published>2022-12-31T18:57:23.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -101,7 +99,7 @@
     <link href="https://coming98.github.io/2022/12/30/09-django-modelform/"/>
     <id>https://coming98.github.io/2022/12/30/09-django-modelform/</id>
     <published>2022-12-30T18:21:59.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -128,7 +126,7 @@
     <link href="https://coming98.github.io/2022/12/30/08-django-templates/"/>
     <id>https://coming98.github.io/2022/12/30/08-django-templates/</id>
     <published>2022-12-30T18:21:52.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -156,7 +154,7 @@
     <link href="https://coming98.github.io/2022/12/30/07-django-orm/"/>
     <id>https://coming98.github.io/2022/12/30/07-django-orm/</id>
     <published>2022-12-30T18:21:46.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -181,7 +179,7 @@
     <link href="https://coming98.github.io/2022/12/30/06-django-request/"/>
     <id>https://coming98.github.io/2022/12/30/06-django-request/</id>
     <published>2022-12-30T18:21:41.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -209,7 +207,7 @@
     <link href="https://coming98.github.io/2022/12/12/05-django-admin/"/>
     <id>https://coming98.github.io/2022/12/12/05-django-admin/</id>
     <published>2022-12-12T18:43:13.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -237,7 +235,7 @@
     <link href="https://coming98.github.io/2022/12/12/04-django-static/"/>
     <id>https://coming98.github.io/2022/12/12/04-django-static/</id>
     <published>2022-12-12T18:43:06.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -263,7 +261,7 @@
     <link href="https://coming98.github.io/2022/12/12/03-django-testing/"/>
     <id>https://coming98.github.io/2022/12/12/03-django-testing/</id>
     <published>2022-12-12T18:42:54.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -289,7 +287,7 @@
     <link href="https://coming98.github.io/2022/12/12/02-django-views/"/>
     <id>https://coming98.github.io/2022/12/12/02-django-views/</id>
     <published>2022-12-12T16:45:07.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -316,7 +314,7 @@
     <link href="https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/</id>
     <published>2022-12-04T09:18:07.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -343,7 +341,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-django-init/"/>
     <id>https://coming98.github.io/2022/12/03/01-django-init/</id>
     <published>2022-12-03T23:25:47.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -372,7 +370,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/</id>
     <published>2022-12-03T15:50:56.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -397,7 +395,7 @@
     <link href="https://coming98.github.io/2022/11/11/01-llvm-basic/"/>
     <id>https://coming98.github.io/2022/11/11/01-llvm-basic/</id>
     <published>2022-11-11T22:58:36.000Z</published>
-    <updated>2022-12-31T11:02:08.164Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -424,7 +422,7 @@
     <link href="https://coming98.github.io/2022/09/11/13-jetpack/"/>
     <id>https://coming98.github.io/2022/09/11/13-jetpack/</id>
     <published>2022-09-11T14:19:44.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -450,7 +448,7 @@
     <link href="https://coming98.github.io/2022/09/05/12-material-design/"/>
     <id>https://coming98.github.io/2022/09/05/12-material-design/</id>
     <published>2022-09-05T18:35:34.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -476,7 +474,7 @@
     <link href="https://coming98.github.io/2022/08/30/11-web/"/>
     <id>https://coming98.github.io/2022/08/30/11-web/</id>
     <published>2022-08-30T14:03:35.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -503,7 +501,7 @@
     <link href="https://coming98.github.io/2022/08/23/10-service/"/>
     <id>https://coming98.github.io/2022/08/23/10-service/</id>
     <published>2022-08-23T15:18:22.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       
@@ -530,7 +528,7 @@
     <link href="https://coming98.github.io/2022/08/22/09-multimedia/"/>
     <id>https://coming98.github.io/2022/08/22/09-multimedia/</id>
     <published>2022-08-22T17:40:39.000Z</published>
-    <updated>2022-12-31T11:02:08.168Z</updated>
+    <updated>2022-12-31T14:36:59.135Z</updated>
     
     
       

@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    720
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    5 分
                 </div>
                 
 
@@ -497,38 +497,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="类的基础"><a class="markdownIt-Anchor" href="#类的基础"></a> 类的基础</h1>
-<ol>
-<li>JS 中继承关键字: <code>extends</code></li>
-<li>react 引入了 <code>js</code> 文件就会默认执行</li>
-</ol>
-<h2 id="有关类的-js-文件"><a class="markdownIt-Anchor" href="#有关类的-js-文件"></a> 有关类的 js 文件</h2>
-<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">
-<span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">&#123;</span>
-    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    <span class="token function">testa</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'a - test'</span><span class="token punctuation">)</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">// 继承</span>
-<span class="token keyword">class</span> <span class="token class-name">ChildTest</span> <span class="token keyword">extends</span> <span class="token class-name">Test</span><span class="token punctuation">&#123;</span>
-    <span class="token function">testb</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'b - test'</span><span class="token punctuation">)</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-obj<span class="token punctuation">.</span><span class="token function">testa</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token keyword">var</span> childObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChildTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-childObj<span class="token punctuation">.</span><span class="token function">testb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="类组件"><a class="markdownIt-Anchor" href="#类组件"></a> 类组件</h1>
+                <h1 id="类组件"><a class="markdownIt-Anchor" href="#类组件"></a> 类组件</h1>
 <h2 id="最基本的类组件"><a class="markdownIt-Anchor" href="#最基本的类组件"></a> 最基本的类组件</h2>
 <p>可以使用 rcc ( in vscode ) 快速构建</p>
 <pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">
@@ -569,6 +538,9 @@ root<span class="token punctuation">.</span><span class="token function">render<
 root<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h1 id="函数式组件"><a class="markdownIt-Anchor" href="#函数式组件"></a> 函数式组件</h1>
 <p>无状态组件, 十分简单, 但自身能承担的功能也有限</p>
+<ul>
+<li>组件中  <code>this</code> 为 <code>undefined</code>，是因为经过 <code>babel</code> 翻译开起严格模式，从而禁止了自定义 <code>this</code> 指向 <code>window</code></li>
+</ul>
 <h2 id="基本的函数式组建"><a class="markdownIt-Anchor" href="#基本的函数式组建"></a> 基本的函数式组建</h2>
 <pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> <span class="token punctuation">(</span>
@@ -579,7 +551,7 @@ root<span class="token punctuation">.</span><span class="token function">render<
         </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> App<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">App</span></span><span class="token punctuation">/></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="组件的嵌套"><a class="markdownIt-Anchor" href="#组件的嵌套"></a> 组件的嵌套</h1>
 <pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>Component<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
 
@@ -613,9 +585,10 @@ root<span class="token punctuation">.</span><span class="token function">render<
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212311851361.png" alt="" /></p>
 <h1 id="组件的样式"><a class="markdownIt-Anchor" href="#组件的样式"></a> 组件的样式</h1>
-<p>为组件添加样式: 推荐使用行内样式, 方便组件复用</p>
+<p>推荐使用行内样式, 方便组件复用</p>
 <ul>
 <li>如果导入外部 CSS 文件, 整合的 webpack 会将其转为内部 <code>style</code> 从而将样式应用</li>
+<li>推荐每一个组件建立一个文件夹，文件夹中 <code>index.js</code> 写组件设计代码；<code>index.css</code> 写组件样式代码</li>
 </ul>
 <pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>Component<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
 <span class="token keyword">import</span> <span class="token string">'./css/01-index.css'</span> <span class="token comment">// webpack 的支持</span>
@@ -646,7 +619,38 @@ root<span class="token punctuation">.</span><span class="token function">render<
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212311853206.png" alt="" /></p>
-
+<h1 id="组件的事件绑定"><a class="markdownIt-Anchor" href="#组件的事件绑定"></a> 组件的事件绑定</h1>
+<p>所有事件命名都是 <code>on</code> + <code>事件的驼峰命名</code> 如 <code>onClick, onMouseOver</code></p>
+<ul>
+<li>React 事件绑定原理: React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，再根标签上进行事件的监听（冒泡）</li>
+</ul>
+<p>1、普通函数调用：<code>onClick=&#123;this.function&#125;</code> 这里的 <code>function</code> 指向的是非匿名函数</p>
+<blockquote>
+<p>普通函数一般 this 应指向调用者，但是事件并不是直接绑定到标签上的，而是通过事件代理的机制实现的，因此 this 指向了 <code>undefined</code>；可使用 bind 修正
+<code>.call(this)</code> 会改变 this 指向但是会制动执行函数
+<code>.apply(this)</code> 和 call 类似改变 this 指向的同时会执行函数
+<code>.bind(this)</code> 仅仅改变 this</p>
+</blockquote>
+<p>2、显式匿名函数调用：<code>onClick=&#123;()=&gt;&#123;do sth...&#125;&#125;</code></p>
+<blockquote>
+<p>箭头函数中的 this 与外界保持一致</p>
+</blockquote>
+<p>3、隐式匿名函数调用：<code>onClick=&#123;this.function&#125;</code> 这里的 <code>function</code> 指向的是匿名函数</p>
+<p>4、匿名函数+普通函数：<code>onClick=&#123;()=&gt;&#123;this.function()&#125;&#125;</code></p>
+<p>比较推荐第四种方式，既能修正 <code>this</code> 指向还有较好的封装并且参数传递也容易实现</p>
+<h1 id="组件二次封装"><a class="markdownIt-Anchor" href="#组件二次封装"></a> 组件二次封装</h1>
+<p>针对组件中有固有属性时且较多时，我们可以自定义一个一般组件实现封装</p>
+<p>如 NavLink 中 className 属性固定，因此可以进行二次封装</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">NavLink</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list-group-item<span class="token punctuation">"</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token plain-text">About</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">NavLink</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>二次封装我们向上要符合用户的编程习惯，即使用标签体传递表明名称，属性依旧通过 props 传递；向下要对接好初始组件</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">MyNavLink</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token plain-text">About</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">MyNavLink</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">MyNavLink</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/home<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token plain-text">Home</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">MyNavLink</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>方便向下对接的是，标签体中的内容将使用 this.props.children 接收，因此可以直接传递给 NavLink 的child属性，完成二次封装的优秀对接</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">NavLink</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list-group-item<span class="token punctuation">"</span></span> <span class="token spread"><span class="token punctuation">&#123;</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">&#125;</span></span> <span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1199,7 +1203,7 @@ root<span class="token punctuation">.</span><span class="token function">render<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">143.8k</span>&nbsp;字
+                class="white-color">143.4k</span>&nbsp;字
             
             
             
