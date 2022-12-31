@@ -1554,7 +1554,7 @@
       
       <categories>
           
-          <category> Ungrouped </category>
+          <category> Blog </category>
           
       </categories>
       
@@ -1631,7 +1631,7 @@
       
       <categories>
           
-          <category> Github </category>
+          <category> Blog </category>
           
       </categories>
       
@@ -1658,20 +1658,10 @@
       
       <categories>
           
-          <category> Ungrouped </category>
+          <category> Blog </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-            <tag> numpy </tag>
-            
-            <tag> Hello World </tag>
-            
-        </tags>
       
     </entry>
     
