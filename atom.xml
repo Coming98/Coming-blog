@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2022-12-31T01:58:29.480Z</updated>
+  <updated>2022-12-31T11:02:08.164Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,91 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>03-React-Component Basic</title>
+    <link href="https://coming98.github.io/2022/12/31/03-react-component-basic/"/>
+    <id>https://coming98.github.io/2022/12/31/03-react-component-basic/</id>
+    <published>2022-12-31T18:57:46.000Z</published>
+    <updated>2022-12-31T11:02:08.164Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;类的基础&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#类的基础&quot;&gt;&lt;/a&gt; 类的基础&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;JS 中继承关键字: &lt;code&gt;extends&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;react 引入了</summary>
+        
+      
+    
+    
+    
+    <category term="React" scheme="https://coming98.github.io/categories/React/"/>
+    
+    
+    <category term="react" scheme="https://coming98.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>02-React-jsx</title>
+    <link href="https://coming98.github.io/2022/12/31/02-react-jsx/"/>
+    <id>https://coming98.github.io/2022/12/31/02-react-jsx/</id>
+    <published>2022-12-31T18:57:34.000Z</published>
+    <updated>2022-12-31T11:02:08.164Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;jsx&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#jsx&quot;&gt;&lt;/a&gt; jsx&lt;/h1&gt;
+&lt;p&gt;JavaScript XML, 用来简化创建虚拟 DOM，通过 Babel 编译器将 jsx 相关代码转为 React</summary>
+        
+      
+    
+    
+    
+    <category term="React" scheme="https://coming98.github.io/categories/React/"/>
+    
+    
+    <category term="jsx" scheme="https://coming98.github.io/tags/jsx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>01-React-Create React App</title>
+    <link href="https://coming98.github.io/2022/12/31/01-react-create-react-app/"/>
+    <id>https://coming98.github.io/2022/12/31/01-react-create-react-app/</id>
+    <published>2022-12-31T18:57:23.000Z</published>
+    <updated>2022-12-31T11:02:08.164Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;scaffold&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#scaffold&quot;&gt;&lt;/a&gt; scaffold&lt;/h1&gt;
+&lt;p&gt;脚手架, 基于 WebPack, 用于快速创建一个模板项目, 包含了需要的配置（语法检查,</summary>
+        
+      
+    
+    
+    
+    <category term="React" scheme="https://coming98.github.io/categories/React/"/>
+    
+    
+    <category term="react" scheme="https://coming98.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
     <title>09-django-ModelForm</title>
     <link href="https://coming98.github.io/2022/12/30/09-django-modelform/"/>
     <id>https://coming98.github.io/2022/12/30/09-django-modelform/</id>
     <published>2022-12-30T18:21:59.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -48,7 +128,7 @@
     <link href="https://coming98.github.io/2022/12/30/08-django-templates/"/>
     <id>https://coming98.github.io/2022/12/30/08-django-templates/</id>
     <published>2022-12-30T18:21:52.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -76,7 +156,7 @@
     <link href="https://coming98.github.io/2022/12/30/07-django-orm/"/>
     <id>https://coming98.github.io/2022/12/30/07-django-orm/</id>
     <published>2022-12-30T18:21:46.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -101,7 +181,7 @@
     <link href="https://coming98.github.io/2022/12/30/06-django-request/"/>
     <id>https://coming98.github.io/2022/12/30/06-django-request/</id>
     <published>2022-12-30T18:21:41.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -129,7 +209,7 @@
     <link href="https://coming98.github.io/2022/12/12/05-django-admin/"/>
     <id>https://coming98.github.io/2022/12/12/05-django-admin/</id>
     <published>2022-12-12T18:43:13.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -157,7 +237,7 @@
     <link href="https://coming98.github.io/2022/12/12/04-django-static/"/>
     <id>https://coming98.github.io/2022/12/12/04-django-static/</id>
     <published>2022-12-12T18:43:06.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -183,7 +263,7 @@
     <link href="https://coming98.github.io/2022/12/12/03-django-testing/"/>
     <id>https://coming98.github.io/2022/12/12/03-django-testing/</id>
     <published>2022-12-12T18:42:54.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.164Z</updated>
     
     
       
@@ -209,7 +289,7 @@
     <link href="https://coming98.github.io/2022/12/12/02-django-views/"/>
     <id>https://coming98.github.io/2022/12/12/02-django-views/</id>
     <published>2022-12-12T16:45:07.000Z</published>
-    <updated>2022-12-31T01:58:29.476Z</updated>
+    <updated>2022-12-31T11:02:08.164Z</updated>
     
     
       
@@ -236,7 +316,7 @@
     <link href="https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/</id>
     <published>2022-12-04T09:18:07.000Z</published>
-    <updated>2022-12-31T01:58:29.476Z</updated>
+    <updated>2022-12-31T11:02:08.164Z</updated>
     
     
       
@@ -263,7 +343,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-django-init/"/>
     <id>https://coming98.github.io/2022/12/03/01-django-init/</id>
     <published>2022-12-03T23:25:47.000Z</published>
-    <updated>2022-12-31T01:58:29.476Z</updated>
+    <updated>2022-12-31T11:02:08.164Z</updated>
     
     
       
@@ -292,7 +372,7 @@
     <link href="https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/</id>
     <published>2022-12-03T15:50:56.000Z</published>
-    <updated>2022-12-31T01:58:29.476Z</updated>
+    <updated>2022-12-31T11:02:08.164Z</updated>
     
     
       
@@ -317,7 +397,7 @@
     <link href="https://coming98.github.io/2022/11/11/01-llvm-basic/"/>
     <id>https://coming98.github.io/2022/11/11/01-llvm-basic/</id>
     <published>2022-11-11T22:58:36.000Z</published>
-    <updated>2022-12-31T01:58:29.476Z</updated>
+    <updated>2022-12-31T11:02:08.164Z</updated>
     
     
       
@@ -344,7 +424,7 @@
     <link href="https://coming98.github.io/2022/09/11/13-jetpack/"/>
     <id>https://coming98.github.io/2022/09/11/13-jetpack/</id>
     <published>2022-09-11T14:19:44.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -370,7 +450,7 @@
     <link href="https://coming98.github.io/2022/09/05/12-material-design/"/>
     <id>https://coming98.github.io/2022/09/05/12-material-design/</id>
     <published>2022-09-05T18:35:34.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -396,7 +476,7 @@
     <link href="https://coming98.github.io/2022/08/30/11-web/"/>
     <id>https://coming98.github.io/2022/08/30/11-web/</id>
     <published>2022-08-30T14:03:35.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -423,7 +503,7 @@
     <link href="https://coming98.github.io/2022/08/23/10-service/"/>
     <id>https://coming98.github.io/2022/08/23/10-service/</id>
     <published>2022-08-23T15:18:22.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -450,7 +530,7 @@
     <link href="https://coming98.github.io/2022/08/22/09-multimedia/"/>
     <id>https://coming98.github.io/2022/08/22/09-multimedia/</id>
     <published>2022-08-22T17:40:39.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
+    <updated>2022-12-31T11:02:08.168Z</updated>
     
     
       
@@ -459,84 +539,6 @@
         
     <summary type="html">&lt;h1 id=&quot;notification&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#notification&quot;&gt;&lt;/a&gt; Notification&lt;/h1&gt;
 &lt;p&gt;Application:</summary>
-        
-      
-    
-    
-    
-    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
-    
-    
-    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>08-Content Provider</title>
-    <link href="https://coming98.github.io/2022/08/22/08-content-provider/"/>
-    <id>https://coming98.github.io/2022/08/22/08-content-provider/</id>
-    <published>2022-08-22T11:32:55.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;contentprovider&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#contentprovider&quot;&gt;&lt;/a&gt; ContentProvider&lt;/h1&gt;
-&lt;p&gt;实现跨程序数据共享,</summary>
-        
-      
-    
-    
-    
-    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
-    
-    
-    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>07-PersistentStorage</title>
-    <link href="https://coming98.github.io/2022/08/21/07-persistentstorage/"/>
-    <id>https://coming98.github.io/2022/08/21/07-persistentstorage/</id>
-    <published>2022-08-21T09:56:09.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;overview&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#overview&quot;&gt;&lt;/a&gt; Overview&lt;/h1&gt;
-&lt;p&gt;Types: 文件存储, SharedPerferences 存储, 数据库存储&lt;/p&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    <category term="Android Dev." scheme="https://coming98.github.io/categories/Android-Dev/"/>
-    
-    
-    <category term="Android" scheme="https://coming98.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>06-Broadcast</title>
-    <link href="https://coming98.github.io/2022/08/19/06-broadcast/"/>
-    <id>https://coming98.github.io/2022/08/19/06-broadcast/</id>
-    <published>2022-08-19T15:47:24.000Z</published>
-    <updated>2022-12-31T01:58:29.480Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;broadcast-mechanism&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#broadcast-mechanism&quot;&gt;&lt;/a&gt; Broadcast</summary>
         
       
     

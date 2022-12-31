@@ -2,41 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://coming98.github.io/2021/07/09/gan-zhi-ji-mo-xing/</loc>
-    
-    <lastmod>2022-12-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/07/24/xin-wen-zhu-ti-fen-lei-ren-wu/</loc>
-    
-    <lastmod>2022-12-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/07/24/shang-quan-fa/</loc>
-    
-    <lastmod>2022-12-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/</loc>
-    
-    <lastmod>2022-12-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/about/index.html</loc>
-    
-    <lastmod>2022-12-31</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://coming98.github.io/categories/index.html</loc>
     
     <lastmod>2022-12-31</lastmod>
@@ -59,20 +24,6 @@
   
   <url>
     <loc>https://coming98.github.io/tags/index.html</loc>
-    
-    <lastmod>2022-12-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/</loc>
-    
-    <lastmod>2022-12-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/2022/12/12/03-django-testing/</loc>
     
     <lastmod>2022-12-31</lastmod>
     
@@ -338,7 +289,28 @@
   </url>
   
   <url>
-    <loc>https://coming98.github.io/2022/07/18/03-android-activity/</loc>
+    <loc>https://coming98.github.io/2021/07/09/gan-zhi-ji-mo-xing/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/07/24/xin-wen-zhu-ti-fen-lei-ren-wu/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/07/24/shang-quan-fa/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2021/10/26/sui-dao-yu-ipsec-vpn/</loc>
     
     <lastmod>2022-12-31</lastmod>
     
@@ -415,6 +387,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/about/index.html</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/2022/07/14/01-android-basic/</loc>
     
     <lastmod>2022-12-31</lastmod>
@@ -423,6 +402,13 @@
   
   <url>
     <loc>https://coming98.github.io/2022/12/03/01-overview-of-compilation-principles/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2022/12/31/01-react-create-react-app/</loc>
     
     <lastmod>2022-12-31</lastmod>
     
@@ -464,6 +450,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/2022/12/31/02-react-jsx/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/2022/07/04/02-ts-de-lei-xing-sheng-ming-yu-ji-ben-cao-zuo/</loc>
     
     <lastmod>2022-12-31</lastmod>
@@ -485,6 +478,27 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/2022/12/31/03-react-component-basic/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2022/07/04/03-ts-de-lei-xing-suo-xiao-ji-zhi/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2022/12/12/03-django-testing/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/2022/07/18/02-kotlin-advanced/</loc>
     
     <lastmod>2022-12-31</lastmod>
@@ -493,6 +507,13 @@
   
   <url>
     <loc>https://coming98.github.io/2022/07/14/02-kotlin/</loc>
+    
+    <lastmod>2022-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/2022/07/18/03-android-activity/</loc>
     
     <lastmod>2022-12-31</lastmod>
     
@@ -516,6 +537,13 @@
   
   <url>
     <loc>https://coming98.github.io/tags/compilation-principle/</loc>
+    <lastmod>2022-12-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://coming98.github.io/tags/react/</loc>
     <lastmod>2022-12-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -557,6 +585,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/tags/jsx/</loc>
+    <lastmod>2022-12-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/tags/security/</loc>
     <lastmod>2022-12-31</lastmod>
     <changefreq>daily</changefreq>
@@ -572,13 +607,6 @@
   
   <url>
     <loc>https://coming98.github.io/tags/method/</loc>
-    <lastmod>2022-12-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/tags/react/</loc>
     <lastmod>2022-12-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -671,6 +699,13 @@
   </url>
   
   <url>
+    <loc>https://coming98.github.io/categories/React/</loc>
+    <lastmod>2022-12-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://coming98.github.io/categories/TypeScript/</loc>
     <lastmod>2022-12-31</lastmod>
     <changefreq>daily</changefreq>
@@ -707,13 +742,6 @@
   
   <url>
     <loc>https://coming98.github.io/categories/Blog/</loc>
-    <lastmod>2022-12-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://coming98.github.io/categories/React/</loc>
     <lastmod>2022-12-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
