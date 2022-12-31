@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -622,22 +622,65 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <h1 id="组件的事件绑定"><a class="markdownIt-Anchor" href="#组件的事件绑定"></a> 组件的事件绑定</h1>
 <p>所有事件命名都是 <code>on</code> + <code>事件的驼峰命名</code> 如 <code>onClick, onMouseOver</code></p>
 <ul>
-<li>React 事件绑定原理: React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，再根标签上进行事件的监听（冒泡）</li>
+<li>React 事件绑定原理: React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，在根标签上进行事件的监听（冒泡）</li>
 </ul>
-<p>1、普通函数调用：<code>onClick=&#123;this.function&#125;</code> 这里的 <code>function</code> 指向的是非匿名函数</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212312238050.png" alt="" /></p>
+<h2 id="阻止冒泡"><a class="markdownIt-Anchor" href="#阻止冒泡"></a> 阻止冒泡</h2>
+<p>通过 event 对象阻止冒泡, 处理函数中的 event 参数也是 react 模拟的, 但是仍然存在阻止冒泡的相关接口: <code>event.stopPropagatoin</code>, <code>event.preventDefault</code></p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>handleClick <span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> ADD </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function-variable function">handleClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"`event.target` 获取事件源"</span><span class="token punctuation">)</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>target<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="四种事件绑定方式"><a class="markdownIt-Anchor" href="#四种事件绑定方式"></a> 四种事件绑定方式</h2>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token punctuation">&#123;</span><span class="token comment">/* 1. 行内形式 */</span><span class="token punctuation">&#125;</span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+                    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"click1"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> ADD </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token punctuation">&#123;</span><span class="token comment">/* 2. 原生的 js 函数形式: 存在 this 指向问题 */</span><span class="token punctuation">&#125;</span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>handleClick2 <span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> ADD2 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span class="token plain-text"> 
+                </span><span class="token punctuation">&#123;</span><span class="token comment">/* 2. 原生的 js 函数形式: 使用 bind 解决 this 指向问题 */</span><span class="token punctuation">&#125;</span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleClick2</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> ADD2-bind </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token punctuation">&#123;</span><span class="token comment">/* 3. 隐式匿名函数调用 */</span><span class="token punctuation">&#125;</span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>handleClick3 <span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> ADD3 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token punctuation">&#123;</span><span class="token comment">/* 4. 显式匿名函数调用 */</span><span class="token punctuation">&#125;</span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleClick4</span><span class="token punctuation">(</span><span class="token string">"ComingPro"</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> ADD4 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol>
+<li>行内形式: 没有 this 指向问题, 逻辑简单的时候推荐使用</li>
+<li>原生的 js 函数形式: 存在 this 指向问题
+<ul>
+<li>React 通过事件代理实现事件的响应, 因此并非实例本身调用的这个函数, 所以丢失了 this;</li>
+<li>能够通过 bind 解决, 但是仍旧不推荐使用</li>
+</ul>
 <blockquote>
-<p>普通函数一般 this 应指向调用者，但是事件并不是直接绑定到标签上的，而是通过事件代理的机制实现的，因此 this 指向了 <code>undefined</code>；可使用 bind 修正
-<code>.call(this)</code> 会改变 this 指向但是会制动执行函数
+<p><code>.call(this)</code> 会改变 this 指向但是会自动执行函数
 <code>.apply(this)</code> 和 call 类似改变 this 指向的同时会执行函数
 <code>.bind(this)</code> 仅仅改变 this</p>
 </blockquote>
-<p>2、显式匿名函数调用：<code>onClick=&#123;()=&gt;&#123;do sth...&#125;&#125;</code></p>
-<blockquote>
-<p>箭头函数中的 this 与外界保持一致</p>
-</blockquote>
-<p>3、隐式匿名函数调用：<code>onClick=&#123;this.function&#125;</code> 这里的 <code>function</code> 指向的是匿名函数</p>
-<p>4、匿名函数+普通函数：<code>onClick=&#123;()=&gt;&#123;this.function()&#125;&#125;</code></p>
-<p>比较推荐第四种方式，既能修正 <code>this</code> 指向还有较好的封装并且参数传递也容易实现</p>
+</li>
+<li>隐式匿名函数调用：不存在 this 指向问题, 箭头函数不关心谁调用的, 永远保持与外部作用域一致; 不需要传递参数时推荐使用</li>
+<li>显式匿名函数调用：不存在 this 指向问题, 方便了参数的传递, 因此最为推荐使用</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212312246099.png" alt="" /></p>
 <h1 id="组件二次封装"><a class="markdownIt-Anchor" href="#组件二次封装"></a> 组件二次封装</h1>
 <p>针对组件中有固有属性时且较多时，我们可以自定义一个一般组件实现封装</p>
 <p>如 NavLink 中 className 属性固定，因此可以进行二次封装</p>
@@ -1203,7 +1246,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">143.4k</span>&nbsp;字
+                class="white-color">143.7k</span>&nbsp;字
             
             
             
