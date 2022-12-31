@@ -167,23 +167,69 @@ export default class App extends Component {
 # 组件的事件绑定
 
 所有事件命名都是 `on` + `事件的驼峰命名` 如 `onClick, onMouseOver`
-- React 事件绑定原理: React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，再根标签上进行事件的监听（冒泡）
+- React 事件绑定原理: React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，在根标签上进行事件的监听（冒泡）
 
-1、普通函数调用：`onClick={this.function}` 这里的 `function` 指向的是非匿名函数
-> 普通函数一般 this 应指向调用者，但是事件并不是直接绑定到标签上的，而是通过事件代理的机制实现的，因此 this 指向了 `undefined`；可使用 bind 修正
-> `.call(this)` 会改变 this 指向但是会制动执行函数
-> `.apply(this)` 和 call 类似改变 this 指向的同时会执行函数
-> `.bind(this)` 仅仅改变 this
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202212312238050.png)
 
-2、显式匿名函数调用：`onClick={()=>{do sth...}}`
-> 箭头函数中的 this 与外界保持一致
+## 阻止冒泡
 
-3、隐式匿名函数调用：`onClick={this.function}` 这里的 `function` 指向的是匿名函数
+通过 event 对象阻止冒泡, 处理函数中的 event 参数也是 react 模拟的, 但是仍然存在阻止冒泡的相关接口: `event.stopPropagatoin`, `event.preventDefault`
 
-4、匿名函数+普通函数：`onClick={()=>{this.function()}}` 
+```jsx
+export default class App extends Component {
+    render() {
+        return (
+            <div>
+                <input type="text" ></input>
+                <button onClick={ this.handleClick }> ADD </button>
+            </div>
+        )
+    }
+    handleClick = (event) => {
+        console.log(event)
+        console.log("`event.target` 获取事件源")
+        console.log(event.target)
+    }
+}
+```
 
-比较推荐第四种方式，既能修正 `this` 指向还有较好的封装并且参数传递也容易实现
+## 四种事件绑定方式
 
+```jsx
+export default class App extends Component {
+    render() {
+        return (
+            <div>
+                <input type="text" ></input>
+                {/* 1. 行内形式 */}
+                <button onClick={ () => {
+                    console.log("click1")
+                } }> ADD </button>
+                {/* 2. 原生的 js 函数形式: 存在 this 指向问题 */}
+                <button onClick={ this.handleClick2 }> ADD2 </button> 
+                {/* 2. 原生的 js 函数形式: 使用 bind 解决 this 指向问题 */}
+                <button onClick={ this.handleClick2.bind(this) }> ADD2-bind </button>
+                {/* 3. 隐式匿名函数调用 */}
+                <button onClick={ this.handleClick3 }> ADD3 </button>
+                {/* 4. 显式匿名函数调用 */}
+                <button onClick={ () => { this.handleClick4("ComingPro") } }> ADD4 </button>
+            </div>
+        )
+    }
+}
+```
+
+1. 行内形式: 没有 this 指向问题, 逻辑简单的时候推荐使用
+2. 原生的 js 函数形式: 存在 this 指向问题
+   - React 通过事件代理实现事件的响应, 因此并非实例本身调用的这个函数, 所以丢失了 this; 
+   - 能够通过 bind 解决, 但是仍旧不推荐使用
+    > `.call(this)` 会改变 this 指向但是会自动执行函数
+    > `.apply(this)` 和 call 类似改变 this 指向的同时会执行函数
+    > `.bind(this)` 仅仅改变 this
+3. 隐式匿名函数调用：不存在 this 指向问题, 箭头函数不关心谁调用的, 永远保持与外部作用域一致; 不需要传递参数时推荐使用
+4. 显式匿名函数调用：不存在 this 指向问题, 方便了参数的传递, 因此最为推荐使用
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202212312246099.png)
 
 # 组件二次封装
 
