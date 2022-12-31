@@ -7,42 +7,6 @@ categories: React
 tags:
   - react
 ---
-
-# 类的基础
-
-1. JS 中继承关键字: `extends`
-2. react 引入了 `js` 文件就会默认执行
-
-## 有关类的 js 文件
-
-```jsx
-
-class Test {
-    constructor() {
-        this.a = 1;
-    }
-
-    testa() {
-        console.log('a - test')
-        console.log(this.a)
-    }
-}
-
-// 继承
-class ChildTest extends Test{
-    testb() {
-        console.log('b - test')
-        console.log(this.a)
-    }
-}
-
-var obj = new Test()
-obj.testa()
-
-var childObj = new ChildTest()
-childObj.testb()
-```
-
 # 类组件
 
 ## 最基本的类组件
@@ -106,6 +70,7 @@ root.render(App);
 # 函数式组件
 
 无状态组件, 十分简单, 但自身能承担的功能也有限
+- 组件中  `this` 为 `undefined`，是因为经过 `babel` 翻译开起严格模式，从而禁止了自定义 `this` 指向 `window`
 
 ## 基本的函数式组建
 
@@ -119,7 +84,7 @@ function App() {
         </div>
     )
 }
-export default App
+ReactDOM.render(<App/>, document.getElementById('test'))
 ```
 
 # 组件的嵌套
@@ -161,8 +126,9 @@ export default class App extends Component {
 
 # 组件的样式
 
-为组件添加样式: 推荐使用行内样式, 方便组件复用
+推荐使用行内样式, 方便组件复用
 - 如果导入外部 CSS 文件, 整合的 webpack 会将其转为内部 `style` 从而将样式应用
+- 推荐每一个组件建立一个文件夹，文件夹中 `index.js` 写组件设计代码；`index.css` 写组件样式代码
 
 ```jsx
 import React, {Component} from 'react'
@@ -196,3 +162,49 @@ export default class App extends Component {
 ```
 
 ![](https://raw.githubusercontent.com/Coming98/pictures/main/202212311853206.png)
+
+
+# 组件的事件绑定
+
+所有事件命名都是 `on` + `事件的驼峰命名` 如 `onClick, onMouseOver`
+- React 事件绑定原理: React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，再根标签上进行事件的监听（冒泡）
+
+1、普通函数调用：`onClick={this.function}` 这里的 `function` 指向的是非匿名函数
+> 普通函数一般 this 应指向调用者，但是事件并不是直接绑定到标签上的，而是通过事件代理的机制实现的，因此 this 指向了 `undefined`；可使用 bind 修正
+> `.call(this)` 会改变 this 指向但是会制动执行函数
+> `.apply(this)` 和 call 类似改变 this 指向的同时会执行函数
+> `.bind(this)` 仅仅改变 this
+
+2、显式匿名函数调用：`onClick={()=>{do sth...}}`
+> 箭头函数中的 this 与外界保持一致
+
+3、隐式匿名函数调用：`onClick={this.function}` 这里的 `function` 指向的是匿名函数
+
+4、匿名函数+普通函数：`onClick={()=>{this.function()}}` 
+
+比较推荐第四种方式，既能修正 `this` 指向还有较好的封装并且参数传递也容易实现
+
+
+# 组件二次封装
+
+针对组件中有固有属性时且较多时，我们可以自定义一个一般组件实现封装
+
+如 NavLink 中 className 属性固定，因此可以进行二次封装
+```jsx
+<NavLink className="list-group-item" to="/about">About</NavLink>
+```
+
+二次封装我们向上要符合用户的编程习惯，即使用标签体传递表明名称，属性依旧通过 props 传递；向下要对接好初始组件
+```jsx
+<MyNavLink to="/about">About</MyNavLink>
+<MyNavLink to="/home">Home</MyNavLink>
+```
+
+方便向下对接的是，标签体中的内容将使用 this.props.children 接收，因此可以直接传递给 NavLink 的child属性，完成二次封装的优秀对接
+```jsx
+render() {
+    return (
+        <NavLink className="list-group-item" {...this.props} />
+    )
+}
+```
