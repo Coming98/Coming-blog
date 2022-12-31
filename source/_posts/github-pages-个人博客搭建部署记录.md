@@ -2,7 +2,7 @@
 title: github pages 个人博客搭建部署记录
 date: 2021-04-29 14:48:12
 summary: 记录参考路线，维护命令以及个性化修改
-categories: Github
+categories: Blog
 tags:
   - git
   - github
