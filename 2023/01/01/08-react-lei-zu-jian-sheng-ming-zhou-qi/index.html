@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="802.11 Protocol and Security, 编程,博客,魔方,棋牌,生活">
+    <meta name="keywords" content="08-React-类组件生命周期, 编程,博客,魔方,棋牌,生活">
     <meta name="description" content="Python,Java,C++,Web,Security,Machine Learning, DeepLearning, Linux">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>802.11 Protocol and Security | Coming is here</title>
+    <title>08-React-类组件生命周期 | Coming is here</title>
     <link rel="icon" type="image/png" href="/Coming-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Coming-blog/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Coming-blog/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">802.11 Protocol and Security</h1>
+                    <h1 class="description center-align post-title">08-React-类组件生命周期</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Coming-blog/tags/security/">
-                                <span class="chip bg-color">security</span>
+                            <a href="/Coming-blog/tags/react/">
+                                <span class="chip bg-color">react</span>
                             </a>
                         
                     </div>
@@ -445,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
-                                Protocol Security
+                            <a href="/Coming-blog/categories/React/" class="post-category">
+                                React
                             </a>
                         
                     </div>
@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-05
+                    2023-01-01
                 </div>
                 
 
@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -497,93 +497,129 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="无线网络协议-80211"><a class="markdownIt-Anchor" href="#无线网络协议-80211"></a> 无线网络协议 802.11</h1>
-<p>无线网络的优势：让网络使用更加自由；网络建设更加经济；通信更加便利；工作更加高效...</p>
-<h2 id="常用名词"><a class="markdownIt-Anchor" href="#常用名词"></a> 常用名词</h2>
-<p>SSID: Service Set ID 服务集识别码，无线名称</p>
-<p>STA: Station，任何的无线终端设备</p>
-<p>AP: Access Point，接入点</p>
-<p>BSS: Basic Service Set, 基本服务集</p>
+                <h1 id="初始化"><a class="markdownIt-Anchor" href="#初始化"></a> 初始化</h1>
+<h2 id="componentwillmount"><a class="markdownIt-Anchor" href="#componentwillmount"></a> componentWillMount</h2>
+<p>因为该周期可有可无, 不再推荐使用：只会执行一次, 在组件将要渲染前执行, 无法访问到组件节点, 可以进行状态的访问与修改</p>
+<ul>
+<li>如果依旧要用可以使用 <code>UNSAFE_componentWillMount</code> 忽略警告</li>
+</ul>
+<h2 id="render"><a class="markdownIt-Anchor" href="#render"></a> render</h2>
+<p>每次渲染时执行, 不能够进行状态修改</p>
+<h2 id="componentdidmount"><a class="markdownIt-Anchor" href="#componentdidmount"></a> componentDidMount</h2>
+<p>只会执行一次, 组件完成渲染后执行, 能访问到组件节点</p>
+<p>Application:</p>
+<ol>
+<li>开启定时器</li>
+<li>ajax 请求</li>
+<li>消息订阅等初始化的事务</li>
+<li>基于 DOM 进行初始化 - BetterScroll</li>
+</ol>
+<h1 id="运行中"><a class="markdownIt-Anchor" href="#运行中"></a> 运行中</h1>
+<h2 id="componentwillreceiveprops"><a class="markdownIt-Anchor" href="#componentwillreceiveprops"></a> componentWillReceiveProps</h2>
+<p>父组件修改属性触发子组件更新时, 子组件将执行本函数</p>
+<ul>
+<li>接受 <code>nextProps</code> 参数用于对比更新前后的父组件传来的属性值, 可以针对属性值做些逻辑处理, 将处理后的结果与子组件的状态进行绑定</li>
+<li>不能直接修改 <code>props</code> 与 <code>state</code></li>
+</ul>
+<p>Application:</p>
+<ol>
+<li>属性转为状态</li>
+<li>根据属性进行逻辑处理</li>
+</ol>
+<h2 id="shouldcomponentupdate"><a class="markdownIt-Anchor" href="#shouldcomponentupdate"></a> shouldComponentUpdate</h2>
+<p>能访问到更新前的状态, 接受两个参数 <code>nextProps, nextState</code> 这里是新旧状态的记录, 也是我们不能直接修改原状态的原因</p>
+<ul>
+<li>返回 <code>false</code> 会阻止 <code>render</code> 调用</li>
+<li>能够进行性能优化, 提升性能</li>
+<li><code>state</code> 更新后的值与之前的值相同时可以阻止不必要的 <code>render</code> 调用</li>
+<li>两个对象判断是否相等可以利用 <code>JSON.stringify(obj)</code> 来实现</li>
+</ul>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span><span class="token parameter">nextProps<span class="token punctuation">,</span> nextState</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 现在并未更新 this.state 是老状态</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>username <span class="token operator">===</span> nextState<span class="token punctuation">.</span>username<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>为了更自动的实现不变的状态进行阻塞更新, 引入了 <code>PureComponent</code> 它会自动对比新旧 <code>props</code> 与 <code>state</code> 决定 shouldComponentUpdate 返回 true 或者 false</p>
 <blockquote>
-<p>BSS 指代一整个服务范围，范围内 AP 提供服务，AP 的外在名词由 SSID 定义，STA 通过 SSID 选择连接哪个 AP</p>
+<p>当然 props 和 state 不能经常变, 否则性能并没有优化太多</p>
 </blockquote>
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923153802256.png" alt="image-20210923153802256" style="zoom:50%;" />
-<p>ESS: Extended Service Set, 扩展服务集，采用**相同的 SSID **的多个 BSS 形成更大规模的虚拟 BSS</p>
-<p>DS: Distribution System, 分布式系统</p>
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923153934280.png" alt="image-20210923153934280" style="zoom:50%;" />
-<p>Ad Hoc: 无线自组网络，构成一种特殊的无线网络应用模式，STA 间可直接互相连接，资源共享，而无需通过 AP</p>
-<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923154117728.png" alt="image-20210923154117728" style="zoom:50%;" />
-<h1 id="无线网络协议安全威胁"><a class="markdownIt-Anchor" href="#无线网络协议安全威胁"></a> 无线网络协议安全威胁</h1>
-<p>这里主要介绍恶意访问接入点，其方式有二：</p>
-<h2 id="恶意ap假冒成合法ap"><a class="markdownIt-Anchor" href="#恶意ap假冒成合法ap"></a> 恶意AP假冒成合法AP</h2>
-<p>恶意 AP 使用相同或相似的 SSID 标识，冒充正规 AP ，拦截流量</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> Component<span class="token punctuation">,</span> PureComponent <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">PureComponent</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="componentwillupdate"><a class="markdownIt-Anchor" href="#componentwillupdate"></a> componentWillUpdate</h2>
+<p>组件将要更新, 获取的是更新前的 <code>DOM</code>, 不能修改属性和状态</p>
+<p>不再推荐使用, 它处于调度阶段的第一个阶段, 能够被高优先级任务打断, 因此不够安全</p>
+<h2 id="render-2"><a class="markdownIt-Anchor" href="#render-2"></a> render</h2>
+<p>只能访问 <code>this.props</code> 和 <code>this.state</code> 不允许修改状态和 DOM 输出</p>
+<h2 id="componentdidupdate"><a class="markdownIt-Anchor" href="#componentdidupdate"></a> componentDidUpdate</h2>
+<p>可以访问更新后的 DOM 状态, 可以用于 Betterscroll</p>
+<p>接收两个参数 <code>prevProps</code> 与 <code>prevState</code> 表示更新前的状态与属性, 用于筛选更新内容, 防止不必要的渲染</p>
 <blockquote>
-<p>无线客户端探测软件会误认为该伪造 AP 是合法 AP，于是就连接上此无线接入点</p>
+<p>比如之前的状态已经有数据了, 那么就不必要初始化 Betterscroll 了</p>
 </blockquote>
-<h2 id="局域网内部人员搭建无线-ap"><a class="markdownIt-Anchor" href="#局域网内部人员搭建无线-ap"></a> 局域网内部人员搭建无线 AP</h2>
-<p>内部人员搭设无线 AP 是不安全的，容易让黑客绕过防火墙</p>
-<h1 id="无线网络协议安全机制"><a class="markdownIt-Anchor" href="#无线网络协议安全机制"></a> 无线网络协议安全机制</h1>
-<p>隐藏 SSID 为最简单方便的保证无线网络安全的手段之一</p>
-<h2 id="mac-层用户接入管理过程"><a class="markdownIt-Anchor" href="#mac-层用户接入管理过程"></a> MAC 层用户接入管理过程</h2>
-<h3 id="scanning"><a class="markdownIt-Anchor" href="#scanning"></a> Scanning</h3>
-<p>STA 寻找一个无线网络</p>
-<p>1、Passive Scanning：找到时间较长但是省电</p>
-<blockquote>
-<p>通过侦听 AP 定期发送的 Beacon 帧来发现网络</p>
-</blockquote>
-<p>2、Active Scannign：能迅速找到</p>
-<blockquote>
-<p>STA 在每个信道上发送 Probe request 报文，从 AP 回应的 Probe response 中获取 SSID 信息
-应用于发现隐藏 AP</p>
-</blockquote>
-<h3 id="authentication"><a class="markdownIt-Anchor" href="#authentication"></a> Authentication</h3>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205143718.png" alt="shared-key authentication" /></p>
-<p>采用 shared-key authentication 进行认证，加密算法为 WEP</p>
-<blockquote>
-<p>Attackers 可以通过监听 AP 发送的明文和 STA 回复的密文计算出 WEP key
-因此 WEP 已经不再安全，共享秘钥认证方式已经被 WPA/WPA2 代替</p>
-</blockquote>
-<p>详情将 <a href="##%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F">加密方式</a></p>
-<h3 id="association"><a class="markdownIt-Anchor" href="#association"></a> Association</h3>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205143915.png" alt="Association" /></p>
-<p>关联，STA 和 AP 建立关联，后续的数据报文的收发只能和建立Association关系的AP进行</p>
-<h3 id="数据收发"><a class="markdownIt-Anchor" href="#数据收发"></a> 数据收发</h3>
-<p>略</p>
-<h2 id="csmaca"><a class="markdownIt-Anchor" href="#csmaca"></a> CSMA/CA</h2>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205144057.png" alt="CSMA/CA" /></p>
-<p>带冲突避免的载波侦听多路访问</p>
-<p>1、冲突避免：送出数据前监听媒体状态，确定没人使用，维持一段时间，再（随机）等待一段随机时间后，依然无人使用送出数据</p>
-<p>2、送出数据前，发送请求传送报文（RTS）给目标端，等待目标端回应 CTS 报文后才，开始传送</p>
-<blockquote>
-<p>询问 + 应答：先站住通信时间</p>
-<p>缺点：网络的效率下降</p>
-<p>优点：两种控制帧都很短，开销小。相反，若不使用，则一旦发生冲突而导致数据帧重发，则浪费的时间就更大。</p>
-</blockquote>
-<h2 id="加密方式"><a class="markdownIt-Anchor" href="#加密方式"></a> 加密方式</h2>
-<p>(仅作了解，Forget it！)
-WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA/WPA2，Wi-Fi Protected Access，无线保护接入</p>
-<h3 id="wep"><a class="markdownIt-Anchor" href="#wep"></a> WEP</h3>
-<p>Wired Equivalent Privacy，有线对等私有协议</p>
-<p>1、初始化向量 IV + 密码 PASSWORD + DATA 明文数据 + CRC-32 明文的完整性校验值</p>
-<p>2、得到 KSA = IV + PASSWORD</p>
-<blockquote>
-<p>IV向量太短，大量监听用户数据报文后，WEP加密很容易被破解</p>
-</blockquote>
-<p>3、经过 RC4 伪随机数密钥加密得到 PRGA = RC4（KSA）</p>
-<blockquote>
-<p>RC4加密算法过于简单</p>
-</blockquote>
-<p>4、对 PRGA 与 DATA + CRC-32 进行异或加冕算法</p>
-<p>5、得到密文 ENCRYPTED DATA</p>
-<p>6、将密文与 IV 一起发送</p>
-<blockquote>
-<p>加密整个网络共用一个共享密钥，一旦丢失，整个网络都很危险</p>
-</blockquote>
-<p><strong>解密</strong></p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211005192237440.png" alt="image-20211005192237440" /></p>
-<h3 id="wpawpa2"><a class="markdownIt-Anchor" href="#wpawpa2"></a> WPA/WPA2</h3>
-<p>Wi-Fi Protected Access，无线保护接入，了解即可，不必深究</p>
-<p>WPA密码破解时，只要能抓到用户和AP之间的4次握手包中包含的和密码有联系的信息，采用字典进行暴力破解，能否破解就取决于字典和密码的复杂程度了</p>
+<h1 id="销毁"><a class="markdownIt-Anchor" href="#销毁"></a> 销毁</h1>
+<h2 id="componentwillunmount"><a class="markdownIt-Anchor" href="#componentwillunmount"></a> componentWillUnmount</h2>
+<p>组件中涉及 window 窗口, 定时器等全局的监听事件需要在组件销毁时一并清理</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 需要由 ReactDOM 显式调用</span>
+<span class="token function-variable function">unloadomponent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    ReactDOM<span class="token punctuation">.</span><span class="token function">unmountComponentAtNode</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'demo'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'componentWillUnmount'</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="新生命周期"><a class="markdownIt-Anchor" href="#新生命周期"></a> 新生命周期</h1>
+<p>新老生命周期不能同时存在</p>
+<h2 id="getderivedstatefromprops"><a class="markdownIt-Anchor" href="#getderivedstatefromprops"></a> getDerivedStateFromProps</h2>
+<p>用于替代 <code>componentWillMount</code>: 第一次初始化组件以及后续的更新过程中(包括自身状态更新以及父传子), 返回一个对象作为新的 state, 返回 null 则说明不需要在这里更新 state</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">static</span> <span class="token function">getDerivedStateFromProps</span><span class="token punctuation">(</span><span class="token parameter">nextProps<span class="token punctuation">,</span> nextState</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 在这里因为丢失了 this 推荐只进行将属性转为状态</span>
+    <span class="token comment">// 并且该声明周期会频繁调用</span>
+    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+        type<span class="token operator">:</span> nextProps<span class="token punctuation">.</span>type
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后借助 <code>componentDidUpdate</code> 完成更新</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token parameter">prevProps<span class="token punctuation">,</span> prevState</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 这里面如果 setState 又会引起 getDerivedFromProps 更新, 需要注意</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>type <span class="token operator">===</span> prevState<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"请求卖座正在热映的数据"</span><span class="token punctuation">)</span>
+        <span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            url<span class="token operator">:</span><span class="token string">"https://m.maizuo.com/gateway?cityId=110100&amp;pageNum=1&amp;pageSize=10&amp;type=1&amp;k=6369301"</span><span class="token punctuation">,</span>
+            headers<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                <span class="token string">'X-Client-Info'</span><span class="token operator">:</span> <span class="token string">'&#123;"a":"3000","ch":"1002","v":"5.2.0","e":"16395416565231270166529","bc":"110100"&#125;'</span><span class="token punctuation">,</span>
+                <span class="token string">'X-Host'</span><span class="token operator">:</span> <span class="token string">'mall.film-ticket.film.list'</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data<span class="token punctuation">.</span>films<span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+                list<span class="token operator">:</span>res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data<span class="token punctuation">.</span>films<span class="token punctuation">,</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"请求卖座即将上映的数据"</span><span class="token punctuation">)</span>
+
+        <span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            url<span class="token operator">:</span><span class="token string">"https://m.maizuo.com/gateway?cityId=110100&amp;pageNum=1&amp;pageSize=10&amp;type=2&amp;k=8077848"</span><span class="token punctuation">,</span>
+            headers<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                <span class="token string">'X-Client-Info'</span><span class="token operator">:</span> <span class="token string">'&#123;"a":"3000","ch":"1002","v":"5.2.0","e":"16395416565231270166529","bc":"110100"&#125;'</span><span class="token punctuation">,</span>
+                <span class="token string">'X-Host'</span><span class="token operator">:</span> <span class="token string">'mall.film-ticket.film.list'</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data<span class="token punctuation">.</span>films<span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+                list<span class="token operator">:</span>res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data<span class="token punctuation">.</span>films<span class="token punctuation">,</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="getsnapshotbeforeupdate"><a class="markdownIt-Anchor" href="#getsnapshotbeforeupdate"></a> getSnapshotBeforeUpdate</h2>
+<p>用于代替 <code>componentWillUpdate</code> 触发时间为 update 发生的时候, 在 render 之后 dom 渲染之前返回一个值, 作为 componentDidUpdate 的第三个参数</p>
 
                 
             </div>
@@ -610,7 +646,7 @@ WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA/WPA2，Wi-Fi P
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Coming98.github.io/Coming-blog/2021/12/05/802-11-protocol-and-security/">https://Coming98.github.io/Coming-blog/2021/12/05/802-11-protocol-and-security/</a>
+                    <a href="https://Coming98.github.io/Coming-blog/2023/01/01/08-react-lei-zu-jian-sheng-ming-zhou-qi/">https://Coming98.github.io/Coming-blog/2023/01/01/08-react-lei-zu-jian-sheng-ming-zhou-qi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -648,8 +684,8 @@ WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA/WPA2，Wi-Fi P
                     
                         <div class="article-tag">
                             
-                                <a href="/Coming-blog/tags/security/">
-                                    <span class="chip bg-color">security</span>
+                                <a href="/Coming-blog/tags/react/">
+                                    <span class="chip bg-color">react</span>
                                 </a>
                             
                         </div>
@@ -843,46 +879,48 @@ WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA/WPA2，Wi-Fi P
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/05/vlan-and-vlan-security/">
+                <a href="/Coming-blog/2023/01/01/08-react-lei-zu-jian-sheng-ming-zhou-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/7.jpg" class="responsive-img" alt="VLAN and VLAN Security">
+                        <img src="/Coming-blog/medias/featureimages/7.jpg" class="responsive-img" alt="08-React-类组件生命周期">
                         
-                        <span class="card-title">VLAN and VLAN Security</span>
+                        <span class="card-title">08-React-类组件生命周期</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            虚拟局域网安全分析
+                            类组件声明周期简单介绍
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
-                                    Protocol Security
+                            <a href="/Coming-blog/categories/React/" class="post-category">
+                                    React
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/security/">
-                        <span class="chip bg-color">security</span>
+                    <a href="/Coming-blog/tags/react/">
+                        <span class="chip bg-color">react</span>
                     </a>
                     
                 </div>
@@ -896,31 +934,31 @@ WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA/WPA2，Wi-Fi P
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Coming-blog/2021/12/05/802-3-protocol-and-security/">
+                <a href="/Coming-blog/2023/01/01/07-react-zu-jian-jian-tong-xin/">
                     <div class="card-image">
                         
                         
-                        <img src="/Coming-blog/medias/featureimages/8.jpg" class="responsive-img" alt="802.3 Protocol and Security">
+                        <img src="/Coming-blog/medias/featureimages/11.jpg" class="responsive-img" alt="07-React-组件间通信">
                         
-                        <span class="card-title">802.3 Protocol and Security</span>
+                        <span class="card-title">07-React-组件间通信</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            有线网络（802.3）协议安全分析
+                            组件间通信方式的整理
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/Coming-blog/categories/Protocol-Security/" class="post-category">
-                                    Protocol Security
+                            <a href="/Coming-blog/categories/React/" class="post-category">
+                                    React
                                 </a>
                             
                             
@@ -930,8 +968,8 @@ WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA/WPA2，Wi-Fi P
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Coming-blog/tags/security/">
-                        <span class="chip bg-color">security</span>
+                    <a href="/Coming-blog/tags/react/">
+                        <span class="chip bg-color">react</span>
                     </a>
                     
                 </div>
