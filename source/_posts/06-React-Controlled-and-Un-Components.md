@@ -4,6 +4,8 @@ mathjax: false
 date: 2023-01-01 21:18:43
 summary: 受控组件与非受控组件
 categories: React
+tags:
+  - react
 ---
 
 # 表单中的受控组件与非受控组件

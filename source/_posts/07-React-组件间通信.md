@@ -4,6 +4,8 @@ mathjax: false
 date: 2023-01-01 22:30:01
 summary: 组件间通信方式的整理
 categories: React
+tags:
+  - react
 ---
 
 # 父子状态通信
