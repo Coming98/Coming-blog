@@ -6,7 +6,7 @@
   <link href="https://coming98.github.io/atom.xml" rel="self"/>
   
   <link href="https://coming98.github.io/"/>
-  <updated>2023-01-02T11:01:31.640Z</updated>
+  <updated>2023-01-02T11:13:20.532Z</updated>
   <id>https://coming98.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>11-React-Redux</title>
+    <link href="https://coming98.github.io/2023/01/02/11-react-redux/"/>
+    <id>https://coming98.github.io/2023/01/02/11-react-redux/</id>
+    <published>2023-01-02T19:10:55.000Z</published>
+    <updated>2023-01-02T11:13:20.532Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;flux&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#flux&quot;&gt;&lt;/a&gt; Flux&lt;/h1&gt;
+&lt;p&gt;FLUX 是一种架构思想，是一种模式&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="React" scheme="https://coming98.github.io/categories/React/"/>
+    
+    
+    <category term="react" scheme="https://coming98.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
     <title>10-React-Router</title>
     <link href="https://coming98.github.io/2023/01/02/10-react-router/"/>
     <id>https://coming98.github.io/2023/01/02/10-react-router/</id>
     <published>2023-01-02T18:59:27.000Z</published>
-    <updated>2023-01-02T11:01:31.640Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -47,7 +74,7 @@
     <link href="https://coming98.github.io/2023/01/02/09-react-functional-component/"/>
     <id>https://coming98.github.io/2023/01/02/09-react-functional-component/</id>
     <published>2023-01-02T17:05:25.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -73,7 +100,7 @@
     <link href="https://coming98.github.io/2023/01/01/08-react-lei-zu-jian-sheng-ming-zhou-qi/"/>
     <id>https://coming98.github.io/2023/01/01/08-react-lei-zu-jian-sheng-ming-zhou-qi/</id>
     <published>2023-01-01T22:51:54.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -99,7 +126,7 @@
     <link href="https://coming98.github.io/2023/01/01/07-react-zu-jian-jian-tong-xin/"/>
     <id>https://coming98.github.io/2023/01/01/07-react-zu-jian-jian-tong-xin/</id>
     <published>2023-01-01T22:30:01.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -125,7 +152,7 @@
     <link href="https://coming98.github.io/2023/01/01/06-react-controlled-and-un-components/"/>
     <id>https://coming98.github.io/2023/01/01/06-react-controlled-and-un-components/</id>
     <published>2023-01-01T21:18:43.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -152,7 +179,7 @@
     <link href="https://coming98.github.io/2023/01/01/05-react-class-component-attrs/"/>
     <id>https://coming98.github.io/2023/01/01/05-react-class-component-attrs/</id>
     <published>2023-01-01T21:02:11.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -178,7 +205,7 @@
     <link href="https://coming98.github.io/2022/12/31/04-react-crossdomain/"/>
     <id>https://coming98.github.io/2022/12/31/04-react-crossdomain/</id>
     <published>2022-12-31T22:49:22.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -205,7 +232,7 @@
     <link href="https://coming98.github.io/2022/12/31/03-react-component-basic/"/>
     <id>https://coming98.github.io/2022/12/31/03-react-component-basic/</id>
     <published>2022-12-31T18:57:46.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -231,7 +258,7 @@
     <link href="https://coming98.github.io/2022/12/31/02-react-jsx/"/>
     <id>https://coming98.github.io/2022/12/31/02-react-jsx/</id>
     <published>2022-12-31T18:57:34.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -257,7 +284,7 @@
     <link href="https://coming98.github.io/2022/12/31/01-react-create-react-app/"/>
     <id>https://coming98.github.io/2022/12/31/01-react-create-react-app/</id>
     <published>2022-12-31T18:57:23.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -283,7 +310,7 @@
     <link href="https://coming98.github.io/2022/12/30/09-django-modelform/"/>
     <id>https://coming98.github.io/2022/12/30/09-django-modelform/</id>
     <published>2022-12-30T18:21:59.000Z</published>
-    <updated>2023-01-02T11:01:31.640Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -310,7 +337,7 @@
     <link href="https://coming98.github.io/2022/12/30/08-django-templates/"/>
     <id>https://coming98.github.io/2022/12/30/08-django-templates/</id>
     <published>2022-12-30T18:21:52.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -338,7 +365,7 @@
     <link href="https://coming98.github.io/2022/12/30/07-django-orm/"/>
     <id>https://coming98.github.io/2022/12/30/07-django-orm/</id>
     <published>2022-12-30T18:21:46.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -363,7 +390,7 @@
     <link href="https://coming98.github.io/2022/12/30/06-django-request/"/>
     <id>https://coming98.github.io/2022/12/30/06-django-request/</id>
     <published>2022-12-30T18:21:41.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.532Z</updated>
     
     
       
@@ -391,7 +418,7 @@
     <link href="https://coming98.github.io/2022/12/12/05-django-admin/"/>
     <id>https://coming98.github.io/2022/12/12/05-django-admin/</id>
     <published>2022-12-12T18:43:13.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -419,7 +446,7 @@
     <link href="https://coming98.github.io/2022/12/12/04-django-static/"/>
     <id>https://coming98.github.io/2022/12/12/04-django-static/</id>
     <published>2022-12-12T18:43:06.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -445,7 +472,7 @@
     <link href="https://coming98.github.io/2022/12/12/03-django-testing/"/>
     <id>https://coming98.github.io/2022/12/12/03-django-testing/</id>
     <published>2022-12-12T18:42:54.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -471,7 +498,7 @@
     <link href="https://coming98.github.io/2022/12/12/02-django-views/"/>
     <id>https://coming98.github.io/2022/12/12/02-django-views/</id>
     <published>2022-12-12T16:45:07.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -498,7 +525,7 @@
     <link href="https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/"/>
     <id>https://coming98.github.io/2022/12/04/02-basic-knowledge-of-compilation-principles/</id>
     <published>2022-12-04T09:18:07.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
+    <updated>2023-01-02T11:13:20.528Z</updated>
     
     
       
@@ -517,35 +544,6 @@
     
     
     <category term="compilation principle" scheme="https://coming98.github.io/tags/compilation-principle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>01-django-init</title>
-    <link href="https://coming98.github.io/2022/12/03/01-django-init/"/>
-    <id>https://coming98.github.io/2022/12/03/01-django-init/</id>
-    <published>2022-12-03T23:25:47.000Z</published>
-    <updated>2023-01-02T11:01:31.636Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;安装&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#安装&quot;&gt;&lt;/a&gt; 安装&lt;/h1&gt;
-&lt;p&gt;安装 django: &lt;code&gt;pip install django&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;验证 django 版本:</summary>
-        
-      
-    
-    
-    
-    <category term="Django" scheme="https://coming98.github.io/categories/Django/"/>
-    
-    
-    <category term="python" scheme="https://coming98.github.io/tags/python/"/>
-    
-    <category term="INIT" scheme="https://coming98.github.io/tags/INIT/"/>
     
   </entry>
   

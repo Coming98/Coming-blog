@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://Coming98.github.io/Coming-blog/2022/12/30/06-django-request/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2022/08/21/07-persistentstorage/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2023/01/01/07-react-zu-jian-jian-tong-xin/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2022/12/30/07-django-orm/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2022/08/22/08-content-provider/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2023/01/01/08-react-lei-zu-jian-sheng-ming-zhou-qi/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2022/12/30/08-django-templates/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2022/08/22/09-multimedia/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2023/01/02/09-react-functional-component/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
     <loc>https://Coming98.github.io/Coming-blog/2022/12/30/09-django-modelform/</loc>
     <lastmod>2023-01-02</lastmod>
   </url>
@@ -10,6 +46,10 @@
   </url>
   <url>
     <loc>https://Coming98.github.io/Coming-blog/2022/08/23/10-service/</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://Coming98.github.io/Coming-blog/2023/01/02/11-react-redux/</loc>
     <lastmod>2023-01-02</lastmod>
   </url>
   <url>
@@ -242,42 +282,6 @@
   </url>
   <url>
     <loc>https://Coming98.github.io/Coming-blog/2022/08/19/06-broadcast/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2022/12/30/06-django-request/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2022/08/21/07-persistentstorage/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2023/01/01/07-react-zu-jian-jian-tong-xin/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2022/12/30/07-django-orm/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2022/08/22/08-content-provider/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2023/01/01/08-react-lei-zu-jian-sheng-ming-zhou-qi/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2022/12/30/08-django-templates/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2022/08/22/09-multimedia/</loc>
-    <lastmod>2023-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://Coming98.github.io/Coming-blog/2023/01/02/09-react-functional-component/</loc>
     <lastmod>2023-01-02</lastmod>
   </url>
   <url>
