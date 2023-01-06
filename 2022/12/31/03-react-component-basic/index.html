@@ -467,14 +467,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -585,13 +585,22 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212311851361.png" alt="" /></p>
 <h1 id="组件的样式"><a class="markdownIt-Anchor" href="#组件的样式"></a> 组件的样式</h1>
+<h2 id="外部-css-文件"><a class="markdownIt-Anchor" href="#外部-css-文件"></a> 外部 CSS 文件</h2>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token string">'./css/01-index.css'</span> <span class="token comment">// webpack 的支持</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>导入外部 CSS 文件, 整合的 webpack 会将其转为内部 <code>style</code> 从而将样式应用到全局</p>
+<ul>
+<li>针对标签类型的样式就有可能出现样式冲突问题</li>
+<li>针对选择器定义的样式则可能出现重名问题</li>
+<li>因此不推荐使用</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301051255690.png" alt="" /></p>
+<h2 id="行内样式"><a class="markdownIt-Anchor" href="#行内样式"></a> 行内样式</h2>
 <p>推荐使用行内样式, 方便组件复用</p>
 <ul>
-<li>如果导入外部 CSS 文件, 整合的 webpack 会将其转为内部 <code>style</code> 从而将样式应用</li>
+<li>如果</li>
 <li>推荐每一个组件建立一个文件夹，文件夹中 <code>index.js</code> 写组件设计代码；<code>index.css</code> 写组件样式代码</li>
 </ul>
 <pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>Component<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
-<span class="token keyword">import</span> <span class="token string">'./css/01-index.css'</span> <span class="token comment">// webpack 的支持</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">&#123;</span>
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -609,16 +618,41 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
                 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span class="token plain-text">
                 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span>style1<span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> 推荐使用这两种行内样式, 方便组件的管理 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
                 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>backgroundColor<span class="token operator">:</span> <span class="token string">"blue"</span><span class="token punctuation">,</span> color<span class="token operator">:</span> <span class="token string">"white"</span><span class="token punctuation">,</span> fontSize<span class="token operator">:</span> <span class="token string">"22px"</span><span class="token punctuation">,</span> padding<span class="token operator">:</span> <span class="token string">"8px"</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> 命名变为驼峰 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
-                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>active<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token plain-text"> 引入的外部 CSS </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
-                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
-                    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">htmlFor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token plain-text">Username: </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span><span class="token plain-text">
-                    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>for should be htmlFor<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span><span class="token plain-text">
-                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
             </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
         <span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212311853206.png" alt="" /></p>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="css-模块化"><a class="markdownIt-Anchor" href="#css-模块化"></a> CSS 模块化</h2>
+<p>针对不想全局应用的非标签式样式可以使用 CSS 模块化解决:</p>
+<ol>
+<li>css 文件的后缀为 <code>.module.css</code></li>
+<li>引入文件起一个别名: <code>import style from ./index.module.css</code></li>
+<li>使用 style 进行样式赋值:</li>
+</ol>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx"><span class="token keyword">import</span> style <span class="token keyword">from</span> <span class="token string">'./Child.module.css'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">className</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">&#123;</span>style<span class="token punctuation">[</span><span class="token string">'red-line'</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token punctuation">></span></span><span class="token plain-text"> Child </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301051258231.png" alt="" /></p>
+<h2 id="sass"><a class="markdownIt-Anchor" href="#sass"></a> sass</h2>
+<ol>
+<li><code>npm i sass</code></li>
+<li>将后缀名改为 <code>*.scss</code></li>
+<li>应用 sass 语法</li>
+</ol>
+<p>TODO: 更为详细的 sass 语法</p>
+<pre class="line-numbers language-scss" data-language="scss"><code class="language-scss"><span class="token property"><span class="token variable">$width</span></span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+<span class="token selector">ul </span><span class="token punctuation">&#123;</span>
+    <span class="token selector">.item </span><span class="token punctuation">&#123;</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token variable">$width</span><span class="token punctuation">;</span>
+        <span class="token property">backgroud-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="组件的事件绑定"><a class="markdownIt-Anchor" href="#组件的事件绑定"></a> 组件的事件绑定</h1>
 <p>所有事件命名都是 <code>on</code> + <code>事件的驼峰命名</code> 如 <code>onClick, onMouseOver</code></p>
 <ul>
@@ -1244,7 +1278,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">149.9k</span>&nbsp;字
+                class="white-color">150.7k</span>&nbsp;字
             
             
             
