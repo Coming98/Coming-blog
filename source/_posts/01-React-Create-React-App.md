@@ -24,16 +24,16 @@ tags:
 npm config set registry https://registry.npm.taobao.org
 ```
 
-1、全局安装 `create-react-app`
+1、安装 `create-react-app`
 
 ```shell
-npm i -g create-react-app
+npm i create-react-app
 ```
 
 2、切换到项目目录, 创建项目: 不能含有大写字母
 
 ```shell
-create-react-app 01hello-react
+npx create-react-app 01hello-react
 ```
 
 主要安装了三样东西:

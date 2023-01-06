@@ -13,238 +13,614 @@ tags:
 SPA，single page web application，单个页面 Web 应用，整个应用只有一个完整的页面（单页面多组件），点击页面中的连接不会刷新页面，只会做页面的局部更新
 - 数据都需要通过 ajax 请求获取，并在前端异步展现
 
-## 路由
+前端路由: 即 React 中的路由, 实质 path 与 组件的映射
+- 点击链接，变换url; 检测到 url 变化提取 path; 根据 path 更新目标组件
+- 当 path 变化为 `/demo` 时, 就会加载其绑定的组件, 如 `<Demo/>` 组件
 
-路由就是一种映射关系，实现 url 中路径与组件/处理函数的映射：
+后端路由: 即 Django 中的 urlpatterns, 实现的是 path 与函数的映射，用于处理客户端提交的请求
+- 当后端服务器接收到一个请求时，根据请求路径找到匹配的路由，调用路由中的处理函数返回响应数据
 
-1. 点击链接，变换url
-2. 检测到 url 变化提取 path
-3. 根据 path 更新页面
-
-### 前端路由
-
-实现 path 与 组件的映射，直接加载目标组件更新页面
-
-工作过程：当 path 变化为 `/demo` 时，路由组件就会变为 `<Demo/>` 组件
-
-### 后端路由
-
-实现的是 path 与 函数的映射，用于处理客户端提交的请求
-
-注册路由方式：`router.get(path, function(req, res))`
-
-工作过程：当 node 接收到一个请求时，根据请求路径找到匹配的路由，调用路由中的处理函数返回响应数据
-
-## 浏览器地址操作
-
-浏览器的历史记录是一种栈结构，BOM 中的 histroy 对象对其维护，使用 history.js 可以更加方便的操作 BOM 中的 histroy
-
-1、push：`history.push('/test')`，向栈中推入一个路径并更改 url
-
-2、replace：`history.repalce('/test')`，替换栈顶的路径并更改 url
-> 注意替换操作将不能回退
-> 比如我从 demo1 推入了 demo2 随后执行替换 到了 demo3，那么执行回退路径时会直接到 demo1，demo2 的记录丢失了
-
-3、监听路径变化：
-```javescript
-history.listen((location) => {
-    console.log('请求路由路径变化了', location)
-})
-```
-
-另一种方法是锚点跳转的思想：以 `index.html` 为首，进行锚点跳转会形成：`index.html#demo`
-
-# react-router-dom
+# react-router-dom V6
 
 用于实现一个 SPA 项目，基于 React 的项目基本都会用到此库
 
 ```shell
 yarn add react-router-dom
+npm i react-router-dom
 ```
+
+- React-Router 自带 404 功能: 应用程序在渲染、加载数据或执行数据突变时抛出错误时, React Router都会捕捉到错误并呈现默认错误界面
 
 ## Quick Start
 
-1. 明确页面中的导航区与展示区
-2. 导航区的 a 标签改为 Link 标签，to 属性指路由变化
+1. 导入相关包
+
 ```jsx
-{/* <a className="list-group-item" href="./about.html">About</a> */}
-<Link className={'list-group-item ' + (this.state.activeName === 'About' ? 'active' : '') } to="/about" onClick={this.setActive('About')}>About</Link>
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 ```
 
-3. 展示区与路由匹配
+2. 建立根路由
+
 ```jsx
-{/* 注册路由 */}
-<Routes>
-    <Route path="/about" element={<About/>}/>
-    <Route path="/home" element={<Home/>}/>
-    <Route path="/" element={<Welcome/>}/>
-    <Route path="/welcome" element={<Welcome/>}/>
-</Routes>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+  },
+]);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
 ```
 
-4. <App> 最外侧包裹 <BrowserRouter> - 基于浏览器路由 或 <HashRouter> - 基于锚点路由
+3. 根据需求添加子路由
+
 ```jsx
-ReactDOM.render(<BrowserRouter><App/></BrowserRouter>, document.getElementById('root'))
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "contacts/:contactId",
+        element: <Contact />,
+      },
+    ],
+  },
+]);
 ```
 
-## 重定向
-
-- 使用 Navigate 组件实现重定向
+4. 配置子路由组件在根组件中的位置: 默认使用 <Outlet /> 表示匹配的子路由组件
 
 ```jsx
-<Route path="*" element={<Navigate to="/film"/>}/>
-```
+import { Outlet } from "react-router-dom";
 
-- 使用 Redirect 组件实现重定向: Redirect 需要自行设计, 通常配合 useNavigate 使用
-
-```jsx
-<Route path="*" element={<Redirect to="/film" />} />
-function Redirect(props) {
-    const navigate = useNavigate()
-    useEffect(() => {
-        navigate(props.to, { replace: true })
-    })
-
-    return null
+export default function Root() {
+  return (
+    <>
+      {/* all the other elements */}
+      <div id="detail">
+        <Outlet />
+      </div>
+    </>
+  );
 }
 ```
 
-## 默认匹配
+## index 默认路由
 
-可以用默认匹配实现通用 404
+当路由在父路由层级并未涉及到子路由时, `<Outlet />` 组件内容就是空的, 十分不好看, 因此可以在子路由配置中加入 index 路由表示默认匹配的子路由组件
+- `index: true`: That tells the router to match and render this route **when the user is at the parent route's exact path**
 
-```jsx
-<Route path="*" element={<NotFound/>} />
-```
-
-## 嵌套路由
-
-1. 父组件中要使用 `<Outlet></Outlet>` 设置好路由容器
+1. 编辑子路由组件
 
 ```jsx
-function Film() {
-    return (
-        <div>
-            <h3> Film </h3>
-            <div style={{height: "200px", background: "cyan"}}> 大轮播 </div>
-            {/* 设置好路由容器, 这样多级路由不必分开, 方便管理 */}
-            <Outlet></Outlet>
-        </div>
-    )
+export default function Index() {
+  return (
+    <p id="zero-state">
+      This is a demo for React Router.
+      <br />
+      Check out{" "}
+      <a href="https://reactrouter.com">
+        the docs at reactrouter.com
+      </a>
+      .
+    </p>
+  );
 }
 ```
 
-2. 路由组件中直接嵌套写即可: `index` 用于匹配到只提供了父路径没有提供子路径的情况
+2. 进行路由配置
 
 ```jsx
-<Routes>
-    <Route path="/film" element={<Film></Film>} >
-        {/* 没有匹配到子路径时 */}
-        <Route index element={<Navigate to="/film/nowplaying"/>}></Route>
-        <Route path="nowplaying" element={<Nowplaying/>}></Route>
-        <Route path="comingsoon" element={<Comingsoon/>}></Route>
-    </Route>
-    ...
-</Routes>
+import Index from "./routes/index";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+    children: [
+      { 
+        index: true, 
+        element: <Index /> 
+      },
+      /* existing routes */
+    ],
+  },
+]);
 ```
 
-## 声明式导航
+## 导航
 
-Link 与 NavLink
+### Link
+
+导航区的 a 标签改为 Link 标签，to 属性指路由变化
 
 ```jsx
-<footer>
-    <ul>
-        <li> <NavLink to="/film" className={handleJcActive}> 电影 </NavLink> </li>
-        <li> <NavLink to="/cinema" className={handleJcActive}> 影院 </NavLink> </li>
-        <li> <NavLink to="/center" className={handleJcActive}> 我的 </NavLink> </li>
-    </ul>
-</footer>
+import { Outlet, Link } from "react-router-dom";
+<ul>
+    <li>
+        <Link to={`contacts/1`}>Your Name</Link>
+    </li>
+    <li>
+        <Link to={`contacts/2`}>Your Friend</Link>
+    </li>
+</ul>
 ```
 
-默认情况下 NavLink 会给选中的组件添加 `active` 的 className, 但是容易重名, 因此我们可以使用其提供的 className 接口进行更改: 
+### Navlink
+
+导航栏常常需要高亮当前选中的导航选项, React-Router 封装了 Navlink 快速实现该需求
+
+1. 用 Navlink 替换 Link: className 中可以传入一个函数, 函数中接收 isActive 与 isPending 属性, 根据该属性返回 className 名称
+
+- isActive: 表示当前 url 对应的就是该 Link
+- isPending: 表示相关数据正在加载, 还没完全显示该 Link 对应的组件
 
 ```jsx
-const handleJcActive = (props) => {
-    if(props.isActive) {
-        return 'jcActive'
-    } else {
-        return ''
-    }
+import { NavLink } from "react-router-dom";
+export default function Root() {
+  return (
+    <nav>
+        {contacts.length ? (
+        <ul>
+            {contacts.map((contact) => (
+            <li key={contact.id}>
+                <NavLink
+                to={`contacts/${contact.id}`}
+                className={({ isActive, isPending }) =>
+                    isActive
+                    ? "active"
+                    : isPending
+                    ? "pending"
+                    : ""
+                }
+                >
+                </NavLink>
+            </li>
+            ))}
+        </ul>
+        ) : (
+        <p>{/* other code */}</p>
+        )}
+    </nav>
+  );
 }
 ```
+
+
 
 ## 编程式导航
 
-使用 useNavigate 进行编程式控制
+### redirect
+
+重定向, 响应给浏览器的请求
 
 ```jsx
-const navigate = useNavigate()
-const hadleChangePage = (id) => {
-    navigate(`/detail?id=${id}`)
+import { redirect } from "react-router-dom";
+
+export async function action({ params }) {
+  await deleteContact(params.contactId);
+  return redirect("/");
 }
 ```
 
-## 参数传递
+### navigate
 
-### params
-
-只能传字符串, 传值过多 url 会变得很长, 参数必须在路由上配置
-- 刷新页面，参数不丢失
-
-1. 通过 `url` 传递参数
+导航, 由用户交互, 主动发起的导航
+- `navigate(-1)`: 返回浏览器历史记录中的一个条目
 
 ```jsx
-<MyNavLink to="/paramsSend/cjc/123456" onClick={this.setActive('paramsSend')}>paramsSend</MyNavLink>
-```
-
-2. 动态路由: 匹配时定义好参数模式
-
-```jsx
-<Route path="/paramsSend/:user/:pwd" element={<ParamsSend/>}/>
-```
-
-3. 引入 `useParams` 获取参数
-
-```jsx
-import { useParams } from 'react-router-dom';
-const params = useParams()
-<p>用户名：{params.user}</p>
-<p>密码：{params.pwd}</p>
-```
-
-### TODO: search
-
-优点：刷新页面，参数不丢失
-
-缺点：只能传字符串，传值过多url会变得很长，获取参数需要自定义hooks
-
-```jsx
-const [searchParams, setSearchParams] = useSearchParams()
-if(searchParams.has("username")){
-    const username = searchParams.get("username")
+import { useNavigate } from "react-router-dom";
+export default function Edit() {
+  return (
+    <Form method="post" id="contact-form">
+      <p>
+        <button type="submit">Save</button>
+        // type=button: 虽然看起来是多余的，但它是阻止按钮提交表单的 HTML 方式
+        <button
+          type="button"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Cancel
+        </button>
+      </p>
+    </Form>
+  );
 }
 ```
 
-## 路由拦截
+## Error Page
 
-未登录的情况下, 多个页面的路由需要拦截并重定向到登陆界面
+当 React-Router 捕捉到错误时, 会从当前路由配置中寻找 errorElement 属性, 如果找不到则层层向上寻找, 直到使用默认的 errorElement 属性
 
-一种实现方式就是自己写好状态判断函数, 然后在路由匹配后渲染时根据状态选择渲染
-
-```jsx
-<Route path="/center" element={isAuth() ? <Center/> : <Redirect to="/login"/>} />
-```
-
-但是这样没有和组件绑定, 导致其内容不会改变, 因此要用一个组件封装该逻辑, 在 `AuthComponent` 内部判断是否展示 `this.props.children`
+1. 自定义 error page: `touch src/error-page.jsx`
 
 ```jsx
-<Route path="/center" element={<AuthComponent>
-    <Center></Center>
-</AuthComponent>} />
+import { useRouteError } from "react-router-dom";
+
+export default function ErrorPage() {
+  const error = useRouteError();
+  console.error(error);
+
+  return (
+    <div id="error-page">
+      <h1>Oops!</h1>
+      <p>Sorry, an unexpected error has occurred.</p>
+      <p>
+        <i>{error.statusText || error.message}</i>
+      </p>
+    </div>
+  );
+}
 ```
 
-## TODO: 路由懒加载
+2. 配置到路由中
+
+```jsx
+import ErrorPage from "./error-page";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+  },
+]);
+```
+
+3. 在任何子路由页面中可以通过 `throw new Error("error message!");` 来触发 errorElement 的加载
+- Response 封装了更精细的控制
+
+```jsx
+export async function loader({ params }) {
+  const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return contact;
+}
+```
+
+### 子路由中的全局错误响应
+
+子路由中捕捉到错误后, 除非子路由有自己的 errorElement 否则都会到根路由处理; 而为每个子路由添加相同的 errorElement 太不优雅了, 因此 React-Router 出手了
+- 允许无 path 的路由, 仅仅和 UI 渲染相关的路由, 这样向上寻找 errorElement 就不会都到根路由中了
+
+```jsx
+createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    loader: rootLoader,
+    action: rootAction,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <Index /> },
+          {
+            path: "contacts/:contactId",
+            element: <Contact />,
+            loader: contactLoader,
+            action: contactAction,
+          },
+          /* the rest of the routes */
+        ],
+      },
+    ],
+  },
+]);
+```
+
+
+## 数据加载
+
+一个路由的跳转往往意味着新数据的加载, React-Router 针对此进行了处理, 引入了 loader 属性与 useLoaderData 钩子函数
+
+1. 配置异步加载请求函数: 如果路由中存在动态字段 (参数), 可以从函数中的 params 参数中获取; 属性名要与路由中动态字段的名称一致
+
+```jsx
+// root.jsx
+import { getContacts } from "../contacts";
+export async function loader() {
+  const contacts = await getContacts();
+  return { contacts };
+}
+// contact.jsx
+import { getContacts } from "../contacts";
+export async function loader({ params }) {
+  const contacts = await getContacts(params.contactId);
+  return { contacts };
+}
+```
+
+2. 配置相关路由的 loader 属性
+
+```jsx
+// 防止重名
+import Root, { loader as rootLoader } from "./routes/root";
+import Contact, { loader as contactLoader } from "./routes/contact";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    children: [
+      {
+        path: "contacts/:contactId",
+        element: <Contact />,
+        loader: contactLoader,
+      },
+    ],
+  },
+]);
+```
+
+3. 在目标组件中获取加载的数据
+
+```jsx
+import { useLoaderData } from "react-router-dom";
+export default function Root() {
+  const { contacts } = useLoaderData();
+  return (
+    <>
+      <div id="sidebar">
+        <nav>
+          {contacts.length ? (
+            <ul>
+              {contacts.map((contact) => (...))}
+            </ul>
+          ) : (
+            <p> <i>No contacts</i> </p>
+          )}
+        </nav>
+
+        {/* other code */}
+      </div>
+    </>
+  );
+```
+
+## 请求发布
+
+与数据加载对应的就是用户操作触发的 (GET/POST) 请求, React-Router 针对该类请求也进行了处理, 引入了 action 属性与 Form 组件
+- React-Router Action 触发后会自动验证 loader 数据, 并更新相关的 useLoaderData Hook, 从而触发组件的更新
+
+1. 在组件中引入 Form 组件并编写异步的 action 请求处理函数 (与服务器进行交互)
+
+```jsx
+import { Form } from "react-router-dom";
+import { getContacts, createContact } from "../contacts";
+
+export async function action() {
+  const contact = await createContact();
+  return { contact };
+}
+
+export default function Root() {
+  return (
+    <Form method="post">
+        <button type="submit">New</button>
+    </Form>
+  );
+}
+```
+
+2. 在相关路由中配置 action 属性
+
+```jsx
+import Root, { action as rootAction } from "./routes/root";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
+    action: rootAction,
+    children: [
+      {
+        path: "contacts/:contactId",
+        element: <Contact />,
+      },
+    ],
+  },
+]);
+```
+
+### 带参数的请求
+
+常用的应用场景中 Form 触发请求都带有参数
+
+1. action 接收 request 与 params 属性: request 获取 form 中的数据, params 获取 url 中的动态字段
+
+- formData 中的属性名与 form 组件中的 name 属性对应, 通过 get 方法获取属性值: `formData.get(name)`
+- 通过 ` Object.fromEntries` 可以快速将 formData 封装为一个对象
+- redirect helper just makes it easier to return a response that tells the app to change locations.
+
+```jsx
+import { Form, useLoaderData, redirect } from "react-router-dom";
+import { updateContact } from "../contacts";
+
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData);
+  await updateContact(params.contactId, updates);
+  return redirect(`/contacts/${params.contactId}`);
+}
+```
+
+2. 配置相关组件的 action 即可
+
+3. 获取 url 中的 GET 参数可以通过 request 对象
+
+```jsx
+const url = new URL(request.url);
+const q = url.searchParams.get("q");
+```
+
+### 多请求配置
+
+一个页面中完全可以存在多个 (GET/POST) 请求出口 (Form), 类似于传统 form 标签:
+- Form 默认的 action 是提交给当前路由的, 触发当前路由的 action 属性对应的钩子函数
+- Form 也支持指定 action 属性, 触发目标路由的 action 属性对应的钩子函数
+
+1. 指定 Form 的 action
+```jsx
+// contact.jsx
+<Form
+  method="post"
+  action="destroy" // 可以是相对路径, 自动在当前路由的基础上拼接
+  onSubmit={(event) => {
+    if (
+      !confirm(
+        "Please confirm you want to delete this record."
+      )
+    ) {
+      event.preventDefault();
+    }
+  }}
+>
+  <button type="submit">Delete</button>
+</Form>
+```
+
+2. 创建响应的钩子函数
+
+```jsx
+// destroy.jsx
+import { redirect } from "react-router-dom";
+
+export async function action({ params }) {
+  await deleteContact(params.contactId);
+  return redirect("/");
+}
+```
+
+3. 完善路由配置
+
+```jsx
+import { action as destroyAction } from "./routes/destroy";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    /* existing root route props */
+    children: [
+      /* existing routes */
+      {
+        path: "contacts/:contactId/destroy",
+        action: destroyAction,
+      },
+    ],
+  },
+]);
+```
+
+## 编程式请求发布
+
+React-Router 的 Form 表单请求的发布不仅仅可以和 Button 绑定, 还可以和事件绑定, 这就需要编程式的请求发布了: `useSubmit`
+- event.currentTarget.form: 表示的是 input 组件的父组件
+
+```jsx
+import { useSubmit } from "react-router-dom";
+
+export default function Root() {
+  const { contacts, q } = useLoaderData();
+  const submit = useSubmit();
+  return (
+    <>
+        <Form id="search-form" role="search">
+            <input
+                id="q"
+                aria-label="Search contacts"
+                placeholder="Search"
+                type="search"
+                name="q"
+                defaultValue={q}
+                onChange={(event) => {
+                    submit(event.currentTarget.form);
+                }}
+            />
+        </Form>
+    </>
+  );
+}
+```
+
+这样可以实现输入的即时性反馈, 但是在历史记录中却会存在大量的误判, 这样的需求可以在事件处理函数中通过逻辑判断解决:
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202301061249957.png)
+
+```jsx
+onChange={(event) => {
+    const isFirstSearch = q == null;
+    submit(event.currentTarget.form, {
+        replace: !isFirstSearch,
+    });
+}}
+```
+
+## 全局加载 UI
+
+在实际的重定向或路由间跳转请求中, 可能因为异步的数据加载导致页面出现卡顿, 因此可以使用 useNavigation 钩子获取当前的导航状态, 根据状态切换样式, 让用户体验更加舒适
+- navigation.state: 返回的状态有 idle(), submitting(), loading(数据正在加载)
+- navigation.location: will show up when the app is navigating to a new URL and loading the data for it; It then goes away when there is no pending navigation anymore; 因此在加载中时可以设定加载样式
+
+TODO: 通通用 navigation.state 解决不行吗？ 可能 location 更精细的控制搜索处的 pending 样式？
+
+```jsx
+import { useNavigation } from "react-router-dom";
+export default function Root() {
+  const { contacts } = useLoaderData();
+  const navigation = useNavigation();
+
+  // 
+  const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+
+  return (
+    <>
+      <div
+        id="detail"
+        className={
+          navigation.state === "loading" ? "loading" : ""
+        }
+      >
+        <Outlet />
+      </div>
+    </>
+  );
+}
+```
+
+## Mutations Without Navigation
+ 
+TODO: useFetcher & Optimistic UI
+
+# Refs
+
+- [Getting Start](https://reactrouter.com/en/main/start/tutorial#mutation-discussion)
+
+
+
+# TODO: 路由懒加载
 
 路由条目太多, 导致加载拥塞; 路由懒加载将实现按需加载路由
 
@@ -264,88 +640,6 @@ const LazyLoad = (path) => {
 ```
 
 
-# 常用路由组件
-
-```jsx
-import {Routes, Route, Redirect, Link, NavLink} from 'react-router-dom'
-```
-
-## Link
-
-Link 组件用于导航区，实现路由的发起
-```jsx
-import {Link} from 'react-router-dom'
-<Link className={'list-group-item ' + (this.state.activeName === 'About' ? 'active' : '') } to="/about" onClick={this.setActive('About')}>About</Link>
-```
-
-## NavLink
-
-默认情况下它自动给当前点击的 Link 添加 active 属性（应该是通过路由匹配结果来高亮组件），也可以通过 `activeClassName` 参数的传递指定自动添加的属性名称
-
-```jsx
-<NavLink className="list-group-item" to="/about" >About</NavLink>
-<NavLink activeClassName="redActive" className="list-group-item" to="/about" >About</NavLink>
-```
-
-### 二次封装
-更进一步的可以利用组件二次封装中所学，将 NavLink 中的固定字段进行二次封装处理
-
-```jsx
-render() {
-    // this.props 中使用 children 接收 标签体内容，因此可以直接传递给 NavLink 的child属性，完成二次封装的优秀对接
-    return (
-        <NavLink className="list-group-item" {...this.props} />
-    )
-}
-```
-
-## Routes
-
-用于包裹众多路由组件 `<Route>` 实现多 Route 的快速查找映射
-- caseSensitive 属性: 实现路由大小写区分, 默认不区分大小写
-
-```jsx
-<Route caseSensitive={true} path="/about" element={<About/>}/>
-```
-
-### 二级路由
-
-需要明确的是二级路由需要通过一级路由的匹配才能访问，因此以及路由通常设定为 `/pagename/*` 的形式这样才能访问二级路由 `/pagename/pageone` 
-- v6 中会对二级路由的前缀进行自动拼接，因此写二级路由时不必加上前缀
-
-```jsx
-// 一级路由
-<Routes>
-    <Route path="/about" element={<About/>}/>
-    <Route path="/home/*" element={<Home/>}/>
-    <Route path="*" element={<Welcome/>}/>
-</Routes>
-
-// 二级路由 /home/*
-<Routes>
-    <Route path="/news" element={<News/>}/>
-    <Route path="/message" element={<Message/>}/>
-    {/* 使用跳转实现 NavLink 的默认选中功能 */}
-    <Route path="*" element={<Navigate to="/home/news"/>}/>
-</Routes>
-```
-
-### 默认路由与 index 属性
-
-默认路由：在 Routes 中匹配未找到匹配字段时的缺省处理，通常设置 `path="*"` 来实现
-`index` 属性: 用于匹配到只提供了父路径没有提供子路径的情况
-
-在 `<Routes>` 中匹配路由时，如果前面的 `<Route>` 都没有匹配上，最后就会走 带有 index 属性的路由` （如果配置了的话）
-```jsx
-<Routes>
-    <Route index element={<Welcome/>}/>
-    <Route path="/about" element={<About/>}/>
-    <Route path="/home/*" element={<Home/>}/>
-    <Route path="*" element={<404/>}/>
-</Routes>
-```
-
-
 # 常见问题
 
 ## 静态样式丢失问题
@@ -359,38 +653,3 @@ render() {
 1. `href="%PUBLIC_URL%/css/bootstrap.css"` 使用 `%PUBLIC_URL%` 构造绝对路径引入 public 下资源文件
 2. `href="/css/bootstrap.css"` 使用 `/` 以根路径形式访问
 3. 使用 `<HashRouter>` 锚路由被 `#` 隔离了正常的 url 不会对相对路径产生影响了（不推荐）
-
-# useRoutes 钩子配置路由
-
-```jsx
-export default function JCRouter() {
-    const element = useRoutes([
-        {
-            path: "/film",
-            element: LazyLoad("Film"),
-            children: [
-                {
-                    path: "",
-                    element: <Redirect to="/film/nowplaying"/>
-                },
-                {
-                    path: "nowplaying",
-                    element: LazyLoad("film/Nowplaying"),
-                },
-                {
-                    path: "comingsoon",
-                    element: LazyLoad("film/Comingsoon"),
-                },
-            ]
-        },
-        {
-            path: "/cinema",
-            element: LazyLoad("Cinema")
-        },
-    ])
-
-    return (
-        element
-    )
-}
-```

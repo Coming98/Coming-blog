@@ -126,13 +126,27 @@ export default class App extends Component {
 
 # 组件的样式
 
+## 外部 CSS 文件
+
+```jsx
+import './css/01-index.css' // webpack 的支持
+```
+
+导入外部 CSS 文件, 整合的 webpack 会将其转为内部 `style` 从而将样式应用到全局
+- 针对标签类型的样式就有可能出现样式冲突问题
+- 针对选择器定义的样式则可能出现重名问题
+- 因此不推荐使用
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202301051255690.png)
+
+## 行内样式
+
 推荐使用行内样式, 方便组件复用
-- 如果导入外部 CSS 文件, 整合的 webpack 会将其转为内部 `style` 从而将样式应用
+- 如果
 - 推荐每一个组件建立一个文件夹，文件夹中 `index.js` 写组件设计代码；`index.css` 写组件样式代码
 
 ```jsx
 import React, {Component} from 'react'
-import './css/01-index.css' // webpack 的支持
 
 export default class App extends Component {
     render() {
@@ -150,19 +164,51 @@ export default class App extends Component {
                 </ul>
                 <div style={style1}> 推荐使用这两种行内样式, 方便组件的管理 </div>
                 <div style={{backgroundColor: "blue", color: "white", fontSize: "22px", padding: "8px"}}> 命名变为驼峰 </div>
-                <div className='active'> 引入的外部 CSS </div>
-                <div>
-                    <label htmlFor="username">Username: </label>
-                    <input id="username" type="text" placeholder='for should be htmlFor'></input>
-                </div>
             </div>
         )
     }
 }
 ```
 
-![](https://raw.githubusercontent.com/Coming98/pictures/main/202212311853206.png)
+## CSS 模块化
 
+针对不想全局应用的非标签式样式可以使用 CSS 模块化解决:
+
+1. css 文件的后缀为 `.module.css`
+2. 引入文件起一个别名: `import style from ./index.module.css`
+3. 使用 style 进行样式赋值: 
+
+```jsx
+import style from './Child.module.css'
+
+export default function Child() {
+    return (
+        <div>
+            <h1 className={style['red-line']}> Child </h1>
+        </div>
+    )
+}
+```
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202301051258231.png)
+
+## sass
+
+1. `npm i sass`
+2. 将后缀名改为 `*.scss`
+3. 应用 sass 语法
+
+TODO: 更为详细的 sass 语法
+
+```scss
+$width: 300px;
+ul {
+    .item {
+        width: $width;
+        backgroud-color: red;
+    }
+}
+```
 
 # 组件的事件绑定
 
